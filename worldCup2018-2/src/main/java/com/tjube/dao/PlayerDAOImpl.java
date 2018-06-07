@@ -51,11 +51,7 @@ public class PlayerDAOImpl
 		TypedQuery<Player> query = m_entityManager.createNamedQuery(Player.QN.GET_PLAYER_BY_ID, Player.class);
 		query.setParameter("id", empid);
 
-		List<Player> results = query.getResultList();
-		if (results.size() == 1)
-			return results.get(0);
-
-		return null;
+		return JPAUtils.getSingleResult(query);
 	}
 
 	@Override
@@ -77,6 +73,7 @@ public class PlayerDAOImpl
 	public List<Player> getGoals(Team team)
 	{
 		TypedQuery<Player> query = m_entityManager.createNamedQuery(Player.QN.findGoals, Player.class);
+		query.setParameter("team", team);
 		return query.getResultList();
 	}
 
@@ -85,6 +82,7 @@ public class PlayerDAOImpl
 	public List<Player> getDefensers(Team team)
 	{
 		TypedQuery<Player> query = m_entityManager.createNamedQuery(Player.QN.findDefensers, Player.class);
+		query.setParameter("team", team);
 		return query.getResultList();
 	}
 
@@ -93,6 +91,7 @@ public class PlayerDAOImpl
 	public List<Player> getMiddles(Team team)
 	{
 		TypedQuery<Player> query = m_entityManager.createNamedQuery(Player.QN.findMiddles, Player.class);
+		query.setParameter("team", team);
 		return query.getResultList();
 	}
 
@@ -101,6 +100,7 @@ public class PlayerDAOImpl
 	public List<Player> getStrikers(Team team)
 	{
 		TypedQuery<Player> query = m_entityManager.createNamedQuery(Player.QN.findStrikers, Player.class);
+		query.setParameter("team", team);
 		return query.getResultList();
 	}
 

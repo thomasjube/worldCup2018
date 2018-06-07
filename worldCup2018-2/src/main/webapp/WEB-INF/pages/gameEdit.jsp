@@ -97,12 +97,44 @@
 		                 </table>
 		                 <table class="kode-table">
 		                 	<thead>
-		                 	<th>But</th>
+		                 	<th>Buteur</th>
+		                 	<th>Passeur</th>
 		                 	<th>Minute</th>
-		                 	<th>But</th>
+		                 	<th>Buteur</th>
+		                 	<th>Passeur</th>
 		                 	<th style='width:4em;'>Minute</th>
 		                 	</thead>
 			                 <tbody id="playerBody">
+			                 	<c:if test="${indexMax > 0 }">
+				                 	<c:forEach begin="0" end="${indexMax-1}" var="index">
+				                 		<tr>
+				                 			<c:choose>
+					                 			<c:when test="${not empty game.getGoalsTeam1() && not empty game.getGoalsTeam1().get(index)}">
+					                 				<td>&</td>
+					                 				<td>&</td>
+					                 				<td>&</td>
+					                 			</c:when>
+					                 			<c:otherwise>
+								                 	<td>no</td>
+					                 				<td>no</td>
+					                 				<td>no</td>		
+					                 			</c:otherwise>
+				                 			</c:choose>
+				                 			<c:choose>
+					                 			<c:when test="${not empty game.getGoalsTeam2() && not empty game.getGoalsTeam2().get(index)}">
+					                 				<td>&</td>
+					                 				<td>&</td>
+					                 				<td>&</td>
+					                 			</c:when>
+					                 			<c:otherwise>
+								                 	<td>no</td>
+					                 				<td>no</td>
+					                 				<td>no</td>		
+					                 			</c:otherwise>
+				                 			</c:choose>
+				                 		</tr>
+				                 	</c:forEach>
+			                 	</c:if>
 			                 </tbody>
 		                 </table>
 		                 <input type="submit" value="Save">
@@ -159,11 +191,12 @@
 				if($("#tr-player-"+i).length)
 				{
 					$("#tr-player-"+i).find(".player-team1").html("<select  id='select-player"+i+"' name='scorerPlayers1["+i+"]'><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select>");
+					$("#tr-player-"+i).find(".passer-team1").html("<select  id='select-passer"+i+"' name='passerPlayers1["+i+"]'><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select>");
 					$("#tr-player-"+i).find(".minute-team1").html("<select id='select-minute"+i+"' name='scorerPlayersMinute1["+i+"]'><c:forEach begin='1' end='90' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select>");
 				}
 				else
 				{
-					$("#playerBody").append("<tr id='tr-player-"+i+"'><td class='player-team1'><select id='select-player"+i+"' name='scorerPlayers1["+i+"]'><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select></td><td class='minute-team1'><select id='select-minute"+i+"' name='scorerPlayersMinute1["+i+"]'><c:forEach begin='1' end='90' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select></td><td class='player-team2'></td><td class='minute-team2'></td></tr>");
+					$("#playerBody").append("<tr id='tr-player-"+i+"'><td class='player-team1'><select id='select-player"+i+"' name='scorerPlayers1["+i+"]'><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select></td><td class='player-team1'><select id='select-passer"+i+"' name='passerPlayers1["+i+"]'><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select></td><td class='minute-team1'><select id='select-minute"+i+"' name='scorerPlayersMinute1["+i+"]'><c:forEach begin='1' end='90' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select></td><td class='player-team2'></td><td class='passer-team2'></td><td class='minute-team2'></td></tr>");
 				}
 			}
 			if($('tr[id^="tr-player-"]').length >= parseInt($(this).val()))
@@ -192,12 +225,13 @@
 			{
 				if($("#tr-player-"+i).length)
 				{
-					$("#tr-player-"+i).find(".player-team2").html("<select id='select-player"+i+"' name='scorerPlayers2["+i+"].idPlayer'><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select>");
-					$("#tr-player-"+i).find(".minute-team2").html("<select id='select-minute"+i+"' name='scorerPlayers2["+i+"].minute'><c:forEach begin='1' end='90' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select>");
+					$("#tr-player-"+i).find(".player-team2").html("<select id='select-player"+i+"' name='scorerPlayers2["+i+"]'><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select>");
+					$("#tr-player-"+i).find(".passer-team2").html("<select  id='select-passer"+i+"' name='passerPlayers2["+i+"]'><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select>");
+					$("#tr-player-"+i).find(".minute-team2").html("<select id='select-minute"+i+"' name='scorerPlayersMinute2["+i+"]'><c:forEach begin='1' end='90' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select>");
 				}
 				else
 				{
-					$("#playerBody").append("<tr id='tr-player-"+i+"'><td class='player-team1'></td><td class='minute-team1'></td><td class='player-team2'><select id='select-player"+i+"' name='scorerPlayers2["+i+"].idPlayer'><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select></td><td class='minute-team2'><select id='select-minute"+i+"' name='scorerPlayers2["+i+"].minute'><c:forEach begin='1' end='90' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select></td></tr>");
+					$("#playerBody").append("<tr id='tr-player-"+i+"'><td class='player-team1'></td><td class='passer-team1'></td><td class='minute-team1'></td><td class='player-team2'><select id='select-player"+i+"' name='scorerPlayers2["+i+"]'><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select></td><td class='player-team2'><select id='select-passer"+i+"' name='passerPlayers2["+i+"]'><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select></td><td class='minute-team2'><select id='select-minute"+i+"' name='scorerPlayersMinute2["+i+"].minute'><c:forEach begin='1' end='90' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select></td></tr>");
 				}
 			}
 			if($('tr[id^="tr-player-"]').length > parseInt($(this).val()))

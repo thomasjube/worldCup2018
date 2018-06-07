@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tjube.dao.PlayerStatsDAO;
+import com.tjube.model.Game;
 import com.tjube.model.PlayerStats;
 
 @Service
@@ -19,9 +20,9 @@ public class PlayerStatsServiceImpl
 
 	@Override
 	@Transactional
-	public void addPlayerStats(PlayerStats PlayerStats)
+	public PlayerStats addPlayerStats(PlayerStats PlayerStats)
 	{
-		playerStatsDAO.addPlayerStats(PlayerStats);
+		return playerStatsDAO.addPlayerStats(PlayerStats);
 	}
 
 	@Override
@@ -30,10 +31,11 @@ public class PlayerStatsServiceImpl
 	{
 		return playerStatsDAO.getAllPlayerStats();
 	}
-	
+
 	@Override
 	@Transactional
-	public int getTotalPlayerStats() {
+	public int getTotalPlayerStats()
+	{
 		return playerStatsDAO.getAllPlayerStats().size();
 	}
 
@@ -42,6 +44,13 @@ public class PlayerStatsServiceImpl
 	public void deletePlayerStats(Integer playerStatsId)
 	{
 		playerStatsDAO.deletePlayerStats(playerStatsId);
+	}
+
+	@Override
+	@Transactional
+	public void deletePlayerStats(Game game)
+	{
+		playerStatsDAO.deletePlayerStats(game);
 	}
 
 	@Override

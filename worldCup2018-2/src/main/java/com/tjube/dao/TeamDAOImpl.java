@@ -52,11 +52,7 @@ public class TeamDAOImpl
 		TypedQuery<Team> query = m_entityManager.createNamedQuery(Team.QN.GET_TEAM_BY_ID, Team.class);
 		query.setParameter("id", empid);
 
-		List<Team> results = query.getResultList();
-		if (results.size() == 1)
-			return results.get(0);
-
-		return null;
+		return JPAUtils.getSingleResult(query);
 	}
 
 	@Override

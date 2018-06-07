@@ -58,9 +58,9 @@
 				</div>
 				<div class="kode-navigation pull-left">
 					<ul>
-						<li><a href="team">Equipes</a></li>
-						<li><a href="poule">Poules</a></li>
-						<li><a href="game">Matchs</a></li>
+						<li><a href="/worldCup2018-2/team">Equipes</a></li>
+						<li><a href="/worldCup2018-2/poule">Poules</a></li>
+						<li><a href="/worldCup2018-2/game">Matchs</a></li>
 					</ul>
 				</div>
 				<!--NAVIGATION END-->
@@ -331,7 +331,7 @@
                     </thead>
                     <tbody>
                     <c:forEach items="${franceGames}" var="game">
-                      <tr>
+                      <tr id="${game.id }">
                         <td style="text-align: center;width:100%">
 	                        <img style="position:relative;float:left;top:0.6em;" src="<%=request.getContextPath()%>/resources/images/flag/${game.team1.name}.png" alt="" width="30" height="20">&nbsp;
 	                        <span class="name-team">${game.team1.name}</span> 
@@ -415,6 +415,10 @@ jQuery(document).ready(function(){
 		jQuery('#kodeCountdown').countdown({until: nextGame});
 		jQuery('#year').text(nextGame.getFullYear());
 	}
+});
+
+$("tbody tr").click(function(e){
+	$(window.location).attr('href',"/worldCup2018-2/game/editGame?id="+$(this).attr('id'));
 });
 </script>
 </html>

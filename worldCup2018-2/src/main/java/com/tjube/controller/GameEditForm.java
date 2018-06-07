@@ -1,7 +1,6 @@
 package com.tjube.controller;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import com.tjube.model.Game;
@@ -30,6 +29,9 @@ public class GameEditForm
 	private List<Integer> scorerPlayers1 = new ArrayList<>();
 	private List<Integer> scorerPlayers2 = new ArrayList<>();
 
+	private List<Integer> passerPlayers1 = new ArrayList<>();
+	private List<Integer> passerPlayers2 = new ArrayList<>();
+
 	private List<Integer> scorerPlayersMinute1 = new ArrayList<>();
 	private List<Integer> scorerPlayersMinute2 = new ArrayList<>();
 
@@ -43,6 +45,7 @@ public class GameEditForm
 		this.id = game.getId();
 		this.score1 = game.getScore1();
 		this.score2 = game.getScore2();
+
 	}
 
 	public Integer getId()
@@ -93,6 +96,26 @@ public class GameEditForm
 	public void setScorerPlayers2(List<Integer> scorerPlayers2)
 	{
 		this.scorerPlayers2 = scorerPlayers2;
+	}
+
+	public List<Integer> getPasserPlayers1()
+	{
+		return passerPlayers1;
+	}
+
+	public void setPasserPlayers1(List<Integer> passerPlayers1)
+	{
+		this.passerPlayers1 = passerPlayers1;
+	}
+
+	public List<Integer> getPasserPlayers2()
+	{
+		return passerPlayers2;
+	}
+
+	public void setPasserPlayers2(List<Integer> passerPlayers2)
+	{
+		this.passerPlayers2 = passerPlayers2;
 	}
 
 	public List<Integer> getScorerPlayersMinute1()

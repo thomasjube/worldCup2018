@@ -50,11 +50,7 @@ public class PouleDAOImpl
 		TypedQuery<Poule> query = m_entityManager.createNamedQuery(Poule.QN.GET_POULE_BY_ID, Poule.class);
 		query.setParameter("id", empid);
 
-		List<Poule> results = query.getResultList();
-		if (results.size() == 1)
-			return results.get(0);
-
-		return null;
+		return JPAUtils.getSingleResult(query);
 	}
 
 	@Override

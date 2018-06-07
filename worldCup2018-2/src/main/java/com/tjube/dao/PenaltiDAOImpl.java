@@ -50,11 +50,7 @@ public class PenaltiDAOImpl
 		TypedQuery<Penalti> query = m_entityManager.createNamedQuery(Penalti.QN.GET_PENALTI_BY_ID, Penalti.class);
 		query.setParameter("id", empid);
 
-		List<Penalti> results = query.getResultList();
-		if (results.size() == 1)
-			return results.get(0);
-
-		return null;
+		return JPAUtils.getSingleResult(query);
 	}
 
 	@Override

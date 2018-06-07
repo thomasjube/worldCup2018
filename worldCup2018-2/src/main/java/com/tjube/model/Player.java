@@ -1,8 +1,10 @@
 package com.tjube.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -69,8 +71,8 @@ public class Player
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Team team;
 
-	@OneToMany(fetch = FetchType.EAGER)
-	private Collection<PlayerStats> playerStats;
+	@OneToMany(mappedBy = "player", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Collection<PlayerStats> playerStats = new ArrayList<>();
 
 	public Player()
 	{
@@ -155,5 +157,10 @@ public class Player
 	public void setPlayerStats(Collection<PlayerStats> playerStats)
 	{
 		this.playerStats = playerStats;
+	}
+
+	public void addPlayerStat(PlayerStats stat)
+	{
+		this.playerStats.add(stat);
 	}
 }

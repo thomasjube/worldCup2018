@@ -1,5 +1,6 @@
 package com.tjube.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.tjube.dao.GameDAO;
 import com.tjube.model.Game;
+import com.tjube.model.PlayerStats;
 import com.tjube.model.Poule;
 import com.tjube.model.Team;
 
@@ -154,6 +156,7 @@ public class GameServiceImpl
 		newGame.setScore1(null);
 		newGame.setScore2(null);
 		newGame.setProlong(false);
+		newGame.setPlayerStats(new ArrayList<PlayerStats>());
 
 		return updateGame(newGame);
 	}

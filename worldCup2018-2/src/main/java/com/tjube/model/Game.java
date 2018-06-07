@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
@@ -123,8 +124,8 @@ public class Game
 	@Column
 	private Integer score2_penalti;
 
-	@OneToMany(fetch = FetchType.EAGER)
-	private Collection<PlayerStats> playerStats;
+	@OneToMany(mappedBy = "game", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Collection<PlayerStats> playerStats = new ArrayList<>();
 
 	public Game()
 	{
@@ -315,7 +316,7 @@ public class Game
 		this.playerStats = playerStats;
 	}
 
-	public Collection<PlayerStats> getGoalsTeam1()
+	public List<PlayerStats> getGoalsTeam1()
 	{
 		Collection<PlayerStats> results = new ArrayList<>();
 		for (PlayerStats playerStat : playerStats)
@@ -328,7 +329,7 @@ public class Game
 		return goalList;
 	}
 
-	public Collection<PlayerStats> getGoalsTeam2()
+	public List<PlayerStats> getGoalsTeam2()
 	{
 		Collection<PlayerStats> results = new ArrayList<>();
 		for (PlayerStats playerStat : playerStats)
@@ -393,6 +394,11 @@ public class Game
 			return this.team2;
 		else
 			return this.team1;
+	}
+
+	public void addPlayerStat(PlayerStats stat)
+	{
+		this.playerStats.add(stat);
 	}
 
 }

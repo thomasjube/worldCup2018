@@ -14,6 +14,8 @@ import javax.persistence.Table;
 
 @NamedQueries({
 		@NamedQuery(name = PlayerStats.QN.GET_STATS_BY_ID, query = "select s from PlayerStats s where s.id =:id "),
+		@NamedQuery(name = PlayerStats.QN.GET_STATS_BY_GAME,
+				query = "select s from PlayerStats s where s.game =:game "),
 		@NamedQuery(name = PlayerStats.QN.GET_ALL_STATS, query = "select s from PlayerStats s") })
 @Entity
 @Table(name = "PLAYER_STATS")
@@ -30,6 +32,7 @@ public class PlayerStats
 	public static class QN
 	{
 		public static final String GET_STATS_BY_ID = "PlayerStats.getPlayerStatsById";
+		public static final String GET_STATS_BY_GAME = "PlayerStats.getPlayerStatsByGame";
 		public static final String GET_ALL_STATS = "PlayerStats.getAllPlayerStats";
 	}
 

@@ -1,5 +1,6 @@
 package com.tjube.dao;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -8,6 +9,7 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
+import com.tjube.model.Game;
 import com.tjube.model.PlayerStats;
 
 @Repository
@@ -19,9 +21,13 @@ public class PlayerStatsDAOImpl
 	private EntityManager m_entityManager = null;
 
 	@Override
-	public void addPlayerStats(PlayerStats playerStats)
+	public PlayerStats addPlayerStats(PlayerStats playerStats)
 	{
 		m_entityManager.persist(playerStats);
+
+		//		playerStats.getGame().addPlayerStat(playerStats);
+
+		return playerStats;
 	}
 
 	@Override
@@ -46,17 +52,35 @@ public class PlayerStatsDAOImpl
 	}
 
 	@Override
+	public void deletePlayerStats(Game game)
+	{
+		Collection<PlayerStats> playerStats = getPlayerStats(game);
+
+		for (PlayerStats stat : playerStats)
+		{
+			m_entityManager.remove(stat);
+		}
+
+	}
+
+	@Override
+	public Collection<PlayerStats> getPlayerStats(Game game)
+	{
+		TypedQuery<PlayerStats> query = m_entityManager.createNamedQuery(PlayerStats.QN.GET_STATS_BY_GAME,
+				PlayerStats.class);
+		query.setParameter("game", game);
+
+		return query.getResultList();
+	}
+
+	@Override
 	public PlayerStats getPlayerStats(int playerStatsid)
 	{
 		TypedQuery<PlayerStats> query = m_entityManager.createNamedQuery(PlayerStats.QN.GET_STATS_BY_ID,
 				PlayerStats.class);
 		query.setParameter("id", playerStatsid);
 
-		List<PlayerStats> results = query.getResultList();
-		if (results.size() == 1)
-			return results.get(0);
-
-		return null;
+		return JPAUtils.getSingleResult(query);
 	}
 
 	@Override

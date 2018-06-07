@@ -55,11 +55,7 @@ public class GameDAOImpl
 		TypedQuery<Game> query = m_entityManager.createNamedQuery(Game.QN.GET_GAME_BY_ID, Game.class);
 		query.setParameter("id", empid);
 
-		List<Game> results = query.getResultList();
-		if (results.size() == 1)
-			return results.get(0);
-
-		return null;
+		return JPAUtils.getSingleResult(query);
 	}
 
 	@SuppressWarnings("unchecked")

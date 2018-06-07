@@ -23,7 +23,7 @@ import javax.persistence.Table;
 		@NamedQuery(name = Team.QN.getTeamsByPoint,
 				query = "select t from Team t where t.poule = :poule order by t.point DESC, t.diff DESC, t.but_mis DESC, t.but_pris ASC, t.id"),
 		@NamedQuery(name = Team.QN.GET_TEAM_BY_ID, query = "select t from Team t where t.id =:id"),
-		@NamedQuery(name = Team.QN.GET_ALL_TEAMS, query = "select t from Team t") })
+		@NamedQuery(name = Team.QN.GET_ALL_TEAMS, query = "select t from Team t order by t.name") })
 @Entity
 @Table(name = "TEAM")
 public class Team
@@ -70,7 +70,7 @@ public class Team
 	private Poule poule;
 
 	@OneToMany(fetch = FetchType.EAGER)
-	private Collection<Player> players;
+	private Collection<Player> players = new ArrayList<>();
 
 	@Column
 	private Integer gamePlayed = 0;
