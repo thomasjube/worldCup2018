@@ -32,19 +32,21 @@ public class GameServiceImpl
 	{
 		return gameDAO.getAllGames();
 	}
-	
+
 	@Override
 	@Transactional
-	public List<Game> getGames(Team team) {
+	public List<Game> getGames(Team team)
+	{
 		return gameDAO.getGames(team);
 	}
-	
+
 	@Override
 	@Transactional
-	public List<Game> getGames(Poule poule) {
+	public List<Game> getGames(Poule poule)
+	{
 		return gameDAO.getGames(poule);
 	}
-	
+
 	@Override
 	@Transactional
 	public int getTotalGames()
@@ -64,19 +66,19 @@ public class GameServiceImpl
 	{
 		return gameDAO.getGame(empid);
 	}
-	
+
 	@Override
 	public Game getNextGame()
 	{
 		return gameDAO.getNextGame();
 	}
-	
+
 	@Override
 	public Game getNextGame(Poule poule)
 	{
 		return gameDAO.getNextGame(poule);
 	}
-	
+
 	@Override
 	public Game getLastGame()
 	{
@@ -94,31 +96,34 @@ public class GameServiceImpl
 		this.gameDAO = gameDAO;
 	}
 
-	public Game updateGame(int id, int score1, int score2, boolean isProlong, int scoreProlong1, int scoreProlong2, boolean isPeno, int scorePeno1, int scorePeno2) {
-		Game newGame = getGame(id); 
+	@Override
+	public Game updateGame(int id, int score1, int score2, boolean isProlong, int scoreProlong1, int scoreProlong2,
+			boolean isPeno, int scorePeno1, int scorePeno2)
+	{
+		Game newGame = getGame(id);
 		Team winner = new Team();
 		newGame.setScore1(score1);
 		newGame.setScore2(score2);
 		newGame.setProlong(isProlong);
-		if(score1 < score2)
+		if (score1 < score2)
 		{
 			winner = newGame.getTeam2();
 		}
-		else if(score1 > score2)
+		else if (score1 > score2)
 		{
 			winner = newGame.getTeam1();
 		}
 		else
 		{
-			if(isProlong)
+			if (isProlong)
 			{
 				newGame.setScore1_prolong(scoreProlong1);
 				newGame.setScore2_prolong(scoreProlong2);
-				if(scoreProlong1 > scoreProlong2)
+				if (scoreProlong1 > scoreProlong2)
 				{
 					winner = newGame.getTeam1();
 				}
-				else if(scoreProlong1 < scoreProlong2)
+				else if (scoreProlong1 < scoreProlong2)
 				{
 					winner = newGame.getTeam2();
 				}
@@ -127,7 +132,7 @@ public class GameServiceImpl
 
 					newGame.setScore1_penalti(scorePeno1);
 					newGame.setScore2_penalti(scorePeno2);
-					if(scorePeno1 > scorePeno2)
+					if (scorePeno1 > scorePeno2)
 					{
 						winner = newGame.getTeam1();
 					}
@@ -136,21 +141,109 @@ public class GameServiceImpl
 						winner = newGame.getTeam2();
 					}
 				}
-					
+
 			}
 		}
 		return updateGame(newGame);
 	}
 
 	@Override
-	public Game resetGame(Game game) {
-		Game newGame = game; 
+	public Game resetGame(Game game)
+	{
+		Game newGame = game;
 		newGame.setScore1(null);
 		newGame.setScore2(null);
 		newGame.setProlong(false);
-		
+
 		return updateGame(newGame);
 	}
 
-	
+	@Override
+	public void updateQuarts(Game game)
+	{
+		if (game.getId() == 49)
+		{
+			Game quart = getGame(57);
+			quart.setTeam1(game.getWinner());
+		}
+		else if (game.getId() == 50)
+		{
+			Game quart = getGame(57);
+			quart.setTeam2(game.getWinner());
+		}
+		else if (game.getId() == 51)
+		{
+			Game quart = getGame(58);
+			quart.setTeam1(game.getWinner());
+		}
+		else if (game.getId() == 52)
+		{
+			Game quart = getGame(58);
+			quart.setTeam2(game.getWinner());
+		}
+		else if (game.getId() == 53)
+		{
+			Game quart = getGame(59);
+			quart.setTeam1(game.getWinner());
+		}
+		else if (game.getId() == 54)
+		{
+			Game quart = getGame(59);
+			quart.setTeam2(game.getWinner());
+		}
+		else if (game.getId() == 55)
+		{
+			Game quart = getGame(60);
+			quart.setTeam1(game.getWinner());
+		}
+		else if (game.getId() == 56)
+		{
+			Game quart = getGame(60);
+			quart.setTeam2(game.getWinner());
+		}
+	}
+
+	@Override
+	public void updateDemis(Game game)
+	{
+		if (game.getId() == 57)
+		{
+			Game demi = getGame(61);
+			demi.setTeam1(game.getWinner());
+		}
+		else if (game.getId() == 58)
+		{
+			Game demi = getGame(61);
+			demi.setTeam2(game.getWinner());
+		}
+		else if (game.getId() == 59)
+		{
+			Game demi = getGame(62);
+			demi.setTeam1(game.getWinner());
+		}
+		else if (game.getId() == 60)
+		{
+			Game demi = getGame(62);
+			demi.setTeam2(game.getWinner());
+		}
+	}
+
+	@Override
+	public void updateFinale(Game game)
+	{
+		if (game.getId() == 57)
+		{
+			Game petiteFinale = getGame(63);
+			Game finale = getGame(64);
+			petiteFinale.setTeam1(game.getLooser());
+			finale.setTeam1(game.getWinner());
+		}
+		else if (game.getId() == 58)
+		{
+			Game petiteFinale = getGame(63);
+			Game finale = getGame(64);
+			petiteFinale.setTeam2(game.getLooser());
+			finale.setTeam2(game.getWinner());
+		}
+	}
 }

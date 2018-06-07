@@ -1,13 +1,15 @@
 package com.tjube.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -15,18 +17,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.tjube.model.Player;
-import com.tjube.model.Poule;
-@NamedQueries({
-	@NamedQuery(
-	name = "findTeamByName",
-	query = "select t from Team t where t.name =:name"
-	),
-	@NamedQuery(
-	name = "findTeamsByPoule",
-	query = "select t from Team t where t.poule =:poule order by t.position_poule"
-	)
-})
+@NamedQueries({ @NamedQuery(name = "findTeamByName", query = "select t from Team t where t.name =:name"), @NamedQuery(
+		name = "findTeamsByPoule", query = "select t from Team t where t.poule =:poule order by t.position_poule") })
 @Entity
 @Table(name = "TEAM")
 public class Team
@@ -34,52 +26,64 @@ public class Team
 {
 	private static final long serialVersionUID = -5028311133164527096L;
 
+	static class PlayerComparator
+	implements Comparator<Player>
+{
+	@Override
+	public int compare(Player c1, Player c2)
+	{
+		return c1.getNumber().compareTo(c2.getNumber());
+	}
+}
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
 	@Column
 	private String name;
-	
-	@Column
-    private Integer position_poule;
-    
-    @ManyToOne
-    private Poule poule;
-    
-    @OneToMany(fetch=FetchType.EAGER)
-    private Collection<Player> players;
-    
-    @Column
-    private Integer gamePlayed = 0;
-    
-    @Column
-    private Integer point = 0;
-    
-    @Column
-    private Integer gameWin = 0;
-    
-    @Column
-    private Integer gameDraw = 0;
-    
-    @Column
-    private Integer gameLost = 0;
-    
-    @Column
-    private Integer diff = 0;
-    
-    @Column
-    private Integer but_mis = 0;
-    
-    @Column
-    private Integer but_pris = 0;
 
-    public Team() {
+	@Column
+	private Integer position_poule;
+
+	@ManyToOne
+	private Poule poule;
+
+	@OneToMany(fetch = FetchType.EAGER)
+	private Collection<Player> players;
+
+	@Column
+	private Integer gamePlayed = 0;
+
+	@Column
+	private Integer point = 0;
+
+	@Column
+	private Integer gameWin = 0;
+
+	@Column
+	private Integer gameDraw = 0;
+
+	@Column
+	private Integer gameLost = 0;
+
+	@Column
+	private Integer diff = 0;
+
+	@Column
+	private Integer but_mis = 0;
+
+	@Column
+	private Integer but_pris = 0;
+
+	public Team()
+	{
 		// TODO Auto-generated constructor stub
 	}
-    
-	public Team(String name, Integer position_poule, Poule poule) {
+
+	public Team(Integer id, String name, Integer position_poule, Poule poule)
+	{
 		super();
+		this.id = id;
 		this.name = name;
 		this.position_poule = position_poule;
 		this.poule = poule;
@@ -105,94 +109,116 @@ public class Team
 		this.name = name;
 	}
 
-	public Integer getPosition_poule() {
+	public Integer getPosition_poule()
+	{
 		return position_poule;
 	}
 
-	public void setPosition_poule(Integer position_poule) {
+	public void setPosition_poule(Integer position_poule)
+	{
 		this.position_poule = position_poule;
 	}
 
-	public Poule getPoule() {
+	public Poule getPoule()
+	{
 		return poule;
 	}
 
-	public void setPoule(Poule poule) {
+	public void setPoule(Poule poule)
+	{
 		this.poule = poule;
 	}
 
-	public Collection<Player> getPlayers() {
-		return players;
+	public Collection<Player> getPlayers()
+	{
+		List<Player> playerOrdered = new ArrayList<>(players);
+		Collections.sort(playerOrdered,new PlayerComparator());
+		return playerOrdered;
 	}
 
-	public void setPlayers(Collection<Player> players) {
+	public void setPlayers(Collection<Player> players)
+	{
 		this.players = players;
 	}
 
-	public Integer getGamePlayed() {
+	public Integer getGamePlayed()
+	{
 		return gamePlayed;
 	}
 
-	public void setGamePlayed(Integer gamePlayed) {
+	public void setGamePlayed(Integer gamePlayed)
+	{
 		this.gamePlayed = gamePlayed;
 	}
 
-	public Integer getPoint() {
+	public Integer getPoint()
+	{
 		return point;
 	}
 
-	public void setPoint(Integer point) {
+	public void setPoint(Integer point)
+	{
 		this.point = point;
 	}
 
-	public Integer getGameWin() {
+	public Integer getGameWin()
+	{
 		return gameWin;
 	}
 
-	public void setGameWin(Integer gameWin) {
+	public void setGameWin(Integer gameWin)
+	{
 		this.gameWin = gameWin;
 	}
 
-	public Integer getGameDraw() {
+	public Integer getGameDraw()
+	{
 		return gameDraw;
 	}
 
-	public void setGameDraw(Integer gameDraw) {
+	public void setGameDraw(Integer gameDraw)
+	{
 		this.gameDraw = gameDraw;
 	}
 
-	public Integer getGameLost() {
+	public Integer getGameLost()
+	{
 		return gameLost;
 	}
 
-	public void setGameLost(Integer gameLost) {
+	public void setGameLost(Integer gameLost)
+	{
 		this.gameLost = gameLost;
 	}
 
-	public Integer getDiff() {
+	public Integer getDiff()
+	{
 		return diff;
 	}
 
-	public void setDiff(Integer diff) {
+	public void setDiff(Integer diff)
+	{
 		this.diff = diff;
 	}
 
-	public Integer getBut_mis() {
+	public Integer getBut_mis()
+	{
 		return but_mis;
 	}
 
-	public void setBut_mis(Integer but_mis) {
+	public void setBut_mis(Integer but_mis)
+	{
 		this.but_mis = but_mis;
 	}
 
-	public Integer getBut_pris() {
+	public Integer getBut_pris()
+	{
 		return but_pris;
 	}
 
-	public void setBut_pris(Integer but_pris) {
+	public void setBut_pris(Integer but_pris)
+	{
 		this.but_pris = but_pris;
 	}
-	
-	
 
 }
