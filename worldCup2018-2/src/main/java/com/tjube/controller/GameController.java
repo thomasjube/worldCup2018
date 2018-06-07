@@ -137,10 +137,10 @@ public class GameController
 		teamService.addTeam(egypte);
 		teamService.addTeam(uruguay);
 
-		Player player1 = new Player("Akinfe�ev", "Igor", "G", 1, russie);
+		Player player1 = new Player("Akinfeïev", "Igor", "G", 1, russie);
 		Player player2 = new Player("Fernandes", "Mario", "D", 2, russie);
 		Player player3 = new Player("Kutepov", "Ilia", "D", 3, russie);
-		Player player4 = new Player("Ignachevitch", "Sergue�", "D", 4, russie);
+		Player player4 = new Player("Ignachevitch", "Sergueï", "D", 4, russie);
 		Player player5 = new Player("Semenov", "Andrey", "D", 5, russie);
 		Player player6 = new Player("Cheryshev", "Denis", "M", 6, russie);
 		Player player7 = new Player("Kuziaev", "Daler", "M", 7, russie);
@@ -307,7 +307,7 @@ public class GameController
 		player16 = new Player("Ekramy", "Sherif", "G", 16, egypte);
 		player17 = new Player("Elneny", "Mohamed", "M", 17, egypte);
 		player18 = new Player("Shikabala", "", "A", 18, egypte);
-		player19 = new Player("Abdalla", "Sa�d", "M", 19, egypte);
+		player19 = new Player("Abdalla", "Saïd", "M", 19, egypte);
 		player20 = new Player("Samir", "Saad", "D", 20, egypte);
 		player21 = new Player("Trezeguet", "M", "M", 21, egypte);
 		player22 = new Player("Warda", "Amr", "A", 22, egypte);
@@ -453,7 +453,7 @@ public class GameController
 		Game game2 = new Game(2, "Match 2", egypte, uruguay, pouleA, LocalDateTime.of(2018, 6, 15, 14, 0),
 				"Ekaterinbourg", true);
 		Game game17 = new Game(17, "Match 17", russie, egypte, pouleA, LocalDateTime.of(2018, 6, 19, 20, 0),
-				"Saint-P�tersbourg", true);
+				"Saint-Pétersbourg", true);
 		Game game19 = new Game(19, "Match 19", uruguay, arabieSaoudite, pouleA, LocalDateTime.of(2018, 6, 20, 17, 0),
 				"Rostov-sur-le-don", true);
 		Game game33 = new Game(33, "Match 33", uruguay, russie, pouleA, LocalDateTime.of(2018, 6, 25, 16, 0), "Samara",
@@ -802,7 +802,7 @@ public class GameController
 		pouleService.updatePoule(pouleB);
 
 		Game game3 = new Game(3, "Match 3", maroc, iran, pouleB, LocalDateTime.of(2018, 6, 15, 17, 0),
-				"Saint-P�tersbourg", true);
+				"Saint-Pétersbourg", true);
 		Game game4 = new Game(4, "Match 4", portugal, espagne, pouleB, LocalDateTime.of(2018, 6, 15, 20, 0), "Sotchi",
 				true);
 		Game game18 = new Game(18, "Match 18", portugal, maroc, pouleB, LocalDateTime.of(2018, 6, 20, 14, 0), "Moscou",
@@ -833,7 +833,7 @@ public class GameController
 
 		Team france = new Team(9, "France", 1, pouleC);
 		Team australie = new Team(10, "Australie", 2, pouleC);
-		Team perou = new Team(11, "P�rou", 3, pouleC);
+		Team perou = new Team(11, "Pérou", 3, pouleC);
 		Team danemark = new Team(12, "Danemark", 4, pouleC);
 
 		teamService.addTeam(france);
@@ -1186,7 +1186,7 @@ public class GameController
 		Team argentine = new Team(13, "Argentine", 1, pouleD);
 		Team islande = new Team(14, "Islande", 2, pouleD);
 		Team croatie = new Team(15, "Croatie", 3, pouleD);
-		Team nigeria = new Team(16, "Nig�ria", 4, pouleD);
+		Team nigeria = new Team(16, "Nigéria", 4, pouleD);
 
 		teamService.addTeam(argentine);
 		teamService.addTeam(islande);
@@ -1515,7 +1515,7 @@ public class GameController
 		Game game25 = new Game(25, "Match 25", nigeria, islande, pouleD, LocalDateTime.of(2018, 6, 22, 17, 0),
 				"Volgograd", true);
 		Game game39 = new Game(39, "Match 39", nigeria, argentine, pouleD, LocalDateTime.of(2018, 6, 26, 20, 0),
-				"Saint-P�tersbourg", true);
+				"Saint-Pétersbourg", true);
 		Game game40 = new Game(40, "Match 40", islande, croatie, pouleD, LocalDateTime.of(2018, 6, 26, 20, 0),
 				"Rostov-sur-le-Don", true);
 
@@ -1535,7 +1535,7 @@ public class GameController
 		Poule pouleE = new Poule();
 		pouleService.addPoule(pouleE);
 
-		Team bresil = new Team(17, "Br�sil", 1, pouleE);
+		Team bresil = new Team(17, "Brésil", 1, pouleE);
 		Team suisse = new Team(18, "Suisse", 2, pouleE);
 		Team costaRica = new Team(19, "Costa Rica", 3, pouleE);
 		Team serbie = new Team(20, "Serbie", 4, pouleE);
@@ -1863,7 +1863,7 @@ public class GameController
 		Game game11 = new Game(11, "Match 11", bresil, suisse, pouleE, LocalDateTime.of(2018, 6, 17, 20, 0),
 				"Rostov-sur-le-Don", true);
 		Game game24 = new Game(24, "Match 24", bresil, costaRica, pouleE, LocalDateTime.of(2018, 6, 22, 14, 0),
-				"Saint-P�tersbourg", true);
+				"Saint-Pétersbourg", true);
 		Game game26 = new Game(26, "Match 26", serbie, suisse, pouleE, LocalDateTime.of(2018, 6, 22, 20, 0),
 				"Kaliningrad", true);
 		Game game43 = new Game(43, "Match 43", serbie, bresil, pouleE, LocalDateTime.of(2018, 6, 27, 20, 0), "Moscou",
@@ -1890,7 +1890,7 @@ public class GameController
 		Team allemagne = new Team(21, "Allemagne", 1, pouleF);
 		Team mexique = new Team(22, "Mexique", 2, pouleF);
 		Team suede = new Team(23, "Suède", 3, pouleF);
-		Team coreeSud = new Team(24, "Cor�e du Sud", 4, pouleF);
+		Team coreeSud = new Team(24, "Corée du Sud", 4, pouleF);
 
 		teamService.addTeam(allemagne);
 		teamService.addTeam(mexique);
@@ -2590,7 +2590,7 @@ public class GameController
 		pouleService.addPoule(pouleH);
 
 		Team pologne = new Team(29, "Pologne", 1, pouleH);
-		Team senegal = new Team(30, "S�n�gal", 2, pouleH);
+		Team senegal = new Team(30, "Sénégal", 2, pouleH);
 		Team colombie = new Team(31, "Colombie", 3, pouleH);
 		Team japon = new Team(32, "Japon", 4, pouleH);
 
@@ -2949,7 +2949,7 @@ public class GameController
 		Game game54 = new Game(54, "Huitième 6", null, null, null, LocalDateTime.of(2018, 7, 2, 20, 0), "Rostov",
 				false);
 		Game game55 = new Game(55, "Huitième 7", null, null, null, LocalDateTime.of(2018, 7, 3, 16, 0),
-				"Saint-P�tersbourg", false);
+				"Saint-Pétersbourg", false);
 		Game game56 = new Game(56, "Huitième 8", null, null, null, LocalDateTime.of(2018, 7, 3, 20, 0), "Moscou",
 				false);
 
@@ -2981,7 +2981,7 @@ public class GameController
 		// ---------------------------------------------
 
 		Game game61 = new Game(61, "Demi 1", null, null, null, LocalDateTime.of(2018, 7, 10, 20, 0),
-				"Saint-P�tersbourg", false);
+				"Saint-Pétersbourg", false);
 		Game game62 = new Game(62, "Demi 2", null, null, null, LocalDateTime.of(2018, 7, 11, 20, 0), "Moscou", false);
 
 		gameService.addGame(game61);
@@ -2992,7 +2992,7 @@ public class GameController
 		// ---------------------------------------------
 
 		Game game63 = new Game(63, "Petite finale", null, null, null, LocalDateTime.of(2018, 7, 14, 16, 0),
-				"Saint-P�tersbourg", false);
+				"Saint-Pétersbourg", false);
 		Game game64 = new Game(64, "Finale", null, null, null, LocalDateTime.of(2018, 7, 15, 17, 0), "Moscou", false);
 
 		gameService.addGame(game63);
