@@ -18,9 +18,9 @@ public interface GameService
 	public Game getGame(int gameid);
 
 	public Game updateGame(Game game);
-	
+
 	public Game getNextGame();
-	
+
 	public Game getLastGame();
 
 	int getTotalGames();
@@ -30,9 +30,16 @@ public interface GameService
 	public Game getNextGame(Poule poule);
 
 	public Collection<Game> getGames(Poule poule);
-	
-	Game updateGame(int id, int score1, int score2, boolean isProlong, int scoreProlong1, int scoreProlong2, boolean isPeno, int scorePeno1, int scorePeno2);
+
+	Game updateGame(int id, int score1, int score2, boolean isProlong, int scoreProlong1, int scoreProlong2,
+			boolean isPeno, int scorePeno1, int scorePeno2);
 
 	public Game resetGame(Game game);
-	
+
+	public void updateQuarts(Game game);
+
+	public void updateDemis(Game game);
+
+	public void updateFinale(Game game);
+
 }

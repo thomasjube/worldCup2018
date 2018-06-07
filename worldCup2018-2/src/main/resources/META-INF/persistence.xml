@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-	<persistence-unit name="worldCupPersistence" transaction-type="RESOURCE_LOCAL">
-		
-<!-- 		<class>com.novigotech.humanforces.vacationV2.jpa.VacationCounterLineJPA</class> -->
+	 <persistence-unit name="JpaPersistenceUnit"
+        transaction-type="RESOURCE_LOCAL">
 		
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://192.168.0.49:5432/worldCup2018"/>
-			<property name="javax.persistence.jdbc.user" value="devpi"/>
-			<property name="javax.persistence.jdbc.password" value="abcd"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql:worldCup2018"/>
+			<property name="javax.persistence.jdbc.user" value="hf"/>
+			<property name="javax.persistence.jdbc.password" value="hf"/>
 			<property name="hibernate.jdbc.batch_size" value="200" />
 			<property name="hibernate.order_inserts" value="true" />
 			<property name="hibernate.jdbc.batch_size" value="200" />

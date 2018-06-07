@@ -14,24 +14,33 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.tjube.model.Team;
-
 @NamedQueries({
-	@NamedQuery(
-	name = "findNextPoule",
-	query = "select p from Poule p where p.id > :pouleId order by p.name asc"
-	),
-	@NamedQuery(
-	name = "findLastPoule",
-	query = "select p from Poule p where p.id < :pouleId order by p.name desc"
-	)
-})
+		@NamedQuery(name = Poule.QN.findNextPoule,
+				query = "select p from Poule p where p.id > :pouleId order by p.name asc"),
+		@NamedQuery(name = Poule.QN.findLastPoule,
+				query = "select p from Poule p where p.id < :pouleId order by p.name desc"),
+		@NamedQuery(name = Poule.QN.GET_POULE_BY_ID, query = "select p from Poule p where p.id =:id"),
+		@NamedQuery(name = Poule.QN.GET_ALL_POULES, query = "select p from Poule p order by p.name asc") })
 
 @Entity
 @Table(name = "POULE")
 public class Poule
 	implements Serializable
 {
+
+	//==================================================================================================================================================================================================
+	//
+	// Query names
+	//
+	//==================================================================================================================================================================================================
+
+	public static class QN
+	{
+		public static final String findNextPoule = "Poule.findNextPoule";
+		public static final String findLastPoule = "Poule.findLastPoule";
+		public static final String GET_POULE_BY_ID = "Poule.getPouleById";
+		public static final String GET_ALL_POULES = "Poule.getAllPoules";
+	}
 
 	private static final long serialVersionUID = -4871604316480630379L;
 
@@ -41,21 +50,21 @@ public class Poule
 
 	@Column
 	private String name;
-	
-	@OneToMany(fetch=FetchType.EAGER)
-    private Collection<Team> teams;
 
-	public Poule() {
+	@OneToMany(fetch = FetchType.EAGER)
+	private Collection<Team> teams;
+
+	public Poule()
+	{
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Poule(String name, Collection<Team> teams) {
+
+	public Poule(String name, Collection<Team> teams)
+	{
 		super();
 		this.name = name;
 		this.teams = teams;
 	}
-
-
 
 	public int getId()
 	{
@@ -76,12 +85,14 @@ public class Poule
 	{
 		this.name = name;
 	}
-	
-	public Collection<Team> getTeams() {
+
+	public Collection<Team> getTeams()
+	{
 		return teams;
 	}
-	
-	public void setTeams(Collection<Team> teams) {
+
+	public void setTeams(Collection<Team> teams)
+	{
 		this.teams = teams;
 	}
 
