@@ -2250,29 +2250,29 @@ public class GameController
 
 		players.clear();
 
-		player1 = new Player("", "", "G", 1, belgique);
-		player2 = new Player("", "", "M", 2, belgique);
-		player3 = new Player("", "", "D", 3, belgique);
-		player4 = new Player("", "", "D", 4, belgique);
-		player5 = new Player("", "", "D", 5, belgique);
-		player6 = new Player("", "", "D", 6, belgique);
-		player7 = new Player("", "", "M", 7, belgique);
-		player8 = new Player("", "", "M", 8, belgique);
-		player9 = new Player("", "", "A", 9, belgique);
-		player10 = new Player("", "", "M", 10, belgique);
-		player11 = new Player("", "", "A", 11, belgique);
-		player12 = new Player("", "", "A", 12, belgique);
-		player13 = new Player("", "", "D", 13, belgique);
-		player14 = new Player("", "", "D", 14, belgique);
-		player15 = new Player("", "", "A", 15, belgique);
-		player16 = new Player("", "", "G", 16, belgique);
-		player17 = new Player("", "", "D", 17, belgique);
-		player18 = new Player("", "", "M", 18, belgique);
-		player19 = new Player("", "", "M", 19, belgique);
-		player20 = new Player("", "", "A", 20, belgique);
-		player21 = new Player("", "", "A", 21, belgique);
-		player22 = new Player("", "", "G", 22, belgique);
-		player23 = new Player("", "", "A", 23, belgique);
+		player1 = new Player("Courtois", "Thibaut", "G", 1, belgique);
+		player2 = new Player("Alderweireld", "Toby", "D", 2, belgique);
+		player3 = new Player("Vermaelen", "Thomas", "D", 3, belgique);
+		player4 = new Player("Kompany", "Vincent", "D", 4, belgique);
+		player5 = new Player("Vertonghen", "Jan", "D", 5, belgique);
+		player6 = new Player("Witsel", "Axel", "M", 6, belgique);
+		player7 = new Player("De Bruyne", "Kevin", "M", 7, belgique);
+		player8 = new Player("Fellaini", "Marouane", "M", 8, belgique);
+		player9 = new Player("Lukaku", "Romelu", "A", 9, belgique);
+		player10 = new Player("Hazard", "Eden", "A", 10, belgique);
+		player11 = new Player("Carrasco", "Yannick", "M", 11, belgique);
+		player12 = new Player("Mignolet", "Simon", "G", 12, belgique);
+		player13 = new Player("Casteels", "Koen", "G", 13, belgique);
+		player14 = new Player("Mertens", "Dris", "A", 14, belgique);
+		player15 = new Player("Meunier", "Thomas", "D", 15, belgique);
+		player16 = new Player("Hazard", "Thorgan", "M", 16, belgique);
+		player17 = new Player("Tielemans", "Youri", "M", 17, belgique);
+		player18 = new Player("Januzaj", "Adnan", "A", 18, belgique);
+		player19 = new Player("Dembale", "Moussa", "M", 19, belgique);
+		player20 = new Player("Boyata", "Dedryck", "D", 20, belgique);
+		player21 = new Player("Batshuayi", "Michy", "A", 21, belgique);
+		player22 = new Player("Chadli", "Nacer", "M", 22, belgique);
+		player23 = new Player("Dendoncker", "Leander", "D", 23, belgique);
 
 		playerService.addPlayer(player1);
 		playerService.addPlayer(player2);
@@ -2326,29 +2326,29 @@ public class GameController
 
 		players.clear();
 
-		player1 = new Player("", "", "G", 1, panama);
-		player2 = new Player("", "", "M", 2, panama);
-		player3 = new Player("", "", "D", 3, panama);
-		player4 = new Player("", "", "D", 4, panama);
-		player5 = new Player("", "", "D", 5, panama);
-		player6 = new Player("", "", "D", 6, panama);
-		player7 = new Player("", "", "M", 7, panama);
-		player8 = new Player("", "", "M", 8, panama);
-		player9 = new Player("", "", "A", 9, panama);
-		player10 = new Player("", "", "M", 10, panama);
-		player11 = new Player("", "", "A", 11, panama);
-		player12 = new Player("", "", "A", 12, panama);
-		player13 = new Player("", "", "D", 13, panama);
-		player14 = new Player("", "", "D", 14, panama);
-		player15 = new Player("", "", "A", 15, panama);
-		player16 = new Player("", "", "G", 16, panama);
-		player17 = new Player("", "", "D", 17, panama);
-		player18 = new Player("", "", "M", 18, panama);
-		player19 = new Player("", "", "M", 19, panama);
-		player20 = new Player("", "", "A", 20, panama);
-		player21 = new Player("", "", "A", 21, panama);
-		player22 = new Player("", "", "G", 22, panama);
-		player23 = new Player("", "", "A", 23, panama);
+		player1 = new Player("Penedo", "Jaime", "G", 1, panama);
+		player2 = new Player("Murillo", "Michael", "D", 2, panama);
+		player3 = new Player("Cummings", "Harold", "D", 3, panama);
+		player4 = new Player("Escobar", "Fidel", "D", 4, panama);
+		player5 = new Player("Torres", "Roman", "D", 5, panama);
+		player6 = new Player("Gomez", "Gabriel", "M", 6, panama);
+		player7 = new Player("Perez", "Blas", "A", 7, panama);
+		player8 = new Player("Barcenas", "Edgar", "M", 8, panama);
+		player9 = new Player("Torres", "Gabriel", "A", 9, panama);
+		player10 = new Player("Diaz", "Ismael", "A", 10, panama);
+		player11 = new Player("Cooper", "Armando", "M", 11, panama);
+		player12 = new Player("Calderon", "Jose", "G", 12, panama);
+		player13 = new Player("Machado", "Adolfo", "D", 13, panama);
+		player14 = new Player("Pimentel", "Valentin", "M", 14, panama);
+		player15 = new Player("Davis", "Eric", "D", 15, panama);
+		player16 = new Player("Arroyo", "Abdiel", "A", 16, panama);
+		player17 = new Player("Ovalle", "Luis", "D", 17, panama);
+		player18 = new Player("Tejada", "Luis", "A", 18, panama);
+		player19 = new Player("Quintero", "Alberto", "M", 19, panama);
+		player20 = new Player("Godoy", "Anibal", "M", 20, panama);
+		player21 = new Player("Rodriguez", "Jose Luis", "M", 21, panama);
+		player22 = new Player("Rodriguez", "Alex", "G", 22, panama);
+		player23 = new Player("Baloy", "Felipe", "D", 23, panama);
 
 		playerService.addPlayer(player1);
 		playerService.addPlayer(player2);
@@ -2402,29 +2402,29 @@ public class GameController
 
 		players.clear();
 
-		player1 = new Player("", "", "G", 1, tunisie);
-		player2 = new Player("", "", "M", 2, tunisie);
-		player3 = new Player("", "", "D", 3, tunisie);
-		player4 = new Player("", "", "D", 4, tunisie);
-		player5 = new Player("", "", "D", 5, tunisie);
-		player6 = new Player("", "", "D", 6, tunisie);
-		player7 = new Player("", "", "M", 7, tunisie);
-		player8 = new Player("", "", "M", 8, tunisie);
-		player9 = new Player("", "", "A", 9, tunisie);
-		player10 = new Player("", "", "M", 10, tunisie);
-		player11 = new Player("", "", "A", 11, tunisie);
-		player12 = new Player("", "", "A", 12, tunisie);
-		player13 = new Player("", "", "D", 13, tunisie);
-		player14 = new Player("", "", "D", 14, tunisie);
-		player15 = new Player("", "", "A", 15, tunisie);
-		player16 = new Player("", "", "G", 16, tunisie);
-		player17 = new Player("", "", "D", 17, tunisie);
-		player18 = new Player("", "", "M", 18, tunisie);
-		player19 = new Player("", "", "M", 19, tunisie);
-		player20 = new Player("", "", "A", 20, tunisie);
-		player21 = new Player("", "", "A", 21, tunisie);
-		player22 = new Player("", "", "G", 22, tunisie);
-		player23 = new Player("", "", "A", 23, tunisie);
+		player1 = new Player("Ben Mustapha", "Farouk", "G", 1, tunisie);
+		player2 = new Player("Ben Youssef", "Syam", "D", 2, tunisie);
+		player3 = new Player("Ben Alouane", "Yohan", "D", 3, tunisie);
+		player4 = new Player("Meriah", "Yassine", "D", 4, tunisie);
+		player5 = new Player("Haddadi", "Oussama", "D", 5, tunisie);
+		player6 = new Player("Bedoui", "Rami", "D", 6, tunisie);
+		player7 = new Player("Khaoui", "Saifeddine", "A", 7, tunisie);
+		player8 = new Player("Ben Youssef", "Fakhreddine", "A", 8, tunisie);
+		player9 = new Player("Badri", "Anice", "M", 9, tunisie);
+		player10 = new Player("Khazri", "Wahbi", "A", 10, tunisie);
+		player11 = new Player("Bronn", "Dylan", "D", 11, tunisie);
+		player12 = new Player("Maaloul", "Ali", "D", 12, tunisie);
+		player13 = new Player("Sassi", "Ferjani", "M", 13, tunisie);
+		player14 = new Player("Ben Amor", "Mohamed", "M", 14, tunisie);
+		player15 = new Player("Khalil", "Ahmed", "A", 15, tunisie);
+		player16 = new Player("Mathlouthi", "Aymen", "G", 16, tunisie);
+		player17 = new Player("Skhiri", "Ellyes", "M", 17, tunisie);
+		player18 = new Player("Srarfi", "Bassem", "A", 18, tunisie);
+		player19 = new Player("Khalifa", "Saber", "A", 19, tunisie);
+		player20 = new Player("Chaaleli", "Ghaylen", "A", 20, tunisie);
+		player21 = new Player("Naguez", "Hamdi", "D", 21, tunisie);
+		player22 = new Player("Hassen", "Mouez", "G", 22, tunisie);
+		player23 = new Player("Sliti", "Naim", "A", 23, tunisie);
 
 		playerService.addPlayer(player1);
 		playerService.addPlayer(player2);
@@ -2478,29 +2478,29 @@ public class GameController
 
 		players.clear();
 
-		player1 = new Player("", "", "G", 1, angleterre);
-		player2 = new Player("", "", "M", 2, angleterre);
-		player3 = new Player("", "", "D", 3, angleterre);
-		player4 = new Player("", "", "D", 4, angleterre);
-		player5 = new Player("", "", "D", 5, angleterre);
-		player6 = new Player("", "", "D", 6, angleterre);
-		player7 = new Player("", "", "M", 7, angleterre);
-		player8 = new Player("", "", "M", 8, angleterre);
-		player9 = new Player("", "", "A", 9, angleterre);
-		player10 = new Player("", "", "M", 10, angleterre);
-		player11 = new Player("", "", "A", 11, angleterre);
-		player12 = new Player("", "", "A", 12, angleterre);
-		player13 = new Player("", "", "D", 13, angleterre);
-		player14 = new Player("", "", "D", 14, angleterre);
-		player15 = new Player("", "", "A", 15, angleterre);
-		player16 = new Player("", "", "G", 16, angleterre);
-		player17 = new Player("", "", "D", 17, angleterre);
-		player18 = new Player("", "", "M", 18, angleterre);
-		player19 = new Player("", "", "M", 19, angleterre);
-		player20 = new Player("", "", "A", 20, angleterre);
-		player21 = new Player("", "", "A", 21, angleterre);
-		player22 = new Player("", "", "G", 22, angleterre);
-		player23 = new Player("", "", "A", 23, angleterre);
+		player1 = new Player("Pickford", "Jordan", "G", 1, angleterre);
+		player2 = new Player("Walker", "Kyle", "D", 2, angleterre);
+		player3 = new Player("Rose", "Danny", "D", 3, angleterre);
+		player4 = new Player("Dier", "Eric", "M", 4, angleterre);
+		player5 = new Player("Stones", "John", "D", 5, angleterre);
+		player6 = new Player("Maguire", "Harry", "D", 6, angleterre);
+		player7 = new Player("Lingard", "Jesse", "M", 7, angleterre);
+		player8 = new Player("Henderson", "Jordan", "M", 8, angleterre);
+		player9 = new Player("Kane", "Harry", "A", 9, angleterre);
+		player10 = new Player("Sterling", "Raheem", "A", 10, angleterre);
+		player11 = new Player("Vardy", "Jamie", "A", 11, angleterre);
+		player12 = new Player("Trippier", "Kieran", "D", 12, angleterre);
+		player13 = new Player("Butland", "Jack", "G", 13, angleterre);
+		player14 = new Player("Welbeck", "Danny", "A", 14, angleterre);
+		player15 = new Player("Cahill", "Gary", "D", 15, angleterre);
+		player16 = new Player("Jones", "Phil", "D", 16, angleterre);
+		player17 = new Player("Delph", "Fabian", "D", 17, angleterre);
+		player18 = new Player("Young", "Ashley", "D", 18, angleterre);
+		player19 = new Player("Rashford", "Marcus", "A", 19, angleterre);
+		player20 = new Player("Alli", "Dele", "M", 20, angleterre);
+		player21 = new Player("Loftus-Cheek", "Ruben", "M", 21, angleterre);
+		player22 = new Player("Alexander-Arnold", "Trent", "D", 22, angleterre);
+		player23 = new Player("Pope", "Nick", "G", 23, angleterre);
 
 		playerService.addPlayer(player1);
 		playerService.addPlayer(player2);
@@ -3015,7 +3015,7 @@ public class GameController
 	{
 		if (game.getId() == 0)
 		{ // if employee id is 0 then creating the
-				// employee other updating the employee
+			// employee other updating the employee
 			gameService.addGame(game);
 		}
 		else
