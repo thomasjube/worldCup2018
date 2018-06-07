@@ -15,32 +15,38 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.tjube.model.Team;
-
-@NamedQueries({
-	@NamedQuery(
-	name = "findGoals",
-	query = "select p from Player p where p.team =:team AND p.poste like 'G%' order by p.name asc"
-	),
-	@NamedQuery(
-	name = "findDefensers",
-	query = "select p from Player p where p.team =:team AND p.poste like 'D%' order by p.name asc"
-	),
-	@NamedQuery(
-	name = "findMiddles",
-	query = "select p from Player p where p.team =:team AND p.poste like 'M%' order by p.name asc"
-	),
-	@NamedQuery(
-	name = "findStrikers",
-	query = "select p from Player p where p.team =:team AND (p.poste like 'A%' or p.poste = 'BU')order by p.name asc"
-	)
-})
+@NamedQueries({ @NamedQuery(name = Player.QN.GET_PLAYER_BY_ID, query = "select p from Player p where p.id =:id"),
+		@NamedQuery(name = Player.QN.GET_ALL_PLAYERS, query = "select p from Player p order by p.name asc"),
+		@NamedQuery(name = Player.QN.findGoals,
+				query = "select p from Player p where p.team =:team AND p.poste like 'G%' order by p.name asc"),
+		@NamedQuery(name = Player.QN.findDefensers,
+				query = "select p from Player p where p.team =:team AND p.poste like 'D%' order by p.name asc"),
+		@NamedQuery(name = Player.QN.findMiddles,
+				query = "select p from Player p where p.team =:team AND p.poste like 'M%' order by p.name asc"),
+		@NamedQuery(name = Player.QN.findStrikers,
+				query = "select p from Player p where p.team =:team AND (p.poste like 'A%' or p.poste = 'BU')order by p.name asc") })
 
 @Entity
 @Table(name = "PLAYER")
 public class Player
 	implements Serializable
 {
+
+	//==================================================================================================================================================================================================
+	//
+	// Query names
+	//
+	//==================================================================================================================================================================================================
+
+	public static class QN
+	{
+		public static final String findGoals = "Player.findGoals";
+		public static final String findDefensers = "Player.findDefensers";
+		public static final String findMiddles = "Player.findMiddles";
+		public static final String findStrikers = "Player.findStrikers";
+		public static final String GET_PLAYER_BY_ID = "Player.getPlayerById";
+		public static final String GET_ALL_PLAYERS = "Player.getAllPlayers";
+	}
 
 	private static final long serialVersionUID = -8989803132904605862L;
 
@@ -50,27 +56,29 @@ public class Player
 
 	@Column
 	private String name;
-	
+
 	@Column
 	private String firstName;
-	
-	@Column
-    private String poste;
-	
-	@Column
-    private Integer number;
-    
-    @ManyToOne(fetch=FetchType.EAGER)
-    private Team team;
-    
-    @OneToMany(fetch=FetchType.EAGER)
-    private Collection<PlayerStats> playerStats;
 
-    public Player() {
+	@Column
+	private String poste;
+
+	@Column
+	private Integer number;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Team team;
+
+	@OneToMany(fetch = FetchType.EAGER)
+	private Collection<PlayerStats> playerStats;
+
+	public Player()
+	{
 		// TODO Auto-generated constructor stub
 	}
-    
-	public Player(String name, String firstName, String poste,Integer number, Team team) {
+
+	public Player(String name, String firstName, String poste, Integer number, Team team)
+	{
 		super();
 		this.name = name;
 		this.firstName = firstName;
@@ -99,43 +107,53 @@ public class Player
 		this.name = name;
 	}
 
-	public String getFirstName() {
+	public String getFirstName()
+	{
 		return firstName;
 	}
-	
-	public void setFirstName(String firstName) {
+
+	public void setFirstName(String firstName)
+	{
 		this.firstName = firstName;
 	}
-	
-	public String getPoste() {
+
+	public String getPoste()
+	{
 		return poste;
 	}
 
-	public void setPoste(String poste) {
+	public void setPoste(String poste)
+	{
 		this.poste = poste;
 	}
 
-	public Team getTeam() {
+	public Team getTeam()
+	{
 		return team;
 	}
 
-	public void setTeam(Team team) {
+	public void setTeam(Team team)
+	{
 		this.team = team;
 	}
-	
-	public Integer getNumber() {
+
+	public Integer getNumber()
+	{
 		return number;
 	}
-	
-	public void setNumber(Integer number) {
+
+	public void setNumber(Integer number)
+	{
 		this.number = number;
 	}
 
-	public Collection<PlayerStats> getPlayerStats() {
+	public Collection<PlayerStats> getPlayerStats()
+	{
 		return playerStats;
 	}
-	
-	public void setPlayerStats(Collection<PlayerStats> playerStats) {
+
+	public void setPlayerStats(Collection<PlayerStats> playerStats)
+	{
 		this.playerStats = playerStats;
 	}
 }

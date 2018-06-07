@@ -3,9 +3,10 @@ package com.tjube.dao;
 import java.util.Collection;
 import java.util.List;
 
-import org.hibernate.Query;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
 import org.springframework.stereotype.Repository;
 
 import com.tjube.model.Poule;
@@ -16,65 +17,94 @@ public class TeamDAOImpl
 	implements TeamDAO
 {
 
-	@Autowired
-	private SessionFactory sessionFactory;
+	@PersistenceContext(unitName = "JpaPersistenceUnit")
+	private EntityManager m_entityManager = null;
 
 	@Override
-	public void addTeam(Team game)
+	public void addTeam(Team team)
 	{
-		sessionFactory.getCurrentSession().saveOrUpdate(game);
+		m_entityManager.persist(team);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Team> getAllTeams()
 	{
-		return sessionFactory.getCurrentSession().createQuery("from Team order by name").list();
+		TypedQuery<Team> query = m_entityManager.createNamedQuery(Team.QN.GET_ALL_TEAMS, Team.class);
+		return query.getResultList();
 	}
 
 	@Override
-	public void deleteTeam(Integer employeeId)
+	public void deleteTeam(Integer teamId)
 	{
-		Team game = (Team) sessionFactory.getCurrentSession().load(Team.class, employeeId);
-		if (null != game)
-		{
-			this.sessionFactory.getCurrentSession().delete(game);
-		}
+		Team team = getTeam(teamId);
+
+		if (!m_entityManager.contains(team))
+			team = m_entityManager.merge(team);
+
+		m_entityManager.remove(team);
 
 	}
 
 	@Override
 	public Team getTeam(int empid)
 	{
-		return (Team) sessionFactory.getCurrentSession().get(Team.class, empid);
+		TypedQuery<Team> query = m_entityManager.createNamedQuery(Team.QN.GET_TEAM_BY_ID, Team.class);
+		query.setParameter("id", empid);
+
+		List<Team> results = query.getResultList();
+		if (results.size() == 1)
+			return results.get(0);
+
+		return null;
 	}
-	
+
 	@Override
-	public Team getTeam(String string) {
-		Query query = sessionFactory.getCurrentSession().getNamedQuery("findTeamByName");
+	public Team getTeam(String string)
+	{
+		TypedQuery<Team> query = m_entityManager.createNamedQuery(Team.QN.findTeamByName, Team.class);
 		query.setParameter("name", string);
-		
-		return (Team) query.uniqueResult();
+
+		return query.getSingleResult();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
-	public Collection<Team> getOrderTeams(Poule poule) {
-		Query query = sessionFactory.getCurrentSession().getNamedQuery("findTeamsByPoule");
-		query.setParameter("poule", poule);
-		return query.list();
-	}
-
-	@Override
-	public Team updateTeam(Team game)
+	public Collection<Team> getOrderTeams(Poule poule)
 	{
-		sessionFactory.getCurrentSession().update(game);
-		return game;
+		TypedQuery<Team> query = m_entityManager.createNamedQuery(Team.QN.findTeamsByPoule, Team.class);
+		query.setParameter("poule", poule);
+		return query.getResultList();
 	}
 
 	@Override
-	public Collection<Team> getTeamsByPoint(Poule poule) {
-		return sessionFactory.getCurrentSession().createQuery("from Team t where t.poule = :poule order by t.point DESC, t.diff DESC, t.but_mis DESC, t.but_pris ASC, t.id").setParameter("poule", poule).list();
+	public Team updateTeam(Team team)
+	{
+		Team teamToUpdate = getTeam(team.getId());
+		teamToUpdate.setBut_mis(team.getBut_mis());
+		teamToUpdate.setBut_pris(team.getBut_pris());
+		teamToUpdate.setDiff(team.getDiff());
+		teamToUpdate.setGameDraw(team.getGameDraw());
+		teamToUpdate.setGameLost(team.getGameLost());
+		teamToUpdate.setGamePlayed(team.getGamePlayed());
+		teamToUpdate.setGameWin(team.getGameWin());
+		teamToUpdate.setName(team.getName());
+		teamToUpdate.setPlayers(team.getPlayers());
+		teamToUpdate.setPoint(team.getPoint());
+		teamToUpdate.setPosition_poule(team.getPosition_poule());
+		teamToUpdate.setPoule(team.getPoule());
+
+		return teamToUpdate;
+
+	}
+
+	@Override
+	public Collection<Team> getTeamsByPoint(Poule poule)
+	{
+		TypedQuery<Team> query = m_entityManager.createNamedQuery(Team.QN.getTeamsByPoint, Team.class);
+		query.setParameter("poule", poule);
+		return query.getResultList();
+
 	}
 
 }

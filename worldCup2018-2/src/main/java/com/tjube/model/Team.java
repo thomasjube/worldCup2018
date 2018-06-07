@@ -17,25 +17,46 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@NamedQueries({ @NamedQuery(name = "findTeamByName", query = "select t from Team t where t.name =:name"), @NamedQuery(
-		name = "findTeamsByPoule", query = "select t from Team t where t.poule =:poule order by t.position_poule") })
+@NamedQueries({ @NamedQuery(name = Team.QN.findTeamByName, query = "select t from Team t where t.name =:name"),
+		@NamedQuery(name = Team.QN.findTeamsByPoule,
+				query = "select t from Team t where t.poule =:poule order by t.position_poule"),
+		@NamedQuery(name = Team.QN.getTeamsByPoint,
+				query = "select t from Team t where t.poule = :poule order by t.point DESC, t.diff DESC, t.but_mis DESC, t.but_pris ASC, t.id"),
+		@NamedQuery(name = Team.QN.GET_TEAM_BY_ID, query = "select t from Team t where t.id =:id"),
+		@NamedQuery(name = Team.QN.GET_ALL_TEAMS, query = "select t from Team t") })
 @Entity
 @Table(name = "TEAM")
 public class Team
 	implements Serializable
 {
+
+	//==================================================================================================================================================================================================
+	//
+	// Query names
+	//
+	//==================================================================================================================================================================================================
+
+	public static class QN
+	{
+		public static final String findTeamsByPoule = "Team.findTeamsByPoule";
+		public static final String findTeamByName = "Team.findTeamByName";
+		public static final String getTeamsByPoint = "Team.getTeamsByPoint";
+		public static final String GET_TEAM_BY_ID = "Team.getTeamById";
+		public static final String GET_ALL_TEAMS = "Team.getAllTeams";
+	}
+
 	private static final long serialVersionUID = -5028311133164527096L;
 
 	static class PlayerComparator
-	implements Comparator<Player>
-{
-	@Override
-	public int compare(Player c1, Player c2)
+		implements Comparator<Player>
 	{
-		return c1.getNumber().compareTo(c2.getNumber());
+		@Override
+		public int compare(Player c1, Player c2)
+		{
+			return c1.getNumber().compareTo(c2.getNumber());
+		}
 	}
-}
-	
+
 	@Id
 	private int id;
 
@@ -132,7 +153,7 @@ public class Team
 	public Collection<Player> getPlayers()
 	{
 		List<Player> playerOrdered = new ArrayList<>(players);
-		Collections.sort(playerOrdered,new PlayerComparator());
+		Collections.sort(playerOrdered, new PlayerComparator());
 		return playerOrdered;
 	}
 

@@ -2,9 +2,10 @@ package com.tjube.dao;
 
 import java.util.List;
 
-import org.hibernate.Query;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
 import org.springframework.stereotype.Repository;
 
 import com.tjube.model.Player;
@@ -15,76 +16,92 @@ public class PlayerDAOImpl
 	implements PlayerDAO
 {
 
-	@Autowired
-	private SessionFactory sessionFactory;
+	@PersistenceContext(unitName = "JpaPersistenceUnit")
+	private EntityManager m_entityManager = null;
 
 	@Override
-	public void addPlayer(Player game)
+	public void addPlayer(Player player)
 	{
-		sessionFactory.getCurrentSession().saveOrUpdate(game);
+		m_entityManager.persist(player);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Player> getAllPlayers()
 	{
-		return sessionFactory.getCurrentSession().createQuery("from Player").list();
+		TypedQuery<Player> query = m_entityManager.createNamedQuery(Player.QN.GET_ALL_PLAYERS, Player.class);
+		return query.getResultList();
 	}
-	
+
 	@Override
-	public void deletePlayer(Integer employeeId)
+	public void deletePlayer(Integer playerId)
 	{
-		Player game = (Player) sessionFactory.getCurrentSession().load(Player.class, employeeId);
-		if (null != game)
-		{
-			this.sessionFactory.getCurrentSession().delete(game);
-		}
+		Player player = getPlayer(playerId);
+
+		if (!m_entityManager.contains(player))
+			player = m_entityManager.merge(player);
+
+		m_entityManager.remove(player);
 
 	}
 
 	@Override
 	public Player getPlayer(int empid)
 	{
-		return (Player) sessionFactory.getCurrentSession().get(Player.class, empid);
+		TypedQuery<Player> query = m_entityManager.createNamedQuery(Player.QN.GET_PLAYER_BY_ID, Player.class);
+		query.setParameter("id", empid);
+
+		List<Player> results = query.getResultList();
+		if (results.size() == 1)
+			return results.get(0);
+
+		return null;
 	}
 
 	@Override
-	public Player updatePlayer(Player game)
+	public Player updatePlayer(Player player)
 	{
-		sessionFactory.getCurrentSession().update(game);
-		return game;
+		Player playerToUpdate = getPlayer(player.getId());
+		playerToUpdate.setFirstName(player.getFirstName());
+		playerToUpdate.setName(player.getName());
+		playerToUpdate.setNumber(player.getNumber());
+		playerToUpdate.setPoste(player.getPoste());
+		playerToUpdate.setTeam(player.getTeam());
+		playerToUpdate.setPlayerStats(player.getPlayerStats());
+
+		return playerToUpdate;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Player> getGoals(Team team) {
-		Query query = sessionFactory.getCurrentSession().getNamedQuery("findGoals");
-		query.setParameter("team", team);
-		return query.list();
+	public List<Player> getGoals(Team team)
+	{
+		TypedQuery<Player> query = m_entityManager.createNamedQuery(Player.QN.findGoals, Player.class);
+		return query.getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Player> getDefensers(Team team) {
-		Query query = sessionFactory.getCurrentSession().getNamedQuery("findDefensers");
-		query.setParameter("team", team);
-		return query.list();
+	public List<Player> getDefensers(Team team)
+	{
+		TypedQuery<Player> query = m_entityManager.createNamedQuery(Player.QN.findDefensers, Player.class);
+		return query.getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Player> getMiddles(Team team) {
-		Query query = sessionFactory.getCurrentSession().getNamedQuery("findMiddles");
-		query.setParameter("team", team);
-		return query.list();
+	public List<Player> getMiddles(Team team)
+	{
+		TypedQuery<Player> query = m_entityManager.createNamedQuery(Player.QN.findMiddles, Player.class);
+		return query.getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Player> getStrikers(Team team) {
-		Query query = sessionFactory.getCurrentSession().getNamedQuery("findStrikers");
-		query.setParameter("team", team);
-		return query.list();
+	public List<Player> getStrikers(Team team)
+	{
+		TypedQuery<Player> query = m_entityManager.createNamedQuery(Player.QN.findStrikers, Player.class);
+		return query.getResultList();
 	}
 
 }

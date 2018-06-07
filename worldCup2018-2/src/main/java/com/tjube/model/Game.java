@@ -25,21 +25,40 @@ import javax.persistence.Table;
 import com.tjube.controller.LocalDateTimeAttributeConverter;
 
 @NamedQueries({
-		@NamedQuery(name = "findNextGameByDate",
+		@NamedQuery(name = Game.QN.findNextGameByDate,
 				query = "select g from Game g where g.dateTime > :date AND g.score1 is null order by g.dateTime,g.name"),
-		@NamedQuery(name = "findLastGameByDate",
+		@NamedQuery(name = Game.QN.findLastGameByDate,
 				query = "select g from Game g where g.dateTime < :date AND g.score1 is not null order by g.dateTime,g.name"),
-		@NamedQuery(name = "findGamesByTeam",
+		@NamedQuery(name = Game.QN.GET_ALL_GAMES_BY_TEAM,
 				query = "select g from Game g where g.team1=:team OR g.team2=:team order by g.dateTime,g.name"),
-		@NamedQuery(name = "findGamesByPoule",
+		@NamedQuery(name = Game.QN.GET_ALL_GAMES_BY_POULE,
 				query = "select g from Game g where g.poule=:poule order by g.dateTime,g.name"),
-		@NamedQuery(name = "findNextGameByDateAndPoule",
+		@NamedQuery(name = Game.QN.GET_ALL_GAMES, query = "select g from Game g order by g.dateTime,g.name"),
+		@NamedQuery(name = Game.QN.GET_GAME_BY_ID, query = "select g from Game g where g.id=:id"),
+		@NamedQuery(name = Game.QN.findNextGameByDateAndPoule,
 				query = "select g from Game g where g.dateTime > :date AND g.score1 is null AND g.poule=:poule order by g.dateTime,g.name") })
 @Entity
 @Table(name = "GAME")
 public class Game
 	implements Serializable
 {
+
+	//==================================================================================================================================================================================================
+	//
+	// Query names
+	//
+	//==================================================================================================================================================================================================
+
+	public static class QN
+	{
+		public static final String findNextGameByDateAndPoule = "Game.findNextGameByDateAndPoule";
+		public static final String findNextGameByDate = "Game.findNextGameByDate";
+		public static final String findLastGameByDate = "Game.findLastGameByDate";
+		public static final String GET_ALL_GAMES_BY_TEAM = "Game.getAllGamesByTeam";
+		public static final String GET_ALL_GAMES_BY_POULE = "Game.getAllGamesByPoule";
+		public static final String GET_GAME_BY_ID = "Game.getGameById";
+		public static final String GET_ALL_GAMES = "Game.getAllGames";
+	}
 
 	private static final long serialVersionUID = 1123828229175369276L;
 

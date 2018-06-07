@@ -2,8 +2,10 @@ package com.tjube.dao;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
 import org.springframework.stereotype.Repository;
 
 import com.tjube.model.Penalti;
@@ -13,43 +15,51 @@ public class PenaltiDAOImpl
 	implements PenaltiDAO
 {
 
-	@Autowired
-	private SessionFactory sessionFactory;
+	@PersistenceContext(unitName = "JpaPersistenceUnit")
+	private EntityManager m_entityManager = null;
 
 	@Override
-	public void addPenalti(Penalti game)
+	public void addPenalti(Penalti penalti)
 	{
-		sessionFactory.getCurrentSession().saveOrUpdate(game);
+		m_entityManager.persist(penalti);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Penalti> getAllPenaltis()
 	{
-		return sessionFactory.getCurrentSession().createQuery("from Penalti").list();
+		TypedQuery<Penalti> query = m_entityManager.createNamedQuery(Penalti.QN.GET_ALL_PENALTIS, Penalti.class);
+		return query.getResultList();
 	}
 
 	@Override
 	public void deletePenalti(Integer employeeId)
 	{
-		Penalti game = (Penalti) sessionFactory.getCurrentSession().load(Penalti.class, employeeId);
-		if (null != game)
-		{
-			this.sessionFactory.getCurrentSession().delete(game);
-		}
+		Penalti game = getPenalti(employeeId);
+
+		if (!m_entityManager.contains(game))
+			game = m_entityManager.merge(game);
+
+		m_entityManager.remove(game);
 
 	}
 
 	@Override
 	public Penalti getPenalti(int empid)
 	{
-		return (Penalti) sessionFactory.getCurrentSession().get(Penalti.class, empid);
+		TypedQuery<Penalti> query = m_entityManager.createNamedQuery(Penalti.QN.GET_PENALTI_BY_ID, Penalti.class);
+		query.setParameter("id", empid);
+
+		List<Penalti> results = query.getResultList();
+		if (results.size() == 1)
+			return results.get(0);
+
+		return null;
 	}
 
 	@Override
 	public Penalti updatePenalti(Penalti game)
 	{
-		sessionFactory.getCurrentSession().update(game);
 		return game;
 	}
 

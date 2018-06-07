@@ -74,7 +74,7 @@
 	                      <tr>
 	                        <th colspan=7 style="text-align:center;">Match</th>
 	                        <th>Heure</th>
-	                        <th>Stade</th>
+<!-- 	                        <th>Stade</th> -->
 	                      </tr>
 	                    </thead>
 	                    <tbody>
@@ -88,11 +88,11 @@
 	                        <td style="width:5%;">VS</td>
 	                      	<td style="width:5%;">${game.score2}</td>
 	                      	<td style="width:27%;"><div style="width:100%;">${game.team2.name}</div></td>
-	                        <td>
-	                        	<img style="margin-left:0.8em;top:0.6em;width:10%;" src="<%=request.getContextPath()%>/resources/images/flag/${game.team2.name}.png" alt="" width="30" height="20">
+	                        <td style="width:10%">
+	                        	<img style="top:0.6em;" src="<%=request.getContextPath()%>/resources/images/flag/${game.team2.name}.png" alt="" width="30" height="20">
 	                        </td>
 	                        <td>${game.time}</td>
-	                     	<td>${game.stade}</td>
+<%-- 	                     	<td>${game.stade}</td> --%>
 	                      </tr>
 	                    </c:forEach>
 	                    </tbody>
