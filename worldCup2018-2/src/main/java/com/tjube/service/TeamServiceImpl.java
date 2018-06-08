@@ -144,45 +144,49 @@ public class TeamServiceImpl
 		Team team1 = game.getTeam1();
 		Team team2 = game.getTeam2();
 
-		if (game.getScore1() == game.getScore2() && game.getGameInPoule())
+		if (game.getScore1() != null && game.getScore2() != null)
 		{
+			if (game.getScore1() == game.getScore2() && game.getGameInPoule())
+			{
 
-			team1.setGameDraw(team1.getGameDraw() - 1);
-			team2.setGameDraw(team2.getGameDraw() - 1);
-			team1.setPoint(team1.getPoint() - 1);
-			team2.setPoint(team2.getPoint() - 1);
+				team1.setGameDraw(team1.getGameDraw() - 1);
+				team2.setGameDraw(team2.getGameDraw() - 1);
+				team1.setPoint(team1.getPoint() - 1);
+				team2.setPoint(team2.getPoint() - 1);
 
-			team1.setBut_mis(team1.getBut_mis() - game.getScore1());
-			team1.setBut_pris(team1.getBut_pris() - game.getScore2());
-			team2.setBut_mis(team2.getBut_mis() - game.getScore2());
-			team2.setBut_pris(team2.getBut_pris() - game.getScore1());
+				team1.setBut_mis(team1.getBut_mis() - game.getScore1());
+				team1.setBut_pris(team1.getBut_pris() - game.getScore2());
+				team2.setBut_mis(team2.getBut_mis() - game.getScore2());
+				team2.setBut_pris(team2.getBut_pris() - game.getScore1());
 
-			//nul en poule
+				//nul en poule
+			}
+			else if (game.getScore1() < game.getScore2() && game.getGameInPoule())
+			{
+				//victoire eq2 en poule
+				team1.setGameLost(team1.getGameLost() - 1);
+				team2.setGameWin(team2.getGameWin() - 1);
+				team2.setPoint(team2.getPoint() - 3);
+
+				team1.setBut_mis(team1.getBut_mis() - game.getScore1());
+				team1.setBut_pris(team1.getBut_pris() - game.getScore2());
+				team2.setBut_mis(team2.getBut_mis() - game.getScore2());
+				team2.setBut_pris(team2.getBut_pris() - game.getScore1());
+			}
+			else if (game.getScore1() > game.getScore2() && game.getGameInPoule())
+			{
+				//victoire eq1 en poule
+				team2.setGameLost(team2.getGameLost() - 1);
+				team1.setGameWin(team1.getGameWin() - 1);
+				team1.setPoint(team1.getPoint() - 3);
+
+				team1.setBut_mis(team1.getBut_mis() - game.getScore1());
+				team1.setBut_pris(team1.getBut_pris() - game.getScore2());
+				team2.setBut_mis(team2.getBut_mis() - game.getScore2());
+				team2.setBut_pris(team2.getBut_pris() - game.getScore1());
+			}
 		}
-		else if (game.getScore1() < game.getScore2() && game.getGameInPoule())
-		{
-			//victoire eq2 en poule
-			team1.setGameLost(team1.getGameLost() - 1);
-			team2.setGameWin(team2.getGameWin() - 1);
-			team2.setPoint(team2.getPoint() - 3);
 
-			team1.setBut_mis(team1.getBut_mis() - game.getScore1());
-			team1.setBut_pris(team1.getBut_pris() - game.getScore2());
-			team2.setBut_mis(team2.getBut_mis() - game.getScore2());
-			team2.setBut_pris(team2.getBut_pris() - game.getScore1());
-		}
-		else if (game.getScore1() > game.getScore2() && game.getGameInPoule())
-		{
-			//victoire eq1 en poule
-			team2.setGameLost(team2.getGameLost() - 1);
-			team1.setGameWin(team1.getGameWin() - 1);
-			team1.setPoint(team1.getPoint() - 3);
-
-			team1.setBut_mis(team1.getBut_mis() - game.getScore1());
-			team1.setBut_pris(team1.getBut_pris() - game.getScore2());
-			team2.setBut_mis(team2.getBut_mis() - game.getScore2());
-			team2.setBut_pris(team2.getBut_pris() - game.getScore1());
-		}
 		team1.setGamePlayed(team1.getGamePlayed() - 1);
 		team2.setGamePlayed(team2.getGamePlayed() - 1);
 		team1.setDiff(team1.getBut_mis() + team1.getBut_pris());
