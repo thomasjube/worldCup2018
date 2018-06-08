@@ -118,12 +118,12 @@ public class GameDAOImpl
 	public Game updateGame(Game game)
 	{
 		Game gameToUpdate = getGame(game.getId());
-		gameToUpdate.setDateTime(game.getDateTime());
+		//		gameToUpdate.setDateTime(game.getDateTime());
 		gameToUpdate.setGameInPoule(game.getGameInPoule());
 		gameToUpdate.setName(game.getName());
 		gameToUpdate.setPenalti(game.getPenalti());
 		gameToUpdate.setPlayerStats(game.getPlayerStats());
-		gameToUpdate.setPoule(game.getPoule());
+		//		gameToUpdate.setPoule(game.getPoule());
 		gameToUpdate.setProlong(game.getProlong());
 		gameToUpdate.setScore1(game.getScore1());
 		gameToUpdate.setScore1_penalti(game.getScore1_penalti());
@@ -132,8 +132,8 @@ public class GameDAOImpl
 		gameToUpdate.setScore2_penalti(game.getScore2_penalti());
 		gameToUpdate.setScore2_prolong(game.getScore2_prolong());
 		gameToUpdate.setStade(game.getStade());
-		gameToUpdate.setTeam1(game.getTeam1());
-		gameToUpdate.setTeam2(game.getTeam2());
+		//		gameToUpdate.setTeam1(game.getTeam1());
+		//		gameToUpdate.setTeam2(game.getTeam2());
 
 		return gameToUpdate;
 	}

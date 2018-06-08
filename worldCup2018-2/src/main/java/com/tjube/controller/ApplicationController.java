@@ -3,6 +3,8 @@ package com.tjube.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -22,6 +24,7 @@ import com.tjube.service.TeamService;
 @RequestMapping("/")
 @Configuration
 @ComponentScan("com.tjube.service")
+@Transactional
 public class ApplicationController
 {
 

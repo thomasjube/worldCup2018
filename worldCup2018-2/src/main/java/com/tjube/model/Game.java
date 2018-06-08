@@ -27,7 +27,7 @@ import com.tjube.controller.LocalDateTimeAttributeConverter;
 
 @NamedQueries({
 		@NamedQuery(name = Game.QN.findNextGameByDate,
-				query = "select g from Game g where g.dateTime > :date AND g.score1 is null order by g.dateTime,g.name"),
+				query = "select g from Game g where g.dateTime > :date order by g.dateTime,g.name"),
 		@NamedQuery(name = Game.QN.findLastGameByDate,
 				query = "select g from Game g where g.dateTime < :date AND g.score1 is not null order by g.dateTime,g.name"),
 		@NamedQuery(name = Game.QN.GET_ALL_GAMES_BY_TEAM,
@@ -342,6 +342,45 @@ public class Game
 		return goalList;
 	}
 
+	public List<PlayerStats> getPassTeam1()
+	{
+		Collection<PlayerStats> results = new ArrayList<>();
+		for (PlayerStats playerStat : playerStats)
+		{
+			if (playerStat.getPlayer().getTeam() == team1 && playerStat.getAction() == Action.PASS)
+				results.add(playerStat);
+		}
+		List<PlayerStats> goalList = new ArrayList<>(results);
+		Collections.sort(goalList, new GoalComparator());
+		return goalList;
+	}
+
+	public List<PlayerStats> getPassTeam2()
+	{
+		Collection<PlayerStats> results = new ArrayList<>();
+		for (PlayerStats playerStat : playerStats)
+		{
+			if (playerStat.getPlayer().getTeam() == team2 && playerStat.getAction() == Action.PASS)
+				results.add(playerStat);
+		}
+		List<PlayerStats> goalList = new ArrayList<>(results);
+		Collections.sort(goalList, new GoalComparator());
+		return goalList;
+	}
+
+	public List<PlayerStats> getCartons()
+	{
+		Collection<PlayerStats> results = new ArrayList<>();
+		for (PlayerStats playerStat : playerStats)
+		{
+			if (playerStat.getAction() == Action.YELLOW_CARD || playerStat.getAction() == Action.RED_CARD)
+				results.add(playerStat);
+		}
+		List<PlayerStats> goalList = new ArrayList<>(results);
+		Collections.sort(goalList, new GoalComparator());
+		return goalList;
+	}
+
 	public LocalDate getDate()
 	{
 		return dateTime.toLocalDate();
@@ -399,6 +438,11 @@ public class Game
 	public void addPlayerStat(PlayerStats stat)
 	{
 		this.playerStats.add(stat);
+	}
+
+	public void removestat(PlayerStats playerStat)
+	{
+		this.playerStats.remove(playerStat);
 	}
 
 }

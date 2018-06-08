@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -209,7 +210,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		russie.setPlayers(players);
-		teamService.updateTeam(russie);
+		teamService.updateTeamPlayers(russie);
 
 		players.clear();
 
@@ -285,7 +286,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		arabieSaoudite.setPlayers(players);
-		teamService.updateTeam(arabieSaoudite);
+		teamService.updateTeamPlayers(arabieSaoudite);
 
 		players.clear();
 
@@ -361,7 +362,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		egypte.setPlayers(players);
-		teamService.updateTeam(egypte);
+		teamService.updateTeamPlayers(egypte);
 
 		players.clear();
 
@@ -437,7 +438,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		uruguay.setPlayers(players);
-		teamService.updateTeam(uruguay);
+		teamService.updateTeamPlayers(uruguay);
 
 		teams.add(russie);
 		teams.add(arabieSaoudite);
@@ -561,7 +562,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		portugal.setPlayers(players);
-		teamService.updateTeam(portugal);
+		teamService.updateTeamPlayers(portugal);
 
 		players.clear();
 
@@ -637,7 +638,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		espagne.setPlayers(players);
-		teamService.updateTeam(espagne);
+		teamService.updateTeamPlayers(espagne);
 
 		players.clear();
 
@@ -713,7 +714,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		maroc.setPlayers(players);
-		teamService.updateTeam(maroc);
+		teamService.updateTeamPlayers(maroc);
 
 		players.clear();
 
@@ -789,7 +790,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		iran.setPlayers(players);
-		teamService.updateTeam(iran);
+		teamService.updateTeamPlayers(iran);
 
 		teams.add(portugal);
 		teams.add(espagne);
@@ -915,7 +916,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		france.setPlayers(players);
-		teamService.updateTeam(france);
+		teamService.updateTeamPlayers(france);
 
 		players.clear();
 
@@ -991,7 +992,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		australie.setPlayers(players);
-		teamService.updateTeam(australie);
+		teamService.updateTeamPlayers(australie);
 
 		players.clear();
 
@@ -1067,7 +1068,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		perou.setPlayers(players);
-		teamService.updateTeam(perou);
+		teamService.updateTeamPlayers(perou);
 
 		players.clear();
 
@@ -1143,7 +1144,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		danemark.setPlayers(players);
-		teamService.updateTeam(danemark);
+		teamService.updateTeamPlayers(danemark);
 
 		teams.add(france);
 		teams.add(australie);
@@ -1267,7 +1268,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		argentine.setPlayers(players);
-		teamService.updateTeam(argentine);
+		teamService.updateTeamPlayers(argentine);
 
 		players.clear();
 
@@ -1343,7 +1344,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		islande.setPlayers(players);
-		teamService.updateTeam(islande);
+		teamService.updateTeamPlayers(islande);
 
 		players.clear();
 
@@ -1419,7 +1420,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		croatie.setPlayers(players);
-		teamService.updateTeam(croatie);
+		teamService.updateTeamPlayers(croatie);
 
 		players.clear();
 
@@ -1495,7 +1496,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		nigeria.setPlayers(players);
-		teamService.updateTeam(nigeria);
+		teamService.updateTeamPlayers(nigeria);
 
 		teams.add(argentine);
 		teams.add(islande);
@@ -1619,7 +1620,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		bresil.setPlayers(players);
-		teamService.updateTeam(bresil);
+		teamService.updateTeamPlayers(bresil);
 
 		players.clear();
 
@@ -1695,7 +1696,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		suisse.setPlayers(players);
-		teamService.updateTeam(suisse);
+		teamService.updateTeamPlayers(suisse);
 
 		players.clear();
 
@@ -1771,7 +1772,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		costaRica.setPlayers(players);
-		teamService.updateTeam(costaRica);
+		teamService.updateTeamPlayers(costaRica);
 
 		players.clear();
 
@@ -1847,7 +1848,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		serbie.setPlayers(players);
-		teamService.updateTeam(serbie);
+		teamService.updateTeamPlayers(serbie);
 
 		teams.add(bresil);
 		teams.add(suisse);
@@ -1971,7 +1972,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		allemagne.setPlayers(players);
-		teamService.updateTeam(allemagne);
+		teamService.updateTeamPlayers(allemagne);
 
 		players.clear();
 
@@ -2047,7 +2048,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		mexique.setPlayers(players);
-		teamService.updateTeam(mexique);
+		teamService.updateTeamPlayers(mexique);
 
 		players.clear();
 
@@ -2123,7 +2124,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		suede.setPlayers(players);
-		teamService.updateTeam(suede);
+		teamService.updateTeamPlayers(suede);
 
 		players.clear();
 
@@ -2199,7 +2200,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		coreeSud.setPlayers(players);
-		teamService.updateTeam(coreeSud);
+		teamService.updateTeamPlayers(coreeSud);
 
 		teams.add(allemagne);
 		teams.add(mexique);
@@ -2322,7 +2323,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		belgique.setPlayers(players);
-		teamService.updateTeam(belgique);
+		teamService.updateTeamPlayers(belgique);
 
 		players.clear();
 
@@ -2398,7 +2399,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		panama.setPlayers(players);
-		teamService.updateTeam(panama);
+		teamService.updateTeamPlayers(panama);
 
 		players.clear();
 
@@ -2474,7 +2475,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		tunisie.setPlayers(players);
-		teamService.updateTeam(tunisie);
+		teamService.updateTeamPlayers(tunisie);
 
 		players.clear();
 
@@ -2550,7 +2551,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		angleterre.setPlayers(players);
-		teamService.updateTeam(angleterre);
+		teamService.updateTeamPlayers(angleterre);
 
 		teams.add(belgique);
 		teams.add(panama);
@@ -2673,7 +2674,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		pologne.setPlayers(players);
-		teamService.updateTeam(pologne);
+		teamService.updateTeamPlayers(pologne);
 
 		players.clear();
 
@@ -2749,7 +2750,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		senegal.setPlayers(players);
-		teamService.updateTeam(senegal);
+		teamService.updateTeamPlayers(senegal);
 
 		players.clear();
 
@@ -2825,7 +2826,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		colombie.setPlayers(players);
-		teamService.updateTeam(colombie);
+		teamService.updateTeamPlayers(colombie);
 
 		players.clear();
 
@@ -2901,7 +2902,7 @@ public class GameController
 		players.add(player22);
 		players.add(player23);
 		japon.setPlayers(players);
-		teamService.updateTeam(japon);
+		teamService.updateTeamPlayers(japon);
 
 		teams.add(pologne);
 		teams.add(senegal);
@@ -3015,7 +3016,7 @@ public class GameController
 	{
 		if (game.getId() == 0)
 		{ // if employee id is 0 then creating the
-			// employee other updating the employee
+				// employee other updating the employee
 			gameService.addGame(game);
 		}
 		else
@@ -3103,6 +3104,52 @@ public class GameController
 			passer.addPlayerStat(playerStat);
 		}
 
+		Map<Integer, PlayerStats> mapCartonPlayer = new HashMap<>();
+		Map<Integer, PlayerStats> mapCartonRougePlayer = new HashMap<>();
+
+		for (int i = 0; i < gameEditForm.getCartonPlayers().size(); i++)
+		{
+			Integer minuteCarton = gameEditForm.getCartonMinute().get(i);
+			Player playerCarton = playerService.getPlayer(gameEditForm.getCartonPlayers().get(i));
+			Action typeCarton = gameEditForm.getCartonType().get(i);
+
+			if (typeCarton == Action.YELLOW_CARD)
+			{
+				PlayerStats playerStat = playerStatsService
+						.addPlayerStats(new PlayerStats(game, playerCarton, minuteCarton, typeCarton));
+
+				game.addPlayerStat(playerStat);
+				playerCarton.addPlayerStat(playerStat);
+
+				if (mapCartonPlayer.get(playerCarton.getId()) != null
+						&& mapCartonRougePlayer.get(playerCarton.getId()) == null)
+				{
+					playerStat = playerStatsService
+							.addPlayerStats(new PlayerStats(game, playerCarton, minuteCarton, Action.RED_CARD));
+
+					game.addPlayerStat(playerStat);
+					playerCarton.addPlayerStat(playerStat);
+
+					mapCartonRougePlayer.put(playerCarton.getId(), playerStat);
+				}
+				else
+				{
+					mapCartonPlayer.put(playerCarton.getId(), playerStat);
+				}
+			}
+			else
+			{
+				if (mapCartonRougePlayer.get(playerCarton.getId()) == null)
+				{
+					PlayerStats playerStat = playerStatsService
+							.addPlayerStats(new PlayerStats(game, playerCarton, minuteCarton, typeCarton));
+
+					game.addPlayerStat(playerStat);
+					playerCarton.addPlayerStat(playerStat);
+				}
+			}
+		}
+
 		if (game.getGameInPoule())
 		{
 			teamService.updateTeams(game);
@@ -3127,7 +3174,6 @@ public class GameController
 			teamService.updateTeamsForReset(game);
 
 		game = gameService.resetGame(game);
-
 		playerStatsService.deletePlayerStats(game);
 
 		if (game.getGameInPoule())

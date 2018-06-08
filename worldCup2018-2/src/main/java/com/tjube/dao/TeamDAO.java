@@ -23,4 +23,6 @@ public interface TeamDAO
 	public Collection<Team> getOrderTeams(Poule poule);
 
 	public Collection<Team> getTeamsByPoint(Poule poule);
+
+	public Team updateTeamPlayers(Team team);
 }

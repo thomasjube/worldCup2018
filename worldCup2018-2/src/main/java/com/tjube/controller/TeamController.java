@@ -1,8 +1,8 @@
 package com.tjube.controller;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,9 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.tjube.model.Game;
 import com.tjube.model.Player;
-import com.tjube.model.Poule;
+import com.tjube.model.PlayerStatsSituation;
 import com.tjube.model.Team;
 import com.tjube.service.PlayerService;
 import com.tjube.service.TeamService;
@@ -38,7 +37,7 @@ public class TeamController
 
 	@Autowired
 	private TeamService teamService;
-	
+
 	@Autowired
 	private PlayerService playerService;
 
@@ -69,28 +68,31 @@ public class TeamController
 	}
 
 	@RequestMapping(value = "/showTeam", method = RequestMethod.GET)
-	public ModelAndView showPoule(HttpServletRequest request,ModelAndView model)
+	public ModelAndView showPoule(HttpServletRequest request, ModelAndView model)
 	{
 		int teamId = Integer.parseInt(request.getParameter("id"));
 		Team team = teamService.getTeam(teamId);
 		model.addObject("team", team);
-		
+
 		List<Player> goals = playerService.getGoals(team);
 		model.addObject("goals", goals);
-		
+
 		List<Player> defensers = playerService.getDefensers(team);
 		model.addObject("defensers", defensers);
-		
+
 		List<Player> middles = playerService.getMiddles(team);
 		model.addObject("middles", middles);
-		
+
 		List<Player> strikers = playerService.getStrikers(team);
 		model.addObject("strikers", strikers);
-		
+
+		Map<Integer, PlayerStatsSituation> result = teamService.retrieveAllStatsTeam(team);
+		model.addObject("statsTeam", result);
+
 		model.setViewName("teamShow");
 		return model;
 	}
-	
+
 	@RequestMapping(value = "/saveTeam", method = RequestMethod.POST)
 	public ModelAndView saveTeam(@ModelAttribute Team team)
 	{

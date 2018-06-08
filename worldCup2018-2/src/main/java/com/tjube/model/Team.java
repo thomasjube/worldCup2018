@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -101,12 +103,12 @@ public class Team
 		// TODO Auto-generated constructor stub
 	}
 
-	public Team(Integer id, String name, Integer position_poule, Poule poule)
+	public Team(Integer id, String name, Integer positionPoule, Poule poule)
 	{
 		super();
 		this.id = id;
 		this.name = name;
-		this.position_poule = position_poule;
+		this.position_poule = positionPoule;
 		this.poule = poule;
 	}
 
@@ -152,7 +154,8 @@ public class Team
 
 	public Collection<Player> getPlayers()
 	{
-		List<Player> playerOrdered = new ArrayList<>(players);
+		Set<Player> playersSet = new HashSet<>(players);
+		List<Player> playerOrdered = new ArrayList<>(playersSet);
 		Collections.sort(playerOrdered, new PlayerComparator());
 		return playerOrdered;
 	}

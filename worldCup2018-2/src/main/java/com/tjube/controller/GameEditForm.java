@@ -3,7 +3,9 @@ package com.tjube.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.tjube.model.Action;
 import com.tjube.model.Game;
+import com.tjube.model.PlayerStats;
 
 public class GameEditForm
 {
@@ -35,6 +37,11 @@ public class GameEditForm
 	private List<Integer> scorerPlayersMinute1 = new ArrayList<>();
 	private List<Integer> scorerPlayersMinute2 = new ArrayList<>();
 
+	private List<Action> cartonType = new ArrayList<>();
+	private List<Integer> cartonPlayers = new ArrayList<>();
+	private List<Integer> cartonMinute = new ArrayList<>();
+	private List<Integer> cartonTeam = new ArrayList<>();
+
 	public GameEditForm()
 	{
 		// TODO Auto-generated constructor stub
@@ -45,6 +52,36 @@ public class GameEditForm
 		this.id = game.getId();
 		this.score1 = game.getScore1();
 		this.score2 = game.getScore2();
+
+		for (PlayerStats scorer : game.getGoalsTeam1())
+		{
+			scorerPlayers1.add(scorer.getPlayer().getId());
+			scorerPlayersMinute1.add(scorer.getMinute());
+		}
+
+		for (PlayerStats scorer : game.getGoalsTeam2())
+		{
+			scorerPlayers2.add(scorer.getPlayer().getId());
+			scorerPlayersMinute2.add(scorer.getMinute());
+		}
+
+		for (PlayerStats passer : game.getPassTeam1())
+		{
+			passerPlayers1.add(passer.getPlayer().getId());
+		}
+
+		for (PlayerStats passer : game.getPassTeam2())
+		{
+			passerPlayers2.add(passer.getPlayer().getId());
+		}
+
+		for (PlayerStats carton : game.getCartons())
+		{
+			cartonPlayers.add(carton.getPlayer().getId());
+			cartonMinute.add(carton.getMinute());
+			cartonType.add(carton.getAction());
+			cartonTeam.add(carton.getPlayer().getTeam().getId());
+		}
 
 	}
 
@@ -196,6 +233,46 @@ public class GameEditForm
 	public void setScorePeno2(Integer scorePeno2)
 	{
 		this.scorePeno2 = scorePeno2;
+	}
+
+	public List<Integer> getCartonTeam()
+	{
+		return cartonTeam;
+	}
+
+	public void setCartonTeam(List<Integer> cartonTeam)
+	{
+		this.cartonTeam = cartonTeam;
+	}
+
+	public List<Integer> getCartonMinute()
+	{
+		return cartonMinute;
+	}
+
+	public void setCartonMinute(List<Integer> cartonMinute)
+	{
+		this.cartonMinute = cartonMinute;
+	}
+
+	public List<Integer> getCartonPlayers()
+	{
+		return cartonPlayers;
+	}
+
+	public void setCartonPlayers(List<Integer> cartonPlayers)
+	{
+		this.cartonPlayers = cartonPlayers;
+	}
+
+	public List<Action> getCartonType()
+	{
+		return cartonType;
+	}
+
+	public void setCartonType(List<Action> cartonType)
+	{
+		this.cartonType = cartonType;
 	}
 
 }

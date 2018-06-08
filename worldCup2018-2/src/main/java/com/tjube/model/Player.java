@@ -163,4 +163,9 @@ public class Player
 	{
 		this.playerStats.add(stat);
 	}
+
+	public void removestat(PlayerStats playerStat)
+	{
+		this.playerStats.remove(playerStat);
+	}
 }

@@ -57,56 +57,56 @@ public class PouleController
 		throws IOException
 	{
 		List<Poule> listPoule = pouleService.getAllPoules();
-		return new ModelAndView("redirect:/poule/showPoule?id="+listPoule.get(0).getId());
+		return new ModelAndView("redirect:/poule/showPoule?id=" + listPoule.get(0).getId());
 	}
-	
+
 	@RequestMapping(value = "/showPoule", method = RequestMethod.GET)
-	public ModelAndView showPoule(HttpServletRequest request,ModelAndView model)
+	public ModelAndView showPoule(HttpServletRequest request, ModelAndView model)
 	{
 		int pouleId = Integer.parseInt(request.getParameter("id"));
 		Poule poule = pouleService.getPoule(pouleId);
 		model.addObject("poule", poule);
-		
+
 		Collection<Team> orderTeams = teamService.getOrderTeams(poule);
 		model.addObject("orderTeams", orderTeams);
-		
+
 		Game nextGame = gameService.getNextGame(poule);
 		model.addObject("nextGame", nextGame);
-		
+
 		Collection<Game> games = gameService.getGames(poule);
 		model.addObject("games", games);
-		
+
 		List<Poule> poules = pouleService.getAllPoules();
 		model.addObject("poules", poules);
-		
+
 		model.setViewName("pouleShow");
 		return model;
 	}
-	
+
 	@RequestMapping(value = "/lastPoule", method = RequestMethod.GET)
-	public ModelAndView lastPoule(HttpServletRequest request,ModelAndView model)
+	public ModelAndView lastPoule(HttpServletRequest request, ModelAndView model)
 	{
 		int pouleId = Integer.parseInt(request.getParameter("id"));
 		Poule poule = pouleService.getPoule(pouleId);
-		
-		if(poule == null)
+
+		if (poule == null)
 			return new ModelAndView("redirect:/poule/");
 
 		Poule lastPoule = pouleService.getLastPoule(poule);
-		return new ModelAndView("redirect:/poule/showPoule?id="+lastPoule.getId());
-		
+		return new ModelAndView("redirect:/poule/showPoule?id=" + lastPoule.getId());
+
 	}
-	
+
 	@RequestMapping(value = "/nextPoule", method = RequestMethod.GET)
-	public ModelAndView nextPoule(HttpServletRequest request,ModelAndView model)
+	public ModelAndView nextPoule(HttpServletRequest request, ModelAndView model)
 	{
 		int pouleId = Integer.parseInt(request.getParameter("id"));
 		Poule poule = pouleService.getPoule(pouleId);
-		if(poule == null)
+		if (poule == null)
 			return new ModelAndView("redirect:/poule/");
-		
+
 		Poule nextPoule = pouleService.getNextPoule(poule);
-		return new ModelAndView("redirect:/poule/showPoule?id="+nextPoule.getId());
+		return new ModelAndView("redirect:/poule/showPoule?id=" + nextPoule.getId());
 	}
 
 	@RequestMapping(value = "/newPoule", method = RequestMethod.GET)

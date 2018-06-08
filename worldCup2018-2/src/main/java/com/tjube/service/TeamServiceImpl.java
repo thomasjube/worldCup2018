@@ -1,15 +1,20 @@
 package com.tjube.service;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tjube.dao.GameDAO;
+import com.tjube.dao.PlayerStatsDAO;
 import com.tjube.dao.TeamDAO;
 import com.tjube.model.Game;
+import com.tjube.model.Player;
+import com.tjube.model.PlayerStatsSituation;
 import com.tjube.model.Poule;
 import com.tjube.model.Team;
 
@@ -23,6 +28,9 @@ public class TeamServiceImpl
 
 	@Autowired
 	private GameDAO gameDAO;
+
+	@Autowired
+	private PlayerStatsDAO playerStatsDAO;
 
 	@Override
 	@Transactional
@@ -76,6 +84,12 @@ public class TeamServiceImpl
 	public Team updateTeam(Team team)
 	{
 		return teamDAO.updateTeam(team);
+	}
+
+	@Override
+	public Team updateTeamPlayers(Team team)
+	{
+		return teamDAO.updateTeamPlayers(team);
 	}
 
 	public void setTeamDAO(TeamDAO teamDAO)
@@ -337,5 +351,18 @@ public class TeamServiceImpl
 	public Collection<Team> getTeamsByPoint(Poule poule)
 	{
 		return teamDAO.getTeamsByPoint(poule);
+	}
+
+	@Override
+	public Map<Integer, PlayerStatsSituation> retrieveAllStatsTeam(Team team)
+	{
+		Map<Integer, PlayerStatsSituation> results = new HashMap<>();
+
+		for (Player player : team.getPlayers())
+		{
+			results.put(player.getId(), playerStatsDAO.retrieveAllStatsPlayer(player));
+		}
+
+		return results;
 	}
 }

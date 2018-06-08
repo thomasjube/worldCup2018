@@ -1,6 +1,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -99,7 +100,7 @@
 		                 	<thead>
 		                 	<th>Buteur</th>
 		                 	<th>Passeur</th>
-		                 	<th>Minute</th>
+		                 	<th style='width:4em;'>Minute</th>
 		                 	<th>Buteur</th>
 		                 	<th>Passeur</th>
 		                 	<th style='width:4em;'>Minute</th>
@@ -107,34 +108,54 @@
 			                 <tbody id="playerBody">
 			                 	<c:if test="${indexMax > 0 }">
 				                 	<c:forEach begin="0" end="${indexMax-1}" var="index">
-				                 		<tr>
+				                 		<tr id="tr-player-${index}">
 				                 			<c:choose>
 					                 			<c:when test="${not empty game.getGoalsTeam1() && not empty game.getGoalsTeam1().get(index)}">
-					                 				<td>&</td>
-					                 				<td>&</td>
-					                 				<td>&</td>
+					                 				<td class="player-team1"><tags:players isCarton="${false}" index="${index}" items="${game.team1.players }" path="scorerPlayers1[${index}]"></tags:players> </td>
+					                 				<td class="passer-team1"><tags:players isCarton="${false}" index="${index}" items="${game.team1.players }" path="passerPlayers1[${index}]"></tags:players></td>
+					                 				<td class="minute-team1"><tags:minutes path="scorerPlayersMinute1[${index}]"/></td>
 					                 			</c:when>
 					                 			<c:otherwise>
-								                 	<td>no</td>
-					                 				<td>no</td>
-					                 				<td>no</td>		
+								                 	<td></td>
+					                 				<td></td>
+					                 				<td></td>		
 					                 			</c:otherwise>
 				                 			</c:choose>
 				                 			<c:choose>
 					                 			<c:when test="${not empty game.getGoalsTeam2() && not empty game.getGoalsTeam2().get(index)}">
-					                 				<td>&</td>
-					                 				<td>&</td>
-					                 				<td>&</td>
+					                 				<td class="player-team2"><tags:players isCarton="${false}" index="${index}" items="${game.team2.players }" path="scorerPlayers2[${index}]"></tags:players> </td>
+					                 				<td class="passer-team2"><tags:players isCarton="${false}" index="${index}" items="${game.team2.players }" path="passerPlayers2[${index}]"></tags:players></td>
+					                 				<td class="minute-team2"><tags:minutes path="scorerPlayersMinute2[${index}]"/> </td>
 					                 			</c:when>
 					                 			<c:otherwise>
-								                 	<td>no</td>
-					                 				<td>no</td>
-					                 				<td>no</td>		
+								                 	<td></td>
+					                 				<td></td>
+					                 				<td></td>		
 					                 			</c:otherwise>
 				                 			</c:choose>
 				                 		</tr>
 				                 	</c:forEach>
 			                 	</c:if>
+			                 </tbody>
+		                 </table>
+		                 <table class="kode-table">
+		                 	<thead>
+			                 	<th>Equipe</th>
+			                 	<th>Joueur</th>
+			                 	<th>Carton</th>
+			                 	<th style='width:7em;'>Minute</th>
+			                 	<th><input id="add-carton" type="button" value="addCarton"></th>
+		                 	</thead>
+		                 	<tbody id="playerCartonBody">
+				                 	<c:forEach items="${game.getCartons()}" var="carton" varStatus="status">
+				                 		<tr id="tr-carton-player-${status.index}">
+					                 		<td class="teamCarton"><tags:teams path="cartonTeam[${status.index}]" game="${game}"/></td>
+					                 		<td class="playerCarton"><tags:players isCarton="${true}" index="${status.index}" items="${carton.player.team.players }" path="cartonPlayers[${status.index}]"></tags:players></td>
+					                 		<td class="typeCarton"><tags:carton path="cartonType[${status.index}]"></tags:carton> </td>
+					                 		<td style='width:7em;' class="minuteCarton"><tags:minutes path="cartonMinute[${status.index}]"/></td>
+					                 		<td><input type="button" class="removeCarton" value="remove"></td>
+				                 		</tr>
+				                 	</c:forEach>
 			                 </tbody>
 		                 </table>
 		                 <input type="submit" value="Save">
@@ -185,16 +206,54 @@
 		
 	});
 	
+	$(document).on('change','.carton-team',function(e){
+		var value = $(this).val();
+		var index = $(this).attr('id').split("Team")[1];
+		var optionSelected = $(this).find(":selected");
+		var dataIndex = optionSelected.data("index");
+		
+		if(dataIndex == 1)
+		{
+			$("#select-carton-player"+index).parent().html("<select id='select-carton-player"+index+"' name='cartonPlayers["+index+"]'><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select>");
+		}
+		else
+		{
+			$("#select-carton-player"+index).parent().html("<select id='select-carton-player"+index+"' name='cartonPlayers["+index+"]'><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select>");
+		}
+	});
+	
+	$(document).on('click','.removeCarton',function(e){
+		$(this).parent().parent().remove();
+	});
+	
+	$("#add-carton").click(function(e){
+
+		var indexMax = $(".carton-team").length;
+		var index = indexMax-1;
+		
+		var tr = "<tr id='tr-carton-player-"+indexMax+"'>";
+		tr += "<td class='teamCarton'><select id='cartonTeam"+indexMax+"' name='cartonTeam["+indexMax+"]' class='carton-team' ><option data-index='1' value='${game.team1.id}'>${game.team1.name}</option><option data-index='2' value='${game.team2.id}'>${game.team2.name}</option></select></td>";
+		tr += "<td class='playerCarton'><select id='select-carton-player"+indexMax+"' name='cartonPlayers["+indexMax+"]'><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select></td>";
+		tr += "<td class='typeCarton'><select name='cartonType["+indexMax+"]'><option value='YELLOW_CARD' selected='selected'>Carton jaune</option><option value='RED_CARD'>Carton rouge</option></select></td>";
+		tr += "<td style='width:7em;' class='minuteCarton'><select name='cartonMinute["+indexMax+"]'><c:forEach begin='1' end='90' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select></td>";
+		tr += "<td><input type='button' class='removeCarton' value='remove'></td>";
+		
+		if(indexMax == 0)
+			$("#playerCartonBody").append(tr);	
+		else
+			$("#tr-carton-player-"+index).after(tr);
+	});
+	
 		$("#score1").change(function(e){
 			for(i=0;i < parseInt($(this).val());i++)
 			{
-				if($("#tr-player-"+i).length)
+				if($("#tr-player-"+i).length && $("select[name='scorerPlayers1["+i+"]']").length == 0)
 				{
 					$("#tr-player-"+i).find(".player-team1").html("<select  id='select-player"+i+"' name='scorerPlayers1["+i+"]'><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select>");
 					$("#tr-player-"+i).find(".passer-team1").html("<select  id='select-passer"+i+"' name='passerPlayers1["+i+"]'><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select>");
 					$("#tr-player-"+i).find(".minute-team1").html("<select id='select-minute"+i+"' name='scorerPlayersMinute1["+i+"]'><c:forEach begin='1' end='90' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select>");
 				}
-				else
+				else if(!$("#tr-player-"+i).length)
 				{
 					$("#playerBody").append("<tr id='tr-player-"+i+"'><td class='player-team1'><select id='select-player"+i+"' name='scorerPlayers1["+i+"]'><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select></td><td class='player-team1'><select id='select-passer"+i+"' name='passerPlayers1["+i+"]'><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select></td><td class='minute-team1'><select id='select-minute"+i+"' name='scorerPlayersMinute1["+i+"]'><c:forEach begin='1' end='90' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select></td><td class='player-team2'></td><td class='passer-team2'></td><td class='minute-team2'></td></tr>");
 				}
@@ -208,28 +267,27 @@
 					{
 						console.log("test2 : "+$('tr[id^="tr-player-"]').length);
 						$("#tr-player-"+i).find(".player-team1").html("");
+						$("#tr-player-"+i).find(".passer-team1").html("");
 						$("#tr-player-"+i).find(".minute-team1").html("");
 					}
 					else
 					{
-						console.log("test3 : "+$('tr[id^="tr-player-"]').length);
 						$("#tr-player-"+i).remove();
 					}
 				}
 			}
-			//enlever les td en trop // et/ou les lignes si plus rien sur la ligne
 		});
 		
 		$("#score2").change(function(e){
 			for(i=0;i < parseInt($(this).val());i++)
 			{
-				if($("#tr-player-"+i).length)
+				if($("#tr-player-"+i).length && $("select[name='scorerPlayers2["+i+"]']").length == 0)
 				{
 					$("#tr-player-"+i).find(".player-team2").html("<select id='select-player"+i+"' name='scorerPlayers2["+i+"]'><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select>");
-					$("#tr-player-"+i).find(".passer-team2").html("<select  id='select-passer"+i+"' name='passerPlayers2["+i+"]'><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select>");
+					$("#tr-player-"+i).find(".passer-team2").html("<select  id='select-passer"+i+"' name='passerPlayers2["+i+"]'><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select>");
 					$("#tr-player-"+i).find(".minute-team2").html("<select id='select-minute"+i+"' name='scorerPlayersMinute2["+i+"]'><c:forEach begin='1' end='90' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select>");
 				}
-				else
+				else if(!$("#tr-player-"+i).length)
 				{
 					$("#playerBody").append("<tr id='tr-player-"+i+"'><td class='player-team1'></td><td class='passer-team1'></td><td class='minute-team1'></td><td class='player-team2'><select id='select-player"+i+"' name='scorerPlayers2["+i+"]'><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select></td><td class='player-team2'><select id='select-passer"+i+"' name='passerPlayers2["+i+"]'><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select></td><td class='minute-team2'><select id='select-minute"+i+"' name='scorerPlayersMinute2["+i+"].minute'><c:forEach begin='1' end='90' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select></td></tr>");
 				}
@@ -242,6 +300,7 @@
 					if(!$("#tr-player-"+i).find(".player-team1").is(':empty'))
 					{
 						$("#tr-player-"+i).find(".player-team2").html("");
+						$("#tr-player-"+i).find(".passer-team2").html("");
 						$("#tr-player-"+i).find(".minute-team2").html("");
 					}
 					else

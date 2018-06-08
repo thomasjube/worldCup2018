@@ -1,17 +1,23 @@
 package com.tjube.dao;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
 import com.tjube.model.Action;
 import com.tjube.model.Game;
+import com.tjube.model.Player;
 import com.tjube.model.PlayerStats;
+import com.tjube.model.PlayerStatsSituation;
 
 @Repository
 public class PlayerStatsDAOImpl
@@ -58,7 +64,15 @@ public class PlayerStatsDAOImpl
 		if (!m_entityManager.contains(playerStats))
 			playerStats = m_entityManager.merge(playerStats);
 
+		playerStats.getPlayer().removestat(playerStats);
+		playerStats.getGame().removestat(playerStats);
+
 		m_entityManager.remove(playerStats);
+
+		Query query = m_entityManager.createQuery("DELETE FROM PLAYER_STATS WHERE id =: id");
+		query.setParameter("id", playerStats.getId());
+
+		query.executeUpdate();
 
 	}
 
@@ -69,9 +83,18 @@ public class PlayerStatsDAOImpl
 
 		for (PlayerStats stat : playerStats)
 		{
+			stat.getPlayer().removestat(stat);
+			stat.getGame().removestat(stat);
+
+			if (!m_entityManager.contains(stat))
+				stat = m_entityManager.merge(stat);
 			m_entityManager.remove(stat);
 		}
 
+		Query query = m_entityManager.createQuery("DELETE FROM PlayerStats WHERE game =:game");
+		query.setParameter("game", game);
+
+		query.executeUpdate();
 	}
 
 	@Override
@@ -98,6 +121,93 @@ public class PlayerStatsDAOImpl
 	public PlayerStats updatePlayerStats(PlayerStats playerStats)
 	{
 		return playerStats;
+	}
+
+	@Override
+	public PlayerStatsSituation retrieveAllStatsPlayer(Player player)
+	{
+		PlayerStatsSituation result = new PlayerStatsSituation();
+
+		Long minutes = new Long(0);
+
+		TypedQuery<Object[]> typedQuery = m_entityManager
+				.createNamedQuery(PlayerStats.QN.RETRIEVE_STATS_BY_PLAYER_BY_GAME, Object[].class);
+		typedQuery.setParameter("player", player);
+		typedQuery.setParameter("actions", Arrays.asList(Action.TITULAR, Action.CHANGEMENT_IN, Action.CHANGEMENT_OUT));
+
+		Map<Game, Integer> mapGameMinute = new HashMap<>();
+
+		for (Object[] values : typedQuery.getResultList())
+		{
+			Game game = values[0] != null ? (Game) values[0] : null;
+			Action action = values[1] != null ? (Action) values[1] : null;
+			Integer minute = values[2] != null ? (Integer) values[2] : null;
+
+			int minuteTotalGame = 0;
+			if (game.getProlong())
+				minuteTotalGame = 120;
+			else
+				minuteTotalGame = 90;
+
+			int minuteGame = 0;
+			if (mapGameMinute.get(game) != null)
+				minuteGame = mapGameMinute.get(game);
+			else
+				mapGameMinute.put(game, 0);
+
+			if (action != null)
+			{
+				switch (action)
+				{
+					case TITULAR:
+					{
+						minuteGame += minuteTotalGame;
+						break;
+					}
+					case CHANGEMENT_IN:
+					{
+						minuteGame += (minuteTotalGame - minute);
+						break;
+					}
+					case CHANGEMENT_OUT:
+					{
+						minuteGame += minute - minuteTotalGame;
+						break;
+					}
+					default:
+						break;
+				}
+			}
+			if (minuteGame > 0)
+				minutes += minuteGame;
+
+			mapGameMinute.put(game, minuteGame);
+		}
+
+		//		minutes = new Long(90) * (Long) query.getSingleResult();
+		result.setPlayingMinutes(minutes);
+
+		Query query = m_entityManager.createNamedQuery(PlayerStats.QN.RETRIEVE_STATS_BY_PLAYER);
+		query.setParameter("player", player);
+		query.setParameter("action", Action.GOAL);
+		result.setGoals((Long) query.getSingleResult());
+
+		query = m_entityManager.createNamedQuery(PlayerStats.QN.RETRIEVE_STATS_BY_PLAYER);
+		query.setParameter("player", player);
+		query.setParameter("action", Action.PASS);
+		result.setPasses((Long) query.getSingleResult());
+
+		query = m_entityManager.createNamedQuery(PlayerStats.QN.RETRIEVE_STATS_BY_PLAYER);
+		query.setParameter("player", player);
+		query.setParameter("action", Action.YELLOW_CARD);
+		result.setYellowCard((Long) query.getSingleResult());
+
+		query = m_entityManager.createNamedQuery(PlayerStats.QN.RETRIEVE_STATS_BY_PLAYER);
+		query.setParameter("player", player);
+		query.setParameter("action", Action.RED_CARD);
+		result.setRedCard((Long) query.getSingleResult());
+
+		return result;
 	}
 
 }

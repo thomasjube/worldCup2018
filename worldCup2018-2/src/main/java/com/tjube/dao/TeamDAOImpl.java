@@ -84,6 +84,24 @@ public class TeamDAOImpl
 		teamToUpdate.setGameLost(team.getGameLost());
 		teamToUpdate.setGamePlayed(team.getGamePlayed());
 		teamToUpdate.setGameWin(team.getGameWin());
+		teamToUpdate.setPoint(team.getPoint());
+		teamToUpdate.setPosition_poule(team.getPosition_poule());
+
+		return teamToUpdate;
+
+	}
+
+	@Override
+	public Team updateTeamPlayers(Team team)
+	{
+		Team teamToUpdate = getTeam(team.getId());
+		teamToUpdate.setBut_mis(team.getBut_mis());
+		teamToUpdate.setBut_pris(team.getBut_pris());
+		teamToUpdate.setDiff(team.getDiff());
+		teamToUpdate.setGameDraw(team.getGameDraw());
+		teamToUpdate.setGameLost(team.getGameLost());
+		teamToUpdate.setGamePlayed(team.getGamePlayed());
+		teamToUpdate.setGameWin(team.getGameWin());
 		teamToUpdate.setName(team.getName());
 		teamToUpdate.setPlayers(team.getPlayers());
 		teamToUpdate.setPoint(team.getPoint());
