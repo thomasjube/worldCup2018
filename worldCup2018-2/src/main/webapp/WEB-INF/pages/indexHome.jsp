@@ -58,9 +58,9 @@
 				</div>
 				<div class="kode-navigation pull-left">
 					<ul>
-						<li><a href="/worldCup2018-2/team">Equipes</a></li>
-						<li><a href="/worldCup2018-2/poule">Poules</a></li>
-						<li><a href="/worldCup2018-2/game">Matchs</a></li>
+						<li><a href="<%=request.getContextPath()%>/team">Equipes</a></li>
+						<li><a href="<%=request.getContextPath()%>/poule">Poules</a></li>
+						<li><a href="<%=request.getContextPath()%>/game">Matchs</a></li>
 					</ul>
 				</div>
 				<!--NAVIGATION END-->
