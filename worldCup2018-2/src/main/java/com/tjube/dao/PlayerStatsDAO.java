@@ -21,4 +21,6 @@ public interface PlayerStatsDAO
 	public PlayerStats getPlayerStats(int playerStatsId);
 
 	Collection<PlayerStats> getPlayerStats(Game game);
+
+	public List<PlayerStats> getAllGoalsPlayerStats();
 }

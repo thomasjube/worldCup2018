@@ -16,7 +16,8 @@ import javax.persistence.Table;
 		@NamedQuery(name = PlayerStats.QN.GET_STATS_BY_ID, query = "select s from PlayerStats s where s.id =:id "),
 		@NamedQuery(name = PlayerStats.QN.GET_STATS_BY_GAME,
 				query = "select s from PlayerStats s where s.game =:game "),
-		@NamedQuery(name = PlayerStats.QN.GET_ALL_STATS, query = "select s from PlayerStats s") })
+		@NamedQuery(name = PlayerStats.QN.GET_ALL_STATS, query = "select s from PlayerStats s"), @NamedQuery(
+				name = PlayerStats.QN.GET_GOALS_STATS, query = "select s from PlayerStats s where s.action =:action") })
 @Entity
 @Table(name = "PLAYER_STATS")
 public class PlayerStats
@@ -34,6 +35,7 @@ public class PlayerStats
 		public static final String GET_STATS_BY_ID = "PlayerStats.getPlayerStatsById";
 		public static final String GET_STATS_BY_GAME = "PlayerStats.getPlayerStatsByGame";
 		public static final String GET_ALL_STATS = "PlayerStats.getAllPlayerStats";
+		public static final String GET_GOALS_STATS = "PlayerStats.getGoalsPlayerStats";
 	}
 
 	private static final long serialVersionUID = -1740184637168312573L;

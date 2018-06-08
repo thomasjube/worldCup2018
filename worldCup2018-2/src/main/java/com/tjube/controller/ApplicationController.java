@@ -55,7 +55,7 @@ public class ApplicationController
 		Game nextGame = gameService.getNextGame();
 		model.addObject("nextGame", nextGame);
 
-		int totalGoals = playerStatsService.getTotalPlayerStats();
+		int totalGoals = playerStatsService.getAllGoalsPlayerStats();
 		model.addObject("totalGoals", totalGoals);
 
 		int totalPlayers = playerService.getTotalPlayers();

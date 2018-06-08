@@ -20,4 +20,6 @@ public interface PlayerStatsService
 	public PlayerStats updatePlayerStats(PlayerStats playerStats);
 
 	public int getTotalPlayerStats();
+
+	public int getAllGoalsPlayerStats();
 }

@@ -9,6 +9,7 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
+import com.tjube.model.Action;
 import com.tjube.model.Game;
 import com.tjube.model.PlayerStats;
 
@@ -31,11 +32,21 @@ public class PlayerStatsDAOImpl
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public List<PlayerStats> getAllPlayerStats()
 	{
 		TypedQuery<PlayerStats> query = m_entityManager.createNamedQuery(PlayerStats.QN.GET_ALL_STATS,
 				PlayerStats.class);
+		return query.getResultList();
+	}
+
+	@Override
+	public List<PlayerStats> getAllGoalsPlayerStats()
+	{
+		TypedQuery<PlayerStats> query = m_entityManager.createNamedQuery(PlayerStats.QN.GET_GOALS_STATS,
+				PlayerStats.class);
+
+		query.setParameter("action", Action.GOAL);
+
 		return query.getResultList();
 	}
 

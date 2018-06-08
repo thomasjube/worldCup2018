@@ -34,6 +34,13 @@ public class PlayerStatsServiceImpl
 
 	@Override
 	@Transactional
+	public int getAllGoalsPlayerStats()
+	{
+		return playerStatsDAO.getAllGoalsPlayerStats().size();
+	}
+
+	@Override
+	@Transactional
 	public int getTotalPlayerStats()
 	{
 		return playerStatsDAO.getAllPlayerStats().size();
