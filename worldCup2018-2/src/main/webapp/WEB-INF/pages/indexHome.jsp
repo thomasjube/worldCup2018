@@ -61,6 +61,7 @@
 						<li><a href="<%=request.getContextPath()%>/team">Equipes</a></li>
 						<li><a href="<%=request.getContextPath()%>/poule">Poules</a></li>
 						<li><a href="<%=request.getContextPath()%>/game">Matchs</a></li>
+						<li><a href="<%=request.getContextPath()%>/stats">Statistiques</a></li>
 					</ul>
 				</div>
 				<!--NAVIGATION END-->

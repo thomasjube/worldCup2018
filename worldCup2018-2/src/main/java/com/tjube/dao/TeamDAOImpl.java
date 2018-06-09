@@ -1,5 +1,6 @@
 package com.tjube.dao;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
 import com.tjube.model.Poule;
+import com.tjube.model.StatsWorldCup;
 import com.tjube.model.Team;
 
 @Repository
@@ -119,6 +121,51 @@ public class TeamDAOImpl
 		query.setParameter("poule", poule);
 		return query.getResultList();
 
+	}
+
+	@Override
+	public List<StatsWorldCup> retrieveWorldCupStatsBestAttack(int maxResults)
+	{
+		TypedQuery<Team> query = m_entityManager.createNamedQuery(Team.QN.RETRIEVE_TEAM_ORDER_BEST_ATTACK, Team.class);
+
+		query.setMaxResults(maxResults);
+
+		List<StatsWorldCup> results = new ArrayList<>();
+
+		for (Team value : query.getResultList())
+		{
+			StatsWorldCup result = new StatsWorldCup();
+
+			result.setTeam(value);
+			result.setGoals(new Long(value.getBut_mis()));
+
+			results.add(result);
+		}
+
+		return results;
+	}
+
+	@Override
+	public List<StatsWorldCup> retrieveWorldCupStatsWorstDefense(int maxResults)
+	{
+		TypedQuery<Team> query = m_entityManager.createNamedQuery(Team.QN.RETRIEVE_TEAM_ORDER_WORST_DEFENSE,
+				Team.class);
+
+		query.setMaxResults(maxResults);
+
+		List<StatsWorldCup> results = new ArrayList<>();
+
+		for (Team value : query.getResultList())
+		{
+			StatsWorldCup result = new StatsWorldCup();
+
+			result.setTeam(value);
+			result.setGoals(new Long(value.getBut_pris()));
+
+			results.add(result);
+		}
+
+		return results;
 	}
 
 }

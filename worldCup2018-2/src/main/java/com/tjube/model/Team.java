@@ -25,7 +25,11 @@ import javax.persistence.Table;
 		@NamedQuery(name = Team.QN.getTeamsByPoint,
 				query = "select t from Team t where t.poule = :poule order by t.point DESC, t.diff DESC, t.but_mis DESC, t.but_pris ASC, t.id"),
 		@NamedQuery(name = Team.QN.GET_TEAM_BY_ID, query = "select t from Team t where t.id =:id"),
-		@NamedQuery(name = Team.QN.GET_ALL_TEAMS, query = "select t from Team t order by t.name") })
+		@NamedQuery(name = Team.QN.GET_ALL_TEAMS, query = "select t from Team t order by t.name"),
+		@NamedQuery(name = Team.QN.RETRIEVE_TEAM_ORDER_BEST_ATTACK,
+				query = "select t from Team t where t.but_mis > 0 order by t.but_mis DESC, t.name ASC"),
+		@NamedQuery(name = Team.QN.RETRIEVE_TEAM_ORDER_WORST_DEFENSE,
+				query = "select t from Team t order by t.but_pris DESC, t.name ASC") })
 @Entity
 @Table(name = "TEAM")
 public class Team
@@ -45,6 +49,8 @@ public class Team
 		public static final String getTeamsByPoint = "Team.getTeamsByPoint";
 		public static final String GET_TEAM_BY_ID = "Team.getTeamById";
 		public static final String GET_ALL_TEAMS = "Team.getAllTeams";
+		public static final String RETRIEVE_TEAM_ORDER_BEST_ATTACK = "Team.retrieveTeamOrderByBestAttack";
+		public static final String RETRIEVE_TEAM_ORDER_WORST_DEFENSE = "Team.retrieveTeamOrderByWorstDefense";
 	}
 
 	private static final long serialVersionUID = -5028311133164527096L;

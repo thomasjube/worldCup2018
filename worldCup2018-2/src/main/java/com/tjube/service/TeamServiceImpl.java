@@ -16,6 +16,7 @@ import com.tjube.model.Game;
 import com.tjube.model.Player;
 import com.tjube.model.PlayerStatsSituation;
 import com.tjube.model.Poule;
+import com.tjube.model.StatsWorldCup;
 import com.tjube.model.Team;
 
 @Service
@@ -364,5 +365,41 @@ public class TeamServiceImpl
 		}
 
 		return results;
+	}
+
+	@Override
+	public List<StatsWorldCup> retrieveWorldCupStatsGoal(int maxResults)
+	{
+		return playerStatsDAO.retrieveWorldCupStatsGoal(maxResults);
+	}
+
+	@Override
+	public List<StatsWorldCup> retrieveWorldCupStatsPasses(int maxResults)
+	{
+		return playerStatsDAO.retrieveWorldCupStatsPasses(maxResults);
+	}
+
+	@Override
+	public List<StatsWorldCup> retrieveWorldCupStatsYellowCard(int maxResults)
+	{
+		return playerStatsDAO.retrieveWorldCupStatsYellowCard(maxResults);
+	}
+
+	@Override
+	public List<StatsWorldCup> retrieveWorldCupStatsRedCard(int maxResults)
+	{
+		return playerStatsDAO.retrieveWorldCupStatsRedCard(maxResults);
+	}
+
+	@Override
+	public List<StatsWorldCup> retrieveWorldCupStatsBestAttack(int maxResults)
+	{
+		return teamDAO.retrieveWorldCupStatsBestAttack(maxResults);
+	}
+
+	@Override
+	public List<StatsWorldCup> retrieveWorldCupStatsWorstDefense(int maxResults)
+	{
+		return teamDAO.retrieveWorldCupStatsWorstDefense(maxResults);
 	}
 }

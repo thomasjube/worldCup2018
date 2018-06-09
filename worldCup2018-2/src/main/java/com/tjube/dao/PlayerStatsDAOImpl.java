@@ -1,5 +1,6 @@
 package com.tjube.dao;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ import com.tjube.model.Game;
 import com.tjube.model.Player;
 import com.tjube.model.PlayerStats;
 import com.tjube.model.PlayerStatsSituation;
+import com.tjube.model.StatsWorldCup;
 
 @Repository
 public class PlayerStatsDAOImpl
@@ -208,6 +210,119 @@ public class PlayerStatsDAOImpl
 		result.setRedCard((Long) query.getSingleResult());
 
 		return result;
+	}
+
+	@Override
+	public List<StatsWorldCup> retrieveWorldCupStatsGoal(int maxResults)
+	{
+
+		TypedQuery<Object[]> query = m_entityManager
+				.createNamedQuery(PlayerStats.QN.RETRIEVE_STATS_WORLD_CUP_FOR_ACTION, Object[].class);
+
+		query.setParameter("action", Action.GOAL);
+		query.setMaxResults(maxResults);
+
+		List<StatsWorldCup> results = new ArrayList<>();
+
+		for (Object[] values : query.getResultList())
+		{
+			StatsWorldCup result = new StatsWorldCup();
+
+			Player player = values[0] != null ? (Player) values[0] : null;
+			Long goals = values[1] != null ? (Long) values[1] : null;
+
+			result.setAction(Action.GOAL);
+			result.setPlayer(player);
+			result.setGoals(goals);
+
+			results.add(result);
+		}
+
+		return results;
+	}
+
+	@Override
+	public List<StatsWorldCup> retrieveWorldCupStatsPasses(int maxResults)
+	{
+		TypedQuery<Object[]> query = m_entityManager
+				.createNamedQuery(PlayerStats.QN.RETRIEVE_STATS_WORLD_CUP_FOR_ACTION, Object[].class);
+
+		query.setParameter("action", Action.PASS);
+		query.setMaxResults(maxResults);
+
+		List<StatsWorldCup> results = new ArrayList<>();
+
+		for (Object[] values : query.getResultList())
+		{
+			StatsWorldCup result = new StatsWorldCup();
+
+			Player player = values[0] != null ? (Player) values[0] : null;
+			Long passes = values[1] != null ? (Long) values[1] : null;
+
+			result.setAction(Action.PASS);
+			result.setPlayer(player);
+			result.setPasses(passes);
+
+			results.add(result);
+		}
+
+		return results;
+	}
+
+	@Override
+	public List<StatsWorldCup> retrieveWorldCupStatsYellowCard(int maxResults)
+	{
+		TypedQuery<Object[]> query = m_entityManager
+				.createNamedQuery(PlayerStats.QN.RETRIEVE_STATS_WORLD_CUP_FOR_ACTION, Object[].class);
+
+		query.setParameter("action", Action.YELLOW_CARD);
+		query.setMaxResults(maxResults);
+
+		List<StatsWorldCup> results = new ArrayList<>();
+
+		for (Object[] values : query.getResultList())
+		{
+			StatsWorldCup result = new StatsWorldCup();
+
+			Player player = values[0] != null ? (Player) values[0] : null;
+			Long yellowCards = values[1] != null ? (Long) values[1] : null;
+
+			result.setAction(Action.YELLOW_CARD);
+			result.setPlayer(player);
+			result.setYellowCards(yellowCards);
+
+			results.add(result);
+		}
+
+		return results;
+	}
+
+	@Override
+	public List<StatsWorldCup> retrieveWorldCupStatsRedCard(int maxResults)
+	{
+		TypedQuery<Object[]> query = m_entityManager
+				.createNamedQuery(PlayerStats.QN.RETRIEVE_STATS_WORLD_CUP_FOR_ACTION, Object[].class);
+
+		query.setParameter("action", Action.RED_CARD);
+		query.setMaxResults(maxResults);
+
+		List<StatsWorldCup> results = new ArrayList<>();
+
+		for (Object[] values : query.getResultList())
+		{
+			StatsWorldCup result = new StatsWorldCup();
+
+			Player player = values[0] != null ? (Player) values[0] : null;
+			Long redCards = values[1] != null ? (Long) values[1] : null;
+
+			result.setAction(Action.RED_CARD);
+			result.setPlayer(player);
+			result.setRedCards(redCards);
+
+			results.add(result);
+		}
+
+		return results;
 	}
 
 }

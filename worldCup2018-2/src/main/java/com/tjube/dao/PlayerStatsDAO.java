@@ -7,6 +7,7 @@ import com.tjube.model.Game;
 import com.tjube.model.Player;
 import com.tjube.model.PlayerStats;
 import com.tjube.model.PlayerStatsSituation;
+import com.tjube.model.StatsWorldCup;
 
 public interface PlayerStatsDAO
 {
@@ -27,4 +28,14 @@ public interface PlayerStatsDAO
 	public List<PlayerStats> getAllGoalsPlayerStats();
 
 	public PlayerStatsSituation retrieveAllStatsPlayer(Player player);
+
+	// STATISTIQUES
+
+	public List<StatsWorldCup> retrieveWorldCupStatsGoal(int maxResults);
+
+	public List<StatsWorldCup> retrieveWorldCupStatsPasses(int maxResults);
+
+	public List<StatsWorldCup> retrieveWorldCupStatsYellowCard(int maxResults);
+
+	public List<StatsWorldCup> retrieveWorldCupStatsRedCard(int maxResults);
 }

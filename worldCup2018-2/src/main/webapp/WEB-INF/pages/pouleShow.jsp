@@ -46,6 +46,7 @@
 						<li><a href="../team">Equipes</a></li>
 						<li><a href="../poule">Poules</a></li>
 						<li><a href="../game">Matchs</a></li>
+						<li><a href="../stats">Statistiques</a></li>
 					</ul>
 				</div>
 				<!--NAVIGATION END-->

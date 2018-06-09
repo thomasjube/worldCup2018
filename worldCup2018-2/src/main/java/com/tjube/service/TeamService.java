@@ -7,6 +7,7 @@ import java.util.Map;
 import com.tjube.model.Game;
 import com.tjube.model.PlayerStatsSituation;
 import com.tjube.model.Poule;
+import com.tjube.model.StatsWorldCup;
 import com.tjube.model.Team;
 
 public interface TeamService
@@ -39,4 +40,17 @@ public interface TeamService
 
 	public Map<Integer, PlayerStatsSituation> retrieveAllStatsTeam(Team team);
 
+	// STATISTIQUES
+
+	public List<StatsWorldCup> retrieveWorldCupStatsGoal(int maxResults);
+
+	public List<StatsWorldCup> retrieveWorldCupStatsPasses(int maxResults);
+
+	public List<StatsWorldCup> retrieveWorldCupStatsYellowCard(int maxResults);
+
+	public List<StatsWorldCup> retrieveWorldCupStatsRedCard(int maxResults);
+
+	public List<StatsWorldCup> retrieveWorldCupStatsBestAttack(int maxResults);
+
+	public List<StatsWorldCup> retrieveWorldCupStatsWorstDefense(int maxResults);
 }
