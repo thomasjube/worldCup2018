@@ -26,7 +26,7 @@ public class PlayerStatsDAOImpl
 	implements PlayerStatsDAO
 {
 
-	@PersistenceContext(unitName = "JpaPersistenceUnit")
+	@PersistenceContext(unitName = "JpaPersistenceUnit2")
 	private EntityManager m_entityManager = null;
 
 	@Override
@@ -34,7 +34,7 @@ public class PlayerStatsDAOImpl
 	{
 		m_entityManager.persist(playerStats);
 
-		//		playerStats.getGame().addPlayerStat(playerStats);
+//				playerStats.getGame().addPlayerStat(playerStats);
 
 		return playerStats;
 	}
@@ -44,7 +44,7 @@ public class PlayerStatsDAOImpl
 	{
 		TypedQuery<PlayerStats> query = m_entityManager.createNamedQuery(PlayerStats.QN.GET_ALL_STATS,
 				PlayerStats.class);
-		return query.getResultList();
+		return query.getResultList(); 
 	}
 
 	@Override

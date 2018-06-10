@@ -1844,6 +1844,24 @@ blockquote {
 	border-left: 1px solid rgba(0,0,0,0.2);
 }
 
+.table-button{
+	color:green;
+	border: 1px black solid;
+}
+
+.form-button{
+	float: left;
+	padding: 8px 25px;
+	color: green;
+	border: 6px solid white;
+	text-transform: uppercase;
+	box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.3) inset;
+}
+
+
+.kode-table tbody tr{
+	cursor:pointer;
+}
 /* Player Tabs css ends */
 
 /* Shop Detail css starts */

@@ -8,7 +8,7 @@ import com.tjube.model.Player;
 import com.tjube.model.PlayerStats;
 import com.tjube.model.PlayerStatsSituation;
 import com.tjube.model.StatsWorldCup;
-
+ 
 public interface PlayerStatsDAO
 {
 	public PlayerStats addPlayerStats(PlayerStats playerStats);

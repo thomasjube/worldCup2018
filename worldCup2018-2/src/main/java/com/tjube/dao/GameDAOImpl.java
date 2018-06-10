@@ -20,7 +20,7 @@ public class GameDAOImpl
 {
 	private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-	@PersistenceContext(unitName = "JpaPersistenceUnit")
+	@PersistenceContext(unitName = "JpaPersistenceUnit2")
 	private EntityManager m_entityManager = null;
 
 	@Override

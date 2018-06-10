@@ -16,7 +16,7 @@ public class PlayerDAOImpl
 	implements PlayerDAO
 {
 
-	@PersistenceContext(unitName = "JpaPersistenceUnit")
+	@PersistenceContext(unitName = "JpaPersistenceUnit2")
 	private EntityManager m_entityManager = null;
 
 	@Override

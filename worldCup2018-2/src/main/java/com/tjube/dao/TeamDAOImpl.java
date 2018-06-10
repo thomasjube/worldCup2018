@@ -19,7 +19,7 @@ public class TeamDAOImpl
 	implements TeamDAO
 {
 
-	@PersistenceContext(unitName = "JpaPersistenceUnit")
+	@PersistenceContext(unitName = "JpaPersistenceUnit2")
 	private EntityManager m_entityManager = null;
 
 	@Override

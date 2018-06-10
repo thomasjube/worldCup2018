@@ -74,12 +74,12 @@
 	                    <table>
 	                    <tbody>
 	                    <tr class="table-head goal-color">
-	                    	<td><h4>Gardiens</h4></td>
-	                    	<td><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/time.png"/></td>
-	                    	<td><i class="fa fa-soccer-ball-o fa-3x"></i></td>
-	                    	<td><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/pass.png"/></td>
-	                    	<td><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/yellow.png"/></i></td>
-	                    	<td><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/red.png"/></i></td>
+	                    	<td stle="width:50%;"><h4>Gardiens</h4></td>
+	                    	<td style="width:10%;text-align:center;vertical-align:middle;"><img height="40px" width="40px" src="<%=request.getContextPath()%>/resources/images/icones/time.png"/></td>
+	                    	<td style="width:10%;text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/goal.png"/></td>
+	                    	<td style="width:10%;text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/pass.png"/></td>
+	                    	<td style="width:10%;text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/yellow.png"/></i></td>
+	                    	<td style="width:10%;text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/red.png"/></i></td>
 	                    </tr>
 	                    <c:forEach var="player" items="${goals}">
 		                    <tr class="table-body">
@@ -105,11 +105,11 @@
 	                    </c:forEach>
 	                    <tr class="table-head defenser-color">
 	                    	<td><h4>Défenseurs</h4></td>
-	                    	<td><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/time.png"/></td>
-	                    	<td><i class="fa fa-soccer-ball-o fa-3x"></i></td>
-	                    	<td><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/pass.png"/></td>
-	                    	<td><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/yellow.png"/></i></td>
-	                    	<td><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/red.png"/></i></td>
+	                    	<td style="text-align:center;vertical-align:middle;"><img height="40px" width="40px" src="<%=request.getContextPath()%>/resources/images/icones/time.png"/></td>
+	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/goal.png"/></td>
+	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/pass.png"/></td>
+	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/yellow.png"/></i></td>
+	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/red.png"/></i></td>
 	                    </tr>
 	                    <c:forEach var="player" items="${defensers}">
 		                    <tr class="table-body">
@@ -135,11 +135,11 @@
 	                    </c:forEach>
 	                    <tr class="table-head middle-color">
 	                    	<td><h4>Milieux de terrain</h4></td>
-	                    	<td><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/time.png"/></td>
-	                    	<td><i class="fa fa-soccer-ball-o fa-3x"></i></td>
-	                    	<td><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/pass.png"/></td>
-	                    	<td><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/yellow.png"/></i></td>
-	                    	<td><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/red.png"/></i></td>
+	                    	<td style="text-align:center;vertical-align:middle;"><img height="40px" width="40px" src="<%=request.getContextPath()%>/resources/images/icones/time.png"/></td>
+	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/goal.png"/></td>
+	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/pass.png"/></td>
+	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/yellow.png"/></i></td>
+	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/red.png"/></i></td>
 	                    </tr>
 	                    <c:forEach var="player" items="${middles}">
 		                    <tr class="table-body">
@@ -165,11 +165,11 @@
 	                    </c:forEach>
 	                    <tr class="table-head striker-color">
 	                    	<td><h4>Attaquants</h4></td>
-	                    	<td><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/time.png"/></td>
-	                    	<td><i class="fa fa-soccer-ball-o fa-3x"></i></td>
-	                    	<td><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/pass.png"/></td>
-	                    	<td><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/yellow.png"/></i></td>
-	                    	<td><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/red.png"/></i></td>
+	                    	<td style="text-align:center;vertical-align:middle;"><img height="40px" width="40px" src="<%=request.getContextPath()%>/resources/images/icones/time.png"/></td>
+	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/goal.png"/></td>
+	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/pass.png"/></td>
+	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/yellow.png"/></i></td>
+	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/red.png"/></i></td>
 	                    </tr>
 	                    <c:forEach var="player" items="${strikers}">
 		                    <tr class="table-body">

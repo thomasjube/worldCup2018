@@ -146,7 +146,7 @@
 			                 	<th>Joueur</th>
 			                 	<th>Carton</th>
 			                 	<th style='width:7em;'>Minute</th>
-			                 	<th><input id="add-carton" type="button" value="addCarton"></th>
+			                 	<th><input id="add-carton" type="button" value="Ajouter" class="table-button"></th>
 		                 	</thead>
 		                 	<tbody id="playerCartonBody">
 				                 	<c:forEach items="${game.getCartons()}" var="carton" varStatus="status">
@@ -155,13 +155,14 @@
 					                 		<td class="playerCarton"><tags:players isCarton="${true}" index="${status.index}" items="${carton.player.team.players }" path="cartonPlayers[${status.index}]"></tags:players></td>
 					                 		<td class="typeCarton"><tags:carton path="cartonType[${status.index}]"></tags:carton> </td>
 					                 		<td style='width:7em;' class="minuteCarton"><tags:minutes path="cartonMinute[${status.index}]"/></td>
-					                 		<td><input type="button" class="removeCarton" value="remove"></td>
+					                 		<td><input type="button" class="removeCarton table-button" value="Effacer"></td>
 				                 		</tr>
 				                 	</c:forEach>
 			                 </tbody>
 		                 </table>
-		                 <input type="submit" value="Save">
-		                 <input type="button" value="Reset" onclick="window.location='reset?id=${game.id}'">
+		                 <br/>
+		                 <input class="form-button" type="submit" value="Enregistrer">
+		                 <input class="form-button"type="button" value="Reset" onclick="window.location='reset?id=${game.id}'">
 	                 </form:form>
 	                </div>
 	              </div>
@@ -238,7 +239,7 @@
 		tr += "<td class='playerCarton'><select id='select-carton-player"+indexMax+"' name='cartonPlayers["+indexMax+"]'><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select></td>";
 		tr += "<td class='typeCarton'><select name='cartonType["+indexMax+"]'><option value='YELLOW_CARD' selected='selected'>Carton jaune</option><option value='RED_CARD'>Carton rouge</option></select></td>";
 		tr += "<td style='width:7em;' class='minuteCarton'><select name='cartonMinute["+indexMax+"]'><c:forEach begin='1' end='90' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select></td>";
-		tr += "<td><input type='button' class='removeCarton' value='remove'></td>";
+		tr += "<td><input type='button' class='removeCarton table-button' value='Effacer'></td>";
 		
 		if(indexMax == 0)
 			$("#playerCartonBody").append(tr);	

@@ -15,7 +15,7 @@ public class PenaltiDAOImpl
 	implements PenaltiDAO
 {
 
-	@PersistenceContext(unitName = "JpaPersistenceUnit")
+	@PersistenceContext(unitName = "JpaPersistenceUnit2")
 	private EntityManager m_entityManager = null;
 
 	@Override
