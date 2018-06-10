@@ -74,7 +74,7 @@
 	                    <table>
 	                    <tbody>
 	                    <tr class="table-head goal-color">
-	                    	<td stle="width:50%;"><h4>Gardiens</h4></td>
+	                    	<td style="width:50%;"><h4>Gardiens</h4></td>
 	                    	<td style="width:10%;text-align:center;vertical-align:middle;"><img height="40px" width="40px" src="<%=request.getContextPath()%>/resources/images/icones/time.png"/></td>
 	                    	<td style="width:10%;text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/goal.png"/></td>
 	                    	<td style="width:10%;text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/pass.png"/></td>
@@ -83,28 +83,28 @@
 	                    </tr>
 	                    <c:forEach var="player" items="${goals}">
 		                    <tr class="table-body">
-		                      <td id="${player.id}">
+		                      <td id="${player.id}" style="width:50%;">
 		                        <span><c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</span>
 		                      </td>
-		                     <td>
+		                     <td style="width:10%;">
 		                      	<c:out value="${statsTeam[player.id].playingMinutes}"/>
 		                      </td>
-		                        <td>
+		                        <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].goals}"/>
 		                      </td>
-		                      <td>
+		                      <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].passes}"/>
 		                      </td>
-		                      <td>
+		                      <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].yellowCard}"/>
 		                      </td>
-		                      <td>
+		                      <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].redCard}"/>
 		                      </td>
 		                    </tr>
 	                    </c:forEach>
 	                    <tr class="table-head defenser-color">
-	                    	<td><h4>Défenseurs</h4></td>
+	                    	<td style="width:50%;"><h4>Défenseurs</h4></td>
 	                    	<td style="text-align:center;vertical-align:middle;"><img height="40px" width="40px" src="<%=request.getContextPath()%>/resources/images/icones/time.png"/></td>
 	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/goal.png"/></td>
 	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/pass.png"/></td>
@@ -113,28 +113,28 @@
 	                    </tr>
 	                    <c:forEach var="player" items="${defensers}">
 		                    <tr class="table-body">
-		                      <td id="${player.id}">
+		                      <td id="${player.id}" style="width:50%;">
 		                        <span><c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</span>
 		                      </td>
-		                      <td>
+		                      <td style="width:10%;">
 		                      	<c:out value="${statsTeam[player.id].playingMinutes}"/>
 		                      </td>
-		                       <td>
+		                       <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].goals}"/>
 		                      </td>
-		                      <td>
+		                      <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].passes}"/>
 		                      </td>
-		                      <td>
+		                      <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].yellowCard}"/>
 		                      </td>
-		                      <td>
+		                      <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].redCard}"/>
 		                      </td>
 		                    </tr>
 	                    </c:forEach>
 	                    <tr class="table-head middle-color">
-	                    	<td><h4>Milieux de terrain</h4></td>
+	                    	<td style="width:50%;"><h4>Milieux de terrain</h4></td>
 	                    	<td style="text-align:center;vertical-align:middle;"><img height="40px" width="40px" src="<%=request.getContextPath()%>/resources/images/icones/time.png"/></td>
 	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/goal.png"/></td>
 	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/pass.png"/></td>
@@ -143,28 +143,28 @@
 	                    </tr>
 	                    <c:forEach var="player" items="${middles}">
 		                    <tr class="table-body">
-		                      <td id="${player.id}">
+		                      <td id="${player.id}" style="width:50%;">
 		                        <span><c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</span>
 		                      </td>
-		                      <td>
+		                      <td style="width:10%;">
 		                      	<c:out value="${statsTeam[player.id].playingMinutes}"/>
 		                      </td>
-		                       <td>
+		                       <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].goals}"/>
 		                      </td>
-		                      <td>
+		                      <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].passes}"/>
 		                      </td>
-		                      <td>
+		                      <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].yellowCard}"/>
 		                      </td>
-		                      <td>
+		                      <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].redCard}"/>
 		                      </td>
 		                    </tr>
 	                    </c:forEach>
 	                    <tr class="table-head striker-color">
-	                    	<td><h4>Attaquants</h4></td>
+	                    	<td style="width:50%;"><h4>Attaquants</h4></td>
 	                    	<td style="text-align:center;vertical-align:middle;"><img height="40px" width="40px" src="<%=request.getContextPath()%>/resources/images/icones/time.png"/></td>
 	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/goal.png"/></td>
 	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/pass.png"/></td>
@@ -173,22 +173,22 @@
 	                    </tr>
 	                    <c:forEach var="player" items="${strikers}">
 		                    <tr class="table-body">
-		                      <td id="${player.id}">
+		                      <td id="${player.id}" style="width:50%;">
 		                        <span><c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</span>
 		                      </td>
-		                      <td>
+		                      <td style="width:10%;">
 		                      	<c:out value="${statsTeam[player.id].playingMinutes}"/>
 		                      </td>
-		                       <td>
+		                       <td style="width:10%;">
 		                      	<c:out value="${statsTeam[player.id].goals}"/>
 		                      </td>
-		                      <td>
+		                      <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].passes}"/>
 		                      </td>
-		                      <td>
+		                      <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].yellowCard}"/>
 		                      </td>
-		                      <td>
+		                      <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].redCard}"/>
 		                      </td>
 		                    </tr>
