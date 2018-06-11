@@ -8,8 +8,21 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+@NamedQueries({
+	@NamedQuery(name = WinnaBet.QN.GET_WINNABET_BY_ID, query = "select wb from WinnaBet wb where wb.id =:id "),
+	@NamedQuery(name = WinnaBet.QN.getWinnaBetByName,
+			query = "select wb from WinnaBet wb where wb.name =:name"),
+	@NamedQuery(name = WinnaBet.QN.getWinnaBetByGame,
+			query = "select wb from WinnaBet wb where wb.game =:game "),
+	@NamedQuery(name = WinnaBet.QN.GET_NB_SCORE,
+		query = "select wb.name,count(wb) as score from WinnaBet wb WHERE wb.goodScore = TRUE GROUP BY wb.name"),
+	@NamedQuery(name = WinnaBet.QN.GET_NB_RESULT,
+		query = "select wb.name,count(wb) as score from WinnaBet wb WHERE wb.goodResult = TRUE GROUP BY wb.name"),
+	@NamedQuery(name = WinnaBet.QN.GET_ALL_WINNABET, query = "select wb from WinnaBet wb") })
 @Entity
 @Table(name = "WINNA_BET")
 public class WinnaBet
@@ -26,6 +39,12 @@ public class WinnaBet
 
 	public static class QN
 	{
+		public static final String GET_ALL_WINNABET = "WinnaBet.getAllWinnaBets";
+		public static final String GET_WINNABET_BY_ID = "WinnaBet.getWinnaBetById";
+		public static final String getWinnaBetByGame = "WinnaBet.getWinnaBetByGame";
+		public static final String getWinnaBetByName = "WinnaBet.getWinnaBetByName";
+		public static final String GET_NB_SCORE = "WinnaBet.getNbScore";
+		public static final String GET_NB_RESULT = "WinnaBet.getNbResult";
 	}
 
 	@Id

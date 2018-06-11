@@ -33,6 +33,7 @@ import com.tjube.service.PlayerService;
 import com.tjube.service.PlayerStatsService;
 import com.tjube.service.PouleService;
 import com.tjube.service.TeamService;
+import com.tjube.service.WinnaBetService;
 
 @Controller
 @RequestMapping("/game")
@@ -49,6 +50,9 @@ public class GameController
 
 	@Autowired
 	private GameService gameService;
+	
+	@Autowired
+	private WinnaBetService winnaBetService;
 
 	@Autowired
 	private PouleService pouleService;
@@ -3164,6 +3168,8 @@ public class GameController
 			gameService.updateDemis(game);
 		else if (game.getId() == 61 || game.getId() == 62)
 			gameService.updateFinale(game);
+		
+		winnaBetService.verifyBets(game);
 
 		return new ModelAndView("redirect:/game/");
 	}
