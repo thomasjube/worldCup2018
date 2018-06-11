@@ -53,7 +53,12 @@
 			</div>
 		</div>
       </header>
-
+	
+		<c:set var="totalGoals" value="0"/>
+		<c:set var="totalPasses" value="0"/>
+		<c:set var="totalYellowCards" value="0"/>
+		<c:set var="totalRedCards" value="0"/>
+	
 		<br /><br /><br /><br />
       <!--// Main Content //-->
       <div class="kode-content">
@@ -91,15 +96,19 @@
 		                      </td>
 		                        <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].goals}"/>
+		                      		<c:set var="totalGoals" value="${totalGoals + statsTeam[player.id].goals}"/>
 		                      </td>
 		                      <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].passes}"/>
+		                      		<c:set var="totalPasses" value="${totalPasses + statsTeam[player.id].passes}"/>
 		                      </td>
 		                      <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].yellowCard}"/>
+		                      		<c:set var="totalYellowCards" value="${totalYellowCards + statsTeam[player.id].yellowCard}"/>
 		                      </td>
 		                      <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].redCard}"/>
+		                      		<c:set var="totalRedCards" value="${totalRedCards + statsTeam[player.id].redCard}"/>
 		                      </td>
 		                    </tr>
 	                    </c:forEach>
@@ -121,15 +130,19 @@
 		                      </td>
 		                       <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].goals}"/>
+		                      		<c:set var="totalGoals" value="${totalGoals + statsTeam[player.id].goals}"/>
 		                      </td>
 		                      <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].passes}"/>
+		                      		<c:set var="totalPasses" value="${totalPasses + statsTeam[player.id].passes}"/>
 		                      </td>
 		                      <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].yellowCard}"/>
+		                      		<c:set var="totalYellowCards" value="${totalYellowCards + statsTeam[player.id].yellowCard}"/>
 		                      </td>
 		                      <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].redCard}"/>
+		                      		<c:set var="totalRedCards" value="${totalRedCards + statsTeam[player.id].redCard}"/>
 		                      </td>
 		                    </tr>
 	                    </c:forEach>
@@ -151,15 +164,19 @@
 		                      </td>
 		                       <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].goals}"/>
+									<c:set var="totalGoals" value="${totalGoals + statsTeam[player.id].goals}"/>
 		                      </td>
 		                      <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].passes}"/>
+		                      		<c:set var="totalPasses" value="${totalPasses + statsTeam[player.id].passes}"/>
 		                      </td>
 		                      <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].yellowCard}"/>
+		                      		<c:set var="totalYellowCards" value="${totalYellowCards + statsTeam[player.id].yellowCard}"/>
 		                      </td>
 		                      <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].redCard}"/>
+		                      		<c:set var="totalRedCards" value="${totalRedCards + statsTeam[player.id].redCard}"/>
 		                      </td>
 		                    </tr>
 	                    </c:forEach>
@@ -181,18 +198,29 @@
 		                      </td>
 		                       <td style="width:10%;">
 		                      	<c:out value="${statsTeam[player.id].goals}"/>
+		                      		<c:set var="totalGoals" value="${totalGoals + statsTeam[player.id].goals}"/>
 		                      </td>
 		                      <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].passes}"/>
+		                      		<c:set var="totalPasses" value="${totalPasses + statsTeam[player.id].passes}"/>
 		                      </td>
 		                      <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].yellowCard}"/>
+		                      		<c:set var="totalYellowCards" value="${totalYellowCards + statsTeam[player.id].yellowCard}"/>
 		                      </td>
 		                      <td style="width:10%;">
 		                      		<c:out value="${statsTeam[player.id].redCard}"/>
+		                      		<c:set var="totalRedCards" value="${totalRedCards + statsTeam[player.id].redCard}"/>
 		                      </td>
 		                    </tr>
 	                    </c:forEach>
+	                    	<tr>
+		                    	<td colspan="2">Total</td>
+		                    	<td>${totalGoals }</td>
+		                    	<td>${totalPasses }</td>
+		                    	<td>${totalYellowCards }</td>
+		                    	<td>${totalRedCards }</td>
+		                    <tr>
 	                    </tbody>
 	                    </table>
                 </div>

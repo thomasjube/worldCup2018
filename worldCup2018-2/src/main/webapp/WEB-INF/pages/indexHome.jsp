@@ -342,7 +342,7 @@
 	                        <span class="span-vs">VS</span>
 	                        <span class="score-team2">${game.score2}</span>
 	                        </td>
-	                        <td>${game.time}</td>
+	                        <td><tags:localDate date="${game.date}"/><br/>${game.time}</td>
 	                        <td>${game.stade}</td>
                       </tr>
                     </c:forEach>

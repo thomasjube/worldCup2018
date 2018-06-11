@@ -70,6 +70,8 @@
 						</div>
 					</div>	
 	                <div class="col-md-8">
+		             	<c:set var="mapTeam1" value="${titulars[game.team1.id]}"/>
+		              	<c:set var="mapTeam2" value="${titulars[game.team2.id]}"/>
 	                  <form:form action="" method="post" modelAttribute="editForm">
 	                 	 <form:hidden path="id"/>
 							<table class="kode-table">
@@ -78,12 +80,10 @@
 		                        <th>Composition</th>
 								<th style='text-align:right'>
 								<input class="table-button" type="button" value="Editer" onclick="window.location='editGameCompo?id=${game.id}'">
-								<input id="show-composition" type="button" value="Ouvrir" class="table-button"></th>
+								<input id="show-composition" ${empty mapTeam1 and empty mapTeamp2 ? 'type="hidden"' : 'type="button"' } ${not empty mapTeam1 or not empty mapTeamp2 ? 'value="Fermer"' : 'value="Ouvrir"' } class="table-button"></th>
 		                      </tr>
 		                    </thead>
 		                    <tbody id="body-compisition">
-		                    	<c:set var="mapTeam1" value="${titulars[game.team1.id]}"/>
-		                    	<c:set var="mapTeam2" value="${titulars[game.team2.id]}"/>
 		                    	<c:forEach begin="0" end="${11}" var="index">
 		                    		<tr id="${game.id}" style="display:none">
 		                    			<c:choose>
@@ -99,13 +99,13 @@
 			                    					<c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}
 			                    					<c:if test="${not empty substitutes[player.id]}">
 			                    						<c:set var="playerSubstitute" value="${substitutes[player.id]}"/>
-			                    						<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute.player.number} - <c:if test="${not empty playerSubstitute.player.firstName}">${playerSubstitute.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute.player.name} - ${playerSubstitute.minute }'
+			                    						<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute.player.number} - <c:if test="${not empty playerSubstitute.player.firstName}">${playerSubstitute.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute.player.name} (${playerSubstitute.player.poste}) - ${playerSubstitute.minute }'
 														<c:if test="${not empty substitutes[playerSubstitute.player.id]}">
 			                    							<c:set var="playerSubstitute2" value="${substitutes[playerSubstitute.player.id]}"/>
-			                    							<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute2.player.number} - <c:if test="${not empty playerSubstitute2.player.firstName}">${playerSubstitute2.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute2.player.name} - ${playerSubstitute2.minute }'
+			                    							<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute2.player.number} - <c:if test="${not empty playerSubstitute2.player.firstName}">${playerSubstitute2.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute2.player.name} (${playerSubstitute.player.poste}) - ${playerSubstitute2.minute }'
 															<c:if test="${not empty substitutes[playerSubstitute2.player.id]}">
 				                    							<c:set var="playerSubstitute3" value="${substitutes[playerSubstitute2.player.id]}"/>
-				                    							<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute3.player.number} - <c:if test="${not empty playerSubstitute3.player.firstName}">${playerSubstitute3.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute3.player.name} - ${playerSubstitute3.minute }'
+				                    							<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute3.player.number} - <c:if test="${not empty playerSubstitute3.player.firstName}">${playerSubstitute3.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute3.player.name} (${playerSubstitute.player.poste}) - ${playerSubstitute3.minute }'
 			                    							</c:if>
 			                    						</c:if>
 			                    					</c:if>
@@ -126,13 +126,13 @@
 													<c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}
 			                    					<c:if test="${not empty substitutes[player.id]}">
 			                    						<c:set var="playerSubstitute" value="${substitutes[player.id]}"/>
-			                    						<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute.player.number} - <c:if test="${not empty playerSubstitute.player.firstName }">${playerSubstitute.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute.player.name} - ${playerSubstitute.minute }'
+			                    						<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute.player.number} - <c:if test="${not empty playerSubstitute.player.firstName }">${playerSubstitute.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute.player.name} (${playerSubstitute.player.poste}) - ${playerSubstitute.minute }'
 														<c:if test="${not empty substitutes[playerSubstitute.player.id]}">
 			                    							<c:set var="playerSubstitute2" value="${substitutes[playerSubstitute.player.id]}"/>
-			                    							<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute2.player.number} - <c:if test="${not empty playerSubstitute2.player.firstName }">${playerSubstitute2.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute2.player.name} - ${playerSubstitute2.minute }'
+			                    							<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute2.player.number} - <c:if test="${not empty playerSubstitute2.player.firstName }">${playerSubstitute2.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute2.player.name} (${playerSubstitute.player.poste}) - ${playerSubstitute2.minute }'
 															<c:if test="${not empty substitutes[playerSubstitute2.player.id]}">
 				                    							<c:set var="playerSubstitute3" value="${substitutes[playerSubstitute2.player.id]}"/>
-				                    							<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute3.player.number} - <c:if test="${not empty playerSubstitute3.player.firstName }">${playerSubstitute3.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute3.player.name} - ${playerSubstitute3.minute }' 
+				                    							<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute3.player.number} - <c:if test="${not empty playerSubstitute3.player.firstName }">${playerSubstitute3.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute3.player.name} (${playerSubstitute.player.poste}) - ${playerSubstitute3.minute }' 
 			                    							</c:if>
 			                    						</c:if>
 			                    					</c:if>
@@ -278,6 +278,12 @@
 	<script>
 	
 	$(document).ready(function(){
+		var value = $("#show-composition").val();
+		if(value == 'Ouvrir'){
+			$('tbody#body-compisition tr').css('display', 'none');
+		}else{
+			$('tbody#body-compisition tr').css('display', 'table-row');
+		}
 	});
 	
 	$("#show-composition").click(function(e){

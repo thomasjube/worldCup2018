@@ -271,7 +271,7 @@ public class PlayerStatsDAOImpl
 				}
 			}
 			if (minuteGame > 0)
-				minutes += minuteGame;
+				minutes = (long) minuteGame;
 
 			mapGameMinute.put(game, minuteGame);
 		}
