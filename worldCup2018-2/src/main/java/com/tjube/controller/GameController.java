@@ -3016,7 +3016,7 @@ public class GameController
 	{
 		if (game.getId() == 0)
 		{ // if employee id is 0 then creating the
-				// employee other updating the employee
+			// employee other updating the employee
 			gameService.addGame(game);
 		}
 		else
@@ -3166,6 +3166,46 @@ public class GameController
 			gameService.updateFinale(game);
 
 		return new ModelAndView("redirect:/game/");
+	}
+
+	@RequestMapping(value = "/editGameCompo", method = RequestMethod.GET)
+	public ModelAndView editGameCompo(HttpServletRequest request)
+	{
+		int gameId = Integer.parseInt(request.getParameter("id"));
+		Game game = gameService.getGame(gameId);
+
+		ModelAndView model = new ModelAndView("gameEditCompo");
+		model.addObject("game", game);
+
+		List<Player> goals1 = playerService.getGoals(game.getTeam1());
+		model.addObject("goals1", goals1);
+
+		List<Player> defensers1 = playerService.getDefensers(game.getTeam1());
+		model.addObject("defensers1", defensers1);
+
+		List<Player> middles1 = playerService.getMiddles(game.getTeam1());
+		model.addObject("middles1", middles1);
+
+		List<Player> strikers1 = playerService.getStrikers(game.getTeam1());
+		model.addObject("strikers1", strikers1);
+
+		List<Player> goals2 = playerService.getGoals(game.getTeam1());
+		model.addObject("goals2", goals2);
+
+		List<Player> defensers2 = playerService.getDefensers(game.getTeam1());
+		model.addObject("defensers2", defensers2);
+
+		List<Player> middles2 = playerService.getMiddles(game.getTeam1());
+		model.addObject("middles2", middles2);
+
+		List<Player> strikers2 = playerService.getStrikers(game.getTeam1());
+		model.addObject("strikers2", strikers2);
+
+		model.addObject("titulars", gameService.getTitulars(game));
+		model.addObject("substitutes", gameService.getSubstitutes(game));
+		model.addObject("editCompoForm", new GameEditCompoForm(game));
+
+		return model;
 	}
 
 	@RequestMapping(value = "/reset", method = RequestMethod.GET)
