@@ -389,7 +389,8 @@ public class PlayerStatsDAOImpl
 		query.setParameter("team", game.getTeam1());
 
 		List<Player> players = new ArrayList(query.getResultList());
-		Collections.sort(players, new PlayerComparator());
+		if (!players.isEmpty())
+			Collections.sort(players, new PlayerComparator());
 
 		query = m_entityManager.createNamedQuery(PlayerStats.QN.RETRIEVE_STATS_WORLD_CUP_FOR_ACTION_AND_GAME_AND_TEAM,
 				Player.class);
@@ -399,10 +400,33 @@ public class PlayerStatsDAOImpl
 		query.setParameter("team", game.getTeam2());
 
 		List<Player> players2 = new ArrayList(query.getResultList());
-		Collections.sort(players2, new PlayerComparator());
+		if (!players2.isEmpty())
+			Collections.sort(players2, new PlayerComparator());
 
 		results.put(game.getTeam1().getId(), players);
 		results.put(game.getTeam2().getId(), players2);
+
+		return results;
+	}
+
+	@Override
+	public Map<Integer, PlayerStats> getSubstitutes(Game game)
+	{
+		Map<Integer, PlayerStats> results = new HashMap<>();
+
+		TypedQuery<Object[]> query = m_entityManager
+				.createNamedQuery(PlayerStats.QN.RETRIEVE_STATS_WORLD_CUP_FOR_ACTION_AND_GAME, Object[].class);
+
+		query.setParameter("action", Action.CHANGEMENT_OUT);
+		query.setParameter("game", game);
+
+		for (Object[] values : query.getResultList())
+		{
+			Integer playerId = values[0] != null ? (Integer) values[0] : null;
+			PlayerStats stats = values[1] != null ? (PlayerStats) values[1] : null;
+
+			results.put(playerId, stats);
+		}
 
 		return results;
 	}

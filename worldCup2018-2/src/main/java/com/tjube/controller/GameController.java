@@ -3043,6 +3043,7 @@ public class GameController
 		ModelAndView model = new ModelAndView("gameEdit");
 		model.addObject("game", game);
 		model.addObject("titulars", gameService.getTitulars(game));
+		model.addObject("substitutes", gameService.getSubstitutes(game));
 		model.addObject("editForm", new GameEditForm(game));
 
 		int indexMax = 0;

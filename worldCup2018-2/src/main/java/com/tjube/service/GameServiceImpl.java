@@ -262,4 +262,10 @@ public class GameServiceImpl
 	{
 		return playerStatsDAO.getTitulars(game);
 	}
+
+	@Override
+	public Map<Integer, PlayerStats> getSubstitutes(Game game)
+	{
+		return playerStatsDAO.getSubstitutes(game);
+	}
 }
