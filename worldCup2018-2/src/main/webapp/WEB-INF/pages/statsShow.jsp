@@ -65,10 +65,21 @@
             		<div class="kode-section-title"> <h2 ${not empty goalsStats ? 'style="color:white !important"' : ''} >Classement des buteurs</h2></div>
             		<c:choose>
 						<c:when test="${not empty goalsStats }">
+							<c:set var="previousGoals" value ="0"/>
+							<c:set var="indexGoals" value ="1"/>
 							<c:forEach items="${goalsStats}" var="goalsStat" varStatus="status">
 			                    <ul class="table-body">
 			                      <li>
-			                      	<span>${status.index + 1 }</span>
+			                      	<span>
+			                      		<c:choose>
+			                      			<c:when test="${previousGoals == goalsStat.goals }"> - </c:when>
+			                      			<c:otherwise>
+			                      				${indexGoals }
+			                      				<c:set var="previousGoals" value ="${goalsStat.goals }"/>
+			                      				<c:set var="indexGoals" value ="${indexGoals + 1 }"/>
+			                      			</c:otherwise>
+			                      		</c:choose>
+			                      	</span>
 			                        <img style="top:1em;" src="<%=request.getContextPath()%>/resources/images/flag/${goalsStat.player.team.name}.png" alt="" width="30" height="20">&nbsp;
 			                        <span><c:if test="${not empty goalsStat.player.firstName}">${goalsStat.player.firstName.charAt(0)}.&nbsp;</c:if>${goalsStat.player.name}</span>
 			                        <span>${goalsStat.goals}</span>
@@ -84,10 +95,21 @@
             		<div class="kode-section-title"> <h2 ${not empty passesStats ? 'style="color:white !important"' : ''} >Classement des passeurs</h2></div>
             		<c:choose>
 						<c:when test="${not empty passesStats }">
+							<c:set var="previousPasses" value ="0"/>
+							<c:set var="indexPasses" value ="1"/>
 							<c:forEach items="${passesStats}" var="passesStat" varStatus="status">
 			                    <ul class="table-body">
 			                      <li>
-			                      	<span>${status.index + 1 }</span>
+									<span>
+			                      		<c:choose>
+			                      			<c:when test="${previousPasses == passesStat.passes }"> - </c:when>
+			                      			<c:otherwise>
+			                      				${indexPasses }
+			                      				<c:set var="previousPasses" value ="${passesStat.passes }"/>
+			                      				<c:set var="indexPasses" value ="${indexPasses + 1 }"/>
+			                      			</c:otherwise>
+			                      		</c:choose>
+			                      	</span>
 			                        <img style="top:1em;" src="<%=request.getContextPath()%>/resources/images/flag/${passesStat.player.team.name}.png" alt="" width="30" height="20">&nbsp;
 			                        <span><c:if test="${not empty passesStat.player.firstName}">${passesStat.player.firstName.charAt(0)}.&nbsp;</c:if>${passesStat.player.name}</span>
 			                        <span>${passesStat.passes}</span>
@@ -103,10 +125,21 @@
             		<div class="kode-section-title"> <h2 ${not empty yellowCardsStats ? 'style="color:white !important"' : ''} >Classement des cartons jaunes</h2></div>
             		<c:choose>
 						<c:when test="${not empty yellowCardsStats }">
+							<c:set var="previousYellow" value ="0"/>
+							<c:set var="indexYellow" value ="1"/>
 							<c:forEach items="${yellowCardsStats}" var="yellowCardStat" varStatus="status">
 			                    <ul class="table-body">
 			                      <li>
-			                      	<span>${status.index + 1 }</span>
+			                      	<span>
+			                      		<c:choose>
+			                      			<c:when test="${previousYellow == yellowCardStat.yellowCards }"> - </c:when>
+			                      			<c:otherwise>
+			                      				${indexYellow }
+			                      				<c:set var="previousYellow" value ="${yellowCardStat.yellowCards }"/>
+			                      				<c:set var="indexYellow" value ="${indexYellow + 1 }"/>
+			                      			</c:otherwise>
+			                      		</c:choose>
+			                      	</span>
 			                        <img style="top:1em;" src="<%=request.getContextPath()%>/resources/images/flag/${yellowCardStat.player.team.name}.png" alt="" width="30" height="20">&nbsp;
 			                        <span><c:if test="${not empty yellowCardStat.player.firstName}">${yellowCardStat.player.firstName.charAt(0)}.&nbsp;</c:if>${yellowCardStat.player.name}</span>
 			                        <span>${yellowCardStat.yellowCards}</span>
@@ -122,10 +155,21 @@
             		<div class="kode-section-title"><h2 ${not empty redCardsStats ? 'style="color:white !important"' : ''} >Classement des cartons rouges</h2></div>
             		<c:choose>
 						<c:when test="${not empty redCardsStats }">
+							<c:set var="previousReds" value ="0"/>
+							<c:set var="indexReds" value ="1"/>
 							<c:forEach items="${redCardsStats}" var="redCardStats" varStatus="status">
 			                    <ul class="table-body">
 			                      <li>
-			                      	<span>${status.index + 1 }</span>
+		                      		<span>
+			                      		<c:choose>
+			                      			<c:when test="${previousReds == redCardStats.redCards }"> - </c:when>
+			                      			<c:otherwise>
+			                      				${indexReds }
+			                      				<c:set var="previousReds" value ="${redCardStats.redCards }"/>
+			                      				<c:set var="indexReds" value ="${indexReds + 1 }"/>
+			                      			</c:otherwise>
+			                      		</c:choose>
+			                      	</span>
 			                        <img style="top:1em;" src="<%=request.getContextPath()%>/resources/images/flag/${redCardStats.player.team.name}.png" alt="" width="30" height="20">&nbsp;
 			                        <span><c:if test="${not empty redCardStats.player.firstName}">${redCardStats.player.firstName.charAt(0)}.&nbsp;</c:if>${redCardStats.player.name}</span>
 			                        <span>${redCardStats.redCards}</span>
