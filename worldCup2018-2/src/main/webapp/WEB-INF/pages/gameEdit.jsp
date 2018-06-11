@@ -161,7 +161,7 @@
 		                        <span class="span-vs-edit">VS</span>
 		                        <img style="position:relative;float:right;margin-left:0.8em;top:1em;"src="<%=request.getContextPath()%>/resources/images/flag/${game.team2.name}.png" alt="" width="30" height="20">
 		                        <span class="name-team2">${game.team2.name}</span>&nbsp;
-		                        <span class="score-team2"><form:select path="score2"><c:forEach begin="0" end="15" var="score"><form:option value="${score}" label="${score}"/></c:forEach></form:select></span> 
+		                        <span class="score-team2"><form:select path="score2"><c:forEach begin="0" end="15" var="score"><form:option value="${score}" label="${score}"/></c:forEach></form:select></span>
 		                        </td>
 		                        <td class="game-date"><tags:localDate date="${game.date}"/><br/>${game.time}</td>
 		                        <td class="game-stade">${game.stade}</td>
