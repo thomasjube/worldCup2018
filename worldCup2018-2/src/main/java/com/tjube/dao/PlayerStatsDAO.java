@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import com.tjube.model.Action;
 import com.tjube.model.Game;
 import com.tjube.model.Player;
 import com.tjube.model.PlayerStats;
@@ -20,11 +21,15 @@ public interface PlayerStatsDAO
 
 	public void deletePlayerStats(Game game);
 
+	public void deletePlayerStats(Game game, Collection<Action> actions);
+
 	public PlayerStats updatePlayerStats(PlayerStats playerStats);
 
 	public PlayerStats getPlayerStats(int playerStatsId);
 
 	Collection<PlayerStats> getPlayerStats(Game game);
+
+	Collection<PlayerStats> getPlayerStats(Game game, Collection<Action> actions);
 
 	public List<PlayerStats> getAllGoalsPlayerStats();
 
@@ -41,6 +46,8 @@ public interface PlayerStatsDAO
 	public List<StatsWorldCup> retrieveWorldCupStatsRedCard(int maxResults);
 
 	public Map<Integer, Collection<Player>> getTitulars(Game game);
+
+	public Map<Integer, Collection<Integer>> getTitularsForEditCompo(Game game);
 
 	public Map<Integer, PlayerStats> getSubstitutes(Game game);
 }

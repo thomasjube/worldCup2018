@@ -1,5 +1,6 @@
 package com.tjube.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tjube.dao.PlayerStatsDAO;
+import com.tjube.model.Action;
 import com.tjube.model.Game;
 import com.tjube.model.PlayerStats;
 
@@ -58,6 +60,13 @@ public class PlayerStatsServiceImpl
 	public void deletePlayerStats(Game game)
 	{
 		playerStatsDAO.deletePlayerStats(game);
+	}
+
+	@Override
+	public void deletePlayerStats(Game game, Collection<Action> actions)
+	{
+		playerStatsDAO.deletePlayerStats(game, actions);
+
 	}
 
 	@Override

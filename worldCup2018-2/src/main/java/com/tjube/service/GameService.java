@@ -47,6 +47,8 @@ public interface GameService
 
 	public Map<Integer, Collection<Player>> getTitulars(Game game);
 
+	public Map<Integer, Collection<Integer>> getTitularsForEditCompo(Game game);
+
 	public Map<Integer, PlayerStats> getSubstitutes(Game game);
 
 }

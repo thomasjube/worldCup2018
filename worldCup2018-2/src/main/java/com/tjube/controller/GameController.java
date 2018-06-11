@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -3071,7 +3072,8 @@ public class GameController
 				gameEditForm.isProlong(), gameEditForm.getScoreProlong1(), gameEditForm.getScoreProlong2(),
 				gameEditForm.isPeno(), gameEditForm.getScorePeno1(), gameEditForm.getScorePeno2());
 
-		playerStatsService.deletePlayerStats(game);
+		playerStatsService.deletePlayerStats(game,
+				Arrays.asList(Action.GOAL, Action.PASS, Action.YELLOW_CARD, Action.RED_CARD));
 
 		for (int i = 0; i < gameEditForm.getScorerPlayers1().size(); i++)
 		{
@@ -3169,7 +3171,7 @@ public class GameController
 	}
 
 	@RequestMapping(value = "/editGameCompo", method = RequestMethod.GET)
-	public ModelAndView editGameCompo(HttpServletRequest request)
+	public ModelAndView editGameCompoGet(HttpServletRequest request)
 	{
 		int gameId = Integer.parseInt(request.getParameter("id"));
 		Game game = gameService.getGame(gameId);
@@ -3189,23 +3191,100 @@ public class GameController
 		List<Player> strikers1 = playerService.getStrikers(game.getTeam1());
 		model.addObject("strikers1", strikers1);
 
-		List<Player> goals2 = playerService.getGoals(game.getTeam1());
+		List<Player> goals2 = playerService.getGoals(game.getTeam2());
 		model.addObject("goals2", goals2);
 
-		List<Player> defensers2 = playerService.getDefensers(game.getTeam1());
+		List<Player> defensers2 = playerService.getDefensers(game.getTeam2());
 		model.addObject("defensers2", defensers2);
 
-		List<Player> middles2 = playerService.getMiddles(game.getTeam1());
+		List<Player> middles2 = playerService.getMiddles(game.getTeam2());
 		model.addObject("middles2", middles2);
 
-		List<Player> strikers2 = playerService.getStrikers(game.getTeam1());
+		List<Player> strikers2 = playerService.getStrikers(game.getTeam2());
 		model.addObject("strikers2", strikers2);
 
-		model.addObject("titulars", gameService.getTitulars(game));
+		model.addObject("titulars", gameService.getTitularsForEditCompo(game));
 		model.addObject("substitutes", gameService.getSubstitutes(game));
 		model.addObject("editCompoForm", new GameEditCompoForm(game));
 
 		return model;
+	}
+
+	@RequestMapping(value = "/editGameCompo", method = RequestMethod.POST)
+	public ModelAndView editGameCompoPost(HttpServletRequest request,
+			@ModelAttribute("editCompoForm") GameEditCompoForm gameEditCompoForm)
+	{
+		Game game = gameService.getGame(gameEditCompoForm.getGameId());
+		ModelAndView model = new ModelAndView("gameEditCompo");
+		model.addObject("game", game);
+
+		playerStatsService.deletePlayerStats(game,
+				Arrays.asList(Action.TITULAR, Action.CHANGEMENT_OUT, Action.CHANGEMENT_IN));
+
+		for (int i = 0; i < gameEditCompoForm.getTitular1().length; i++)
+		{
+			boolean isTitular = gameEditCompoForm.getTitular1()[i];
+			Player player = playerService.getPlayer(gameEditCompoForm.getTitularId1().get(i));
+
+			if (isTitular)
+			{
+				PlayerStats titularStat = playerStatsService
+						.addPlayerStats(new PlayerStats(game, player, 0, Action.TITULAR));
+				game.addPlayerStat(titularStat);
+				player.addPlayerStat(titularStat);
+			}
+
+			Integer isSubstitute = gameEditCompoForm.getSubstituteId1().get(i);
+			if (isSubstitute != null)
+			{
+				Integer minuteSubstitute = gameEditCompoForm.getMinute1().get(i);
+				Player playerSubstitute = playerService.getPlayer(gameEditCompoForm.getSubstituteId1().get(i));
+
+				PlayerStats substituteOutStat = playerStatsService
+						.addPlayerStats(new PlayerStats(game, player, minuteSubstitute, Action.CHANGEMENT_OUT));
+
+				player.addPlayerStat(substituteOutStat);
+				game.addPlayerStat(substituteOutStat);
+
+				PlayerStats substituteInStat = playerStatsService.addPlayerStats(
+						new PlayerStats(game, playerSubstitute, minuteSubstitute, Action.CHANGEMENT_IN));
+
+				game.addPlayerStat(substituteInStat);
+				playerSubstitute.addPlayerStat(substituteInStat);
+			}
+		}
+
+		for (int i = 0; i < gameEditCompoForm.getTitular2().length; i++)
+		{
+			boolean isTitular = gameEditCompoForm.getTitular2()[i];
+			Player player = playerService.getPlayer(gameEditCompoForm.getTitularId2().get(i));
+
+			if (isTitular)
+			{
+				PlayerStats titularStat = playerStatsService
+						.addPlayerStats(new PlayerStats(game, player, 0, Action.TITULAR));
+				game.addPlayerStat(titularStat);
+			}
+
+			Integer isSubstitute = gameEditCompoForm.getSubstituteId2().get(i);
+			if (isSubstitute != null)
+			{
+				Integer minuteSubstitute = gameEditCompoForm.getMinute2().get(i);
+				Player playerSubstitute = playerService.getPlayer(gameEditCompoForm.getSubstituteId2().get(i));
+
+				PlayerStats substituteOutStat = playerStatsService
+						.addPlayerStats(new PlayerStats(game, player, minuteSubstitute, Action.CHANGEMENT_OUT));
+
+				game.addPlayerStat(substituteOutStat);
+
+				PlayerStats substituteInStat = playerStatsService.addPlayerStats(
+						new PlayerStats(game, playerSubstitute, minuteSubstitute, Action.CHANGEMENT_IN));
+
+				game.addPlayerStat(substituteInStat);
+			}
+		}
+
+		return new ModelAndView("redirect:/game/editGame?id=" + game.getId());
 	}
 
 	@RequestMapping(value = "/reset", method = RequestMethod.GET)

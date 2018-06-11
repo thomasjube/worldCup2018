@@ -264,6 +264,12 @@ public class GameServiceImpl
 	}
 
 	@Override
+	public Map<Integer, Collection<Integer>> getTitularsForEditCompo(Game game)
+	{
+		return playerStatsDAO.getTitularsForEditCompo(game);
+	}
+
+	@Override
 	public Map<Integer, PlayerStats> getSubstitutes(Game game)
 	{
 		return playerStatsDAO.getSubstitutes(game);

@@ -71,27 +71,125 @@
 					</div>	
 	                <div class="col-md-8">
 	                  <form:form action="" method="post" modelAttribute="editCompoForm">
-	                 	 <form:hidden path="id"/>
+	                 	 <form:hidden path="gameId"/>
+	                 	 <form:hidden path="teamId1"/>
+	                 	 <form:hidden path="teamId2"/>
 							<table class="kode-table">
 			                    <thead>
 			                    	<tr>
-			                        	<th>
+			                        	<th colspan="4">
 			                        		<img class="flag" style="position:relative;float:left" src="<%=request.getContextPath()%>/resources/images/flag/${game.team1.name}.png" alt="" width="5%">&nbsp;
 		              						${game.team1.name}
 		              					</th>
 			                    	</tr>
 			                    </thead>
+			                    <c:set var="indexTeam1" value="0"/>
+			                    <c:set var="titularsTeam1" value="${titulars[game.team1.id] }"/>
+			                    
 			                    <tbody>
 			                    	<tr class="table-head goal-color">
-			                    		<td style="width:100%;"><h4>Gardiens</h4></td>
+			                    		<td colspan="4" style="width:100%;color:white"><h4 style="color:white">Gardiens</h4></td>
 			                    	</tr>
-			                    	<c:forEach items="goals1" var="goalTeam1">
+			                    	<c:forEach items="${goals1}" var="player">
+			                    		<c:set var="substitutePlayer" value="${substitutes[player.id]}"/>
 			                    		<tr>
-			                    			<td><input type="checkbox" value="false"/></td>
-			                    			<td>${player.number}<c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</td>
-			                    			<td><input type="checkbox" value="false"/> <tags:players isCarton="${false}" index="${index}" items="${game.team2.players }" path="passerPlayers2[${index}]"></tags:players></td>
-			                    			<td><tags:minutes path="scorerPlayersMinute2[${index}]"/></td>
+			                    			<td style='width:7em;'><input type="checkbox" name="titular1[${indexTeam1}]" ${ titularsTeam1.contains(player.id) ? 'checked="checked"' : ''}/></td>
+			                    			<td><input type="hidden" value="${player.id }" name="titularId1[${indexTeam1}]"/> ${player.number} - <c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</td>
+			                    			<td>
+			                    				<select name="substituteId1[${indexTeam1}]">
+													<option value="" label="Non remplacer"/>
+													<c:forEach items="${game.team1.players}" var="playerTeam">
+														<option value="${playerTeam.id}" label="${playerTeam.number} - ${playerTeam.firstName} ${playerTeam.name}" ${not empty substitutePlayer and substitutePlayer.player.id == playerTeam.id ? 'selected="selected"' : ''}/>
+													</c:forEach>
+												</select>
+			                    			</td>
+			                    			<td>
+				                    			<select name="minute1[${indexTeam1}]">
+													<c:forEach begin="1" end="93" var="minute">
+														<option value="${minute}" label="${minute}" ${not empty substitutePlayer and substitutePlayer.minute == minute ? 'selected="selected"' : ''}/>
+													</c:forEach>
+												</select>
+			                    			</td>
 			                    		<tr>
+			                    		<c:set var="indexTeam1" value="${indexTeam1 + 1}"/>
+			                    	</c:forEach>
+			                    	<tr class="table-head goal-color">
+			                    		<td colspan="4" style="width:100%;color:white"><h4 style="color:white">Défenseurs</h4></td>
+			                    	</tr>
+			                    	<c:forEach items="${defensers1}" var="player">
+			                    		<c:set var="substitutePlayer" value="${substitutes[player.id]}"/>
+			                    		<tr>
+			                    			<td style='width:7em;'><input type="checkbox" name="titular1[${indexTeam1}]" ${ titularsTeam1.contains(player.id) ? 'checked="checked"' : ''}/></td>
+			                    			<td><input type="hidden" value="${player.id }" name="titularId1[${indexTeam1}]"/> ${player.number} - <c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</td>
+			                    			<td>
+			                    				<select name="substituteId1[${indexTeam1}]">
+													<option value="" label="Non remplacer"/>
+													<c:forEach items="${game.team1.players}" var="playerTeam">
+														<option value="${playerTeam.id}" label="${playerTeam.number} - ${playerTeam.firstName} ${playerTeam.name}" ${not empty substitutePlayer and substitutePlayer.player.id == playerTeam.id ? 'selected="selected"' : ''}/>
+													</c:forEach>
+												</select>
+			                    			</td>
+			                    			<td>
+				                    			<select name="minute1[${indexTeam1}]">
+													<c:forEach begin="1" end="93" var="minute">
+														<option value="${minute}" label="${minute}" ${not empty substitutePlayer and substitutePlayer.minute == minute ? 'selected="selected"' : ''}/>
+													</c:forEach>
+												</select>
+			                    			</td>
+			                    		<tr>
+			                    		<c:set var="indexTeam1" value="${indexTeam1 + 1}"/>
+			                    	</c:forEach>
+			                    	<tr class="table-head goal-color">
+			                    		<td colspan="4" style="width:100%;color:white"><h4 style="color:white">Milieux</h4></td>
+			                    	</tr>
+			                    	<c:forEach items="${middles1}" var="player">
+			                    		<c:set var="substitutePlayer" value="${substitutes[player.id]}"/>
+			                    		<tr>
+			                    			<td style='width:7em;'><input type="checkbox" name="titular1[${indexTeam1}]" ${ titularsTeam1.contains(player.id) ? 'checked="checked"' : ''}/></td>
+			                    			<td><input type="hidden" value="${player.id }" name="titularId1[${indexTeam1}]"/> ${player.number} - <c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</td>
+			                    			<td>
+			                    				<select name="substituteId1[${indexTeam1}]">
+													<option value="" label="Non remplacer"/>
+													<c:forEach items="${game.team1.players}" var="playerTeam">
+														<option value="${playerTeam.id}" label="${playerTeam.number} - ${playerTeam.firstName} ${playerTeam.name}" ${not empty substitutePlayer and substitutePlayer.player.id == playerTeam.id ? 'selected="selected"' : ''}/>
+													</c:forEach>
+												</select>
+			                    			</td>
+			                    			<td>
+				                    			<select name="minute1[${indexTeam1}]">
+													<c:forEach begin="1" end="93" var="minute">
+														<option value="${minute}" label="${minute}" ${not empty substitutePlayer and substitutePlayer.minute == minute ? 'selected="selected"' : ''}/>
+													</c:forEach>
+												</select>
+			                    			</td>
+			                    		<tr>
+			                    		<c:set var="indexTeam1" value="${indexTeam1 + 1}"/>
+			                    	</c:forEach>
+			                    	<tr class="table-head goal-color">
+			                    		<td colspan="4" style="width:100%;color:white"><h4 style="color:white">Attaquants</h4></td>
+			                    	</tr>
+			                    	<c:forEach items="${strikers1}" var="player">
+			                    		<c:set var="substitutePlayer" value="${substitutes[player.id]}"/>
+			                    		<tr>
+			                    			<td style='width:7em;'><input type="checkbox" name="titular1[${indexTeam1}]" ${ titularsTeam1.contains(player.id) ? 'checked="checked"' : ''}/></td>
+			                    			<td><input type="hidden" value="${player.id }" name="titularId1[${indexTeam1}]"/> ${player.number} - <c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</td>
+			                    			<td>
+			                    				<select name="substituteId1[${indexTeam1}]">
+													<option value="" label="Non remplacer"/>
+													<c:forEach items="${game.team1.players}" var="playerTeam">
+														<option value="${playerTeam.id}" label="${playerTeam.number} - ${playerTeam.firstName} ${playerTeam.name}" ${not empty substitutePlayer and substitutePlayer.player.id == playerTeam.id ? 'selected="selected"' : ''}/>
+													</c:forEach>
+												</select>
+			                    			</td>
+			                    			<td>
+				                    			<select name="minute1[${indexTeam1}]">
+													<c:forEach begin="1" end="93" var="minute">
+														<option value="${minute}" label="${minute}" ${not empty substitutePlayer and substitutePlayer.minute == minute ? 'selected="selected"' : ''}/>
+													</c:forEach>
+												</select>
+			                    			</td>
+			                    		<tr>
+			                    		<c:set var="indexTeam1" value="${indexTeam1 + 1}"/>
 			                    	</c:forEach>
 			                    </tbody>
 		                 	</table>
@@ -99,13 +197,119 @@
 		                 	<table class="kode-table">
 			                    <thead>
 			                    	<tr>
-			                        	<th>
+			                        	<th colspan="4">
 			                        		<img class="flag" style="position:relative;float:left" src="<%=request.getContextPath()%>/resources/images/flag/${game.team2.name}.png" alt="" width="5%">&nbsp;
 		              						${game.team2.name}
 		              					</th>
 			                    	</tr>
 			                    </thead>
+			                    <c:set var="indexTeam2" value="0"/>
+			                    <c:set var="titularsTeam2" value="${titulars[game.team2.id] }"/>
 			                    <tbody>
+			                    	<tr class="table-head goal-color">
+			                    		<td colspan="4" style="width:100%;color:white"><h4 style="color:white">Gardiens</h4></td>
+			                    	</tr>
+			                    	<c:forEach items="${goals2}" var="player">
+			                    		<c:set var="substitutePlayer" value="${substitutes[player.id]}"/>
+			                    		<tr>
+			                    			<td style='width:7em;'><input type="checkbox" name="titular2[${indexTeam2}]" ${ titularsTeam2.contains(player.id) ? 'checked="checked"' : ''}/></td>
+			                    			<td><input type="hidden" value="${player.id }" name="titularId2[${indexTeam2}]"/> ${player.number} - <c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</td>
+		                    				<td>
+			                    				<select name="substituteId2[${indexTeam2}]">
+													<option value="" label="Non remplacer"/>
+													<c:forEach items="${game.team2.players}" var="playerTeam">
+														<option value="${playerTeam.id}" label="${playerTeam.number} - ${playerTeam.firstName} ${playerTeam.name}" ${not empty substitutePlayer and substitutePlayer.player.id == playerTeam.id ? 'selected="selected"' : ''}/>
+													</c:forEach>
+												</select>
+			                    			</td>
+			                    			<td>
+												<select name="minute2[${indexTeam2}]">
+													<c:forEach begin="1" end="93" var="minute">
+														<option value="${minute}" label="${minute}" ${not empty substitutePlayer and substitutePlayer.minute == minute ? 'selected="selected"' : ''}/>
+													</c:forEach>
+												</select>
+			                    			</td>
+			                    		<tr>
+			                    		<c:set var="indexTeam2" value="${indexTeam2 + 1}"/>
+			                    	</c:forEach>
+			                    	<tr class="table-head goal-color">
+			                    		<td colspan="4" style="width:100%;color:white"><h4 style="color:white">Défenseurs</h4></td>
+			                    	</tr>
+			                    	<c:forEach items="${defensers2}" var="player">
+			                    		<c:set var="substitutePlayer" value="${substitutes[player.id]}"/>
+			                    		<tr>
+			                    			<td style='width:7em;'><input type="checkbox" name="titular2[${indexTeam2}]" ${ titularsTeam2.contains(player.id) ? 'checked="checked"' : ''}/></td>
+			                    			<td><input type="hidden" value="${player.id }" name="titularId2[${indexTeam2}]"/> ${player.number} - <c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</td>
+			                    			<td>
+			                    				<select name="substituteId2[${indexTeam2}]">
+													<option value="" label="Non remplacer"/>
+													<c:forEach items="${game.team2.players}" var="playerTeam">
+														<option value="${playerTeam.id}" label="${playerTeam.number} - ${playerTeam.firstName} ${playerTeam.name}" ${not empty substitutePlayer and substitutePlayer.player.id == playerTeam.id ? 'selected="selected"' : ''}/>
+													</c:forEach>
+												</select>
+			                    			</td>
+			                    			<td>
+				                    			<select name="minute2[${indexTeam2}]">
+													<c:forEach begin="1" end="93" var="minute">
+														<option value="${minute}" label="${minute}" ${not empty substitutePlayer and substitutePlayer.minute == minute ? 'selected="selected"' : ''}/>
+													</c:forEach>
+												</select>
+			                    			</td>
+			                    		<tr>
+			                    		<c:set var="indexTeam2" value="${indexTeam2 + 1}"/>
+			                    	</c:forEach>
+			                    	<tr class="table-head goal-color">
+			                    		<td colspan="4" style="width:100%;color:white"><h4 style="color:white">Milieux</h4></td>
+			                    	</tr>
+			                    	<c:forEach items="${middles2}" var="player">
+			                    		<c:set var="substitutePlayer" value="${substitutes[player.id]}"/>
+			                    		<tr>
+			                    			<td style='width:7em;'><input type="checkbox" name="titular2[${indexTeam2}]" ${ titularsTeam2.contains(player.id) ? 'checked="checked"' : ''}/></td>
+			                    			<td><input type="hidden" value="${player.id }" name="titularId2[${indexTeam2}]"/> ${player.number} - <c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</td>
+			                    			<td>
+			                    				<select name="substituteId2[${indexTeam2}]">
+													<option value="" label="Non remplacer"/>
+													<c:forEach items="${game.team2.players}" var="playerTeam">
+														<option value="${playerTeam.id}" label="${playerTeam.number} - ${playerTeam.firstName} ${playerTeam.name}" ${not empty substitutePlayer and substitutePlayer.player.id == playerTeam.id ? 'selected="selected"' : ''}/>
+													</c:forEach>
+												</select>
+			                    			</td>
+			                    			<td>
+				                    			<select name="minute2[${indexTeam2}]">
+													<c:forEach begin="1" end="93" var="minute">
+														<option value="${minute}" label="${minute}" ${not empty substitutePlayer and substitutePlayer.minute == minute ? 'selected="selected"' : ''}/>
+													</c:forEach>
+												</select>
+			                    			</td>
+			                    		<tr>
+			                    		<c:set var="indexTeam2" value="${indexTeam2 + 1}"/>
+			                    	</c:forEach>
+			                    	<tr class="table-head goal-color">
+			                    		<td colspan="4" style="width:100%;color:white"><h4 style="color:white">Attaquants</h4></td>
+			                    	</tr>
+			                    	<c:forEach items="${strikers2}" var="player">
+			                    		<c:set var="substitutePlayer" value="${substitutes[player.id]}"/>
+			                    		<tr>
+			                    			<td style='width:7em;'><input type="checkbox" name="titular2[${indexTeam2}]" ${ titularsTeam2.contains(player.id) ? 'checked="checked"' : ''}/></td>
+			                    			<td><input type="hidden" value="${player.id }" name="titularId2[${indexTeam2}]"/> ${player.number} - <c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</td>
+			                    			<td>
+			                    				<select name="substituteId2[${indexTeam2}]">
+													<option value="" label="Non remplacer"/>
+													<c:forEach items="${game.team2.players}" var="playerTeam">
+														<option value="${playerTeam.id}" label="${playerTeam.number} - ${playerTeam.firstName} ${playerTeam.name}" ${not empty substitutePlayer and substitutePlayer.player.id == playerTeam.id ? 'selected="selected"' : ''}/>
+													</c:forEach>
+												</select>
+			                    			</td>
+			                    			<td>
+				                    			<select name="minute2[${indexTeam2}]">
+													<c:forEach begin="1" end="93" var="minute">
+														<option value="${minute}" label="${minute}" ${not empty substitutePlayer and substitutePlayer.minute == minute ? 'selected="selected"' : ''}/>
+													</c:forEach>
+												</select>
+			                    			</td>
+			                    		<tr>
+			                    		<c:set var="indexTeam2" value="${indexTeam2 + 1}"/>
+			                    	</c:forEach>
 			                    </tbody>
 		                 	</table>
 		                 	

@@ -151,11 +151,50 @@ public class PlayerStatsDAOImpl
 	}
 
 	@Override
+	public void deletePlayerStats(Game game, Collection<Action> actions)
+	{
+		if (actions == null || actions.isEmpty())
+			return;
+
+		Collection<PlayerStats> playerStats = getPlayerStats(game, actions);
+
+		for (PlayerStats stat : playerStats)
+		{
+			stat.getPlayer().removestat(stat);
+			stat.getGame().removestat(stat);
+
+			if (!m_entityManager.contains(stat))
+				stat = m_entityManager.merge(stat);
+			m_entityManager.remove(stat);
+		}
+
+		Query query = m_entityManager.createQuery("DELETE FROM PlayerStats WHERE game =:game AND action in(:actions)");
+		query.setParameter("game", game);
+		query.setParameter("actions", actions);
+
+		query.executeUpdate();
+	}
+
+	@Override
 	public Collection<PlayerStats> getPlayerStats(Game game)
 	{
 		TypedQuery<PlayerStats> query = m_entityManager.createNamedQuery(PlayerStats.QN.GET_STATS_BY_GAME,
 				PlayerStats.class);
 		query.setParameter("game", game);
+
+		return query.getResultList();
+	}
+
+	@Override
+	public Collection<PlayerStats> getPlayerStats(Game game, Collection<Action> actions)
+	{
+		if (actions == null || actions.isEmpty())
+			return new ArrayList<>();
+
+		TypedQuery<PlayerStats> query = m_entityManager.createNamedQuery(PlayerStats.QN.GET_STATS_BY_GAME_AND_ACTIONS,
+				PlayerStats.class);
+		query.setParameter("game", game);
+		query.setParameter("actions", actions);
 
 		return query.getResultList();
 	}
@@ -405,6 +444,41 @@ public class PlayerStatsDAOImpl
 
 		results.put(game.getTeam1().getId(), players);
 		results.put(game.getTeam2().getId(), players2);
+
+		return results;
+	}
+
+	@Override
+	public Map<Integer, Collection<Integer>> getTitularsForEditCompo(Game game)
+	{
+		Map<Integer, Collection<Integer>> results = new HashMap<>();
+
+		TypedQuery<Player> query = m_entityManager
+				.createNamedQuery(PlayerStats.QN.RETRIEVE_STATS_WORLD_CUP_FOR_ACTION_AND_GAME_AND_TEAM, Player.class);
+
+		query.setParameter("action", Action.TITULAR);
+		query.setParameter("game", game);
+		query.setParameter("team", game.getTeam1());
+
+		List<Player> players = new ArrayList(query.getResultList());
+		List<Integer> playersId = new ArrayList<>();
+		for (Player player : players)
+			playersId.add(player.getId());
+
+		query = m_entityManager.createNamedQuery(PlayerStats.QN.RETRIEVE_STATS_WORLD_CUP_FOR_ACTION_AND_GAME_AND_TEAM,
+				Player.class);
+
+		query.setParameter("action", Action.TITULAR);
+		query.setParameter("game", game);
+		query.setParameter("team", game.getTeam2());
+
+		List<Player> players2 = new ArrayList(query.getResultList());
+		List<Integer> playersId2 = new ArrayList<>();
+		for (Player player : players2)
+			playersId2.add(player.getId());
+
+		results.put(game.getTeam1().getId(), playersId);
+		results.put(game.getTeam2().getId(), playersId2);
 
 		return results;
 	}

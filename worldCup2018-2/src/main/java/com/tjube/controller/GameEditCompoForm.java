@@ -13,12 +13,12 @@ public class GameEditCompoForm
 	private Integer teamId1;
 	private Integer teamId2;
 
-	private List<Boolean> titular1 = new ArrayList<>();
+	private boolean[] titular1 = new boolean[23];
 	private List<Integer> titularId1 = new ArrayList<>();
 	private List<Integer> substituteId1 = new ArrayList<>();
 	private List<Integer> minute1 = new ArrayList<>();
 
-	private List<Boolean> titular2 = new ArrayList<>();
+	private boolean[] titular2 = new boolean[23];
 	private List<Integer> titularId2 = new ArrayList<>();
 	private List<Integer> substituteId2 = new ArrayList<>();
 	private List<Integer> minute2 = new ArrayList<>();
@@ -32,6 +32,11 @@ public class GameEditCompoForm
 		gameId = game.getId();
 		teamId1 = game.getTeam1().getId();
 		teamId2 = game.getTeam2().getId();
+		for (int i = 0; i < 23; i++)
+		{
+			titular1[i] = false;
+			titular2[i] = false;
+		}
 	}
 
 	public Integer getGameId()
@@ -64,12 +69,12 @@ public class GameEditCompoForm
 		this.teamId2 = teamId2;
 	}
 
-	public List<Boolean> getTitular1()
+	public boolean[] getTitular1()
 	{
 		return titular1;
 	}
 
-	public void setTitular1(List<Boolean> titular1)
+	public void setTitular1(boolean[] titular1)
 	{
 		this.titular1 = titular1;
 	}
@@ -104,12 +109,12 @@ public class GameEditCompoForm
 		this.minute1 = minute1;
 	}
 
-	public List<Boolean> getTitular2()
+	public boolean[] getTitular2()
 	{
 		return titular2;
 	}
 
-	public void setTitular2(List<Boolean> titular2)
+	public void setTitular2(boolean[] titular2)
 	{
 		this.titular2 = titular2;
 	}
