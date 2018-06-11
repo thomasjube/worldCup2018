@@ -3,276 +3,145 @@ package com.tjube.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.tjube.model.Action;
 import com.tjube.model.Game;
-import com.tjube.model.PlayerStats;
 
 public class GameEditCompoForm
 {
 
-	private Integer id;
+	private Integer gameId;
 
-	private Integer score1;
+	private Integer teamId1;
+	private Integer teamId2;
 
-	private Integer score2;
+	private List<Boolean> titular1 = new ArrayList<>();
+	private List<Integer> titularId1 = new ArrayList<>();
+	private List<Integer> substituteId1 = new ArrayList<>();
+	private List<Integer> minute1 = new ArrayList<>();
 
-	private boolean prolong = false;
-
-	private Integer scoreProlong1 = 0;
-
-	private Integer scoreProlong2 = 0;
-
-	private boolean peno = false;
-
-	private Integer scorePeno1 = 0;
-
-	private Integer scorePeno2 = 0;
-
-	private List<Integer> scorerPlayers1 = new ArrayList<>();
-	private List<Integer> scorerPlayers2 = new ArrayList<>();
-
-	private List<Integer> passerPlayers1 = new ArrayList<>();
-	private List<Integer> passerPlayers2 = new ArrayList<>();
-
-	private List<Integer> scorerPlayersMinute1 = new ArrayList<>();
-	private List<Integer> scorerPlayersMinute2 = new ArrayList<>();
-
-	private List<Action> cartonType = new ArrayList<>();
-	private List<Integer> cartonPlayers = new ArrayList<>();
-	private List<Integer> cartonMinute = new ArrayList<>();
-	private List<Integer> cartonTeam = new ArrayList<>();
+	private List<Boolean> titular2 = new ArrayList<>();
+	private List<Integer> titularId2 = new ArrayList<>();
+	private List<Integer> substituteId2 = new ArrayList<>();
+	private List<Integer> minute2 = new ArrayList<>();
 
 	public GameEditCompoForm()
 	{
-		// TODO Auto-generated constructor stub
 	}
 
 	public GameEditCompoForm(Game game)
 	{
-		this.id = game.getId();
-		this.score1 = game.getScore1();
-		this.score2 = game.getScore2();
-
-		for (PlayerStats scorer : game.getGoalsTeam1())
-		{
-			scorerPlayers1.add(scorer.getPlayer().getId());
-			scorerPlayersMinute1.add(scorer.getMinute());
-		}
-
-		for (PlayerStats scorer : game.getGoalsTeam2())
-		{
-			scorerPlayers2.add(scorer.getPlayer().getId());
-			scorerPlayersMinute2.add(scorer.getMinute());
-		}
-
-		for (PlayerStats passer : game.getPassTeam1())
-		{
-			passerPlayers1.add(passer.getPlayer().getId());
-		}
-
-		for (PlayerStats passer : game.getPassTeam2())
-		{
-			passerPlayers2.add(passer.getPlayer().getId());
-		}
-
-		for (PlayerStats carton : game.getCartons())
-		{
-			cartonPlayers.add(carton.getPlayer().getId());
-			cartonMinute.add(carton.getMinute());
-			cartonType.add(carton.getAction());
-			cartonTeam.add(carton.getPlayer().getTeam().getId());
-		}
-
+		gameId = game.getId();
+		teamId1 = game.getTeam1().getId();
+		teamId2 = game.getTeam2().getId();
 	}
 
-	public Integer getId()
+	public Integer getGameId()
 	{
-		return id;
+		return gameId;
 	}
 
-	public void setId(Integer id)
+	public void setGameId(Integer gameId)
 	{
-		this.id = id;
+		this.gameId = gameId;
 	}
 
-	public Integer getScore1()
+	public Integer getTeamId1()
 	{
-		return score1;
+		return teamId1;
 	}
 
-	public void setScore1(Integer score1)
+	public void setTeamId1(Integer teamId1)
 	{
-		this.score1 = score1;
+		this.teamId1 = teamId1;
 	}
 
-	public Integer getScore2()
+	public Integer getTeamId2()
 	{
-		return score2;
+		return teamId2;
 	}
 
-	public void setScore2(Integer score2)
+	public void setTeamId2(Integer teamId2)
 	{
-		this.score2 = score2;
+		this.teamId2 = teamId2;
 	}
 
-	public List<Integer> getScorerPlayers1()
+	public List<Boolean> getTitular1()
 	{
-		return scorerPlayers1;
+		return titular1;
 	}
 
-	public void setScorerPlayers1(List<Integer> scorerPlayers1)
+	public void setTitular1(List<Boolean> titular1)
 	{
-		this.scorerPlayers1 = scorerPlayers1;
+		this.titular1 = titular1;
 	}
 
-	public List<Integer> getScorerPlayers2()
+	public List<Integer> getTitularId1()
 	{
-		return scorerPlayers2;
+		return titularId1;
 	}
 
-	public void setScorerPlayers2(List<Integer> scorerPlayers2)
+	public void setTitularId1(List<Integer> titularId1)
 	{
-		this.scorerPlayers2 = scorerPlayers2;
+		this.titularId1 = titularId1;
 	}
 
-	public List<Integer> getPasserPlayers1()
+	public List<Integer> getSubstituteId1()
 	{
-		return passerPlayers1;
+		return substituteId1;
 	}
 
-	public void setPasserPlayers1(List<Integer> passerPlayers1)
+	public void setSubstituteId1(List<Integer> substituteId1)
 	{
-		this.passerPlayers1 = passerPlayers1;
+		this.substituteId1 = substituteId1;
 	}
 
-	public List<Integer> getPasserPlayers2()
+	public List<Integer> getMinute1()
 	{
-		return passerPlayers2;
+		return minute1;
 	}
 
-	public void setPasserPlayers2(List<Integer> passerPlayers2)
+	public void setMinute1(List<Integer> minute1)
 	{
-		this.passerPlayers2 = passerPlayers2;
+		this.minute1 = minute1;
 	}
 
-	public List<Integer> getScorerPlayersMinute1()
+	public List<Boolean> getTitular2()
 	{
-		return scorerPlayersMinute1;
+		return titular2;
 	}
 
-	public void setScorerPlayersMinute1(List<Integer> scorerPlayersMinute1)
+	public void setTitular2(List<Boolean> titular2)
 	{
-		this.scorerPlayersMinute1 = scorerPlayersMinute1;
+		this.titular2 = titular2;
 	}
 
-	public List<Integer> getScorerPlayersMinute2()
+	public List<Integer> getTitularId2()
 	{
-		return scorerPlayersMinute2;
+		return titularId2;
 	}
 
-	public void setScorerPlayersMinute2(List<Integer> scorerPlayersMinute2)
+	public void setTitularId2(List<Integer> titularId2)
 	{
-		this.scorerPlayersMinute2 = scorerPlayersMinute2;
+		this.titularId2 = titularId2;
 	}
 
-	public boolean isProlong()
+	public List<Integer> getSubstituteId2()
 	{
-		return prolong;
+		return substituteId2;
 	}
 
-	public void setProlong(boolean prolong)
+	public void setSubstituteId2(List<Integer> substituteId2)
 	{
-		this.prolong = prolong;
+		this.substituteId2 = substituteId2;
 	}
 
-	public Integer getScoreProlong1()
+	public List<Integer> getMinute2()
 	{
-		return scoreProlong1;
+		return minute2;
 	}
 
-	public void setScoreProlong1(Integer scoreProlong1)
+	public void setMinute2(List<Integer> minute2)
 	{
-		this.scoreProlong1 = scoreProlong1;
-	}
-
-	public Integer getScoreProlong2()
-	{
-		return scoreProlong2;
-	}
-
-	public void setScoreProlong2(Integer scoreProlong2)
-	{
-		this.scoreProlong2 = scoreProlong2;
-	}
-
-	public boolean isPeno()
-	{
-		return peno;
-	}
-
-	public void setPeno(boolean peno)
-	{
-		this.peno = peno;
-	}
-
-	public Integer getScorePeno1()
-	{
-		return scorePeno1;
-	}
-
-	public void setScorePeno1(Integer scorePeno1)
-	{
-		this.scorePeno1 = scorePeno1;
-	}
-
-	public Integer getScorePeno2()
-	{
-		return scorePeno2;
-	}
-
-	public void setScorePeno2(Integer scorePeno2)
-	{
-		this.scorePeno2 = scorePeno2;
-	}
-
-	public List<Integer> getCartonTeam()
-	{
-		return cartonTeam;
-	}
-
-	public void setCartonTeam(List<Integer> cartonTeam)
-	{
-		this.cartonTeam = cartonTeam;
-	}
-
-	public List<Integer> getCartonMinute()
-	{
-		return cartonMinute;
-	}
-
-	public void setCartonMinute(List<Integer> cartonMinute)
-	{
-		this.cartonMinute = cartonMinute;
-	}
-
-	public List<Integer> getCartonPlayers()
-	{
-		return cartonPlayers;
-	}
-
-	public void setCartonPlayers(List<Integer> cartonPlayers)
-	{
-		this.cartonPlayers = cartonPlayers;
-	}
-
-	public List<Action> getCartonType()
-	{
-		return cartonType;
-	}
-
-	public void setCartonType(List<Action> cartonType)
-	{
-		this.cartonType = cartonType;
+		this.minute2 = minute2;
 	}
 
 }
