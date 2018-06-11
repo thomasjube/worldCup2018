@@ -66,173 +66,50 @@
 	            <div class="row">
 					<div class="col-md-12">
 						<div class="heading heading-12 margin-top30-bottom10">
-							<h2><span class="left"></span>${game.name}<span class="right"></span></h2>
+							<h2><span class="left"></span>Composition ${game.name}<span class="right"></span></h2>
 						</div>
 					</div>	
 	                <div class="col-md-8">
-	                  <form:form action="" method="post" modelAttribute="editForm">
+	                  <form:form action="" method="post" modelAttribute="editCompoForm">
 	                 	 <form:hidden path="id"/>
 							<table class="kode-table">
-		                    <thead>
-		                      <tr>
-		                        <th>Composition</th>
-								<th style='text-align:right'><input id="show-composition" type="button" value="Ouvrir" class="table-button"></th>
-		                      </tr>
-		                    </thead>
-		                    <tbody id="body-compisition">
-		                    	<c:set var="mapTeam1" value="${titulars[game.team1.id]}"/>
-		                    	<c:set var="mapTeam2" value="${titulars[game.team2.id]}"/>
-		                    	<c:forEach begin="0" end="${11}" var="index">
-		                    		<tr id="${game.id}" style="display:none">
-		                    			<c:choose>
-		                    				<c:when test="${not empty mapTeam1 and mapTeam1.size() > index}">
-		                    					<c:set var="player" value="${mapTeam1.get(index)}"/>
-		                    					 <td width="50%">
-		                    					 	  <c:choose>
-		                    							<c:when test="${player.poste == 'G'}">Gardien - ${player.number} - </c:when>
-		                    							<c:when test="${player.poste == 'D'}">Défenseur - ${player.number} - </c:when>
-		                    							<c:when test="${player.poste == 'M'}">Milieux - ${player.number} - </c:when>
-		                    							<c:when test="${player.poste == 'A'}">Attaquant - ${player.number} - </c:when>
-		                    						</c:choose> 
-			                    					<c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}
-			                    					<c:if test="${not empty substitutes[player.id]}">
-			                    						<c:set var="playerSubstitute" value="${substitutes[player.id]}"/>
-			                    						<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute.player.number} - <c:if test="${not empty playerSubstitute.player.firstName}">${playerSubstitute.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute.player.name} - ${playerSubstitute.minute }'
-														<c:if test="${not empty substitutes[playerSubstitute.id]}">
-			                    							<c:set var="playerSubstitute2" value="${substitutes[playerSubstitute.id]}"/>
-			                    							<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute2.player.number} - <c:if test="${not empty playerSubstitute2.player.firstName}">${playerSubstitute2.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute2.player.name} - ${playerSubstitute2.minute }'
-															<c:if test="${not empty substitutes[playerSubstitute2.id]}">
-				                    							<c:set var="playerSubstitute3" value="${substitutes[playerSubstitute2.id]}"/>
-				                    							<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute3.player.number} - <c:if test="${not empty playerSubstitute3.player.firstName}">${playerSubstitute3.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute3.player.name} - ${playerSubstitute3.minute }'
-			                    							</c:if>
-			                    						</c:if>
-			                    					</c:if>
-		                    					 </td>
-		                    				</c:when>
-		                    				<c:otherwise><td width="50%"></td></c:otherwise>
-		                    			</c:choose>
-		                    			<c:choose>
-	                    					<c:when test="${not empty mapTeam2 and mapTeam2.size() > index}">
-              								<c:set var="player" value="${mapTeam2.get(index)}"/>
-		                    					 <td width="50%">
-		                    					 	  <c:choose>
-		                    							<c:when test="${player.poste == 'G'}">Gardien - ${player.number} - </c:when>
-		                    							<c:when test="${player.poste == 'D'}">Défenseur - ${player.number} - </c:when>
-		                    							<c:when test="${player.poste == 'M'}">Milieux - ${player.number} - </c:when>
-		                    							<c:when test="${player.poste == 'A'}">Attaquant - ${player.number} - </c:when>
-		                    						</c:choose> 
-													<c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}
-			                    					<c:if test="${not empty substitutes[player.id]}">
-			                    						<c:set var="playerSubstitute" value="${substitutes[player.id]}"/>
-			                    						<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute.player.number} - <c:if test="${not empty playerSubstitute.player.firstName }">${playerSubstitute.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute.player.name} - ${playerSubstitute.minute }'
-														<c:if test="${not empty substitutes[playerSubstitute.id]}">
-			                    							<c:set var="playerSubstitute2" value="${substitutes[playerSubstitute.id]}"/>
-			                    							<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute2.player.number} - <c:if test="${not empty playerSubstitute2.player.firstName }">${playerSubstitute2.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute2.player.name} - ${playerSubstitute2.minute }'
-															<c:if test="${not empty substitutes[playerSubstitute2.id]}">
-				                    							<c:set var="playerSubstitute3" value="${substitutes[playerSubstitute2.id]}"/>
-				                    							<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute3.player.number} - <c:if test="${not empty playerSubstitute3.player.firstName }">${playerSubstitute3.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute3.player.name} - ${playerSubstitute3.minute }' 
-			                    							</c:if>
-			                    						</c:if>
-			                    					</c:if>
-		                    					 </td>
-	                    					</c:when>
-		                    				<c:otherwise><td width="50%"></td></c:otherwise>	                    			
-		                    			</c:choose>
-		                    		</tr>
-		                    	</c:forEach>
-		                    </tbody>
-		                 </table>
-		                  <table class="kode-table">
-		                    <thead>
-		                      <tr>
-		                        <th>Match</th>
-		                        <th class="game-date">Heure</th>
-		                        <th class="game-stade">Stade</th>
-		                      </tr>
-		                    </thead>
-		                    <tbody>
-		                      <tr id="${game.id}">
-		                        <td style="text-align: center;width:100%">
-		                        <img style="position:relative;float:left;top:1em;margin-right:0.8em" src="<%=request.getContextPath()%>/resources/images/flag/${game.team1.name}.png" alt="" width="30" height="20">&nbsp;
-		                        <span class="name-team">${game.team1.name}</span> 
-		                        <span class="score-team"><form:select path="score1"><c:forEach begin="0" end="15" var="score"><form:option value="${score}" label="${score}"/></c:forEach></form:select></span>
-		                        <span class="span-vs-edit">VS</span>
-		                        <img style="position:relative;float:right;margin-left:0.8em;top:1em;"src="<%=request.getContextPath()%>/resources/images/flag/${game.team2.name}.png" alt="" width="30" height="20">
-		                        <span class="name-team2">${game.team2.name}</span>&nbsp;
-		                        <span class="score-team2"><form:select path="score2"><c:forEach begin="0" end="15" var="score"><form:option value="${score}" label="${score}"/></c:forEach></form:select></span> 
-		                        </td>
-		                        <td class="game-date"><tags:localDate date="${game.date}"/><br/>${game.time}</td>
-		                        <td class="game-stade">${game.stade}</td>
-		                        
-		                      </tr>
-		                    </tbody>
-		                 </table>
-		                 
-		                 <table class="kode-table">
-		                 	<thead>
-		                 	<th>Buteur</th>
-		                 	<th>Passeur</th>
-		                 	<th style='width:4em;'>Minute</th>
-		                 	<th>Buteur</th>
-		                 	<th>Passeur</th>
-		                 	<th style='width:4em;'>Minute</th>
-		                 	</thead>
-			                 <tbody id="playerBody">
-			                 	<c:if test="${indexMax > 0 }">
-				                 	<c:forEach begin="0" end="${indexMax-1}" var="index">
-				                 		<tr id="tr-player-${index}">
-				                 			<c:choose>
-					                 			<c:when test="${not empty game.getGoalsTeam1() && index < game.score1 && not empty game.getGoalsTeam1().get(index)}">
-					                 				<td class="player-team1"><tags:players isCarton="${false}" index="${index}" items="${game.team1.players }" path="scorerPlayers1[${index}]"></tags:players> </td>
-					                 				<td class="passer-team1"><tags:players isCarton="${false}" index="${index}" items="${game.team1.players }" path="passerPlayers1[${index}]"></tags:players></td>
-					                 				<td class="minute-team1"><tags:minutes path="scorerPlayersMinute1[${index}]"/></td>
-					                 			</c:when>
-					                 			<c:otherwise>
-								                 	<td class="player-team1"></td>
-					                 				<td class="passer-team1"></td>
-					                 				<td class="minute-team1"></td>		
-					                 			</c:otherwise>
-				                 			</c:choose>
-				                 			<c:choose>
-					                 			<c:when test="${not empty game.getGoalsTeam2() && index < game.score2  && not empty game.getGoalsTeam2().get(index)}">
-					                 				<td class="player-team2"><tags:players isCarton="${false}" index="${index}" items="${game.team2.players }" path="scorerPlayers2[${index}]"></tags:players> </td>
-					                 				<td class="passer-team2"><tags:players isCarton="${false}" index="${index}" items="${game.team2.players }" path="passerPlayers2[${index}]"></tags:players></td>
-					                 				<td class="minute-team2"><tags:minutes path="scorerPlayersMinute2[${index}]"/> </td>
-					                 			</c:when>
-					                 			<c:otherwise>
-								                 	<td class="player-team2"></td>
-					                 				<td class="passer-team2"></td>
-					                 				<td class="minute-team2"></td>		
-					                 			</c:otherwise>
-				                 			</c:choose>
-				                 		</tr>
-				                 	</c:forEach>
-			                 	</c:if>
-			                 </tbody>
-		                 </table>
-		                 <table class="kode-table">
-		                 	<thead>
-			                 	<th>Equipe</th>
-			                 	<th>Joueur</th>
-			                 	<th>Carton</th>
-			                 	<th style='width:7em;'>Minute</th>
-			                 	<th><input id="add-carton" type="button" value="Ajouter" class="table-button"></th>
-		                 	</thead>
-		                 	<tbody id="playerCartonBody">
-				                 	<c:forEach items="${game.getCartons()}" var="carton" varStatus="status">
-				                 		<tr id="tr-carton-player-${status.index}">
-					                 		<td class="teamCarton"><tags:teams path="cartonTeam[${status.index}]" game="${game}"/></td>
-					                 		<td class="playerCarton"><tags:players isCarton="${true}" index="${status.index}" items="${carton.player.team.players }" path="cartonPlayers[${status.index}]"></tags:players></td>
-					                 		<td class="typeCarton"><tags:carton path="cartonType[${status.index}]"></tags:carton> </td>
-					                 		<td style='width:7em;' class="minuteCarton"><tags:minutes path="cartonMinute[${status.index}]"/></td>
-					                 		<td><input type="button" class="removeCarton table-button" value="Effacer"></td>
-				                 		</tr>
-				                 	</c:forEach>
-			                 </tbody>
-		                 </table>
-		                 <br/>
+			                    <thead>
+			                    	<tr>
+			                        	<th>
+			                        		<img class="flag" style="position:relative;float:left" src="<%=request.getContextPath()%>/resources/images/flag/${game.team1.name}.png" alt="" width="5%">&nbsp;
+		              						${game.team1.name}
+		              					</th>
+			                    	</tr>
+			                    </thead>
+			                    <tbody>
+			                    	<tr class="table-head goal-color">
+			                    		<td style="width:100%;"><h4>Gardiens</h4></td>
+			                    	</tr>
+			                    	<c:forEach items="goals1" var="goalTeam1">
+			                    		<tr>
+			                    			<td><input type="checkbox" value="false"/></td>
+			                    			<td>${player.number}<c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</td>
+			                    			<td><input type="checkbox" value="false"/> <tags:players isCarton="${false}" index="${index}" items="${game.team2.players }" path="passerPlayers2[${index}]"></tags:players></td>
+			                    			<td><tags:minutes path="scorerPlayersMinute2[${index}]"/></td>
+			                    		<tr>
+			                    	</c:forEach>
+			                    </tbody>
+		                 	</table>
+		                 	<br/><br/>
+		                 	<table class="kode-table">
+			                    <thead>
+			                    	<tr>
+			                        	<th>
+			                        		<img class="flag" style="position:relative;float:left" src="<%=request.getContextPath()%>/resources/images/flag/${game.team2.name}.png" alt="" width="5%">&nbsp;
+		              						${game.team2.name}
+		              					</th>
+			                    	</tr>
+			                    </thead>
+			                    <tbody>
+			                    </tbody>
+		                 	</table>
+		                 	
 		                 <input class="form-button" type="submit" value="Enregistrer">
-		                 <input class="form-button"type="button" value="Reset" onclick="window.location='reset?id=${game.id}'">
 	                 </form:form>
 	                </div>
 	              </div>

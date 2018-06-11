@@ -76,7 +76,9 @@
 		                    <thead>
 		                      <tr>
 		                        <th>Composition</th>
-								<th style='text-align:right'><input id="show-composition" type="button" value="Ouvrir" class="table-button"></th>
+								<th style='text-align:right'>
+								<input class="table-button" type="button" value="Editer" onclick="window.location='editGameCompo?id=${game.id}'">
+								<input id="show-composition" type="button" value="Ouvrir" class="table-button"></th>
 		                      </tr>
 		                    </thead>
 		                    <tbody id="body-compisition">
