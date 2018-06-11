@@ -3,6 +3,8 @@ package com.tjube.dao;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,12 +31,61 @@ public class PlayerStatsDAOImpl
 	@PersistenceContext(unitName = "JpaPersistenceUnit2")
 	private EntityManager m_entityManager = null;
 
+	static class PlayerComparator
+		implements Comparator<Player>
+	{
+		@Override
+		public int compare(Player p1, Player p2)
+		{
+			switch (p1.getPoste())
+			{
+				case "G":
+				{
+					if (p2.getPoste().equalsIgnoreCase("G"))
+						return 0;
+					else
+						return -1;
+				}
+				case "D":
+				{
+					if (p2.getPoste().equalsIgnoreCase("G"))
+						return 1;
+					else if (p2.getPoste().equalsIgnoreCase("D"))
+						return 0;
+					else
+						return -1;
+				}
+				case "M":
+				{
+					if (p2.getPoste().equalsIgnoreCase("G") || p2.getPoste().equalsIgnoreCase("D"))
+						return 1;
+					else if (p2.getPoste().equalsIgnoreCase("M"))
+						return 0;
+					else
+						return -1;
+				}
+				case "A":
+				{
+					if (p2.getPoste().equalsIgnoreCase("G") || p2.getPoste().equalsIgnoreCase("D")
+							|| p2.getPoste().equalsIgnoreCase("M"))
+						return 1;
+					else if (p2.getPoste().equalsIgnoreCase("A"))
+						return 0;
+					else
+						return -1;
+				}
+				default:
+					return 0;
+			}
+		}
+	}
+
 	@Override
 	public PlayerStats addPlayerStats(PlayerStats playerStats)
 	{
 		m_entityManager.persist(playerStats);
 
-//				playerStats.getGame().addPlayerStat(playerStats);
+		//				playerStats.getGame().addPlayerStat(playerStats);
 
 		return playerStats;
 	}
@@ -44,7 +95,7 @@ public class PlayerStatsDAOImpl
 	{
 		TypedQuery<PlayerStats> query = m_entityManager.createNamedQuery(PlayerStats.QN.GET_ALL_STATS,
 				PlayerStats.class);
-		return query.getResultList(); 
+		return query.getResultList();
 	}
 
 	@Override
@@ -321,6 +372,37 @@ public class PlayerStatsDAOImpl
 
 			results.add(result);
 		}
+
+		return results;
+	}
+
+	@Override
+	public Map<Integer, Collection<Player>> getTitulars(Game game)
+	{
+		Map<Integer, Collection<Player>> results = new HashMap<>();
+
+		TypedQuery<Player> query = m_entityManager
+				.createNamedQuery(PlayerStats.QN.RETRIEVE_STATS_WORLD_CUP_FOR_ACTION_AND_GAME_AND_TEAM, Player.class);
+
+		query.setParameter("action", Action.TITULAR);
+		query.setParameter("game", game);
+		query.setParameter("team", game.getTeam1());
+
+		List<Player> players = new ArrayList(query.getResultList());
+		Collections.sort(players, new PlayerComparator());
+
+		query = m_entityManager.createNamedQuery(PlayerStats.QN.RETRIEVE_STATS_WORLD_CUP_FOR_ACTION_AND_GAME_AND_TEAM,
+				Player.class);
+
+		query.setParameter("action", Action.TITULAR);
+		query.setParameter("game", game);
+		query.setParameter("team", game.getTeam2());
+
+		List<Player> players2 = new ArrayList(query.getResultList());
+		Collections.sort(players2, new PlayerComparator());
+
+		results.put(game.getTeam1().getId(), players);
+		results.put(game.getTeam2().getId(), players2);
 
 		return results;
 	}

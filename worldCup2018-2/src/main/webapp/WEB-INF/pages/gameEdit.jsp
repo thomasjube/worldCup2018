@@ -72,7 +72,7 @@
 	                <div class="col-md-8">
 	                  <form:form action="" method="post" modelAttribute="editForm">
 	                 	 <form:hidden path="id"/>
-	                 	 		                  <table class="kode-table">
+							<table class="kode-table">
 		                    <thead>
 		                      <tr>
 		                        <th>Composition</th>
@@ -99,8 +99,6 @@
 		                    			</c:choose>
 		                    		</tr>
 		                    	</c:forEach>
-<!-- 			                      <td width="50%>"></td> -->
-<!-- 			                      <td width="50%>"></td> -->
 		                    </tbody>
 		                 </table>
 		                  <table class="kode-table">

@@ -2,13 +2,14 @@ package com.tjube.dao;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import com.tjube.model.Game;
 import com.tjube.model.Player;
 import com.tjube.model.PlayerStats;
 import com.tjube.model.PlayerStatsSituation;
 import com.tjube.model.StatsWorldCup;
- 
+
 public interface PlayerStatsDAO
 {
 	public PlayerStats addPlayerStats(PlayerStats playerStats);
@@ -38,4 +39,6 @@ public interface PlayerStatsDAO
 	public List<StatsWorldCup> retrieveWorldCupStatsYellowCard(int maxResults);
 
 	public List<StatsWorldCup> retrieveWorldCupStatsRedCard(int maxResults);
+
+	public Map<Integer, Collection<Player>> getTitulars(Game game);
 }
