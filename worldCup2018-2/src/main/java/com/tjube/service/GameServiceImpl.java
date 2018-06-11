@@ -1,14 +1,18 @@
 package com.tjube.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tjube.dao.GameDAO;
+import com.tjube.dao.PlayerStatsDAO;
 import com.tjube.model.Game;
+import com.tjube.model.Player;
 import com.tjube.model.PlayerStats;
 import com.tjube.model.Poule;
 import com.tjube.model.Team;
@@ -20,6 +24,9 @@ public class GameServiceImpl
 {
 	@Autowired
 	private GameDAO gameDAO;
+
+	@Autowired
+	private PlayerStatsDAO playerStatsDAO;
 
 	@Override
 	@Transactional
@@ -248,5 +255,11 @@ public class GameServiceImpl
 			petiteFinale.setTeam2(game.getLooser());
 			finale.setTeam2(game.getWinner());
 		}
+	}
+
+	@Override
+	public Map<Integer, Collection<Player>> getTitulars(Game game)
+	{
+		return playerStatsDAO.getTitulars(game);
 	}
 }

@@ -2,8 +2,10 @@ package com.tjube.service;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import com.tjube.model.Game;
+import com.tjube.model.Player;
 import com.tjube.model.Poule;
 import com.tjube.model.Team;
 
@@ -41,5 +43,7 @@ public interface GameService
 	public void updateDemis(Game game);
 
 	public void updateFinale(Game game);
+
+	public Map<Integer, Collection<Player>> getTitulars(Game game);
 
 }

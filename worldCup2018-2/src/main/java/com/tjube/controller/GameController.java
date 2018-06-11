@@ -3039,8 +3039,10 @@ public class GameController
 	{
 		int gameId = Integer.parseInt(request.getParameter("id"));
 		Game game = gameService.getGame(gameId);
+
 		ModelAndView model = new ModelAndView("gameEdit");
 		model.addObject("game", game);
+		model.addObject("titulars", gameService.getTitulars(game));
 		model.addObject("editForm", new GameEditForm(game));
 
 		int indexMax = 0;

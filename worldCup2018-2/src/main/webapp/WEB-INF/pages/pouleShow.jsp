@@ -110,6 +110,7 @@
 <!--                         <th>Buts mis</th> -->
 <!--                         <th>Buts pris</th> -->
                         <th>pts</th>
+                        <th>Diff</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -120,9 +121,8 @@
 		                        <td>${team.gameWin}</td>
 		                        <td>${team.gameDraw}</td>
 		                        <td>${team.gameLost}</td>
-	<%-- 	                        <td>${team.but_mis}</td> --%>
-	<%-- 	                        <td>${team.but_pris}</td> --%>
 		                        <td>${team.point}</td>
+		                        <td><c:if test="${team.diff > 0}">+</c:if>${team.diff}</td>
 	                        </tr>
                         </c:forEach>
                       
