@@ -62,7 +62,7 @@
         <section class="kode-pagesection margin-bottom-40">
           	<div class="container">
             	<div class="row">
-            		<div class="kode-section-title"> <h2>Classement des buteurs</h2></div>
+            		<div class="kode-section-title"> <h2 ${not empty goalsStats ? 'style="color:white !important"' : ''} >Classement des buteurs</h2></div>
             		<c:choose>
 						<c:when test="${not empty goalsStats }">
 							<c:forEach items="${goalsStats}" var="goalsStat" varStatus="status">
@@ -70,7 +70,7 @@
 			                      <li>
 			                      	<span>${status.index + 1 }</span>
 			                        <img style="top:1em;" src="<%=request.getContextPath()%>/resources/images/flag/${goalsStat.player.team.name}.png" alt="" width="30" height="20">&nbsp;
-			                        <span>${goalsStat.player.name}</span>
+			                        <span><c:if test="${not empty goalsStat.player.firstName}">${goalsStat.player.firstName.charAt(0)}.&nbsp;</c:if>${goalsStat.player.name}</span>
 			                        <span>${goalsStat.goals}</span>
 			                      </li>
 			                    </ul>
@@ -81,7 +81,7 @@
 						</c:otherwise>            		
             		</c:choose>
             		<br/><br/><br/>
-            		<div class="kode-section-title"> <h2>Classement des passeurs</h2></div>
+            		<div class="kode-section-title"> <h2 ${not empty passesStats ? 'style="color:white !important"' : ''} >Classement des passeurs</h2></div>
             		<c:choose>
 						<c:when test="${not empty passesStats }">
 							<c:forEach items="${passesStats}" var="passesStat" varStatus="status">
@@ -89,7 +89,7 @@
 			                      <li>
 			                      	<span>${status.index + 1 }</span>
 			                        <img style="top:1em;" src="<%=request.getContextPath()%>/resources/images/flag/${passesStat.player.team.name}.png" alt="" width="30" height="20">&nbsp;
-			                        <span>${passesStat.player.name}</span>
+			                        <span><c:if test="${not empty passesStat.player.firstName}">${passesStat.player.firstName.charAt(0)}.&nbsp;</c:if>${passesStat.player.name}</span>
 			                        <span>${passesStat.passes}</span>
 			                      </li>
 			                    </ul>
@@ -100,7 +100,7 @@
 						</c:otherwise>            		
             		</c:choose>
             		<br/><br/><br/>
-            		<div class="kode-section-title"> <h2>Classement des cartons jaunes</h2></div>
+            		<div class="kode-section-title"> <h2 ${not empty yellowCardsStats ? 'style="color:white !important"' : ''} >Classement des cartons jaunes</h2></div>
             		<c:choose>
 						<c:when test="${not empty yellowCardsStats }">
 							<c:forEach items="${yellowCardsStats}" var="yellowCardStat" varStatus="status">
@@ -108,7 +108,7 @@
 			                      <li>
 			                      	<span>${status.index + 1 }</span>
 			                        <img style="top:1em;" src="<%=request.getContextPath()%>/resources/images/flag/${yellowCardStat.player.team.name}.png" alt="" width="30" height="20">&nbsp;
-			                        <span>${yellowCardStat.player.name}</span>
+			                        <span><c:if test="${not empty yellowCardStat.player.firstName}">${yellowCardStat.player.firstName.charAt(0)}.&nbsp;</c:if>${yellowCardStat.player.name}</span>
 			                        <span>${yellowCardStat.yellowCards}</span>
 			                      </li>
 			                    </ul>
@@ -119,7 +119,7 @@
 						</c:otherwise>            		
             		</c:choose>
             		<br/><br/><br/>
-            		<div class="kode-section-title"> <h2>Classement des cartons rouges</h2></div>
+            		<div class="kode-section-title"><h2 ${not empty redCardsStats ? 'style="color:white !important"' : ''} >Classement des cartons rouges</h2></div>
             		<c:choose>
 						<c:when test="${not empty redCardsStats }">
 							<c:forEach items="${redCardsStats}" var="redCardStats" varStatus="status">
@@ -127,7 +127,7 @@
 			                      <li>
 			                      	<span>${status.index + 1 }</span>
 			                        <img style="top:1em;" src="<%=request.getContextPath()%>/resources/images/flag/${redCardStats.player.team.name}.png" alt="" width="30" height="20">&nbsp;
-			                        <span>${redCardStats.player.name}</span>
+			                        <span><c:if test="${not empty redCardStats.player.firstName}">${redCardStats.player.firstName.charAt(0)}.&nbsp;</c:if>${redCardStats.player.name}</span>
 			                        <span>${redCardStats.redCards}</span>
 			                      </li>
 			                    </ul>
@@ -138,7 +138,7 @@
 						</c:otherwise>            		
             		</c:choose>
             		<br/><br/><br/>
-            		<div class="kode-section-title"> <h2>Meilleure Attaque</h2></div>
+            		<div class="kode-section-title"> <h2 ${not empty bestAttackTeams ? 'style="color:white !important"' : ''} >Meilleure Attaque</h2></div>
             		<c:choose>
 						<c:when test="${not empty bestAttackTeams }">
 							<c:forEach items="${bestAttackTeams}" var="bestAttackTeam" varStatus="status">
@@ -157,7 +157,7 @@
 						</c:otherwise>            		
             		</c:choose>
             		<br/><br/><br/>
-            		<div class="kode-section-title"> <h2>Pire défense</h2></div>
+            		<div class="kode-section-title"> <h2 ${not empty worstDefenseTeams ? 'style="color:white !important"' : ''} >Pire défense</h2></div>
             		<c:choose>
 						<c:when test="${not empty worstDefenseTeams }">
 							<c:forEach items="${worstDefenseTeams}" var="worstDefenseTeam" varStatus="status">

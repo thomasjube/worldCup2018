@@ -93,7 +93,7 @@
 			                    	<c:forEach items="${goals1}" var="player">
 			                    		<c:set var="substitutePlayer" value="${substitutes[player.id]}"/>
 			                    		<tr>
-			                    			<td style='width:7em;'><input type="checkbox" name="titular1[${indexTeam1}]" ${ titularsTeam1.contains(player.id) ? 'checked="checked"' : ''}/></td>
+			                    			<td style='width:7em;'><input class="team1-titular" type="checkbox" name="titular1[${indexTeam1}]" ${ titularsTeam1.contains(player.id) ? 'checked="checked"' : ''}/></td>
 			                    			<td><input type="hidden" value="${player.id }" name="titularId1[${indexTeam1}]"/> ${player.number} - <c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</td>
 			                    			<td>
 			                    				<select name="substituteId1[${indexTeam1}]">
@@ -119,7 +119,7 @@
 			                    	<c:forEach items="${defensers1}" var="player">
 			                    		<c:set var="substitutePlayer" value="${substitutes[player.id]}"/>
 			                    		<tr>
-			                    			<td style='width:7em;'><input type="checkbox" name="titular1[${indexTeam1}]" ${ titularsTeam1.contains(player.id) ? 'checked="checked"' : ''}/></td>
+			                    			<td style='width:7em;'><input class="team1-titular" type="checkbox" name="titular1[${indexTeam1}]" ${ titularsTeam1.contains(player.id) ? 'checked="checked"' : ''}/></td>
 			                    			<td><input type="hidden" value="${player.id }" name="titularId1[${indexTeam1}]"/> ${player.number} - <c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</td>
 			                    			<td>
 			                    				<select name="substituteId1[${indexTeam1}]">
@@ -145,7 +145,7 @@
 			                    	<c:forEach items="${middles1}" var="player">
 			                    		<c:set var="substitutePlayer" value="${substitutes[player.id]}"/>
 			                    		<tr>
-			                    			<td style='width:7em;'><input type="checkbox" name="titular1[${indexTeam1}]" ${ titularsTeam1.contains(player.id) ? 'checked="checked"' : ''}/></td>
+			                    			<td style='width:7em;'><input class="team1-titular" type="checkbox" name="titular1[${indexTeam1}]" ${ titularsTeam1.contains(player.id) ? 'checked="checked"' : ''}/></td>
 			                    			<td><input type="hidden" value="${player.id }" name="titularId1[${indexTeam1}]"/> ${player.number} - <c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</td>
 			                    			<td>
 			                    				<select name="substituteId1[${indexTeam1}]">
@@ -171,7 +171,7 @@
 			                    	<c:forEach items="${strikers1}" var="player">
 			                    		<c:set var="substitutePlayer" value="${substitutes[player.id]}"/>
 			                    		<tr>
-			                    			<td style='width:7em;'><input type="checkbox" name="titular1[${indexTeam1}]" ${ titularsTeam1.contains(player.id) ? 'checked="checked"' : ''}/></td>
+			                    			<td style='width:7em;'><input class="team1-titular" type="checkbox" name="titular1[${indexTeam1}]" ${ titularsTeam1.contains(player.id) ? 'checked="checked"' : ''}/></td>
 			                    			<td><input type="hidden" value="${player.id }" name="titularId1[${indexTeam1}]"/> ${player.number} - <c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</td>
 			                    			<td>
 			                    				<select name="substituteId1[${indexTeam1}]">
@@ -212,7 +212,7 @@
 			                    	<c:forEach items="${goals2}" var="player">
 			                    		<c:set var="substitutePlayer" value="${substitutes[player.id]}"/>
 			                    		<tr>
-			                    			<td style='width:7em;'><input type="checkbox" name="titular2[${indexTeam2}]" ${ titularsTeam2.contains(player.id) ? 'checked="checked"' : ''}/></td>
+			                    			<td style='width:7em;'><input class="team2-titular" type="checkbox" name="titular2[${indexTeam2}]" ${ titularsTeam2.contains(player.id) ? 'checked="checked"' : ''}/></td>
 			                    			<td><input type="hidden" value="${player.id }" name="titularId2[${indexTeam2}]"/> ${player.number} - <c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</td>
 		                    				<td>
 			                    				<select name="substituteId2[${indexTeam2}]">
@@ -238,7 +238,7 @@
 			                    	<c:forEach items="${defensers2}" var="player">
 			                    		<c:set var="substitutePlayer" value="${substitutes[player.id]}"/>
 			                    		<tr>
-			                    			<td style='width:7em;'><input type="checkbox" name="titular2[${indexTeam2}]" ${ titularsTeam2.contains(player.id) ? 'checked="checked"' : ''}/></td>
+			                    			<td style='width:7em;'><input class="team2-titular" type="checkbox" name="titular2[${indexTeam2}]" ${ titularsTeam2.contains(player.id) ? 'checked="checked"' : ''}/></td>
 			                    			<td><input type="hidden" value="${player.id }" name="titularId2[${indexTeam2}]"/> ${player.number} - <c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</td>
 			                    			<td>
 			                    				<select name="substituteId2[${indexTeam2}]">
@@ -264,7 +264,7 @@
 			                    	<c:forEach items="${middles2}" var="player">
 			                    		<c:set var="substitutePlayer" value="${substitutes[player.id]}"/>
 			                    		<tr>
-			                    			<td style='width:7em;'><input type="checkbox" name="titular2[${indexTeam2}]" ${ titularsTeam2.contains(player.id) ? 'checked="checked"' : ''}/></td>
+			                    			<td style='width:7em;'><input class="team2-titular" type="checkbox" name="titular2[${indexTeam2}]" ${ titularsTeam2.contains(player.id) ? 'checked="checked"' : ''}/></td>
 			                    			<td><input type="hidden" value="${player.id }" name="titularId2[${indexTeam2}]"/> ${player.number} - <c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</td>
 			                    			<td>
 			                    				<select name="substituteId2[${indexTeam2}]">
@@ -290,7 +290,7 @@
 			                    	<c:forEach items="${strikers2}" var="player">
 			                    		<c:set var="substitutePlayer" value="${substitutes[player.id]}"/>
 			                    		<tr>
-			                    			<td style='width:7em;'><input type="checkbox" name="titular2[${indexTeam2}]" ${ titularsTeam2.contains(player.id) ? 'checked="checked"' : ''}/></td>
+			                    			<td style='width:7em;'><input class="team2-titular" type="checkbox" name="titular2[${indexTeam2}]" ${ titularsTeam2.contains(player.id) ? 'checked="checked"' : ''}/></td>
 			                    			<td><input type="hidden" value="${player.id }" name="titularId2[${indexTeam2}]"/> ${player.number} - <c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</td>
 			                    			<td>
 			                    				<select name="substituteId2[${indexTeam2}]">
@@ -367,6 +367,32 @@
 		}else{
 			$('tbody#body-compisition tr').css('display', 'none');
 			$(this).val('Ouvrir');
+		}
+	});
+	
+	$("input.team1-titular").click(function(e){
+		var value = $( "input.team1-titular:checked" ).length;
+		if(value == 11){
+			$( "input.team1-titular:not(:checked)" ).each(function( index ) {
+				$(this).attr('disabled', 'disabled');
+			});
+		} else {
+			$( "input.team1-titular:not(:checked)" ).each(function( index ) {
+				$(this).removeAttr('disabled');
+			});
+		}
+	});
+	
+	$("input.team2-titular").click(function(e){
+		var value = $( "input.team2-titular:checked" ).length;
+		if(value == 11){
+			$( "input.team2-titular:not(:checked)" ).each(function( index ) {
+				$(this).attr('disabled', 'disabled');
+			});
+		} else {
+			$( "input.team2-titular:not(:checked)" ).each(function( index ) {
+				$(this).removeAttr('disabled');
+			});
 		}
 	});
 	
