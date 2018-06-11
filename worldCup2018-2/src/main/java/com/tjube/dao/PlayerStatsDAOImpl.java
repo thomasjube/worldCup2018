@@ -418,6 +418,7 @@ public class PlayerStatsDAOImpl
 				.createNamedQuery(PlayerStats.QN.RETRIEVE_STATS_WORLD_CUP_FOR_ACTION_AND_GAME, Object[].class);
 
 		query.setParameter("action", Action.CHANGEMENT_OUT);
+		query.setParameter("action2", Action.CHANGEMENT_IN);
 		query.setParameter("game", game);
 
 		for (Object[] values : query.getResultList())
