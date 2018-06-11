@@ -85,15 +85,36 @@
 		                    	<c:forEach begin="0" end="${11}" var="index">
 		                    		<tr id="${game.id}" style="display:none">
 		                    			<c:choose>
-		                    				<c:set></c:set>
-		                    				<c:when test="${not empty mapTeam1 and mapTeam1.length > index}">
-		                    					 <td width="50%"><c:out value="${mapTeam1.get(index).name}"/></td>
+		                    				<c:when test="${not empty mapTeam1 and mapTeam1.size() > index}">
+		                    					<c:set var="player" value="${mapTeam1.get(index)}"/>
+		                    					 <td width="50%">
+		                    					 	  <c:choose>
+		                    							<c:when test="${player.poste == 'G'}">Gardien - ${player.number} - </c:when>
+		                    							<c:when test="${player.poste == 'D'}">Défenseur - ${player.number} - </c:when>
+		                    							<c:when test="${player.poste == 'M'}">Milieux - ${player.number} - </c:when>
+		                    							<c:when test="${player.poste == 'A'}">Attaquant - ${player.number} - </c:when>
+		                    						</c:choose> 
+			                    					<c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}
+			                    					<c:if test=${not empty substitutes[player]}>
+			                    						<c:set var="playerSubstitute" value="${substitutes[player]}"/>
+			                    						remplacé par <c:if test="${not empty ${playerSubstitute.player.firstName }}">${playerSubstitute.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute.player.name}
+			                    					</c:if>
+		                    					 </td>
 		                    				</c:when>
-		                    				<c:otherwise<td width="50%"></td>></c:otherwise>
+		                    				<c:otherwise><td width="50%"></td></c:otherwise>
 		                    			</c:choose>
 		                    			<c:choose>
-	                    					<c:when test="${not empty mapTeam2 and mapTeam2.length > index}">
-	                    						<td width="50%"></td>
+	                    					<c:when test="${not empty mapTeam2 and mapTeam2.size() > index}">
+              								<c:set var="player" value="${mapTeam2.get(index)}"/>
+		                    					 <td width="50%">
+		                    					 	  <c:choose>
+		                    							<c:when test="${player.poste == 'G'}">Gardien - ${player.number} - </c:when>
+		                    							<c:when test="${player.poste == 'D'}">Défenseur - ${player.number} - </c:when>
+		                    							<c:when test="${player.poste == 'M'}">Milieux - ${player.number} - </c:when>
+		                    							<c:when test="${player.poste == 'A'}">Attaquant - ${player.number} - </c:when>
+		                    						</c:choose> 
+			                    					
+		                    					 </td>
 	                    					</c:when>
 		                    				<c:otherwise><td width="50%"></td></c:otherwise>	                    			
 		                    			</c:choose>
@@ -235,7 +256,6 @@
 	<script>
 	
 	$(document).ready(function(){
-		$("#show-composition").click();
 	});
 	
 	$("#show-composition").click(function(e){

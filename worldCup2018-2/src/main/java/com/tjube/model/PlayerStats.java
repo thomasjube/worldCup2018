@@ -21,7 +21,7 @@ import javax.persistence.Table;
 		@NamedQuery(name = PlayerStats.QN.RETRIEVE_STATS_WORLD_CUP_FOR_ACTION,
 				query = "select pl,count(st) AS RESULT FROM PlayerStats st LEFT OUTER JOIN st.player pl where st.action=:action GROUP BY pl ORDER BY RESULT DESC, pl.name ASC"),
 		@NamedQuery(name = PlayerStats.QN.RETRIEVE_STATS_WORLD_CUP_FOR_ACTION_AND_GAME_AND_TEAM,
-				query = "select pl AS RESULT FROM PlayerStats st LEFT OUTER JOIN st.player pl where st.action=:action and st.game=:game and st.player.team=:team GROUP BY pl ORDER BY RESULT DESC, pl.name ASC"),
+				query = "select pl FROM PlayerStats st LEFT OUTER JOIN st.player pl where st.action=:action and st.game=:game and st.player.team=:team GROUP BY pl ORDER BY pl.name ASC"),
 		@NamedQuery(name = PlayerStats.QN.RETRIEVE_STATS_BY_PLAYER,
 				query = "select count(st) from PlayerStats st where st.action =:action and st.player =:player "),
 		@NamedQuery(name = PlayerStats.QN.RETRIEVE_STATS_BY_PLAYER_WITH_MINUTES,

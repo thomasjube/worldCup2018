@@ -389,7 +389,8 @@ public class PlayerStatsDAOImpl
 		query.setParameter("team", game.getTeam1());
 
 		List<Player> players = new ArrayList(query.getResultList());
-		Collections.sort(players, new PlayerComparator());
+		if (!players.isEmpty())
+			Collections.sort(players, new PlayerComparator());
 
 		query = m_entityManager.createNamedQuery(PlayerStats.QN.RETRIEVE_STATS_WORLD_CUP_FOR_ACTION_AND_GAME_AND_TEAM,
 				Player.class);
@@ -399,7 +400,8 @@ public class PlayerStatsDAOImpl
 		query.setParameter("team", game.getTeam2());
 
 		List<Player> players2 = new ArrayList(query.getResultList());
-		Collections.sort(players2, new PlayerComparator());
+		if (!players2.isEmpty())
+			Collections.sort(players2, new PlayerComparator());
 
 		results.put(game.getTeam1().getId(), players);
 		results.put(game.getTeam2().getId(), players2);
