@@ -22,6 +22,8 @@ import javax.persistence.Table;
 				query = "select pl,count(st) AS RESULT FROM PlayerStats st LEFT OUTER JOIN st.player pl where st.action=:action GROUP BY pl ORDER BY RESULT DESC, pl.name ASC"),
 		@NamedQuery(name = PlayerStats.QN.RETRIEVE_STATS_WORLD_CUP_FOR_ACTION_AND_GAME_AND_TEAM,
 				query = "select pl FROM PlayerStats st LEFT OUTER JOIN st.player pl where st.action=:action and st.game=:game and st.player.team=:team GROUP BY pl ORDER BY pl.name ASC"),
+		@NamedQuery(name = PlayerStats.QN.RETRIEVE_STATS_WORLD_CUP_FOR_ACTION_AND_GAME,
+				query = "select st.player.id,st2 FROM PlayerStats st, PlayerStats st2 where st.minute = st2.minute and st.action =:action and st2.action =:action2 and st.game=:game ORDER BY st.minute ASC"),
 		@NamedQuery(name = PlayerStats.QN.RETRIEVE_STATS_BY_PLAYER,
 				query = "select count(st) from PlayerStats st where st.action =:action and st.player =:player "),
 		@NamedQuery(name = PlayerStats.QN.RETRIEVE_STATS_BY_PLAYER_WITH_MINUTES,
@@ -53,6 +55,7 @@ public class PlayerStats
 		public static final String RETRIEVE_STATS_BY_PLAYER_WITH_MINUTES = "PlayerStats.retrieveStatByPlayerWithMinutes";
 		public static final String RETRIEVE_STATS_WORLD_CUP_FOR_ACTION = "PlayerStats.retrieveStatsWorldCupForAction";
 		public static final String RETRIEVE_STATS_WORLD_CUP_FOR_ACTION_AND_GAME_AND_TEAM = "PlayerStats.retrieveStatsWorldCupForActionAndGameAndTeam";
+		public static final String RETRIEVE_STATS_WORLD_CUP_FOR_ACTION_AND_GAME = "PlayerStats.retrieveStatsWorldCupForActionAndGame";
 	}
 
 	private static final long serialVersionUID = -1740184637168312573L;

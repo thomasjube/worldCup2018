@@ -41,4 +41,6 @@ public interface PlayerStatsDAO
 	public List<StatsWorldCup> retrieveWorldCupStatsRedCard(int maxResults);
 
 	public Map<Integer, Collection<Player>> getTitulars(Game game);
+
+	public Map<Integer, PlayerStats> getSubstitutes(Game game);
 }
