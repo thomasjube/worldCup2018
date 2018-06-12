@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -13,16 +14,14 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @NamedQueries({
-	@NamedQuery(name = WinnaBet.QN.GET_WINNABET_BY_ID, query = "select wb from WinnaBet wb where wb.id =:id "),
-	@NamedQuery(name = WinnaBet.QN.getWinnaBetByName,
-			query = "select wb from WinnaBet wb where wb.name =:name"),
-	@NamedQuery(name = WinnaBet.QN.getWinnaBetByGame,
-			query = "select wb from WinnaBet wb where wb.game =:game "),
-	@NamedQuery(name = WinnaBet.QN.GET_NB_SCORE,
-		query = "select wb.name,count(wb) as score from WinnaBet wb WHERE wb.goodScore = TRUE GROUP BY wb.name"),
-	@NamedQuery(name = WinnaBet.QN.GET_NB_RESULT,
-		query = "select wb.name,count(wb) as score from WinnaBet wb WHERE wb.goodResult = TRUE GROUP BY wb.name"),
-	@NamedQuery(name = WinnaBet.QN.GET_ALL_WINNABET, query = "select wb from WinnaBet wb") })
+		@NamedQuery(name = WinnaBet.QN.GET_WINNABET_BY_ID, query = "select wb from WinnaBet wb where wb.id =:id "),
+		@NamedQuery(name = WinnaBet.QN.getWinnaBetByName, query = "select wb from WinnaBet wb where wb.name =:name"),
+		@NamedQuery(name = WinnaBet.QN.getWinnaBetByGame, query = "select wb from WinnaBet wb where wb.game =:game "),
+		@NamedQuery(name = WinnaBet.QN.GET_NB_SCORE,
+				query = "select wb.name,count(wb) as score from WinnaBet wb WHERE wb.goodScore = TRUE GROUP BY wb.name"),
+		@NamedQuery(name = WinnaBet.QN.GET_NB_RESULT,
+				query = "select wb.name,count(wb) as score from WinnaBet wb WHERE wb.goodResult = TRUE GROUP BY wb.name"),
+		@NamedQuery(name = WinnaBet.QN.GET_ALL_WINNABET, query = "select wb from WinnaBet wb") })
 @Entity
 @Table(name = "WINNA_BET")
 public class WinnaBet
@@ -54,7 +53,7 @@ public class WinnaBet
 	@Enumerated(EnumType.STRING)
 	private BetName name;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Game game;
 
 	@Column
@@ -73,10 +72,12 @@ public class WinnaBet
 	{
 	}
 
-	public WinnaBet(Integer id, String name, Integer positionPoule, Poule poule)
+	public WinnaBet(Integer id, BetName name, int score1, int score2)
 	{
-		super();
 		this.id = id;
+		this.name = name;
+		this.score1 = score1;
+		this.score2 = score2;
 	}
 
 	public int getId()
