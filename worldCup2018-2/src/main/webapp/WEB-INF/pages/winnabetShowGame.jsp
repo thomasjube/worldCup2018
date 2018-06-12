@@ -200,9 +200,28 @@
     <script src="<%=request.getContextPath()%>/resources/js/functions.js"></script>
     
     <script>
-    var team = "${team.name}";
+    var gameId = ${game.id};
     $(document).ready(function(){
     });
+    
+    $(".game-selector").change(function(e){
+    	$(location).attr('href','game?id='+$(this).val());
+    });
+    
+    $("#lastGame").click(function(e){
+    	if(gameId != 1 ){
+    		var value = gameId - 1;
+    		$(location).attr('href','game?id=' + value);
+    	}
+    });
+    
+    $("#nextGame").click(function(e){
+    	if(gameId != 64){
+    		var value = gameId + 1;
+    		$(location).attr('href','game?id=' + value);
+    	}
+    });
+    
     
     </script>
 
