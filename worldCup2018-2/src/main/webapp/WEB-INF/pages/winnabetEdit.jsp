@@ -188,12 +188,12 @@
     $("#add_winabet").click(function(e){
     	var newIndex = 0;
     	if(numberLines != 0)
-    		newIndex = numberLines + 1;
+    		newIndex = numberLines;
     	
     	var newLine = "<tr id='winabetLine["+ newIndex +"]' class='winabet_line_"+ newIndex +"'>";
     	newLine += "<td><select name='betNames["+ newIndex +"]'><c:forEach items='${betNames}' var='betName' varStatus='statusName'><option value='${betName}' label='${betName}'/></c:forEach></select></td>";
-    	newLine += "<td><select name='resultsTeam1["+ newIndex +"]'><c:forEach begin='0' end='15' var='score'><option value='{score}' label='${score}'/></c:forEach></select></td>";
-    	newLine += "<td><select name='resultsTeam2["+ newIndex +"]'><c:forEach begin='0' end='15' var='score'><option value='{score}' label='${score}'/></c:forEach></select></td>";
+    	newLine += "<td><select name='resultsTeam1["+ newIndex +"]'><c:forEach begin='0' end='15' var='score'><option value='${score}' label='${score}'/></c:forEach></select></td>";
+    	newLine += "<td><select name='resultsTeam2["+ newIndex +"]'><c:forEach begin='0' end='15' var='score'><option value='${score}' label='${score}'/></c:forEach></select></td>";
     	newLine += "<td><input name='removeWinabets["+ newIndex +"]' id='removeWinabets"+ newIndex +"' type='hidden' value='false'>";
     	newLine += "<input class='remove_winabet' id='winabetRemove"+ newIndex +"' value='Remove' type='button' class='table-button'></td>";
     	newLine += "</tr>";

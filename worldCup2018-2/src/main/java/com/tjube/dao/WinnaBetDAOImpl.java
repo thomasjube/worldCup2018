@@ -11,6 +11,7 @@ import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
@@ -85,6 +86,11 @@ public class WinnaBetDAOImpl
 
 			m_entityManager.remove(winnaBet);
 		}
+
+		Query query = m_entityManager.createQuery("DELETE FROM WinnaBet WHERE game =:game");
+		query.setParameter("game", game);
+
+		query.executeUpdate();
 	}
 
 	@Override

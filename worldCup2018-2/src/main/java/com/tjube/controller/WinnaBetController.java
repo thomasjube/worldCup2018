@@ -96,7 +96,7 @@ public class WinnaBetController
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public ModelAndView winabetEditPost(@ModelAttribute WinnaBet winnaBet, @ModelAttribute("form") WinnabetForm form)
+	public ModelAndView winabetEditPost(@ModelAttribute("form") WinnabetForm form)
 	{
 		Game game = gameService.getGame(form.getGameId());
 
