@@ -31,4 +31,6 @@ public interface WinnaBetService
 	public void verifyBets(Game game);
 
 	public List<BetClassementLine> getBetClassement();
+
+	public void resetWinnaBet(WinnaBet winnaBet);
 }

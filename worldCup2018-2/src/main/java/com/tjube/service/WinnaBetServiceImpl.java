@@ -87,4 +87,10 @@ public class WinnaBetServiceImpl
 	{
 		return winnaBetDAO.getBetClassement();
 	}
+
+	@Override
+	public void resetWinnaBet(WinnaBet winnaBet)
+	{
+		winnaBetDAO.resetWinnaBet(winnaBet);
+	}
 }

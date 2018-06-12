@@ -28,6 +28,7 @@ import com.tjube.model.Player;
 import com.tjube.model.PlayerStats;
 import com.tjube.model.Poule;
 import com.tjube.model.Team;
+import com.tjube.model.WinnaBet;
 import com.tjube.service.GameService;
 import com.tjube.service.PlayerService;
 import com.tjube.service.PlayerStatsService;
@@ -50,7 +51,7 @@ public class GameController
 
 	@Autowired
 	private GameService gameService;
-	
+
 	@Autowired
 	private WinnaBetService winnaBetService;
 
@@ -3168,7 +3169,7 @@ public class GameController
 			gameService.updateDemis(game);
 		else if (game.getId() == 61 || game.getId() == 62)
 			gameService.updateFinale(game);
-		
+
 		winnaBetService.verifyBets(game);
 
 		return new ModelAndView("redirect:/game/");
@@ -3224,6 +3225,9 @@ public class GameController
 
 		game = gameService.resetGame(game);
 		playerStatsService.deletePlayerStats(game);
+
+		for (WinnaBet winnaBet : winnaBetService.getWinnaBets(game))
+			winnaBetService.resetWinnaBet(winnaBet);
 
 		if (game.getGameInPoule())
 		{

@@ -138,6 +138,13 @@ public class WinnaBetDAOImpl
 	}
 
 	@Override
+	public void resetWinnaBet(WinnaBet winnaBet)
+	{
+		winnaBet.setGoodResult(false);
+		winnaBet.setGoodScore(false);
+	}
+
+	@Override
 	public void verifyBets(Game game)
 	{
 		Collection<WinnaBet> winnaBets = getWinnaBets(game);
