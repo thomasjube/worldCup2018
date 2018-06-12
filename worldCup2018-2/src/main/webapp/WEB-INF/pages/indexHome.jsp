@@ -62,6 +62,8 @@
 						<li><a href="<%=request.getContextPath()%>/poule">Poules</a></li>
 						<li><a href="<%=request.getContextPath()%>/game">Matchs</a></li>
 						<li><a href="<%=request.getContextPath()%>/stats">Statistiques</a></li>
+						<li><a href="<%=request.getContextPath()%>/winabet/edit">Saisie pari</a></li>
+						<li><a href="<%=request.getContextPath()%>/winabet">Classement paro</a></li>
 					</ul>
 				</div>
 				<!--NAVIGATION END-->
