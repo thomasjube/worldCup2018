@@ -699,6 +699,12 @@ Sidebar heading:	'Oswald', sans-serif;
 	margin-left: 1em;
 }
 
+.game-selector{
+	width: 50%;
+	margin-right: 1em;
+	margin-left: 1em;
+}
+
 span.name-team{
 	width: auto !important;
 	position: relative;

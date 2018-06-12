@@ -1,5 +1,6 @@
 package com.tjube.controller;
 
+import java.util.EnumSet;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -78,6 +79,9 @@ public class WinnaBetController
 		Game game = gameService.getGame(gameId);
 		model.addObject("game", game);
 
+		EnumSet<BetName> betNames = EnumSet.allOf(BetName.class);
+		model.addObject("betNames", betNames);
+
 		List<Game> games = gameService.getAllGames();
 		model.addObject("games", games);
 
@@ -92,7 +96,7 @@ public class WinnaBetController
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public ModelAndView winabetEditPost(@ModelAttribute WinnaBet winnaBet, @ModelAttribute("form") WinnabetForm form)
+	public ModelAndView winabetEditPost(@ModelAttribute("form") WinnabetForm form)
 	{
 		Game game = gameService.getGame(form.getGameId());
 
@@ -100,13 +104,17 @@ public class WinnaBetController
 
 		for (int i = 0; i < form.getBetNames().size(); i++)
 		{
-			BetName betName = form.getBetNames().get(i);
-			Integer resultTeam1 = form.getResultsTeam1().get(i);
-			Integer resultTeam2 = form.getResultsTeam2().get(i);
+			Boolean toRemove = form.getRemoveWinabets().get(i);
+			if (toRemove == null || !toRemove)
+			{
+				BetName betName = form.getBetNames().get(i);
+				Integer resultTeam1 = form.getResultsTeam1().get(i);
+				Integer resultTeam2 = form.getResultsTeam2().get(i);
 
-			winnaBetService.add(new WinnaBet(betName, game, resultTeam1, resultTeam2));
+				winnaBetService.add(new WinnaBet(betName, game, resultTeam1, resultTeam2));
+			}
 		}
 
-		return new ModelAndView("redirect:/winaBet/game?id=");
+		return new ModelAndView("redirect:/winabet/game?id=" + game.getId());
 	}
 }

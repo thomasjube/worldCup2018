@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -3021,7 +3022,7 @@ public class GameController
 	{
 		if (game.getId() == 0)
 		{ // if employee id is 0 then creating the
-				// employee other updating the employee
+			// employee other updating the employee
 			gameService.addGame(game);
 		}
 		else
@@ -3213,6 +3214,83 @@ public class GameController
 		model.addObject("editCompoForm", new GameEditCompoForm(game));
 
 		return model;
+	}
+
+	@RequestMapping(value = "/editGameCompo", method = RequestMethod.POST)
+	public ModelAndView editGameCompoPost(HttpServletRequest request,
+			@ModelAttribute("editCompoForm") GameEditCompoForm gameEditCompoForm)
+	{
+		Game game = gameService.getGame(gameEditCompoForm.getGameId());
+		ModelAndView model = new ModelAndView("gameEditCompo");
+		model.addObject("game", game);
+
+		playerStatsService.deletePlayerStats(game,
+				Arrays.asList(Action.TITULAR, Action.CHANGEMENT_OUT, Action.CHANGEMENT_IN));
+
+		for (int i = 0; i < gameEditCompoForm.getTitular1().length; i++)
+		{
+			boolean isTitular = gameEditCompoForm.getTitular1()[i];
+			Player player = playerService.getPlayer(gameEditCompoForm.getTitularId1().get(i));
+
+			if (isTitular)
+			{
+				PlayerStats titularStat = playerStatsService
+						.addPlayerStats(new PlayerStats(game, player, 0, Action.TITULAR));
+				game.addPlayerStat(titularStat);
+				player.addPlayerStat(titularStat);
+			}
+
+			Integer isSubstitute = gameEditCompoForm.getSubstituteId1().get(i);
+			if (isSubstitute != null)
+			{
+				Integer minuteSubstitute = gameEditCompoForm.getMinute1().get(i);
+				Player playerSubstitute = playerService.getPlayer(gameEditCompoForm.getSubstituteId1().get(i));
+
+				PlayerStats substituteOutStat = playerStatsService
+						.addPlayerStats(new PlayerStats(game, player, minuteSubstitute, Action.CHANGEMENT_OUT));
+
+				player.addPlayerStat(substituteOutStat);
+				game.addPlayerStat(substituteOutStat);
+
+				PlayerStats substituteInStat = playerStatsService.addPlayerStats(
+						new PlayerStats(game, playerSubstitute, minuteSubstitute, Action.CHANGEMENT_IN));
+
+				game.addPlayerStat(substituteInStat);
+				playerSubstitute.addPlayerStat(substituteInStat);
+			}
+		}
+
+		for (int i = 0; i < gameEditCompoForm.getTitular2().length; i++)
+		{
+			boolean isTitular = gameEditCompoForm.getTitular2()[i];
+			Player player = playerService.getPlayer(gameEditCompoForm.getTitularId2().get(i));
+
+			if (isTitular)
+			{
+				PlayerStats titularStat = playerStatsService
+						.addPlayerStats(new PlayerStats(game, player, 0, Action.TITULAR));
+				game.addPlayerStat(titularStat);
+			}
+
+			Integer isSubstitute = gameEditCompoForm.getSubstituteId2().get(i);
+			if (isSubstitute != null)
+			{
+				Integer minuteSubstitute = gameEditCompoForm.getMinute2().get(i);
+				Player playerSubstitute = playerService.getPlayer(gameEditCompoForm.getSubstituteId2().get(i));
+
+				PlayerStats substituteOutStat = playerStatsService
+						.addPlayerStats(new PlayerStats(game, player, minuteSubstitute, Action.CHANGEMENT_OUT));
+
+				game.addPlayerStat(substituteOutStat);
+
+				PlayerStats substituteInStat = playerStatsService.addPlayerStats(
+						new PlayerStats(game, playerSubstitute, minuteSubstitute, Action.CHANGEMENT_IN));
+
+				game.addPlayerStat(substituteInStat);
+			}
+		}
+
+		return new ModelAndView("redirect:/game/editGame?id=" + game.getId());
 	}
 
 	@RequestMapping(value = "/reset", method = RequestMethod.GET)
