@@ -67,165 +67,98 @@
       <div class="kode-content">
 		<br /><br /><br /><br />
         <!--// Page Content //-->
+                <section>
+	        <div class="container">
+	            <div class="row">
+	            	<div class="kode-pagecontent col-md-8" style="text-align: center;">
+	            		<a id="lastGame" href="#"><img alt="" src="<%=request.getContextPath()%>/resources/images/gauche.png" width="30" height="30"></a>
+		            	<select class="game-selector">
+		            		<c:forEach items="${games}" var="value">
+		            			<option value="${value.id}" ${value.id == game.id ? 'selected' : '' }>Match :  ${value.team1.name} vs ${value.team2.name }</option>
+		            		</c:forEach>
+		            	</select>
+		            	<a id="nextGame" href="#"><img alt="" src="<%=request.getContextPath()%>/resources/images/droite.png" width="30" height="30"></a>
+	            	</div>
+	            </div>
+	            <br/>
+	        </div>
+        </section>
+        
+        <section class="kode-pagesection kode-pagecontent kode-result-list shape-view margin-bottom-40">
+          <div class="container">
+            <div class="row">
+				<div class="col-md-12">
+					<div class="heading heading-12 margin-top10-bottom-80">
+						<h2><span class="left"></span>Résultats<span class="right"></span></h2>
+						
+						<br /><br /><br /><br /><br /><br />
+					</div>
+				</div>
+	                 <div class="col-md-6">
+	                    <article>
+	                      <span class="kode-result-count thbg-colortwo">${not empty game.score1 ? game.score1 : '-'}</span>
+	                      <div class="kode-result-thumb">
+	                        <a href="#"><img src="<%=request.getContextPath()%>/resources/images/flag/${game.team1.name}.png" alt="" width="110" height="110"></a>
+	                      </div>
+	                      <div class="kode-result-info">
+	                        <h2><a href="#">${game.team1.name}</a> <span><c:choose><c:when test="${empty game.score1 && empty game.score2 }"> </c:when><c:when test="${game.score1 > game.score2}">VIC</c:when><c:when test="${game.score1 < game.score2}">DEF</c:when><c:otherwise>NUL</c:otherwise></c:choose></span></h2>
+	                        <ul>
+	                          <c:forEach var="goal" items="${game.getGoalsTeam1()}">
+		                          <li>${goal.player.name}<span>(${goal.minute}')</span></li>
+	                          </c:forEach>
+                        	</ul>
+	                      </div>
+	                    </article>
+	                </div>
+	                <div class="col-md-6">
+	                  <article class="kode-even">
+	                    <span class="kode-result-count thbg-colortwo">${not empty game.score2 ? game.score2 : '-'}</span>
+	                    <div class="kode-result-thumb-2">
+	                      <a href="#"><img src="<%=request.getContextPath()%>/resources/images/flag/${game.team2.name}.png" alt="" width="110" height="110"></a>
+	                    </div>
+	                    <div class="kode-result-info">
+	                      <h2><a href="#">${game.team2.name}</a> <span><c:choose><c:when test="${empty game.score1 && empty game.score2 }"></c:when> <c:when test="${game.score1 < game.score2}">VIC</c:when><c:when test="${game.score1 > game.score2}">DEF</c:when><c:otherwise>NUL</c:otherwise></c:choose></span></h2>
+	                      <ul>
+	                          <c:forEach var="goal" items="${game.getGoalsTeam2()}">
+		                          <li>${goal.player.name}<span>(${goal.minute}')</span></li>
+	                          </c:forEach>
+                       	</ul>
+	                    </div>
+	                  </article>
+	                </div>
+              </div>
+            </div>
+        </section>
+        
         <section class="kode-pagesection margin-bottom-40">
           <div class="container">
             <div class="row">
-            
-                <div class="kode-pagecontent col-md-8">
-                  <div style="text-align:center;">
-                  	<img class="flag" style="top:0.5em;position:relative;float:left;margin-left:25%" src="<%=request.getContextPath()%>/resources/images/flag/${team.name}.png" alt="" width="120" height="100">&nbsp;
-	              	<h1 style="font-size:80px;position:relative;float:left;margin-left:5%">${team.name}</h1>
-                  </div>
-                    <div class="kode-fixer-counter">
-                      <h2 class="thbg-color" style="color:white !important;">Composition de l'équipe</h2>
-                    </div>
-	                    <table>
-	                    <tbody>
-	                    <tr class="table-head goal-color">
-	                    	<td style="width:50%;"><h4>Gardiens</h4></td>
-	                    	<td style="width:10%;text-align:center;vertical-align:middle;"><img height="40px" width="40px" src="<%=request.getContextPath()%>/resources/images/icones/time.png"/></td>
-	                    	<td style="width:10%;text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/goal.png"/></td>
-	                    	<td style="width:10%;text-align:center;vertical-align:middle;"><img width="50%" src="<%=request.getContextPath()%>/resources/images/icones/crampons_1.png"/></td>
-	                    	<td style="width:10%;text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/cartons_jaune.png"/></td>
-	                    	<td style="width:10%;text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/cartons_rouge.png"/></td>
-	                    </tr>
-	                    <c:forEach var="player" items="${goals}">
-		                    <tr class="table-body">
-		                      <td id="${player.id}" style="width:50%;">
-		                        <span><c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</span>
-		                      </td>
-		                     <td style="width:10%;">
-		                      	<c:out value="${statsTeam[player.id].playingMinutes}"/>
-		                      </td>
-		                        <td style="width:10%;">
-		                      		<c:out value="${statsTeam[player.id].goals}"/>
-		                      		<c:set var="totalGoals" value="${totalGoals + statsTeam[player.id].goals}"/>
-		                      </td>
-		                      <td style="width:10%;">
-		                      		<c:out value="${statsTeam[player.id].passes}"/>
-		                      		<c:set var="totalPasses" value="${totalPasses + statsTeam[player.id].passes}"/>
-		                      </td>
-		                      <td style="width:10%;">
-		                      		<c:out value="${statsTeam[player.id].yellowCard}"/>
-		                      		<c:set var="totalYellowCards" value="${totalYellowCards + statsTeam[player.id].yellowCard}"/>
-		                      </td>
-		                      <td style="width:10%;">
-		                      		<c:out value="${statsTeam[player.id].redCard}"/>
-		                      		<c:set var="totalRedCards" value="${totalRedCards + statsTeam[player.id].redCard}"/>
-		                      </td>
-		                    </tr>
-	                    </c:forEach>
-	                    <tr class="table-head defenser-color">
-	                    	<td style="width:50%;"><h4>Défenseurs</h4></td>
-	                    	<td style="text-align:center;vertical-align:middle;"><img height="40px" width="40px" src="<%=request.getContextPath()%>/resources/images/icones/time.png"/></td>
-	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/goal.png"/></td>
-	                    	<td style="text-align:center;vertical-align:middle;"><img width="50%" src="<%=request.getContextPath()%>/resources/images/icones/crampons_1.png"/></td>
-	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/cartons_jaune.png"/></td>
-	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/cartons_rouge.png"/></td>
-	                    </tr>
-	                    <c:forEach var="player" items="${defensers}">
-		                    <tr class="table-body">
-		                      <td id="${player.id}" style="width:50%;">
-		                        <span><c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</span>
-		                      </td>
-		                      <td style="width:10%;">
-		                      	<c:out value="${statsTeam[player.id].playingMinutes}"/>
-		                      </td>
-		                       <td style="width:10%;">
-		                      		<c:out value="${statsTeam[player.id].goals}"/>
-		                      		<c:set var="totalGoals" value="${totalGoals + statsTeam[player.id].goals}"/>
-		                      </td>
-		                      <td style="width:10%;">
-		                      		<c:out value="${statsTeam[player.id].passes}"/>
-		                      		<c:set var="totalPasses" value="${totalPasses + statsTeam[player.id].passes}"/>
-		                      </td>
-		                      <td style="width:10%;">
-		                      		<c:out value="${statsTeam[player.id].yellowCard}"/>
-		                      		<c:set var="totalYellowCards" value="${totalYellowCards + statsTeam[player.id].yellowCard}"/>
-		                      </td>
-		                      <td style="width:10%;">
-		                      		<c:out value="${statsTeam[player.id].redCard}"/>
-		                      		<c:set var="totalRedCards" value="${totalRedCards + statsTeam[player.id].redCard}"/>
-		                      </td>
-		                    </tr>
-	                    </c:forEach>
-	                    <tr class="table-head middle-color">
-	                    	<td style="width:50%;"><h4>Milieux de terrain</h4></td>
-	                    	<td style="text-align:center;vertical-align:middle;"><img height="40px" width="40px" src="<%=request.getContextPath()%>/resources/images/icones/time.png"/></td>
-	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/goal.png"/></td>
-	                    	<td style="text-align:center;vertical-align:middle;"><img width="50%" src="<%=request.getContextPath()%>/resources/images/icones/crampons_1.png"/></td>
-	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/cartons_jaune.png"/></td>
-	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/cartons_rouge.png"/></td>
-	                    </tr>
-	                    <c:forEach var="player" items="${middles}">
-		                    <tr class="table-body">
-		                      <td id="${player.id}" style="width:50%;">
-		                        <span><c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</span>
-		                      </td>
-		                      <td style="width:10%;">
-		                      	<c:out value="${statsTeam[player.id].playingMinutes}"/>
-		                      </td>
-		                       <td style="width:10%;">
-		                      		<c:out value="${statsTeam[player.id].goals}"/>
-									<c:set var="totalGoals" value="${totalGoals + statsTeam[player.id].goals}"/>
-		                      </td>
-		                      <td style="width:10%;">
-		                      		<c:out value="${statsTeam[player.id].passes}"/>
-		                      		<c:set var="totalPasses" value="${totalPasses + statsTeam[player.id].passes}"/>
-		                      </td>
-		                      <td style="width:10%;">
-		                      		<c:out value="${statsTeam[player.id].yellowCard}"/>
-		                      		<c:set var="totalYellowCards" value="${totalYellowCards + statsTeam[player.id].yellowCard}"/>
-		                      </td>
-		                      <td style="width:10%;">
-		                      		<c:out value="${statsTeam[player.id].redCard}"/>
-		                      		<c:set var="totalRedCards" value="${totalRedCards + statsTeam[player.id].redCard}"/>
-		                      </td>
-		                    </tr>
-	                    </c:forEach>
-	                    <tr class="table-head striker-color">
-	                    	<td style="width:50%;"><h4>Attaquants</h4></td>
-	                    	<td style="text-align:center;vertical-align:middle;"><img height="40px" width="40px" src="<%=request.getContextPath()%>/resources/images/icones/time.png"/></td>
-	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/goal.png"/></td>
-	                    	<td style="text-align:center;vertical-align:middle;"><img width="50%" src="<%=request.getContextPath()%>/resources/images/icones/crampons_1.png"/></td>
-	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/cartons_jaune.png"/></td>
-	                    	<td style="text-align:center;vertical-align:middle;"><img height="30px" src="<%=request.getContextPath()%>/resources/images/icones/cartons_rouge.png"/></td>
-	                    </tr>
-	                    <c:forEach var="player" items="${strikers}">
-		                    <tr class="table-body">
-		                      <td id="${player.id}" style="width:50%;">
-		                        <span><c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}</span>
-		                      </td>
-		                      <td style="width:10%;">
-		                      	<c:out value="${statsTeam[player.id].playingMinutes}"/>
-		                      </td>
-		                       <td style="width:10%;">
-		                      	<c:out value="${statsTeam[player.id].goals}"/>
-		                      		<c:set var="totalGoals" value="${totalGoals + statsTeam[player.id].goals}"/>
-		                      </td>
-		                      <td style="width:10%;">
-		                      		<c:out value="${statsTeam[player.id].passes}"/>
-		                      		<c:set var="totalPasses" value="${totalPasses + statsTeam[player.id].passes}"/>
-		                      </td>
-		                      <td style="width:10%;">
-		                      		<c:out value="${statsTeam[player.id].yellowCard}"/>
-		                      		<c:set var="totalYellowCards" value="${totalYellowCards + statsTeam[player.id].yellowCard}"/>
-		                      </td>
-		                      <td style="width:10%;">
-		                      		<c:out value="${statsTeam[player.id].redCard}"/>
-		                      		<c:set var="totalRedCards" value="${totalRedCards + statsTeam[player.id].redCard}"/>
-		                      </td>
-		                    </tr>
-	                    </c:forEach>
-	                    	<tr>
-		                    	<td colspan="2">Total</td>
-		                    	<td>${totalGoals }</td>
-		                    	<td>${totalPasses }</td>
-		                    	<td>${totalYellowCards }</td>
-		                    	<td>${totalRedCards }</td>
-		                    <tr>
-	                    </tbody>
-	                    </table>
+                <div class="col-md-12">
+                  <table class="kode-table kode-table-v2">
+                    <thead>
+                      <tr>
+                        <th>Parieur</th>
+                        <th>Score1</th>
+                        <th>Score2</th>
+                        <th>Points</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      	<c:forEach items="${winnabets}" var="winnabet" varStatus="status">
+                        	<tr>
+		                        <td>${winnabet.name}</td>
+		                        <td>${winnabet.score1}</td>
+		                        <td>${winnabet.score2}</td>
+		                        <td>
+		                        <c:choose>
+		                        	<c:when test="${empty game.score1 }">-</c:when>
+		                        	<c:otherwise>${winnabet.goodScore ? 5 : (winnabet.goodResult ? 3 : 0) }</c:otherwise>
+		                        </c:choose>
+		                        </td>
+	                        </tr>
+                        </c:forEach>
+                    </tbody>
+                 </table>
                 </div>
               </div>
             </div>

@@ -1,5 +1,7 @@
 package com.tjube.controller;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.List;
 
@@ -29,6 +31,21 @@ import com.tjube.service.WinnaBetService;
 public class WinnaBetController
 {
 	private static final Logger logger = Logger.getLogger(WinnaBetController.class);
+
+	static class WinnaBetsComparator
+		implements Comparator<WinnaBet>
+	{
+		@Override
+		public int compare(WinnaBet c1, WinnaBet c2)
+		{
+			if (c2.getGoodScore().compareTo(c1.getGoodScore()) == 0)
+			{
+				return c2.getGoodResult().compareTo(c1.getGoodResult());
+			}
+			else
+				return c2.getGoodScore().compareTo(c1.getGoodScore());
+		}
+	}
 
 	public WinnaBetController()
 	{
@@ -64,6 +81,17 @@ public class WinnaBetController
 		int gameId = 1;
 		if (request.getParameter("id") != null)
 			gameId = Integer.parseInt(request.getParameter("id"));
+
+		Game game = gameService.getGame(gameId);
+		model.addObject("game", game);
+
+		List<Game> games = gameService.getAllGames();
+		model.addObject("games", games);
+
+		List<WinnaBet> winnabets = winnaBetService.getWinnaBets(game);
+		Collections.sort(winnabets, new WinnaBetsComparator());
+
+		model.addObject("winnabets", winnabets);
 
 		model.setViewName("winnabetShowGame");
 		return model;

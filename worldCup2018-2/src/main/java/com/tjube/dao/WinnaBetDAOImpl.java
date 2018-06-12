@@ -146,6 +146,9 @@ public class WinnaBetDAOImpl
 	@Override
 	public void resetWinnaBet(WinnaBet winnaBet)
 	{
+		if (!m_entityManager.contains(winnaBet))
+			winnaBet = m_entityManager.merge(winnaBet);
+
 		winnaBet.setGoodResult(false);
 		winnaBet.setGoodScore(false);
 	}
@@ -157,11 +160,17 @@ public class WinnaBetDAOImpl
 		for (WinnaBet winnaBet : winnaBets)
 		{
 			if (winnaBet.getScore1() == game.getScore1() && winnaBet.getScore2() == game.getScore2())
+			{
 				winnaBet.setGoodScore(true);
+				winnaBet.setGoodResult(false);
+			}
 			else if ((winnaBet.getScore1() > winnaBet.getScore2() && game.getScore1() > game.getScore2())
 					|| (winnaBet.getScore1() < winnaBet.getScore2() && game.getScore1() < game.getScore2())
 					|| (winnaBet.getScore1() == winnaBet.getScore2() && game.getScore1() == game.getScore2()))
+			{
 				winnaBet.setGoodResult(true);
+				winnaBet.setGoodScore(false);
+			}
 		}
 	}
 
