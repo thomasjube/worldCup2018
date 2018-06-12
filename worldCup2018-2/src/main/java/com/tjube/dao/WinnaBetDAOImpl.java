@@ -8,7 +8,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -33,15 +32,15 @@ public class WinnaBetDAOImpl
 		@Override
 		public int compare(BetClassementLine c1, BetClassementLine c2)
 		{
-			if (c1.getPoints().compareTo(c2.getPoints()) == 0)
+			if (c2.getPoints().compareTo(c1.getPoints()) == 0)
 			{
-				if (c1.getNbScore().compareTo(c2.getNbScore()) == 0)
-					return c1.getNbResults().compareTo(c2.getNbResults());
+				if (c2.getNbScore().compareTo(c1.getNbScore()) == 0)
+					return c2.getNbResults().compareTo(c1.getNbResults());
 				else
-					return c1.getNbScore().compareTo(c2.getNbScore());
+					return c2.getNbScore().compareTo(c1.getNbScore());
 			}
 			else
-				return c1.getPoints().compareTo(c2.getPoints());
+				return c2.getPoints().compareTo(c1.getPoints());
 		}
 	}
 
@@ -181,10 +180,11 @@ public class WinnaBetDAOImpl
 			playerResult.put(name, nbResult);
 		}
 
-		for (Entry<BetName, Long> plScore : playerScore.entrySet())
+		for (BetName name : BetName.values())
 		{
-			results.add(
-					new BetClassementLine(plScore.getKey(), plScore.getValue(), playerResult.get(plScore.getKey())));
+			Long score = playerScore.get(name) != null ? playerScore.get(name) : new Long(0);
+			Long result = playerResult.get(name) != null ? playerResult.get(name) : new Long(0);
+			results.add(new BetClassementLine(name, score, result));
 		}
 
 		Collections.sort(results, new BetClassementLineComparator());
