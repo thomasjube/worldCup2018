@@ -1202,6 +1202,24 @@ li img,
 	font-weight: normal;
 }
 
+.kode-table tbody tr.premier{
+	background-color: #c4a000 !important;
+}
+
+/* .kode-table tbody tr.premier:before{ */
+/* 	content: "\f10d"; */
+/* 	font-family: FontAwesome; */
+/* 	color: #c4a000; */
+/* } */
+
+.kode-table tbody tr.deuxieme{
+	background-color: #babdb6 !important;
+}
+
+.kode-table tbody tr.troisieme{
+	background-color: #ce5c00 !important;
+}
+
 /* Match Table ends */
 
 /* Table View two starts */

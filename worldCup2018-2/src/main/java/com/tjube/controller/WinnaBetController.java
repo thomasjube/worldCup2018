@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tjube.model.BetClassementLine;
 import com.tjube.model.BetName;
 import com.tjube.model.Game;
 import com.tjube.model.WinnaBet;
@@ -42,12 +43,16 @@ public class WinnaBetController
 	@RequestMapping(value = "")
 	public ModelAndView homeWinabet(ModelAndView model)
 	{
-		return new ModelAndView("redirect:winnaBet/");
+		return new ModelAndView("redirect:winabet/");
 	}
 
 	@RequestMapping(value = "/")
 	public ModelAndView winabetShow(ModelAndView model)
 	{
+
+		List<BetClassementLine> lines = winnaBetService.getBetClassement();
+		model.addObject("lines", lines);
+
 		model.setViewName("winnabetShow");
 		return model;
 	}
