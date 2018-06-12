@@ -1,12 +1,7 @@
 package com.tjube.controller;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -75,42 +70,7 @@ public class WinnaBetController
 	public ModelAndView listGame(ModelAndView model)
 		throws IOException
 	{
-		List<Game> listGame = gameService.getAllGames();
-		model.addObject("listGame", listGame);
-
-		Map<LocalDate, Collection<Game>> mapGames = new LinkedHashMap<>();
-		Game previous = null;
-		Collection<Game> games = new ArrayList<>();
-		int i = 0;
-		for (Game g : listGame)
-		{
-			if (previous == null)
-			{
-				games.add(g);
-			}
-			else if (!previous.getDate().isEqual(g.getDate()))
-			{
-				ArrayList<Game> gameForDate = new ArrayList<>(games);
-				mapGames.put(previous.getDate(), gameForDate);
-				games.clear();
-				games.add(g);
-			}
-			else
-			{
-				games.add(g);
-			}
-
-			if (i++ == listGame.size() - 1)
-			{
-				ArrayList<Game> gameForDate = new ArrayList<>(games);
-				mapGames.put(previous.getDate(), gameForDate);
-			}
-
-			previous = g;
-
-		}
-		model.addObject("mapGames", mapGames);
-		model.setViewName("gameHome");
+		model.setViewName("winnaBetHome");
 		return model;
 	}
 
@@ -135,18 +95,18 @@ public class WinnaBetController
 		{
 			winnaBetService.updateWinnaBet(winnaBet);
 		}
-		return new ModelAndView("redirect:/game/");
+		return new ModelAndView("redirect:/winnaBet/");
 	}
 
-	@RequestMapping(value = "/deleteGame", method = RequestMethod.GET)
+	@RequestMapping(value = "/deleteWinnaBet", method = RequestMethod.GET)
 	public ModelAndView deleteGame(HttpServletRequest request)
 	{
 		int gameId = Integer.parseInt(request.getParameter("id"));
 		gameService.deleteGame(gameId);
-		return new ModelAndView("redirect:/game/");
+		return new ModelAndView("redirect:/winnaBet/");
 	}
 
-	@RequestMapping(value = "/editGame", method = RequestMethod.GET)
+	@RequestMapping(value = "/editWinnaBet", method = RequestMethod.GET)
 	public ModelAndView editGameGet(HttpServletRequest request)
 	{
 		int gameId = Integer.parseInt(request.getParameter("id"));
@@ -169,7 +129,7 @@ public class WinnaBetController
 		return model;
 	}
 
-	@RequestMapping(value = "/editGame", method = RequestMethod.POST)
+	@RequestMapping(value = "/editWinnaBet", method = RequestMethod.POST)
 	public ModelAndView editGamePost(HttpServletRequest request, @ModelAttribute("editForm") GameEditForm gameEditForm)
 	{
 		Game game = gameService.getGame(gameEditForm.getId());
@@ -279,65 +239,14 @@ public class WinnaBetController
 
 		winnaBetService.verifyBets(game);
 
-		return new ModelAndView("redirect:/game/");
-	}
-
-	@RequestMapping(value = "/editGameCompo", method = RequestMethod.GET)
-	public ModelAndView editGameCompo(HttpServletRequest request)
-	{
-		int gameId = Integer.parseInt(request.getParameter("id"));
-		Game game = gameService.getGame(gameId);
-
-		ModelAndView model = new ModelAndView("gameEditCompo");
-		model.addObject("game", game);
-
-		List<Player> goals1 = playerService.getGoals(game.getTeam1());
-		model.addObject("goals1", goals1);
-
-		List<Player> defensers1 = playerService.getDefensers(game.getTeam1());
-		model.addObject("defensers1", defensers1);
-
-		List<Player> middles1 = playerService.getMiddles(game.getTeam1());
-		model.addObject("middles1", middles1);
-
-		List<Player> strikers1 = playerService.getStrikers(game.getTeam1());
-		model.addObject("strikers1", strikers1);
-
-		List<Player> goals2 = playerService.getGoals(game.getTeam1());
-		model.addObject("goals2", goals2);
-
-		List<Player> defensers2 = playerService.getDefensers(game.getTeam1());
-		model.addObject("defensers2", defensers2);
-
-		List<Player> middles2 = playerService.getMiddles(game.getTeam1());
-		model.addObject("middles2", middles2);
-
-		List<Player> strikers2 = playerService.getStrikers(game.getTeam1());
-		model.addObject("strikers2", strikers2);
-
-		model.addObject("titulars", gameService.getTitulars(game));
-		model.addObject("substitutes", gameService.getSubstitutes(game));
-		model.addObject("editCompoForm", new GameEditCompoForm(game));
-
-		return model;
+		return new ModelAndView("redirect:/winnaBet/");
 	}
 
 	@RequestMapping(value = "/reset", method = RequestMethod.GET)
-	public ModelAndView resetGameGet(HttpServletRequest request)
+	public ModelAndView resetWinnaBetGet(HttpServletRequest request)
 	{
-		Game game = gameService.getGame(Integer.parseInt(request.getParameter("id")));
+		WinnaBet winnaBet = winnaBetService.getWinnaBet(Integer.parseInt(request.getParameter("id")));
 
-		if (game.getGameInPoule())
-			teamService.updateTeamsForReset(game);
-
-		game = gameService.resetGame(game);
-		playerStatsService.deletePlayerStats(game);
-
-		if (game.getGameInPoule())
-		{
-			teamService.updateTeamsPositions(game.getPoule());
-		}
-
-		return new ModelAndView("redirect:/game/");
+		return new ModelAndView("redirect:/winnaBet/");
 	}
 }

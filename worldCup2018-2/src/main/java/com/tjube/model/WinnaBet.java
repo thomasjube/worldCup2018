@@ -13,16 +13,14 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @NamedQueries({
-	@NamedQuery(name = WinnaBet.QN.GET_WINNABET_BY_ID, query = "select wb from WinnaBet wb where wb.id =:id "),
-	@NamedQuery(name = WinnaBet.QN.getWinnaBetByName,
-			query = "select wb from WinnaBet wb where wb.name =:name"),
-	@NamedQuery(name = WinnaBet.QN.getWinnaBetByGame,
-			query = "select wb from WinnaBet wb where wb.game =:game "),
-	@NamedQuery(name = WinnaBet.QN.GET_NB_SCORE,
-		query = "select wb.name,count(wb) as score from WinnaBet wb WHERE wb.goodScore = TRUE GROUP BY wb.name"),
-	@NamedQuery(name = WinnaBet.QN.GET_NB_RESULT,
-		query = "select wb.name,count(wb) as score from WinnaBet wb WHERE wb.goodResult = TRUE GROUP BY wb.name"),
-	@NamedQuery(name = WinnaBet.QN.GET_ALL_WINNABET, query = "select wb from WinnaBet wb") })
+		@NamedQuery(name = WinnaBet.QN.GET_WINNABET_BY_ID, query = "select wb from WinnaBet wb where wb.id =:id "),
+		@NamedQuery(name = WinnaBet.QN.getWinnaBetByName, query = "select wb from WinnaBet wb where wb.name =:name"),
+		@NamedQuery(name = WinnaBet.QN.getWinnaBetByGame, query = "select wb from WinnaBet wb where wb.game =:game "),
+		@NamedQuery(name = WinnaBet.QN.GET_NB_SCORE,
+				query = "select wb.name,count(wb) as score from WinnaBet wb WHERE wb.goodScore = TRUE GROUP BY wb.name"),
+		@NamedQuery(name = WinnaBet.QN.GET_NB_RESULT,
+				query = "select wb.name,count(wb) as score from WinnaBet wb WHERE wb.goodResult = TRUE GROUP BY wb.name"),
+		@NamedQuery(name = WinnaBet.QN.GET_ALL_WINNABET, query = "select wb from WinnaBet wb") })
 @Entity
 @Table(name = "WINNA_BET")
 public class WinnaBet
@@ -35,7 +33,7 @@ public class WinnaBet
 	//
 	//==================================================================================================================================================================================================
 
-	private static final long serialVersionUID = 1256732982068135780L;
+	private static final long serialVersionUID = 6062932609547214678L;
 
 	public static class QN
 	{
@@ -73,10 +71,11 @@ public class WinnaBet
 	{
 	}
 
-	public WinnaBet(Integer id, String name, Integer positionPoule, Poule poule)
+	public WinnaBet(Integer id, BetName name)
 	{
 		super();
 		this.id = id;
+		this.name = name;
 	}
 
 	public int getId()
