@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -52,7 +53,7 @@ public class WinnaBet
 	@Enumerated(EnumType.STRING)
 	private BetName name;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Game game;
 
 	@Column
@@ -71,11 +72,12 @@ public class WinnaBet
 	{
 	}
 
-	public WinnaBet(Integer id, BetName name)
+	public WinnaBet(Integer id, BetName name, int score1, int score2)
 	{
-		super();
 		this.id = id;
 		this.name = name;
+		this.score1 = score1;
+		this.score2 = score2;
 	}
 
 	public int getId()
