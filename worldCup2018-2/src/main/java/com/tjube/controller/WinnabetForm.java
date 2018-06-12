@@ -17,6 +17,8 @@ public class WinnabetForm
 
 	private List<Integer> resultsTeam2 = new ArrayList<>();
 
+	private List<Boolean> removeWinabets = new ArrayList<>();
+
 	public WinnabetForm()
 	{
 		// default
@@ -67,4 +69,13 @@ public class WinnabetForm
 		this.resultsTeam2 = resultsTeam2;
 	}
 
+	public List<Boolean> getRemoveWinabets()
+	{
+		return removeWinabets;
+	}
+
+	public void setRemoveWinabets(List<Boolean> removeWinabets)
+	{
+		this.removeWinabets = removeWinabets;
+	}
 }
