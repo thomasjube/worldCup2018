@@ -3,276 +3,68 @@ package com.tjube.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.tjube.model.Action;
+import com.tjube.model.BetName;
 import com.tjube.model.Game;
-import com.tjube.model.PlayerStats;
 
 public class WinnabetForm
 {
 
-	private Integer id;
+	private Integer gameId;
 
-	private Integer score1;
+	private List<BetName> betNames = new ArrayList<>();
 
-	private Integer score2;
+	private List<Integer> resultsTeam1 = new ArrayList<>();
 
-	private boolean prolong = false;
-
-	private Integer scoreProlong1 = 0;
-
-	private Integer scoreProlong2 = 0;
-
-	private boolean peno = false;
-
-	private Integer scorePeno1 = 0;
-
-	private Integer scorePeno2 = 0;
-
-	private List<Integer> scorerPlayers1 = new ArrayList<>();
-	private List<Integer> scorerPlayers2 = new ArrayList<>();
-
-	private List<Integer> passerPlayers1 = new ArrayList<>();
-	private List<Integer> passerPlayers2 = new ArrayList<>();
-
-	private List<Integer> scorerPlayersMinute1 = new ArrayList<>();
-	private List<Integer> scorerPlayersMinute2 = new ArrayList<>();
-
-	private List<Action> cartonType = new ArrayList<>();
-	private List<Integer> cartonPlayers = new ArrayList<>();
-	private List<Integer> cartonMinute = new ArrayList<>();
-	private List<Integer> cartonTeam = new ArrayList<>();
+	private List<Integer> resultsTeam2 = new ArrayList<>();
 
 	public WinnabetForm()
 	{
-		// TODO Auto-generated constructor stub
+		// default
 	}
 
 	public WinnabetForm(Game game)
 	{
-		this.id = game.getId();
-		this.score1 = game.getScore1();
-		this.score2 = game.getScore2();
-
-		for (PlayerStats scorer : game.getGoalsTeam1())
-		{
-			scorerPlayers1.add(scorer.getPlayer().getId());
-			scorerPlayersMinute1.add(scorer.getMinute());
-		}
-
-		for (PlayerStats scorer : game.getGoalsTeam2())
-		{
-			scorerPlayers2.add(scorer.getPlayer().getId());
-			scorerPlayersMinute2.add(scorer.getMinute());
-		}
-
-		for (PlayerStats passer : game.getPassTeam1())
-		{
-			passerPlayers1.add(passer.getPlayer().getId());
-		}
-
-		for (PlayerStats passer : game.getPassTeam2())
-		{
-			passerPlayers2.add(passer.getPlayer().getId());
-		}
-
-		for (PlayerStats carton : game.getCartons())
-		{
-			cartonPlayers.add(carton.getPlayer().getId());
-			cartonMinute.add(carton.getMinute());
-			cartonType.add(carton.getAction());
-			cartonTeam.add(carton.getPlayer().getTeam().getId());
-		}
-
+		this.gameId = game.getId();
 	}
 
-	public Integer getId()
+	public Integer getGameId()
 	{
-		return id;
+		return gameId;
 	}
 
-	public void setId(Integer id)
+	public void setGameId(Integer gameId)
 	{
-		this.id = id;
+		this.gameId = gameId;
 	}
 
-	public Integer getScore1()
+	public List<BetName> getBetNames()
 	{
-		return score1;
+		return betNames;
 	}
 
-	public void setScore1(Integer score1)
+	public void setBetNames(List<BetName> betNames)
 	{
-		this.score1 = score1;
+		this.betNames = betNames;
 	}
 
-	public Integer getScore2()
+	public List<Integer> getResultsTeam1()
 	{
-		return score2;
+		return resultsTeam1;
 	}
 
-	public void setScore2(Integer score2)
+	public void setResultsTeam1(List<Integer> resultsTeam1)
 	{
-		this.score2 = score2;
+		this.resultsTeam1 = resultsTeam1;
 	}
 
-	public List<Integer> getScorerPlayers1()
+	public List<Integer> getResultsTeam2()
 	{
-		return scorerPlayers1;
+		return resultsTeam2;
 	}
 
-	public void setScorerPlayers1(List<Integer> scorerPlayers1)
+	public void setResultsTeam2(List<Integer> resultsTeam2)
 	{
-		this.scorerPlayers1 = scorerPlayers1;
-	}
-
-	public List<Integer> getScorerPlayers2()
-	{
-		return scorerPlayers2;
-	}
-
-	public void setScorerPlayers2(List<Integer> scorerPlayers2)
-	{
-		this.scorerPlayers2 = scorerPlayers2;
-	}
-
-	public List<Integer> getPasserPlayers1()
-	{
-		return passerPlayers1;
-	}
-
-	public void setPasserPlayers1(List<Integer> passerPlayers1)
-	{
-		this.passerPlayers1 = passerPlayers1;
-	}
-
-	public List<Integer> getPasserPlayers2()
-	{
-		return passerPlayers2;
-	}
-
-	public void setPasserPlayers2(List<Integer> passerPlayers2)
-	{
-		this.passerPlayers2 = passerPlayers2;
-	}
-
-	public List<Integer> getScorerPlayersMinute1()
-	{
-		return scorerPlayersMinute1;
-	}
-
-	public void setScorerPlayersMinute1(List<Integer> scorerPlayersMinute1)
-	{
-		this.scorerPlayersMinute1 = scorerPlayersMinute1;
-	}
-
-	public List<Integer> getScorerPlayersMinute2()
-	{
-		return scorerPlayersMinute2;
-	}
-
-	public void setScorerPlayersMinute2(List<Integer> scorerPlayersMinute2)
-	{
-		this.scorerPlayersMinute2 = scorerPlayersMinute2;
-	}
-
-	public boolean isProlong()
-	{
-		return prolong;
-	}
-
-	public void setProlong(boolean prolong)
-	{
-		this.prolong = prolong;
-	}
-
-	public Integer getScoreProlong1()
-	{
-		return scoreProlong1;
-	}
-
-	public void setScoreProlong1(Integer scoreProlong1)
-	{
-		this.scoreProlong1 = scoreProlong1;
-	}
-
-	public Integer getScoreProlong2()
-	{
-		return scoreProlong2;
-	}
-
-	public void setScoreProlong2(Integer scoreProlong2)
-	{
-		this.scoreProlong2 = scoreProlong2;
-	}
-
-	public boolean isPeno()
-	{
-		return peno;
-	}
-
-	public void setPeno(boolean peno)
-	{
-		this.peno = peno;
-	}
-
-	public Integer getScorePeno1()
-	{
-		return scorePeno1;
-	}
-
-	public void setScorePeno1(Integer scorePeno1)
-	{
-		this.scorePeno1 = scorePeno1;
-	}
-
-	public Integer getScorePeno2()
-	{
-		return scorePeno2;
-	}
-
-	public void setScorePeno2(Integer scorePeno2)
-	{
-		this.scorePeno2 = scorePeno2;
-	}
-
-	public List<Integer> getCartonTeam()
-	{
-		return cartonTeam;
-	}
-
-	public void setCartonTeam(List<Integer> cartonTeam)
-	{
-		this.cartonTeam = cartonTeam;
-	}
-
-	public List<Integer> getCartonMinute()
-	{
-		return cartonMinute;
-	}
-
-	public void setCartonMinute(List<Integer> cartonMinute)
-	{
-		this.cartonMinute = cartonMinute;
-	}
-
-	public List<Integer> getCartonPlayers()
-	{
-		return cartonPlayers;
-	}
-
-	public void setCartonPlayers(List<Integer> cartonPlayers)
-	{
-		this.cartonPlayers = cartonPlayers;
-	}
-
-	public List<Action> getCartonType()
-	{
-		return cartonType;
-	}
-
-	public void setCartonType(List<Action> cartonType)
-	{
-		this.cartonType = cartonType;
+		this.resultsTeam2 = resultsTeam2;
 	}
 
 }

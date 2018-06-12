@@ -453,6 +453,16 @@ public class Game
 		return winnaBets;
 	}
 
+	public void addWinabet(WinnaBet winabet)
+	{
+		this.winnaBets.add(winabet);
+	}
+
+	public void removeWinabet(WinnaBet winabet)
+	{
+		this.winnaBets.remove(winabet);
+	}
+
 	public void setWinnaBets(Collection<WinnaBet> winnaBets)
 	{
 		this.winnaBets = winnaBets;

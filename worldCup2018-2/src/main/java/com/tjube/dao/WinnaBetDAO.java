@@ -16,6 +16,8 @@ public interface WinnaBetDAO
 
 	public void deleteWinnaBet(Integer gameId);
 
+	public void deleteWinnaBets(Game game);
+
 	public WinnaBet getWinnaBet(int gameid);
 
 	public WinnaBet updateWinnaBet(WinnaBet game);

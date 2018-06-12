@@ -73,6 +73,22 @@ public class WinnaBetDAOImpl
 	}
 
 	@Override
+	public void deleteWinnaBets(Game game)
+	{
+		List<WinnaBet> result = getWinnaBets(game);
+
+		for (WinnaBet winnaBet : result)
+		{
+			if (!m_entityManager.contains(winnaBet))
+				winnaBet = m_entityManager.merge(winnaBet);
+
+			winnaBet.getGame().removeWinabet(winnaBet);
+
+			m_entityManager.remove(winnaBet);
+		}
+	}
+
+	@Override
 	public WinnaBet getWinnaBet(int id)
 	{
 		TypedQuery<WinnaBet> query = m_entityManager.createNamedQuery(WinnaBet.QN.GET_WINNABET_BY_ID, WinnaBet.class);

@@ -25,6 +25,7 @@ public class WinnaBetServiceImpl
 	public void add(WinnaBet winnaBet)
 	{
 		winnaBetDAO.add(winnaBet);
+		winnaBet.getGame().addWinabet(winnaBet);
 	}
 
 	@Override
@@ -37,6 +38,12 @@ public class WinnaBetServiceImpl
 	public void deleteWinnaBet(Integer winnaBetId)
 	{
 		winnaBetDAO.deleteWinnaBet(winnaBetId);
+	}
+
+	@Override
+	public void deleteWinnaBets(Game game)
+	{
+		winnaBetDAO.deleteWinnaBets(game);
 	}
 
 	@Override

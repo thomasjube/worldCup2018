@@ -14,13 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tjube.model.BetName;
 import com.tjube.model.Game;
 import com.tjube.model.WinnaBet;
 import com.tjube.service.GameService;
-import com.tjube.service.PlayerService;
-import com.tjube.service.PlayerStatsService;
-import com.tjube.service.PouleService;
-import com.tjube.service.TeamService;
 import com.tjube.service.WinnaBetService;
 
 @Controller
@@ -41,18 +38,6 @@ public class WinnaBetController
 
 	@Autowired
 	private WinnaBetService winnaBetService;
-
-	@Autowired
-	private PouleService pouleService;
-
-	@Autowired
-	private TeamService teamService;
-
-	@Autowired
-	private PlayerService playerService;
-
-	@Autowired
-	private PlayerStatsService playerStatsService;
 
 	@RequestMapping(value = "")
 	public ModelAndView homeWinabet(ModelAndView model)
@@ -91,26 +76,32 @@ public class WinnaBetController
 		List<Game> games = gameService.getAllGames();
 		model.addObject("games", games);
 
-		WinnaBet winnaBet = new WinnaBet();
-		model.addObject("form", winnaBet);
+		List<WinnaBet> winnabets = winnaBetService.getWinnaBets(game);
+		model.addObject("winnabets", winnabets);
+
+		WinnabetForm form = new WinnabetForm(game);
+		model.addObject("form", form);
 
 		model.setViewName("winnabetEdit");
 		return model;
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public ModelAndView winabetEditPost(@ModelAttribute WinnaBet winnaBet,
-			@ModelAttribute("editForm") GameEditForm gameEditForm)
+	public ModelAndView winabetEditPost(@ModelAttribute WinnaBet winnaBet, @ModelAttribute("form") WinnabetForm form)
 	{
-		if (winnaBet.getId() == 0)
-		{ // if employee id is 0 then creating the
-			// employee other updating the employee
-			winnaBetService.add(winnaBet);
-		}
-		else
+		Game game = gameService.getGame(form.getGameId());
+
+		winnaBetService.deleteWinnaBets(game);
+
+		for (int i = 0; i < form.getBetNames().size(); i++)
 		{
-			winnaBetService.updateWinnaBet(winnaBet);
+			BetName betName = form.getBetNames().get(i);
+			Integer resultTeam1 = form.getResultsTeam1().get(i);
+			Integer resultTeam2 = form.getResultsTeam2().get(i);
+
+			winnaBetService.add(new WinnaBet(betName, game, resultTeam1, resultTeam2));
 		}
-		return new ModelAndView("redirect:/winnaBet/");
+
+		return new ModelAndView("redirect:/winaBet/game?id=");
 	}
 }

@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -47,6 +49,7 @@ public class WinnaBet
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
 	@Column
@@ -72,12 +75,14 @@ public class WinnaBet
 	{
 	}
 
-	public WinnaBet(Integer id, BetName name, int score1, int score2)
+	public WinnaBet(BetName name, Game game, int score1, int score2)
 	{
-		this.id = id;
 		this.name = name;
+		this.game = game;
 		this.score1 = score1;
 		this.score2 = score2;
+		goodScore = false;
+		goodResult = false;
 	}
 
 	public int getId()
