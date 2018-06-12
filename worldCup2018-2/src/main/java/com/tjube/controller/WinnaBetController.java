@@ -64,6 +64,17 @@ public class WinnaBetController
 		return model;
 	}
 
+	@RequestMapping(value = "/game")
+	public ModelAndView winabetShowGame(HttpServletRequest request, ModelAndView model)
+	{
+		int gameId = 1;
+		if (request.getParameter("id") == null)
+			gameId = Integer.parseInt(request.getParameter("id"));
+
+		model.setViewName("winnabetShowGame");
+		return model;
+	}
+
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView newWinnaBet(HttpServletRequest request, ModelAndView model)
 	{
@@ -89,7 +100,6 @@ public class WinnaBetController
 		{
 			winnaBetService.updateWinnaBet(winnaBet);
 		}
-
-		return new ModelAndView("redirect:/redirect:winnaBet/");
+		return new ModelAndView("redirect:/winnaBet/");
 	}
 }

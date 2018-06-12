@@ -127,6 +127,9 @@ public class Game
 	@OneToMany(mappedBy = "game", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Collection<PlayerStats> playerStats = new ArrayList<>();
 
+	@OneToMany(mappedBy = "game", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Collection<WinnaBet> winnaBets = new ArrayList<>();
+
 	public Game()
 	{
 		// TODO Auto-generated constructor stub
@@ -443,6 +446,16 @@ public class Game
 	public void removestat(PlayerStats playerStat)
 	{
 		this.playerStats.remove(playerStat);
+	}
+
+	public Collection<WinnaBet> getWinnaBets()
+	{
+		return winnaBets;
+	}
+
+	public void setWinnaBets(Collection<WinnaBet> winnaBets)
+	{
+		this.winnaBets = winnaBets;
 	}
 
 }

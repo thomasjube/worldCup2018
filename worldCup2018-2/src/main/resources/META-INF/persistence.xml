@@ -8,8 +8,8 @@
 <!-- 			<property name="javax.persistence.jdbc.user" value="devpi"/> -->
 <!-- 			<property name="javax.persistence.jdbc.password" value="abcd"/> -->
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql:worldCup2018"/>
-			<property name="javax.persistence.jdbc.user" value="hf"/>
-			<property name="javax.persistence.jdbc.password" value="hf"/>
+			<property name="javax.persistence.jdbc.user" value="devpi"/>
+			<property name="javax.persistence.jdbc.password" value="abcd"/>
 			<property name="hibernate.jdbc.batch_size" value="200" />
 			<property name="hibernate.order_inserts" value="true" />
 			<property name="hibernate.jdbc.batch_size" value="200" />

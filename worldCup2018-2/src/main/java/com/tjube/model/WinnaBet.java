@@ -34,7 +34,7 @@ public class WinnaBet
 	//
 	//==================================================================================================================================================================================================
 
-	private static final long serialVersionUID = 1256732982068135780L;
+	private static final long serialVersionUID = 6062932609547214678L;
 
 	public static class QN
 	{
