@@ -1,5 +1,7 @@
 package com.tjube.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.jboss.logging.Logger;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tjube.model.Game;
 import com.tjube.model.WinnaBet;
 import com.tjube.service.GameService;
 import com.tjube.service.PlayerService;
@@ -68,7 +71,7 @@ public class WinnaBetController
 	public ModelAndView winabetShowGame(HttpServletRequest request, ModelAndView model)
 	{
 		int gameId = 1;
-		if (request.getParameter("id") == null)
+		if (request.getParameter("id") != null)
 			gameId = Integer.parseInt(request.getParameter("id"));
 
 		model.setViewName("winnabetShowGame");
@@ -76,20 +79,28 @@ public class WinnaBetController
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView newWinnaBet(HttpServletRequest request, ModelAndView model)
+	public ModelAndView winabetEditGet(HttpServletRequest request, ModelAndView model)
 	{
 		int gameId = 1;
-		if (request.getParameter("id") == null)
+		if (request.getParameter("id") != null)
 			gameId = Integer.parseInt(request.getParameter("id"));
 
+		Game game = gameService.getGame(gameId);
+		model.addObject("game", game);
+
+		List<Game> games = gameService.getAllGames();
+		model.addObject("games", games);
+
 		WinnaBet winnaBet = new WinnaBet();
-		model.addObject("winnaBet", winnaBet);
+		model.addObject("form", winnaBet);
+
 		model.setViewName("winnabetEdit");
 		return model;
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public ModelAndView saveWinnaBet(@ModelAttribute WinnaBet winnaBet)
+	public ModelAndView winabetEditPost(@ModelAttribute WinnaBet winnaBet,
+			@ModelAttribute("editForm") GameEditForm gameEditForm)
 	{
 		if (winnaBet.getId() == 0)
 		{ // if employee id is 0 then creating the

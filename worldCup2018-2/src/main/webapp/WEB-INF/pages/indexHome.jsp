@@ -62,10 +62,8 @@
 						<li><a href="<%=request.getContextPath()%>/poule">Poules</a></li>
 						<li><a href="<%=request.getContextPath()%>/game">Matchs</a></li>
 						<li><a href="<%=request.getContextPath()%>/stats">Statistiques</a></li>
-					</ul>
-					<ul>
 						<li><a href="<%=request.getContextPath()%>/winabet/edit">Saisie pari</a></li>
-						<li><a href="<%=request.getContextPath()%>/winabet">Résultat par match</a></li>
+						<li><a href="<%=request.getContextPath()%>/winabet/game">Résultat par match</a></li>
 						<li><a href="<%=request.getContextPath()%>/winabet">Classement général</a></li>
 					</ul>
 				</div>
