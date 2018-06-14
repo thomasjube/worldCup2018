@@ -83,7 +83,7 @@
                 	<h2>Tous derrière les bleus</h2>
                     <div class="clearfix"></div>        
                   <div class="clearfix"></div>
-                  <a class="kode-modren-btn thbg-colortwo" href="team/showTeam?id=132">Voir l'équipe</a>
+                  <a class="kode-modren-btn thbg-colortwo" href="team/showTeam?id=9">Voir l'équipe</a>
                 </div>
               </div>
             </li>
@@ -94,7 +94,7 @@
                 	<h2>Le dernier vainqueur</h2> 
                     <div class="clearfix"></div>          
                   <div class="clearfix"></div>
-                  <a class="kode-modren-btn thbg-colortwo" href="team/showTeam?id=165">Voir l'équipe</a>
+                  <a class="kode-modren-btn thbg-colortwo" href="team/showTeam?id=21">Voir l'équipe</a>
                 </div>
               </div>
             </li>
@@ -105,7 +105,7 @@
                 	<h2>Pays organisateur</h2>
                     <div class="clearfix"></div>        
                   <div class="clearfix"></div>
-                  <a class="kode-modren-btn thbg-colortwo" href="team/showTeam?id=2">Voir l'équipe</a>
+                  <a class="kode-modren-btn thbg-colortwo" href="team/showTeam?id=1">Voir l'équipe</a>
                 </div>
               </div>
             </li>

@@ -8,6 +8,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <spring:bind path="${path }"><c:set var="pathValue" value="${status.value}" /></spring:bind>
 <form:select id="select-${isCarton ? 'carton-' : '' }player${index}" path="${path}">
+	<form:option value="" label="Aucun"/>
 	<c:forEach items="${items}" var="player">
 		<form:option value="${player.id}" label="${player.number} - ${player.firstName} ${player.name}"/>
 	</c:forEach>
