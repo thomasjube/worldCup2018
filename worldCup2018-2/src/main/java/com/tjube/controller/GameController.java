@@ -1216,7 +1216,7 @@ public class GameController
 		player12 = new Player("Armani", "Franco", "G", 12, argentine);
 		player13 = new Player("Meza", "Maximiliano", "M", 13, argentine);
 		player14 = new Player("Mascherano", "Javier", "D", 14, argentine);
-		player15 = new Player("Lanzini", "Manuel", "M", 15, argentine);
+		player15 = new Player("Perez", "Enzo", "M", 15, argentine);
 		player16 = new Player("Rojo", "Marcos", "D", 16, argentine);
 		player17 = new Player("Otamendi", "Nicolas", "D", 17, argentine);
 		player18 = new Player("Salvio", "Eduardo", "D", 18, argentine);
@@ -3022,7 +3022,7 @@ public class GameController
 	{
 		if (game.getId() == 0)
 		{ // if employee id is 0 then creating the
-			// employee other updating the employee
+				// employee other updating the employee
 			gameService.addGame(game);
 		}
 		else
@@ -3197,16 +3197,16 @@ public class GameController
 		List<Player> strikers1 = playerService.getStrikers(game.getTeam1());
 		model.addObject("strikers1", strikers1);
 
-		List<Player> goals2 = playerService.getGoals(game.getTeam1());
+		List<Player> goals2 = playerService.getGoals(game.getTeam2());
 		model.addObject("goals2", goals2);
 
-		List<Player> defensers2 = playerService.getDefensers(game.getTeam1());
+		List<Player> defensers2 = playerService.getDefensers(game.getTeam2());
 		model.addObject("defensers2", defensers2);
 
-		List<Player> middles2 = playerService.getMiddles(game.getTeam1());
+		List<Player> middles2 = playerService.getMiddles(game.getTeam2());
 		model.addObject("middles2", middles2);
 
-		List<Player> strikers2 = playerService.getStrikers(game.getTeam1());
+		List<Player> strikers2 = playerService.getStrikers(game.getTeam2());
 		model.addObject("strikers2", strikers2);
 
 		model.addObject("titulars", gameService.getTitulars(game));
