@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -3077,7 +3078,13 @@ public class GameController
 				gameEditForm.isProlong(), gameEditForm.getScoreProlong1(), gameEditForm.getScoreProlong2(),
 				gameEditForm.isPeno(), gameEditForm.getScorePeno1(), gameEditForm.getScorePeno2());
 
-		playerStatsService.deletePlayerStats(game);
+		Collection<Action> actions = new ArrayList<>();
+		actions.add(Action.GOAL);
+		actions.add(Action.PASS);
+		actions.add(Action.YELLOW_CARD);
+		actions.add(Action.RED_CARD);
+		
+		playerStatsService.deletePlayerStats(game,actions);
 
 		for (int i = 0; i < gameEditForm.getScorerPlayers1().size(); i++)
 		{
@@ -3089,11 +3096,17 @@ public class GameController
 			game.addPlayerStat(playerStat);
 			scorerPlayer.addPlayerStat(playerStat);
 
-			Player passer = playerService.getPlayer(gameEditForm.getPasserPlayers1().get(i));
-			playerStat = playerStatsService.addPlayerStats(new PlayerStats(game, passer, minute, Action.PASS));
-
-			game.addPlayerStat(playerStat);
-			passer.addPlayerStat(playerStat);
+			if(gameEditForm.getPasserPlayers1().get(i) != null)
+			{
+				Player passer = playerService.getPlayer(gameEditForm.getPasserPlayers1().get(i));
+				if(passer != null)
+				{
+					playerStat = playerStatsService.addPlayerStats(new PlayerStats(game, passer, minute, Action.PASS));
+		
+					game.addPlayerStat(playerStat);
+					passer.addPlayerStat(playerStat);
+				}
+			}
 		}
 
 		for (int i = 0; i < gameEditForm.getScorerPlayers2().size(); i++)
@@ -3106,11 +3119,17 @@ public class GameController
 			game.addPlayerStat(playerStat);
 			scorerPlayer.addPlayerStat(playerStat);
 
-			Player passer = playerService.getPlayer(gameEditForm.getPasserPlayers2().get(i));
-			playerStat = playerStatsService.addPlayerStats(new PlayerStats(game, passer, minute, Action.PASS));
-
-			game.addPlayerStat(playerStat);
-			passer.addPlayerStat(playerStat);
+			if(gameEditForm.getPasserPlayers2().get(i) != null)
+			{
+				Player passer = playerService.getPlayer(gameEditForm.getPasserPlayers2().get(i));
+				if(passer != null)
+				{
+					playerStat = playerStatsService.addPlayerStats(new PlayerStats(game, passer, minute, Action.PASS));
+		
+					game.addPlayerStat(playerStat);
+					passer.addPlayerStat(playerStat);
+				}
+			}
 		}
 
 		Map<Integer, PlayerStats> mapCartonPlayer = new HashMap<>();

@@ -57,23 +57,61 @@ public class GameEditForm
 		{
 			scorerPlayers1.add(scorer.getPlayer().getId());
 			scorerPlayersMinute1.add(scorer.getMinute());
+			
+			boolean hasPasser = false;
+			
+			for (PlayerStats passer : game.getPassTeam1())
+			{
+				if(passer.getMinute() == scorer.getMinute())
+				{
+					passerPlayers1.add(passer.getPlayer().getId());
+					hasPasser = true;
+				}
+			}
+			
+			if(!hasPasser)
+				passerPlayers1.add(null);
 		}
 
 		for (PlayerStats scorer : game.getGoalsTeam2())
 		{
 			scorerPlayers2.add(scorer.getPlayer().getId());
 			scorerPlayersMinute2.add(scorer.getMinute());
+			
+			boolean hasPasser = false;
+			
+			for (PlayerStats passer : game.getPassTeam2())
+			{
+				if(passer.getMinute() == scorer.getMinute())
+				{
+					passerPlayers2.add(passer.getPlayer().getId());
+					hasPasser = true;
+				}
+			}
+			
+			if(!hasPasser)
+				passerPlayers2.add(null);
 		}
 
-		for (PlayerStats passer : game.getPassTeam1())
-		{
-			passerPlayers1.add(passer.getPlayer().getId());
-		}
-
-		for (PlayerStats passer : game.getPassTeam2())
-		{
-			passerPlayers2.add(passer.getPlayer().getId());
-		}
+//		for (PlayerStats passer : game.getPassTeam1())
+//		{
+//			if(scorerPlayersMinute1.contains(passer.getMinute()))
+//			{
+//				int index = scorerPlayersMinute1.indexOf(passer.getMinute());
+//				passerPlayers1.add(index,passer.getPlayer().getId());
+//			}
+//		}
+//		
+//		for (PlayerStats passer : game.getPassTeam2())
+//		{
+//			if(scorerPlayersMinute2.contains(passer.getMinute()))
+//			{
+//				Integer index = scorerPlayersMinute2.indexOf(passer.getMinute());
+//				passerPlayers2.add(index,passer.getPlayer().getId());
+//			}
+//			else
+//				passerPlayers2.add(null);
+//		}
 
 		for (PlayerStats carton : game.getCartons())
 		{
