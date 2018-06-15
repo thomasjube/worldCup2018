@@ -139,7 +139,7 @@
                         <h2><a href="#"><c:out value="${lastGame.team1.name}"/></a> <span>Win</span></h2>
                         <ul>
                           <c:forEach var="goal" items="${lastGame.getGoalsTeam1()}">
-	                          <li>${goal.scorer.name}<span>(${goal.minute}')</span></li>
+	                          <li>${goal.player.name}<span>(${goal.minute}')</span></li>
                           </c:forEach>
                         </ul>
                       </div>
@@ -155,7 +155,7 @@
                         <h2><a href="#"><c:out value="${lastGame.team2.name}"/></a> <span>Los</span></h2>
                         <ul>
                           <c:forEach var="goal" items="${lastGame.getGoalsTeam2()}">
-	                          <li>${goal.scorer.name}<span>(${goal.minute}')</span></li>
+	                          <li>${goal.player.name}<span>(${goal.minute}')</span></li>
                           </c:forEach>
                         </ul>
                       </div>

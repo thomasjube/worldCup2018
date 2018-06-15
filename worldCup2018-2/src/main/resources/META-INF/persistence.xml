@@ -4,10 +4,10 @@
         transaction-type="RESOURCE_LOCAL">
 		
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://192.168.0.49:5432/worldCup2018"/>
+<!-- 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://192.168.0.49:5432/worldCup2018"/> -->
 <!-- 			<property name="javax.persistence.jdbc.user" value="devpi"/> -->
 <!-- 			<property name="javax.persistence.jdbc.password" value="abcd"/> -->
-<!-- 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql:worldCup2018"/> -->
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql:worldCup2018"/>
 			<property name="javax.persistence.jdbc.user" value="devpi"/>
 			<property name="javax.persistence.jdbc.password" value="abcd"/>
 			<property name="hibernate.jdbc.batch_size" value="200" />

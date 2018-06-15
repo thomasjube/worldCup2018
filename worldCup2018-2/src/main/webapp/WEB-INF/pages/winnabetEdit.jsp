@@ -178,7 +178,7 @@
     
     <script>
     var gameId = ${game.id};
-    var numberLines = 0
+    var numberLines = 0;
     $(".game-selector").change(function(e){
     	$(location).attr('href','edit?id='+$(this).val());
     	numberLines = ${indexWinabet};
@@ -227,6 +227,11 @@
     	var index = id.split("Remove")[1];
     	$('tr.winabet_line_'+index).css('display','none');
     	$('input#removeWinabets'+index).val(true);
+    	
+    });
+    
+    $(document).ready(function(e){
+    	numberLines = ${indexWinabet};
     });
     
     </script>

@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -740,14 +739,14 @@ public class GameController
 		player13 = new Player("Khanzadeh", "Mohammad Reza", "D", 13, iran);
 		player14 = new Player("Ghoddos", "Saman", "A", 14, iran);
 		player15 = new Player("Montazeri", "Pejman", "D", 15, iran);
-		player16 = new Player("Reza", "Ghoochannejhad", "D", 16, iran);
+		player16 = new Player("Reza", "Ghoochannejhad", "A", 16, iran);
 		player17 = new Player("Mehdi", "Taremi", "A", 17, iran);
 		player18 = new Player("Jahanbakhsh", "Alireza", "A", 18, iran);
-		player19 = new Player("Hosseini", "Majid", "A", 19, iran);
-		player20 = new Player("Sardar", "Azmoun", "D", 20, iran);
+		player19 = new Player("Hosseini", "Majid", "D", 19, iran);
+		player20 = new Player("Sardar", "Azmoun", "A", 20, iran);
 		player21 = new Player("Dejagah", "Ashkan", "A", 21, iran);
-		player22 = new Player("Abedzadeh", "Amir", "A", 22, iran);
-		player23 = new Player("Ramin", "Rezaeian", "G", 23, iran);
+		player22 = new Player("Abedzadeh", "Amir", "G", 22, iran);
+		player23 = new Player("Ramin", "Rezaeian", "D", 23, iran);
 
 		playerService.addPlayer(player1);
 		playerService.addPlayer(player2);
@@ -3083,8 +3082,8 @@ public class GameController
 		actions.add(Action.PASS);
 		actions.add(Action.YELLOW_CARD);
 		actions.add(Action.RED_CARD);
-		
-		playerStatsService.deletePlayerStats(game,actions);
+
+		playerStatsService.deletePlayerStats(game, actions);
 
 		for (int i = 0; i < gameEditForm.getScorerPlayers1().size(); i++)
 		{
@@ -3096,13 +3095,13 @@ public class GameController
 			game.addPlayerStat(playerStat);
 			scorerPlayer.addPlayerStat(playerStat);
 
-			if(gameEditForm.getPasserPlayers1().get(i) != null)
+			if (gameEditForm.getPasserPlayers1().get(i) != null)
 			{
 				Player passer = playerService.getPlayer(gameEditForm.getPasserPlayers1().get(i));
-				if(passer != null)
+				if (passer != null)
 				{
 					playerStat = playerStatsService.addPlayerStats(new PlayerStats(game, passer, minute, Action.PASS));
-		
+
 					game.addPlayerStat(playerStat);
 					passer.addPlayerStat(playerStat);
 				}
@@ -3119,13 +3118,13 @@ public class GameController
 			game.addPlayerStat(playerStat);
 			scorerPlayer.addPlayerStat(playerStat);
 
-			if(gameEditForm.getPasserPlayers2().get(i) != null)
+			if (gameEditForm.getPasserPlayers2().get(i) != null)
 			{
 				Player passer = playerService.getPlayer(gameEditForm.getPasserPlayers2().get(i));
-				if(passer != null)
+				if (passer != null)
 				{
 					playerStat = playerStatsService.addPlayerStats(new PlayerStats(game, passer, minute, Action.PASS));
-		
+
 					game.addPlayerStat(playerStat);
 					passer.addPlayerStat(playerStat);
 				}
@@ -3228,7 +3227,7 @@ public class GameController
 		List<Player> strikers2 = playerService.getStrikers(game.getTeam2());
 		model.addObject("strikers2", strikers2);
 
-		model.addObject("titulars", gameService.getTitulars(game));
+		model.addObject("titulars", gameService.getTitularsForEditCompo(game));
 		model.addObject("substitutes", gameService.getSubstitutes(game));
 		model.addObject("editCompoForm", new GameEditCompoForm(game));
 
