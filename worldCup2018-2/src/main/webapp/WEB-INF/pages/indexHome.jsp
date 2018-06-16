@@ -133,7 +133,7 @@
                     <article>
                       <span class="kode-result-count thbg-colortwo"><c:out value="${lastGame.score1}"/></span>
                       <div class="kode-result-thumb">
-                        <a href="#"><img src="<%=request.getContextPath()%>/resources/images/flag/${lastGame.team1}.png" alt=""></a>
+                        <a href="#"><img src="<%=request.getContextPath()%>/resources/images/flag/${lastGame.team1.name}.png" alt=""></a>
                       </div>
                       <div class="kode-result-info">
                         <h2><a href="#"><c:out value="${lastGame.team1.name}"/></a> <span>Win</span></h2>
