@@ -136,7 +136,7 @@
                         <a href="#"><img src="<%=request.getContextPath()%>/resources/images/flag/${lastGame.team1.name}.png" alt=""></a>
                       </div>
                       <div class="kode-result-info">
-                        <h2><a href="#"><c:out value="${lastGame.team1.name}"/></a> <span>Win</span></h2>
+                        <h2><a href="#"><c:out value="${lastGame.team1.name}"/></a> <span><c:choose><c:when test="${empty lastGame.score1 && empty lastGame.score2 }"> </c:when><c:when test="${lastGame.score1 > lastGame.score2}">VIC</c:when><c:when test="${lastGame.score1 < lastGame.score2}">DEF</c:when><c:otherwise>NUL</c:otherwise></c:choose></span></h2>
                         <ul>
                           <c:forEach var="goal" items="${lastGame.getGoalsTeam1()}">
 	                          <li>${goal.player.name}<span>(${goal.minute}')</span></li>
@@ -152,7 +152,7 @@
                         <a href="#"><img src="<%=request.getContextPath()%>/resources/images/flag/${lastGame.team2.name}.png" alt=""></a>
                       </div>
                       <div class="kode-result-info">
-                        <h2><a href="#"><c:out value="${lastGame.team2.name}"/></a> <span>Los</span></h2>
+                        <h2><a href="#"><c:out value="${lastGame.team2.name}"/></a> <span><c:choose><c:when test="${empty lastGame.score1 && empty lastGame.score2 }"></c:when> <c:when test="${lastGame.score1 < lastGame.score2}">VIC</c:when><c:when test="${lastGame.score1 > lastGame.score2}">DEF</c:when><c:otherwise>NUL</c:otherwise></c:choose></span></h2>
                         <ul>
                           <c:forEach var="goal" items="${lastGame.getGoalsTeam2()}">
 	                          <li>${goal.player.name}<span>(${goal.minute}')</span></li>
@@ -342,7 +342,6 @@
 	                        <span class="score-team">${game.score1}</span>
 	                        <img style="position:relative;float:right;margin-left:0.8em;top:0.6em;" src="<%=request.getContextPath()%>/resources/images/flag/${game.team2.name}.png" alt="" width="30" height="20">
 	                        <span class="name-team2">${game.team2.name}</span>
-	                        <span class="span-vs">VS</span>
 	                        <span class="score-team2">${game.score2}</span>
 	                        </td>
 	                        <td><tags:localDate date="${game.date}"/><br/>${game.time}</td>
