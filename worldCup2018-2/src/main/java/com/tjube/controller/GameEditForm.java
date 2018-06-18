@@ -30,7 +30,7 @@ public class GameEditForm
 
 	private List<Integer> scorerPlayers1 = new ArrayList<>();
 	private List<Integer> scorerPlayers2 = new ArrayList<>();
-
+	
 	private List<Integer> passerPlayers1 = new ArrayList<>();
 	private List<Integer> passerPlayers2 = new ArrayList<>();
 
@@ -55,42 +55,33 @@ public class GameEditForm
 
 		for (PlayerStats scorer : game.getGoalsTeam1())
 		{
-			scorerPlayers1.add(scorer.getPlayer().getId());
-			scorerPlayersMinute1.add(scorer.getMinute());
 			
-			boolean hasPasser = false;
+			scorerPlayers1.add(scorer.getPlayer() != null ? scorer.getPlayer().getId() : null);
+			scorerPlayersMinute1.add(scorer.getMinute());
 			
 			for (PlayerStats passer : game.getPassTeam1())
 			{
 				if(passer.getMinute() == scorer.getMinute())
 				{
-					passerPlayers1.add(passer.getPlayer().getId());
-					hasPasser = true;
+					passerPlayers1.add(passer.getPlayer() != null ? passer.getPlayer().getId() : null);
 				}
 			}
 			
-			if(!hasPasser)
-				passerPlayers1.add(null);
 		}
 
 		for (PlayerStats scorer : game.getGoalsTeam2())
 		{
-			scorerPlayers2.add(scorer.getPlayer().getId());
+			scorerPlayers2.add(scorer.getPlayer() != null ? scorer.getPlayer().getId() : null);
 			scorerPlayersMinute2.add(scorer.getMinute());
 			
-			boolean hasPasser = false;
 			
 			for (PlayerStats passer : game.getPassTeam2())
 			{
 				if(passer.getMinute() == scorer.getMinute())
 				{
-					passerPlayers2.add(passer.getPlayer().getId());
-					hasPasser = true;
+					passerPlayers2.add(passer.getPlayer() != null ? passer.getPlayer().getId() : null);
 				}
 			}
-			
-			if(!hasPasser)
-				passerPlayers2.add(null);
 		}
 
 //		for (PlayerStats passer : game.getPassTeam1())

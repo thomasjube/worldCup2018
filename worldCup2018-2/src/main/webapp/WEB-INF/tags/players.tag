@@ -12,4 +12,5 @@
 	<c:forEach items="${items}" var="player">
 		<form:option value="${player.id}" label="${player.number} - ${player.firstName} ${player.name}"/>
 	</c:forEach>
+	<form:option value="" label="CSC"/>
 </form:select>

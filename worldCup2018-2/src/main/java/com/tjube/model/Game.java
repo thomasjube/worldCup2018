@@ -324,8 +324,9 @@ public class Game
 		Collection<PlayerStats> results = new ArrayList<>();
 		for (PlayerStats playerStat : playerStats)
 		{
-			if (playerStat.getPlayer().getTeam() == team1 && playerStat.getAction() == Action.GOAL)
-				results.add(playerStat);
+			if (playerStat.getTeam() == team1 && playerStat.getAction() == Action.GOAL)
+					results.add(playerStat);
+			
 		}
 		List<PlayerStats> goalList = new ArrayList<>(results);
 		Collections.sort(goalList, new GoalComparator());
@@ -337,7 +338,7 @@ public class Game
 		Collection<PlayerStats> results = new ArrayList<>();
 		for (PlayerStats playerStat : playerStats)
 		{
-			if (playerStat.getPlayer().getTeam() == team2 && playerStat.getAction() == Action.GOAL)
+			if (playerStat.getTeam() == team2 && playerStat.getAction() == Action.GOAL)
 				results.add(playerStat);
 		}
 		List<PlayerStats> goalList = new ArrayList<>(results);
@@ -350,7 +351,7 @@ public class Game
 		Collection<PlayerStats> results = new ArrayList<>();
 		for (PlayerStats playerStat : playerStats)
 		{
-			if (playerStat.getPlayer().getTeam() == team1 && playerStat.getAction() == Action.PASS)
+			if (playerStat.getTeam() == team1 && playerStat.getAction() == Action.PASS)
 				results.add(playerStat);
 		}
 		List<PlayerStats> goalList = new ArrayList<>(results);
@@ -363,7 +364,7 @@ public class Game
 		Collection<PlayerStats> results = new ArrayList<>();
 		for (PlayerStats playerStat : playerStats)
 		{
-			if (playerStat.getPlayer().getTeam() == team2 && playerStat.getAction() == Action.PASS)
+			if (playerStat.getTeam() == team2 && playerStat.getAction() == Action.PASS)
 				results.add(playerStat);
 		}
 		List<PlayerStats> goalList = new ArrayList<>(results);

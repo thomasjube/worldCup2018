@@ -79,17 +79,21 @@ public class PlayerStats
 
 	@ManyToOne
 	private Player player;
+	
+	@ManyToOne
+	private Team team;
 
 	public PlayerStats()
 	{
 	}
 
-	public PlayerStats(Game game2, Player scorerPlayer, Integer minute2, Action action)
+	public PlayerStats(Game game2, Player scorerPlayer, Team team, Integer minute2, Action action)
 	{
 		this.game = game2;
 		this.player = scorerPlayer;
 		this.minute = minute2;
 		this.action = action;
+		this.team = team;
 	}
 
 	public int getId()
@@ -141,5 +145,12 @@ public class PlayerStats
 	{
 		this.player = player;
 	}
-
+	
+	public Team getTeam() {
+		return team;
+	}
+	
+	public void setTeam(Team team) {
+		this.team = team;
+	}
 }
