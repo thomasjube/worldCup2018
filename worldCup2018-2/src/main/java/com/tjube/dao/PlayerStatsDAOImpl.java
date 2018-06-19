@@ -227,7 +227,8 @@ public class PlayerStatsDAOImpl
 		TypedQuery<Object[]> typedQuery = m_entityManager
 				.createNamedQuery(PlayerStats.QN.RETRIEVE_STATS_BY_PLAYER_BY_GAME, Object[].class);
 		typedQuery.setParameter("player", player);
-		typedQuery.setParameter("actions", Arrays.asList(Action.TITULAR, Action.CHANGEMENT_IN, Action.CHANGEMENT_OUT));
+		typedQuery.setParameter("actions",
+				Arrays.asList(Action.TITULAR, Action.CHANGEMENT_IN, Action.CHANGEMENT_OUT, Action.RED_CARD));
 
 		Map<Game, Integer> mapGameMinute = new HashMap<>();
 
@@ -268,6 +269,9 @@ public class PlayerStatsDAOImpl
 						minuteGame += minute - minuteTotalGame;
 						break;
 					}
+					case RED_CARD:
+						minuteGame += minute - minuteTotalGame;
+						break;
 					default:
 						break;
 				}
