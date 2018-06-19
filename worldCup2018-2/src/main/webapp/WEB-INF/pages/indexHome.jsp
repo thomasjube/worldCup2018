@@ -311,25 +311,6 @@
         </div>
       </div>
 		
-		   <!--// Page Content //-->
-
-	        <section class="kode-pagesection margin-bottom-40">
-	          <div class="container">
-	            <div class="row">
-					<div class="col-md-12">
-						<div class="heading heading-12 margin-top30-bottom10">
-							<h2><span class="left"></span>Matchs du <tags:localDate date="${mapGame.key}"/><span class="right"></span></h2>
-						</div>
-					</div>	
-	                <div class="col-md-8">
-	                  
-	                  
-	                </div>
-	              </div>
-	            </div>
-	        </section>
-
-
 		 <!--// Page Content //-->
         <section class="kode-pagesection margin-bottom-40">
           <div class="container">

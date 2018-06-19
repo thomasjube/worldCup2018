@@ -106,14 +106,14 @@
                   <table class="kode-table kode-table-v2">
                     <thead>
                       <tr>
-                        <th>Team</th>
+                        <th>Equipe</th>
+                        <th>Pts</th>
                         <th>G</th>
                         <th>N</th>
                         <th>P</th>
-<!--                         <th>Buts mis</th> -->
-<!--                         <th>Buts pris</th> -->
-                        <th>pts</th>
-                        <th>Diff</th>
+                        <th>p.</th>
+                        <th>c.</th>
+                        <th>Diff.</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -121,10 +121,12 @@
                       	<c:forEach items="${orderTeams}" var="team">
                         	<tr class="team" data-teamId="${team.id}">
 	                        	<td><img src="<%=request.getContextPath()%>/resources/images/flag/${team.name}.png" alt="" width="30" height="20">&nbsp;${team.name}</td>
+		                        <td style="font-weight:bold;">${team.point}</td>
 		                        <td>${team.gameWin}</td>
 		                        <td>${team.gameDraw}</td>
 		                        <td>${team.gameLost}</td>
-		                        <td>${team.point}</td>
+								<td>${team.but_mis}</td>
+		                        <td>${team.but_pris}</td>
 		                        <td><c:if test="${team.diff > 0}">+</c:if>${team.diff}</td>
 	                        </tr>
                         </c:forEach>

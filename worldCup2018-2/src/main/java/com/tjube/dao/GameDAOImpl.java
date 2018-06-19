@@ -58,7 +58,6 @@ public class GameDAOImpl
 		return JPAUtils.getSingleResult(query);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<Game> getGames(Team team)
 	{
@@ -68,7 +67,6 @@ public class GameDAOImpl
 		return query.getResultList();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<Game> getGames(Poule poule)
 	{
@@ -86,9 +84,9 @@ public class GameDAOImpl
 		TypedQuery<Game> query = m_entityManager.createNamedQuery(Game.QN.findLastGameByDate, Game.class);
 
 		query.setParameter("date", today);
-		query.getFirstResult();
-		return query.setMaxResults(1).getResultList().isEmpty() ? null
-				: (Game) query.setMaxResults(1).getResultList().get(0);
+		query.setMaxResults(1);
+
+		return JPAUtils.getSingleResult(query);
 	}
 
 	@Override
@@ -97,9 +95,9 @@ public class GameDAOImpl
 		LocalDateTime today = LocalDateTime.now();
 		TypedQuery<Game> query = m_entityManager.createNamedQuery(Game.QN.findNextGameByDate, Game.class);
 		query.setParameter("date", today);
-		query.getFirstResult();
-		return query.setMaxResults(1).getResultList().isEmpty() ? null
-				: (Game) query.setMaxResults(1).getResultList().get(0);
+		query.setMaxResults(1);
+
+		return JPAUtils.getSingleResult(query);
 	}
 
 	@Override
@@ -109,9 +107,9 @@ public class GameDAOImpl
 		TypedQuery<Game> query = m_entityManager.createNamedQuery(Game.QN.findNextGameByDateAndPoule, Game.class);
 		query.setParameter("date", today);
 		query.setParameter("poule", poule);
-		query.getFirstResult();
-		return query.setMaxResults(1).getResultList().isEmpty() ? null
-				: (Game) query.setMaxResults(1).getResultList().get(0);
+		query.setMaxResults(1);
+
+		return JPAUtils.getSingleResult(query);
 	}
 
 	@Override
