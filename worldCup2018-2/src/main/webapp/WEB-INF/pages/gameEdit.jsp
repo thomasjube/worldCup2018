@@ -100,6 +100,12 @@
 		                    							<c:when test="${player.poste == 'A'}">Attaquant - ${player.number} - </c:when>
 		                    						</c:choose> 
 			                    					<c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}
+			                    					<c:if test="${not empty game.cartonsTeam1[player.id] }">
+			                    						<c:choose>
+			                    							<c:when test="${game.cartonsTeam1[player.id].action == 'YELLOW_CARD' }"><img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/cartons_jaune.png" alt=""></c:when>
+			                    							<c:otherwise><img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/cartons_rouge.png" alt=""></c:otherwise>
+			                    						</c:choose>
+			                    					</c:if>
 			                    					<c:if test="${not empty substitutes[player.id]}">
 			                    						<c:set var="playerSubstitute" value="${substitutes[player.id]}"/>
 			                    						<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute.player.number} - <c:if test="${not empty playerSubstitute.player.firstName}">${playerSubstitute.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute.player.name} (${playerSubstitute.player.poste}) - ${playerSubstitute.minute }'
@@ -127,6 +133,12 @@
 		                    							<c:when test="${player.poste == 'A'}">Attaquant - ${player.number} - </c:when>
 		                    						</c:choose> 
 													<c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}
+													<c:if test="${not empty game.cartonsTeam2[player.id] }">
+			                    						<c:choose>
+			                    							<c:when test="${game.cartonsTeam2[player.id].action == 'YELLOW_CARD' }"><img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/cartons_jaune.png" alt=""></c:when>
+			                    							<c:otherwise><img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/cartons_rouge.png" alt=""></c:otherwise>
+			                    						</c:choose>
+			                    					</c:if>
 			                    					<c:if test="${not empty substitutes[player.id]}">
 			                    						<c:set var="playerSubstitute" value="${substitutes[player.id]}"/>
 			                    						<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute.player.number} - <c:if test="${not empty playerSubstitute.player.firstName }">${playerSubstitute.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute.player.name} (${playerSubstitute.player.poste}) - ${playerSubstitute.minute }'

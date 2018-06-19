@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -383,6 +385,62 @@ public class Game
 		List<PlayerStats> goalList = new ArrayList<>(results);
 		Collections.sort(goalList, new GoalComparator());
 		return goalList;
+	}
+
+	public Map<Integer, PlayerStats> getCartonsTeam1()
+	{
+		Map<Integer, PlayerStats> result = new HashMap();
+
+		for (PlayerStats playerStat : playerStats)
+		{
+			if (playerStat.getTeam().equals(team1)
+					&& (playerStat.getAction() == Action.YELLOW_CARD || playerStat.getAction() == Action.RED_CARD))
+			{
+				switch (playerStat.getAction())
+				{
+					case YELLOW_CARD:
+						PlayerStats value = result.get(playerStat.getPlayer().getId());
+						if (value == null)
+							result.put(playerStat.getPlayer().getId(), playerStat);
+						break;
+					case RED_CARD:
+						result.put(playerStat.getPlayer().getId(), playerStat);
+						break;
+					default:
+						break;
+				}
+			}
+		}
+
+		return result;
+	}
+
+	public Map<Integer, PlayerStats> getCartonsTeam2()
+	{
+		Map<Integer, PlayerStats> result = new HashMap();
+
+		for (PlayerStats playerStat : playerStats)
+		{
+			if (playerStat.getTeam().equals(team2)
+					&& (playerStat.getAction() == Action.YELLOW_CARD || playerStat.getAction() == Action.RED_CARD))
+			{
+				switch (playerStat.getAction())
+				{
+					case YELLOW_CARD:
+						PlayerStats value = result.get(playerStat.getPlayer().getId());
+						if (value == null)
+							result.put(playerStat.getPlayer().getId(), playerStat);
+						break;
+					case RED_CARD:
+						result.put(playerStat.getPlayer().getId(), playerStat);
+						break;
+					default:
+						break;
+				}
+			}
+		}
+
+		return result;
 	}
 
 	public LocalDate getDate()
