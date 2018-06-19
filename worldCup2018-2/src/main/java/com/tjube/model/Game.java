@@ -335,6 +335,27 @@ public class Game
 		return goalList;
 	}
 
+	public Map<Integer, Integer> getGoalsPlayerTeam1()
+	{
+		Map<Integer, Integer> result = new HashMap<>();
+		for (PlayerStats playerStat : playerStats)
+		{
+			if (playerStat.getAction() == Action.GOAL && playerStat.getPlayer() != null
+					&& playerStat.getTeam().equals(team1))
+			{
+				Integer value = result.get(playerStat.getPlayer().getId());
+				if (value == null)
+					value = 1;
+				else
+					value = value + 1;
+
+				result.put(playerStat.getPlayer().getId(), value);
+			}
+		}
+
+		return result;
+	}
+
 	public List<PlayerStats> getGoalsTeam2()
 	{
 		Collection<PlayerStats> results = new ArrayList<>();
@@ -346,6 +367,27 @@ public class Game
 		List<PlayerStats> goalList = new ArrayList<>(results);
 		Collections.sort(goalList, new GoalComparator());
 		return goalList;
+	}
+
+	public Map<Integer, Integer> getGoalsPlayerTeam2()
+	{
+		Map<Integer, Integer> result = new HashMap<>();
+		for (PlayerStats playerStat : playerStats)
+		{
+			if (playerStat.getAction() == Action.GOAL && playerStat.getPlayer() != null
+					&& playerStat.getTeam().equals(team2))
+			{
+				Integer value = result.get(playerStat.getPlayer().getId());
+				if (value == null)
+					value = 1;
+				else
+					value = value + 1;
+
+				result.put(playerStat.getPlayer().getId(), value);
+			}
+		}
+
+		return result;
 	}
 
 	public List<PlayerStats> getPassTeam1()
@@ -389,7 +431,7 @@ public class Game
 
 	public Map<Integer, PlayerStats> getCartonsTeam1()
 	{
-		Map<Integer, PlayerStats> result = new HashMap();
+		Map<Integer, PlayerStats> result = new HashMap<>();
 
 		for (PlayerStats playerStat : playerStats)
 		{
@@ -417,7 +459,7 @@ public class Game
 
 	public Map<Integer, PlayerStats> getCartonsTeam2()
 	{
-		Map<Integer, PlayerStats> result = new HashMap();
+		Map<Integer, PlayerStats> result = new HashMap<>();
 
 		for (PlayerStats playerStat : playerStats)
 		{

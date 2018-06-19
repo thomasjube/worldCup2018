@@ -100,15 +100,22 @@
 		                    							<c:when test="${player.poste == 'A'}">Attaquant - ${player.number} - </c:when>
 		                    						</c:choose> 
 			                    					<c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}
+			                    					<c:if test="${not empty game.goalsPlayerTeam1[player.id] }">
+			                    						 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_2.png" alt=""><c:if test="${game.goalsPlayerTeam1[player.id] > 1 }"> x ${game.goalsPlayerTeam1[player.id]}</c:if>
+			                    					</c:if>
 			                    					<c:if test="${not empty game.cartonsTeam1[player.id] }">
 			                    						<c:choose>
 			                    							<c:when test="${game.cartonsTeam1[player.id].action == 'YELLOW_CARD' }"><img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/cartons_jaune.png" alt=""></c:when>
 			                    							<c:otherwise><img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/cartons_rouge.png" alt=""></c:otherwise>
 			                    						</c:choose>
 			                    					</c:if>
+			                    					
 			                    					<c:if test="${not empty substitutes[player.id]}">
 			                    						<c:set var="playerSubstitute" value="${substitutes[player.id]}"/>
 			                    						<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute.player.number} - <c:if test="${not empty playerSubstitute.player.firstName}">${playerSubstitute.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute.player.name} (${playerSubstitute.player.poste}) - ${playerSubstitute.minute }'
+			                    						<c:if test="${not empty game.goalsPlayerTeam1[playerSubstitute.player.id] }">
+			                    							- <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_2.png" alt=""><c:if test="${game.goalsPlayerTeam1[playerSubstitute.player.id] > 1 }"> x ${game.goalsPlayerTeam1[playerSubstitute.player.id]}</c:if>
+			                    						</c:if>
 			                    						<c:if test="${not empty game.cartonsTeam1[playerSubstitute.player.id] }">
 				                    						<c:choose>
 				                    							<c:when test="${game.cartonsTeam1[playerSubstitute.player.id].action == 'YELLOW_CARD' }"><img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/cartons_jaune.png" alt=""></c:when>
@@ -118,6 +125,9 @@
 														<c:if test="${not empty substitutes[playerSubstitute.player.id]}">
 			                    							<c:set var="playerSubstitute2" value="${substitutes[playerSubstitute.player.id]}"/>
 			                    							<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute2.player.number} - <c:if test="${not empty playerSubstitute2.player.firstName}">${playerSubstitute2.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute2.player.name} (${playerSubstitute2.player.poste}) - ${playerSubstitute2.minute }'
+			                    							<c:if test="${not empty game.goalsPlayerTeam1[playerSubstitute2.player.id] }">
+			                    								- <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_2.png" alt=""><c:if test="${game.goalsPlayerTeam1[playerSubstitute2.player.id] > 1 }"> x ${game.goalsPlayerTeam1[playerSubstitute2.player.id]}</c:if>
+			                    							</c:if>
 			                    							<c:if test="${not empty game.cartonsTeam1[playerSubstitute2.player.id] }">
 					                    						<c:choose>
 					                    							<c:when test="${game.cartonsTeam1[playerSubstitute2.player.id].action == 'YELLOW_CARD' }"><img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/cartons_jaune.png" alt=""></c:when>
@@ -127,6 +137,9 @@
 															<c:if test="${not empty substitutes[playerSubstitute2.player.id]}">
 				                    							<c:set var="playerSubstitute3" value="${substitutes[playerSubstitute2.player.id]}"/>
 				                    							<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute3.player.number} - <c:if test="${not empty playerSubstitute3.player.firstName}">${playerSubstitute3.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute3.player.name} (${playerSubstitute2.player.poste}) - ${playerSubstitute3.minute }'
+				                    							<c:if test="${not empty game.goalsPlayerTeam1[playerSubstitute3.player.id] }">
+				                    								- <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_2.png" alt=""><c:if test="${game.goalsPlayerTeam1[playerSubstitute3.player.id] > 1 }"> x ${game.goalsPlayerTeam1[playerSubstitute3.player.id]}</c:if>
+				                    							</c:if>
 				                    							<c:if test="${not empty game.cartonsTeam1[playerSubstitute3.player.id] }">
 						                    						<c:choose>
 						                    							<c:when test="${game.cartonsTeam1[playerSubstitute3.player.id].action == 'YELLOW_CARD' }"><img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/cartons_jaune.png" alt=""></c:when>
@@ -151,6 +164,9 @@
 		                    							<c:when test="${player.poste == 'A'}">Attaquant - ${player.number} - </c:when>
 		                    						</c:choose> 
 													<c:if test="${not empty player.firstName}">${player.firstName.charAt(0)}.&nbsp;</c:if>${player.name}
+	                    							<c:if test="${not empty game.goalsPlayerTeam2[player.id] }">
+			                    						 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_2.png" alt=""><c:if test="${game.goalsPlayerTeam2[player.id] > 1 }"> x ${game.goalsPlayerTeam2[player.id]}</c:if>
+			                    					</c:if>
 													<c:if test="${not empty game.cartonsTeam2[player.id] }">
 			                    						<c:choose>
 			                    							<c:when test="${game.cartonsTeam2[player.id].action == 'YELLOW_CARD' }"><img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/cartons_jaune.png" alt=""></c:when>
@@ -160,6 +176,9 @@
 			                    					<c:if test="${not empty substitutes[player.id]}">
 			                    						<c:set var="playerSubstitute" value="${substitutes[player.id]}"/>
 			                    						<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute.player.number} - <c:if test="${not empty playerSubstitute.player.firstName }">${playerSubstitute.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute.player.name} (${playerSubstitute.player.poste}) - ${playerSubstitute.minute }'
+		                    							<c:if test="${not empty game.goalsPlayerTeam2[playerSubstitute.player.id] }">
+				                    						 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_2.png" alt=""><c:if test="${game.goalsPlayerTeam2[playerSubstitute.player.id] > 1 }"> x ${game.goalsPlayerTeam2[playerSubstitute.player.id]}</c:if>
+				                    					</c:if>
 			                    						<c:if test="${not empty game.cartonsTeam2[playerSubstitute.id] }">
 			                    						<c:choose>
 			                    							<c:when test="${game.cartonsTeam2[playerSubstitute.id].action == 'YELLOW_CARD' }"><img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/cartons_jaune.png" alt=""></c:when>
@@ -169,6 +188,9 @@
 														<c:if test="${not empty substitutes[playerSubstitute.player.id]}">
 			                    							<c:set var="playerSubstitute2" value="${substitutes[playerSubstitute.player.id]}"/>
 			                    							<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute2.player.number} - <c:if test="${not empty playerSubstitute2.player.firstName }">${playerSubstitute2.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute2.player.name} (${playerSubstitute.player.poste}) - ${playerSubstitute2.minute }'
+			                    							<c:if test="${not empty game.goalsPlayerTeam2[playerSubstitute2.player.id] }">
+					                    						 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_2.png" alt=""><c:if test="${game.goalsPlayerTeam2[playerSubstitute2.player.id] > 1 }"> x ${game.goalsPlayerTeam2[playerSubstitute2.player.id]}</c:if>
+					                    					</c:if>
 			                    							<c:if test="${not empty game.cartonsTeam2[playerSubstitute2.player.id] }">
 					                    						<c:choose>
 					                    							<c:when test="${game.cartonsTeam2[playerSubstitute2.player.id].action == 'YELLOW_CARD' }"><img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/cartons_jaune.png" alt=""></c:when>
@@ -178,6 +200,9 @@
 															<c:if test="${not empty substitutes[playerSubstitute2.player.id]}">
 				                    							<c:set var="playerSubstitute3" value="${substitutes[playerSubstitute2.player.id]}"/>
 				                    							<img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/remplacement.png" alt="">&nbsp; ${playerSubstitute3.player.number} - <c:if test="${not empty playerSubstitute3.player.firstName }">${playerSubstitute3.player.firstName.charAt(0)}.&nbsp;</c:if>${playerSubstitute3.player.name} (${playerSubstitute.player.poste}) - ${playerSubstitute3.minute }'
+				                    							<c:if test="${not empty game.goalsPlayerTeam2[playerSubstitute3.player.id] }">
+						                    						 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_2.png" alt=""><c:if test="${game.goalsPlayerTeam2[playerSubstitute3.player.id] > 1 }"> x ${game.goalsPlayerTeam2[playerSubstitute3.player.id]}</c:if>
+						                    					</c:if>
 				                    							<c:if test="${not empty game.cartonsTeam2[playerSubstitute3.player.id] }">
 						                    						<c:choose>
 						                    							<c:when test="${game.cartonsTeam2[playerSubstitute3.player.id].action == 'YELLOW_CARD' }"><img width="5%" src="<%=request.getContextPath()%>/resources/images/icones/cartons_jaune.png" alt=""></c:when>
