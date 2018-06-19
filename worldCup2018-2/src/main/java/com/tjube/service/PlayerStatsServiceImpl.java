@@ -66,7 +66,6 @@ public class PlayerStatsServiceImpl
 	public void deletePlayerStats(Game game, Collection<Action> actions)
 	{
 		playerStatsDAO.deletePlayerStats(game, actions);
-
 	}
 
 	@Override

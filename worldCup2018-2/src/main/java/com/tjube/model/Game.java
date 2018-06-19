@@ -29,7 +29,7 @@ import com.tjube.controller.LocalDateTimeAttributeConverter;
 		@NamedQuery(name = Game.QN.findNextGameByDate,
 				query = "select g from Game g where g.dateTime > :date order by g.dateTime,g.name"),
 		@NamedQuery(name = Game.QN.findLastGameByDate,
-				query = "select g from Game g where g.dateTime < :date AND g.score1 is not null order by g.dateTime,g.name"),
+				query = "select g from Game g where g.dateTime < :date AND g.score1 is not null order by g.dateTime desc,g.name desc"),
 		@NamedQuery(name = Game.QN.GET_ALL_GAMES_BY_TEAM,
 				query = "select g from Game g where g.team1=:team OR g.team2=:team order by g.dateTime,g.name"),
 		@NamedQuery(name = Game.QN.GET_ALL_GAMES_BY_POULE,
@@ -325,8 +325,8 @@ public class Game
 		for (PlayerStats playerStat : playerStats)
 		{
 			if (playerStat.getTeam() == team1 && playerStat.getAction() == Action.GOAL)
-					results.add(playerStat);
-			
+				results.add(playerStat);
+
 		}
 		List<PlayerStats> goalList = new ArrayList<>(results);
 		Collections.sort(goalList, new GoalComparator());

@@ -133,7 +133,7 @@
                     <article>
                       <span class="kode-result-count thbg-colortwo"><c:out value="${lastGame.score1}"/></span>
                       <div class="kode-result-thumb">
-                        <a href="#"><img src="<%=request.getContextPath()%>/resources/images/flag/${lastGame.team1.name}.png" alt=""></a>
+                        <a href="#"><img src="<%=request.getContextPath()%>/resources/images/flag/${lastGame.team1.name}.png" alt=""  width="110" height="110"></a>
                       </div>
                       <div class="kode-result-info">
                         <h2><a href="#"><c:out value="${lastGame.team1.name}"/></a> <span><c:choose><c:when test="${empty lastGame.score1 && empty lastGame.score2 }"> </c:when><c:when test="${lastGame.score1 > lastGame.score2}">VIC</c:when><c:when test="${lastGame.score1 < lastGame.score2}">DEF</c:when><c:otherwise>NUL</c:otherwise></c:choose></span></h2>
@@ -149,7 +149,7 @@
                     <article class="kode-even">
                       <span class="kode-result-count thbg-colortwo"><c:out value="${lastGame.score2}"/></span>
                       <div class="kode-result-thumb">
-                        <a href="#"><img src="<%=request.getContextPath()%>/resources/images/flag/${lastGame.team2.name}.png" alt=""></a>
+                        <a href="#"><img src="<%=request.getContextPath()%>/resources/images/flag/${lastGame.team2.name}.png" alt="" width="110" height="110"></a>
                       </div>
                       <div class="kode-result-info">
                         <h2><a href="#"><c:out value="${lastGame.team2.name}"/></a> <span><c:choose><c:when test="${empty lastGame.score1 && empty lastGame.score2 }"></c:when> <c:when test="${lastGame.score1 < lastGame.score2}">VIC</c:when><c:when test="${lastGame.score1 > lastGame.score2}">DEF</c:when><c:otherwise>NUL</c:otherwise></c:choose></span></h2>
@@ -313,6 +313,23 @@
 		
 		   <!--// Page Content //-->
 
+	        <section class="kode-pagesection margin-bottom-40">
+	          <div class="container">
+	            <div class="row">
+					<div class="col-md-12">
+						<div class="heading heading-12 margin-top30-bottom10">
+							<h2><span class="left"></span>Matchs du <tags:localDate date="${mapGame.key}"/><span class="right"></span></h2>
+						</div>
+					</div>	
+	                <div class="col-md-8">
+	                  
+	                  
+	                </div>
+	              </div>
+	            </div>
+	        </section>
+
+
 		 <!--// Page Content //-->
         <section class="kode-pagesection margin-bottom-40">
           <div class="container">
@@ -326,30 +343,33 @@
                 <div class="col-md-8">
                   
                   <table class="kode-table">
-                    <thead>
-                      <tr>
-                        <th>Match</th>
-                        <th>Date</th>
-                        <th>Stade</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${franceGames}" var="game">
-                      <tr id="${game.id }">
-                        <td style="text-align: center;width:100%">
-	                        <img style="position:relative;float:left;top:0.6em;" src="<%=request.getContextPath()%>/resources/images/flag/${game.team1.name}.png" alt="" width="30" height="20">&nbsp;
-	                        <span class="name-team">${game.team1.name}</span> 
-	                        <span class="score-team">${game.score1}</span>
-	                        <img style="position:relative;float:right;margin-left:0.8em;top:0.6em;" src="<%=request.getContextPath()%>/resources/images/flag/${game.team2.name}.png" alt="" width="30" height="20">
-	                        <span class="name-team2">${game.team2.name}</span>
-	                        <span class="score-team2">${game.score2}</span>
+	                    <thead>
+	                      <tr>
+                        	<th colspan=7 style="text-align:center;">Match</th>
+                        	<th>Date</th>
+                        	<th>Stade</th>
+                      	</tr>	
+	                    </thead>
+	                    <tbody>
+	                    <c:forEach items="${franceGames}" var="game">
+	                      <tr id="${game.id}">
+	                        <td style="text-align: center;width:10%;">
+	                        	<img style="top:0.6em;" src="<%=request.getContextPath()%>/resources/images/flag/${game.team1.name}.png" alt="" width="30" height="20">&nbsp;
+	                        </td>
+	                        <td style="width:27%;"><div style="width:100%;">${game.team1.name}</div></td>
+	                        <td style="width:5%;">${game.score1}</td>
+	                        <td style="width:5%;">VS</td>
+	                      	<td style="width:5%;">${game.score2}</td>
+	                      	<td style="width:27%;"><div style="width:100%;">${game.team2.name}</div></td>
+	                        <td style="width:10%">
+	                        	<img style="top:0.6em;" src="<%=request.getContextPath()%>/resources/images/flag/${game.team2.name}.png" alt="" width="30" height="20">
 	                        </td>
 	                        <td><tags:localDate date="${game.date}"/><br/>${game.time}</td>
-	                        <td>${game.stade}</td>
-                      </tr>
-                    </c:forEach>
-                    </tbody>
-                 </table>
+	                     	<td>${game.stade}</td>
+	                      </tr>
+	                    </c:forEach>
+	                    </tbody>
+	                 </table>
                 </div>
               </div>
             </div>

@@ -136,7 +136,8 @@ public class PlayerStatsDAOImpl
 
 		for (PlayerStats stat : playerStats)
 		{
-			stat.getPlayer().removestat(stat);
+			if (stat.getPlayer() != null)
+				stat.getPlayer().removestat(stat);
 			stat.getGame().removestat(stat);
 
 			if (!m_entityManager.contains(stat))
@@ -160,7 +161,8 @@ public class PlayerStatsDAOImpl
 
 		for (PlayerStats stat : playerStats)
 		{
-			stat.getPlayer().removestat(stat);
+			if (stat.getPlayer() != null)
+				stat.getPlayer().removestat(stat);
 			stat.getGame().removestat(stat);
 
 			if (!m_entityManager.contains(stat))
@@ -488,8 +490,8 @@ public class PlayerStatsDAOImpl
 	{
 		Map<Integer, PlayerStats> results = new HashMap<>();
 
-		TypedQuery<Object[]> query = m_entityManager
-				.createNamedQuery(PlayerStats.QN.RETRIEVE_STATS_WORLD_CUP_FOR_ACTION_AND_GAME, Object[].class);
+		TypedQuery<Object[]> query = m_entityManager.createNamedQuery(PlayerStats.QN.RETRIEVE_SUBSTITUTES_BY_GAME,
+				Object[].class);
 
 		query.setParameter("action", Action.CHANGEMENT_OUT);
 		query.setParameter("action2", Action.CHANGEMENT_IN);

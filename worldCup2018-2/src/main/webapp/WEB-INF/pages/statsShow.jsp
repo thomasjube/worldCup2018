@@ -71,23 +71,25 @@
 							<c:set var="previousGoals" value ="0"/>
 							<c:set var="indexGoals" value ="1"/>
 							<c:forEach items="${goalsStats}" var="goalsStat" varStatus="status">
-			                    <ul class="table-body">
-			                      <li>
-			                      	<span>
-			                      		<c:choose>
-			                      			<c:when test="${previousGoals == goalsStat.goals }"> - </c:when>
-			                      			<c:otherwise>
-			                      				${indexGoals }
-			                      				<c:set var="previousGoals" value ="${goalsStat.goals }"/>
-			                      				<c:set var="indexGoals" value ="${indexGoals + 1 }"/>
-			                      			</c:otherwise>
-			                      		</c:choose>
-			                      	</span>
-			                        <img style="top:1em;" src="<%=request.getContextPath()%>/resources/images/flag/${goalsStat.player.team.name}.png" alt="" width="30" height="20">&nbsp;
-			                        <span><c:if test="${not empty goalsStat.player.firstName}">${goalsStat.player.firstName.charAt(0)}.&nbsp;</c:if>${goalsStat.player.name}</span>
-			                        <span>${goalsStat.goals}</span>
-			                      </li>
-			                    </ul>
+			                    <c:if test="${not empty goalsStat.player}">
+				                    <ul class="table-body">
+				                      <li>
+				                      	<span>
+				                      		<c:choose>
+				                      			<c:when test="${previousGoals == goalsStat.goals }"> - </c:when>
+				                      			<c:otherwise>
+				                      				${indexGoals }
+				                      				<c:set var="previousGoals" value ="${goalsStat.goals }"/>
+				                      				<c:set var="indexGoals" value ="${indexGoals + 1 }"/>
+				                      			</c:otherwise>
+				                      		</c:choose>
+				                      	</span>
+				                        <img style="top:1em;" src="<%=request.getContextPath()%>/resources/images/flag/${goalsStat.player.team.name}.png" alt="" width="30" height="20">&nbsp;
+				                        <span><c:if test="${not empty goalsStat.player.firstName}">${goalsStat.player.firstName.charAt(0)}.&nbsp;</c:if>${goalsStat.player.name}</span>
+				                        <span>${goalsStat.goals}</span>
+				                      </li>
+				                    </ul>
+			                    </c:if>
 		                    </c:forEach>
 						</c:when>
 						<c:otherwise>
@@ -101,23 +103,25 @@
 							<c:set var="previousPasses" value ="0"/>
 							<c:set var="indexPasses" value ="1"/>
 							<c:forEach items="${passesStats}" var="passesStat" varStatus="status">
-			                    <ul class="table-body">
-			                      <li>
-									<span>
-			                      		<c:choose>
-			                      			<c:when test="${previousPasses == passesStat.passes }"> - </c:when>
-			                      			<c:otherwise>
-			                      				${indexPasses }
-			                      				<c:set var="previousPasses" value ="${passesStat.passes }"/>
-			                      				<c:set var="indexPasses" value ="${indexPasses + 1 }"/>
-			                      			</c:otherwise>
-			                      		</c:choose>
-			                      	</span>
-			                        <img style="top:1em;" src="<%=request.getContextPath()%>/resources/images/flag/${passesStat.player.team.name}.png" alt="" width="30" height="20">&nbsp;
-			                        <span><c:if test="${not empty passesStat.player.firstName}">${passesStat.player.firstName.charAt(0)}.&nbsp;</c:if>${passesStat.player.name}</span>
-			                        <span>${passesStat.passes}</span>
-			                      </li>
-			                    </ul>
+			                    <c:if test="${not empty passesStat.player}">
+				                    <ul class="table-body">
+				                      <li>
+										<span>
+				                      		<c:choose>
+				                      			<c:when test="${previousPasses == passesStat.passes }"> - </c:when>
+				                      			<c:otherwise>
+				                      				${indexPasses }
+				                      				<c:set var="previousPasses" value ="${passesStat.passes }"/>
+				                      				<c:set var="indexPasses" value ="${indexPasses + 1 }"/>
+				                      			</c:otherwise>
+				                      		</c:choose>
+				                      	</span>
+				                        <img style="top:1em;" src="<%=request.getContextPath()%>/resources/images/flag/${passesStat.player.team.name}.png" alt="" width="30" height="20">&nbsp;
+				                        <span><c:if test="${not empty passesStat.player.firstName}">${passesStat.player.firstName.charAt(0)}.&nbsp;</c:if>${passesStat.player.name}</span>
+				                        <span>${passesStat.passes}</span>
+				                      </li>
+				                    </ul>
+			                    </c:if>
 		                    </c:forEach>
 						</c:when>
 						<c:otherwise>
