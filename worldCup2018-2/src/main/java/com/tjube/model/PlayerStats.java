@@ -159,4 +159,22 @@ public class PlayerStats
 	{
 		this.team = team;
 	}
+
+	@Override
+	public int hashCode()
+	{
+		return new Long(getId()).hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (obj == null)
+			return false;
+
+		if (!(obj instanceof PlayerStats))
+			return false;
+
+		return getId() == ((PlayerStats) obj).getId();
+	}
 }

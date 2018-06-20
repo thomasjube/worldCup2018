@@ -179,10 +179,21 @@ public class WinnaBetDAOImpl
 	{
 		List<BetClassementLine> results = new ArrayList<>();
 
+		Map<BetName, Long> playerWinaBet = new HashMap<>();
 		Map<BetName, Long> playerScore = new HashMap<>();
 		Map<BetName, Long> playerResult = new HashMap<>();
 
-		TypedQuery<Object[]> query = m_entityManager.createNamedQuery(WinnaBet.QN.GET_NB_SCORE, Object[].class);
+		TypedQuery<Object[]> query = m_entityManager.createNamedQuery(WinnaBet.QN.GET_NB_WINABET, Object[].class);
+
+		for (Object[] values : query.getResultList())
+		{
+			BetName name = values[0] != null ? (BetName) values[0] : null;
+			Long nbWinaBet = values[1] != null ? (Long) values[1] : null;
+
+			playerWinaBet.put(name, nbWinaBet);
+		}
+
+		query = m_entityManager.createNamedQuery(WinnaBet.QN.GET_NB_SCORE, Object[].class);
 
 		for (Object[] values : query.getResultList())
 		{
@@ -204,9 +215,10 @@ public class WinnaBetDAOImpl
 
 		for (BetName name : BetName.values())
 		{
+			Long winabet = playerWinaBet.get(name) != null ? playerWinaBet.get(name) : new Long(0);
 			Long score = playerScore.get(name) != null ? playerScore.get(name) : new Long(0);
 			Long result = playerResult.get(name) != null ? playerResult.get(name) : new Long(0);
-			results.add(new BetClassementLine(name, score, result));
+			results.add(new BetClassementLine(name, winabet, score, result));
 		}
 
 		Collections.sort(results, new BetClassementLineComparator());

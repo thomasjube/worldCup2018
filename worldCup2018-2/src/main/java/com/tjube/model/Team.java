@@ -74,7 +74,7 @@ public class Team
 	@Column
 	private Integer position_poule;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Poule poule;
 
 	@OneToMany(fetch = FetchType.LAZY)
@@ -251,4 +251,21 @@ public class Team
 		this.but_pris = but_pris;
 	}
 
+	@Override
+	public int hashCode()
+	{
+		return new Long(getId()).hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (obj == null)
+			return false;
+
+		if (!(obj instanceof Team))
+			return false;
+
+		return getId() == ((Team) obj).getId();
+	}
 }

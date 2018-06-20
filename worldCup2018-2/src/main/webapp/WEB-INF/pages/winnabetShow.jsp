@@ -76,6 +76,8 @@
                     <thead>
                       <tr>
                         <th>Parieur</th>
+                        <th>Nb. paris</th>
+                        <th>%</th>
                         <th>Bons scores</th>
                         <th>Bons résultats</th>
                         <th>Points</th>
@@ -143,6 +145,8 @@
                         	
                         	<tr class="${classement}">
 		                        <td>${line.name}</td>
+		                        <td>${line.nbWinaBet}</td>
+		                        <td>${line.percent} %</td>
 		                        <td>${line.nbScore}</td>
 		                        <td>${line.nbResults}</td>
 		                        <td>${line.points}</td>
