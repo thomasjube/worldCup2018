@@ -21,6 +21,8 @@ public class WinnaBetServiceImpl
 	@Autowired
 	private WinnaBetDAO winnaBetDAO;
 
+	private String mode = "";
+
 	@Override
 	public void add(WinnaBet winnaBet)
 	{
@@ -85,12 +87,22 @@ public class WinnaBetServiceImpl
 	@Override
 	public List<BetClassementLine> getBetClassement(int totalGamesPlayed)
 	{
-		return winnaBetDAO.getBetClassement(totalGamesPlayed);
+		return winnaBetDAO.getBetClassement(totalGamesPlayed, mode);
 	}
 
 	@Override
 	public void resetWinnaBet(WinnaBet winnaBet)
 	{
 		winnaBetDAO.resetWinnaBet(winnaBet);
+	}
+
+	public String getMode()
+	{
+		return mode;
+	}
+
+	public void setMode(String mode)
+	{
+		this.mode = mode;
 	}
 }

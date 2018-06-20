@@ -176,7 +176,7 @@ public class WinnaBetDAOImpl
 	}
 
 	@Override
-	public List<BetClassementLine> getBetClassement(int totalGamesPlayed)
+	public List<BetClassementLine> getBetClassement(int totalGamesPlayed, String mode)
 	{
 		List<BetClassementLine> results = new ArrayList<>();
 
@@ -185,7 +185,8 @@ public class WinnaBetDAOImpl
 		Map<BetName, Long> playerResult = new HashMap<>();
 
 		TypedQuery<Object[]> query = m_entityManager.createNamedQuery(WinnaBet.QN.GET_NB_WINABET, Object[].class);
-		query.setParameter("date", LocalDateTime.now());
+		query.setParameter("date",
+				mode.equalsIgnoreCase("demo") ? LocalDateTime.now() : LocalDateTime.now().plusHours(2));
 
 		for (Object[] values : query.getResultList())
 		{
