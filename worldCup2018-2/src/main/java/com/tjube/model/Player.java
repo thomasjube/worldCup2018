@@ -68,7 +68,7 @@ public class Player
 	@Column
 	private Integer number;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Team team;
 
 	@OneToMany(mappedBy = "player", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -167,5 +167,27 @@ public class Player
 	public void removestat(PlayerStats playerStat)
 	{
 		this.playerStats.remove(playerStat);
+	}
+
+	public int getGamesPlayed()
+	{
+		int result = 0;
+
+		if (playerStats.isEmpty())
+			return 0;
+
+		Collection<Game> games = new ArrayList<>();
+
+		for (PlayerStats tmp : playerStats)
+		{
+			if (!games.contains(tmp.getGame())
+					&& (tmp.getAction() == Action.TITULAR || tmp.getAction() == Action.CHANGEMENT_IN))
+			{
+				games.add(tmp.getGame());
+				result++;
+			}
+		}
+
+		return result;
 	}
 }

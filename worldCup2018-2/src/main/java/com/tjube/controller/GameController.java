@@ -3045,13 +3045,6 @@ public class GameController
 	{
 		int gameId = Integer.parseInt(request.getParameter("id"));
 		Game game = gameService.getGame(gameId);
-		for (PlayerStats playerStat : game.getPlayerStats())
-		{
-			if (playerStat.getAction() == Action.GOAL)
-			{
-				System.out.println(playerStat.getAction());
-			}
-		}
 
 		ModelAndView model = new ModelAndView("gameEdit");
 		model.addObject("game", game);

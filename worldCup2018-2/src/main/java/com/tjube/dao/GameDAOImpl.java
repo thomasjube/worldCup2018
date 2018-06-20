@@ -78,6 +78,16 @@ public class GameDAOImpl
 	}
 
 	@Override
+	public List<Game> getGames(LocalDateTime date)
+	{
+
+		TypedQuery<Game> query = m_entityManager.createNamedQuery(Game.QN.GET_ALL_GAMES_BEFORE_DATE, Game.class);
+		query.setParameter("date", date);
+
+		return query.getResultList();
+	}
+
+	@Override
 	public Game getLastGame()
 	{
 		LocalDateTime today = LocalDateTime.now();

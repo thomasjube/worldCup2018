@@ -1,5 +1,6 @@
 package com.tjube.service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -47,6 +48,13 @@ public class GameServiceImpl
 	public List<Game> getGames(Team team)
 	{
 		return gameDAO.getGames(team);
+	}
+
+	@Override
+	@Transactional
+	public List<Game> getGames(LocalDateTime date)
+	{
+		return gameDAO.getGames(date);
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package com.tjube.controller;
 
+import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.EnumSet;
@@ -67,8 +69,10 @@ public class WinnaBetController
 	@RequestMapping(value = "/")
 	public ModelAndView winabetShow(ModelAndView model)
 	{
+		Collection<Game> games = gameService.getGames(LocalDateTime.now());
 
-		List<BetClassementLine> lines = winnaBetService.getBetClassement();
+		List<BetClassementLine> lines = winnaBetService.getBetClassement(games.size());
+
 		model.addObject("lines", lines);
 
 		model.setViewName("winnabetShow");

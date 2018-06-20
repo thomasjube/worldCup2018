@@ -37,6 +37,7 @@ import com.tjube.controller.LocalDateTimeAttributeConverter;
 				query = "select g from Game g where g.team1=:team OR g.team2=:team order by g.dateTime,g.name"),
 		@NamedQuery(name = Game.QN.GET_ALL_GAMES_BY_POULE,
 				query = "select g from Game g where g.poule=:poule order by g.dateTime,g.name"),
+		@NamedQuery(name = Game.QN.GET_ALL_GAMES_BEFORE_DATE, query = "select g from Game g where g.dateTime <:date"),
 		@NamedQuery(name = Game.QN.GET_ALL_GAMES, query = "select g from Game g order by g.dateTime,g.name"),
 		@NamedQuery(name = Game.QN.GET_GAME_BY_ID, query = "select g from Game g where g.id=:id"),
 		@NamedQuery(name = Game.QN.findNextGameByDateAndPoule,
@@ -60,6 +61,7 @@ public class Game
 		public static final String findLastGameByDate = "Game.findLastGameByDate";
 		public static final String GET_ALL_GAMES_BY_TEAM = "Game.getAllGamesByTeam";
 		public static final String GET_ALL_GAMES_BY_POULE = "Game.getAllGamesByPoule";
+		public static final String GET_ALL_GAMES_BEFORE_DATE = "Game.getAllGamesBeforeDate";
 		public static final String GET_GAME_BY_ID = "Game.getGameById";
 		public static final String GET_ALL_GAMES = "Game.getAllGames";
 	}
@@ -84,13 +86,13 @@ public class Game
 	@Column
 	private String name;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Team team1;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Team team2;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Poule poule;
 
 	@Column
@@ -327,7 +329,7 @@ public class Game
 		Collection<PlayerStats> results = new ArrayList<>();
 		for (PlayerStats playerStat : playerStats)
 		{
-			if (Objects.equals(playerStat.getTeam().getId(), team1.getId()) && playerStat.getAction() == Action.GOAL)
+			if (playerStat.getTeam().equals(team1) && playerStat.getAction() == Action.GOAL)
 				results.add(playerStat);
 
 		}
@@ -342,7 +344,7 @@ public class Game
 		for (PlayerStats playerStat : playerStats)
 		{
 			if (playerStat.getAction() == Action.GOAL && playerStat.getPlayer() != null
-					&& Objects.equals(playerStat.getTeam().getId(), team1.getId()))
+					&& playerStat.getTeam().equals(team1))
 			{
 				Integer value = result.get(playerStat.getPlayer().getId());
 				if (value == null)
@@ -376,7 +378,7 @@ public class Game
 		for (PlayerStats playerStat : playerStats)
 		{
 			if (playerStat.getAction() == Action.GOAL && playerStat.getPlayer() != null
-					&& Objects.equals(playerStat.getTeam().getId(), team2.getId()))
+					&& playerStat.getTeam().equals(team2))
 			{
 				Integer value = result.get(playerStat.getPlayer().getId());
 				if (value == null)
@@ -396,7 +398,7 @@ public class Game
 		Collection<PlayerStats> results = new ArrayList<>();
 		for (PlayerStats playerStat : playerStats)
 		{
-			if (Objects.equals(playerStat.getTeam().getId(), team1.getId()) && playerStat.getAction() == Action.PASS)
+			if (playerStat.getTeam().equals(team1) && playerStat.getAction() == Action.PASS)
 				results.add(playerStat);
 		}
 		List<PlayerStats> goalList = new ArrayList<>(results);
@@ -409,7 +411,7 @@ public class Game
 		Collection<PlayerStats> results = new ArrayList<>();
 		for (PlayerStats playerStat : playerStats)
 		{
-			if (Objects.equals(playerStat.getTeam().getId(), team2.getId()) && playerStat.getAction() == Action.PASS)
+			if (playerStat.getTeam().equals(team2) && playerStat.getAction() == Action.PASS)
 				results.add(playerStat);
 		}
 		List<PlayerStats> goalList = new ArrayList<>(results);
@@ -436,7 +438,7 @@ public class Game
 
 		for (PlayerStats playerStat : playerStats)
 		{
-			if (Objects.equals(playerStat.getTeam().getId(), team1.getId())
+			if (playerStat.getTeam().equals(team1)
 					&& (playerStat.getAction() == Action.YELLOW_CARD || playerStat.getAction() == Action.RED_CARD))
 			{
 				switch (playerStat.getAction())
@@ -464,7 +466,7 @@ public class Game
 
 		for (PlayerStats playerStat : playerStats)
 		{
-			if (Objects.equals(playerStat.getTeam().getId(), team2.getId())
+			if (playerStat.getTeam().equals(team2)
 					&& (playerStat.getAction() == Action.YELLOW_CARD || playerStat.getAction() == Action.RED_CARD))
 			{
 				switch (playerStat.getAction())
@@ -570,4 +572,21 @@ public class Game
 		this.winnaBets = winnaBets;
 	}
 
+	@Override
+	public int hashCode()
+	{
+		return new Long(getId()).hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (obj == null)
+			return false;
+
+		if (!(obj instanceof Game))
+			return false;
+
+		return getId() == ((Game) obj).getId();
+	}
 }

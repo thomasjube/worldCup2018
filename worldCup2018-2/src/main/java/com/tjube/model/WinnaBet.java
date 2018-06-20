@@ -19,6 +19,8 @@ import javax.persistence.Table;
 		@NamedQuery(name = WinnaBet.QN.GET_WINNABET_BY_ID, query = "select wb from WinnaBet wb where wb.id =:id "),
 		@NamedQuery(name = WinnaBet.QN.getWinnaBetByName, query = "select wb from WinnaBet wb where wb.name =:name"),
 		@NamedQuery(name = WinnaBet.QN.getWinnaBetByGame, query = "select wb from WinnaBet wb where wb.game =:game "),
+		@NamedQuery(name = WinnaBet.QN.GET_NB_WINABET,
+				query = "select wb.name,count(wb) as score from WinnaBet wb where wb.game.dateTime < :date GROUP BY wb.name"),
 		@NamedQuery(name = WinnaBet.QN.GET_NB_SCORE,
 				query = "select wb.name,count(wb) as score from WinnaBet wb WHERE wb.goodScore = TRUE GROUP BY wb.name"),
 		@NamedQuery(name = WinnaBet.QN.GET_NB_RESULT,
@@ -44,6 +46,7 @@ public class WinnaBet
 		public static final String GET_WINNABET_BY_ID = "WinnaBet.getWinnaBetById";
 		public static final String getWinnaBetByGame = "WinnaBet.getWinnaBetByGame";
 		public static final String getWinnaBetByName = "WinnaBet.getWinnaBetByName";
+		public static final String GET_NB_WINABET = "WinnaBet.getNbWinaBet";
 		public static final String GET_NB_SCORE = "WinnaBet.getNbScore";
 		public static final String GET_NB_RESULT = "WinnaBet.getNbResult";
 	}
@@ -56,7 +59,7 @@ public class WinnaBet
 	@Enumerated(EnumType.STRING)
 	private BetName name;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Game game;
 
 	@Column

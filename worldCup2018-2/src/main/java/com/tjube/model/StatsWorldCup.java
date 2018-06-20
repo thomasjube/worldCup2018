@@ -1,5 +1,8 @@
 package com.tjube.model;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class StatsWorldCup
 {
 	private Action action = null;
@@ -15,6 +18,10 @@ public class StatsWorldCup
 	private Long yellowCards = new Long(0);
 
 	private Long redCards = new Long(0);
+
+	private BigDecimal ratio = BigDecimal.ZERO;
+
+	private Long totalGames = new Long(0);
 
 	public StatsWorldCup()
 	{
@@ -49,6 +56,13 @@ public class StatsWorldCup
 	public void setGoals(Long goals)
 	{
 		this.goals = goals;
+
+		if (goals > 0 && player != null && player.getGamesPlayed() > 0)
+		{
+			this.ratio = BigDecimal.valueOf(goals).divide(BigDecimal.valueOf(player.getGamesPlayed()), 2,
+					RoundingMode.HALF_UP);
+			this.totalGames = Long.valueOf(player.getGamesPlayed());
+		}
 	}
 
 	public Long getPasses()
@@ -59,6 +73,12 @@ public class StatsWorldCup
 	public void setPasses(Long passes)
 	{
 		this.passes = passes;
+		if (passes > 0 && player != null && player.getGamesPlayed() > 0)
+		{
+			this.ratio = BigDecimal.valueOf(passes).divide(BigDecimal.valueOf(player.getGamesPlayed()), 2,
+					RoundingMode.HALF_UP);
+			this.totalGames = Long.valueOf(player.getGamesPlayed());
+		}
 	}
 
 	public Long getYellowCards()
@@ -89,5 +109,25 @@ public class StatsWorldCup
 	public void setTeam(Team team)
 	{
 		this.team = team;
+	}
+
+	public BigDecimal getRatio()
+	{
+		return ratio;
+	}
+
+	public void setRatio(BigDecimal ratio)
+	{
+		this.ratio = ratio;
+	}
+
+	public Long getTotalGames()
+	{
+		return totalGames;
+	}
+
+	public void setTotalGames(Long totalGames)
+	{
+		this.totalGames = totalGames;
 	}
 }
