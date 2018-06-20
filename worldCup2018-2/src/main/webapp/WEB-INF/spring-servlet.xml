@@ -63,6 +63,10 @@
 		</property>
 	</bean>
 
+	<bean id="winnaBetService" class="com.tjube.service.WinnaBetServiceImpl">
+		<property name="mode" value="${mode}" />
+	</bean>
+	
 	<!-- Configuration of transaction manager -->
 
 	<bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
