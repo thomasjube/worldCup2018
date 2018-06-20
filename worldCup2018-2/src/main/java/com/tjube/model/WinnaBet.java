@@ -20,7 +20,7 @@ import javax.persistence.Table;
 		@NamedQuery(name = WinnaBet.QN.getWinnaBetByName, query = "select wb from WinnaBet wb where wb.name =:name"),
 		@NamedQuery(name = WinnaBet.QN.getWinnaBetByGame, query = "select wb from WinnaBet wb where wb.game =:game "),
 		@NamedQuery(name = WinnaBet.QN.GET_NB_WINABET,
-				query = "select wb.name,count(wb) as score from WinnaBet wb GROUP BY wb.name"),
+				query = "select wb.name,count(wb) as score from WinnaBet wb where wb.game.dateTime < :date GROUP BY wb.name"),
 		@NamedQuery(name = WinnaBet.QN.GET_NB_SCORE,
 				query = "select wb.name,count(wb) as score from WinnaBet wb WHERE wb.goodScore = TRUE GROUP BY wb.name"),
 		@NamedQuery(name = WinnaBet.QN.GET_NB_RESULT,

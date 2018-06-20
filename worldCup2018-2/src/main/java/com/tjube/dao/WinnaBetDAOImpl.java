@@ -1,5 +1,6 @@
 package com.tjube.dao;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -184,6 +185,7 @@ public class WinnaBetDAOImpl
 		Map<BetName, Long> playerResult = new HashMap<>();
 
 		TypedQuery<Object[]> query = m_entityManager.createNamedQuery(WinnaBet.QN.GET_NB_WINABET, Object[].class);
+		query.setParameter("date", LocalDateTime.now());
 
 		for (Object[] values : query.getResultList())
 		{

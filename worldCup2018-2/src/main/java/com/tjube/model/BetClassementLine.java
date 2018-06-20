@@ -34,8 +34,7 @@ public class BetClassementLine
 		this.points = (score * SCORE_POINTS) + (result * RESULT_POINTS);
 		if (nbWinaBet > 0)
 			this.percent = BigDecimal.valueOf(score).add(BigDecimal.valueOf(result))
-					.divide(BigDecimal.valueOf(nbWinaBet)).setScale(2, RoundingMode.HALF_UP)
-					.multiply(BigDecimal.valueOf(100));
+					.divide(BigDecimal.valueOf(nbWinaBet), 2, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100));
 	}
 
 	public BetName getName()
