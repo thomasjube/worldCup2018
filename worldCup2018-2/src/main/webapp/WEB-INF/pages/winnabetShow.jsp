@@ -77,7 +77,8 @@
                       <tr>
                         <th>Parieur</th>
                         <th>Nb. paris</th>
-                        <th>%</th>
+                        <th>Participations</th>
+                        <th>% résultats</th>
                         <th>Bons scores</th>
                         <th>Bons résultats</th>
                         <th>Points</th>
@@ -146,10 +147,11 @@
                         	<tr class="${classement}">
 		                        <td>${line.name}</td>
 		                        <td>${line.nbWinaBet}</td>
-		                        <td>${line.percent} %</td>
+		                        <td>${line.percentParticipation} %</td>
+		                        <td>${line.percentGood} %</td>
 		                        <td>${line.nbScore}</td>
 		                        <td>${line.nbResults}</td>
-		                        <td>${line.points}</td>
+		                        <td style="font-weight:bold;font_size:3em">${line.points}</td>
 	                        </tr>
                         </c:forEach>
                       

@@ -83,9 +83,9 @@ public class WinnaBetServiceImpl
 	}
 
 	@Override
-	public List<BetClassementLine> getBetClassement()
+	public List<BetClassementLine> getBetClassement(int totalGamesPlayed)
 	{
-		return winnaBetDAO.getBetClassement();
+		return winnaBetDAO.getBetClassement(totalGamesPlayed);
 	}
 
 	@Override

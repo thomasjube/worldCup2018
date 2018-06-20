@@ -1,5 +1,6 @@
 package com.tjube.service;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,8 @@ public interface GameService
 	public Game getLastGame();
 
 	int getTotalGames();
+
+	List<Game> getGames(LocalDateTime date);
 
 	public List<Game> getGames(Team team);
 

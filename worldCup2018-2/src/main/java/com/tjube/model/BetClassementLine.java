@@ -18,14 +18,16 @@ public class BetClassementLine
 
 	private Long points = new Long(0);
 
-	private BigDecimal percent = BigDecimal.ZERO;
+	private BigDecimal percentGood = BigDecimal.ZERO;
+
+	private BigDecimal percentParticipation = BigDecimal.ZERO;
 
 	public BetClassementLine()
 	{
 		// Default constructor
 	}
 
-	public BetClassementLine(BetName name, Long nbWinaBet, Long score, Long result)
+	public BetClassementLine(BetName name, int totalGamesPlayed, Long nbWinaBet, Long score, Long result)
 	{
 		this.name = name;
 		this.nbWinaBet = nbWinaBet;
@@ -33,8 +35,14 @@ public class BetClassementLine
 		this.nbResults = result;
 		this.points = (score * SCORE_POINTS) + (result * RESULT_POINTS);
 		if (nbWinaBet > 0)
-			this.percent = BigDecimal.valueOf(score).add(BigDecimal.valueOf(result))
+		{
+			this.percentGood = BigDecimal.valueOf(score).add(BigDecimal.valueOf(result))
 					.divide(BigDecimal.valueOf(nbWinaBet), 2, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100));
+		}
+		if (totalGamesPlayed > 0)
+			this.percentParticipation = (BigDecimal.valueOf(nbWinaBet))
+					.divide(BigDecimal.valueOf(totalGamesPlayed), 2, RoundingMode.HALF_UP)
+					.multiply(BigDecimal.valueOf(100));
 	}
 
 	public BetName getName()
@@ -87,14 +95,24 @@ public class BetClassementLine
 		this.nbWinaBet = nbWinaBet;
 	}
 
-	public BigDecimal getPercent()
+	public BigDecimal getPercentGood()
 	{
-		return percent;
+		return percentGood;
 	}
 
-	public void setPercent(BigDecimal percent)
+	public BigDecimal getPercentParticipation()
 	{
-		this.percent = percent;
+		return percentParticipation;
+	}
+
+	public void setPercentGood(BigDecimal percentGood)
+	{
+		this.percentGood = percentGood;
+	}
+
+	public void setPercentParticipation(BigDecimal percentParticipation)
+	{
+		this.percentParticipation = percentParticipation;
 	}
 
 }

@@ -176,7 +176,7 @@ public class WinnaBetDAOImpl
 	}
 
 	@Override
-	public List<BetClassementLine> getBetClassement()
+	public List<BetClassementLine> getBetClassement(int totalGamesPlayed)
 	{
 		List<BetClassementLine> results = new ArrayList<>();
 
@@ -220,7 +220,7 @@ public class WinnaBetDAOImpl
 			Long winabet = playerWinaBet.get(name) != null ? playerWinaBet.get(name) : new Long(0);
 			Long score = playerScore.get(name) != null ? playerScore.get(name) : new Long(0);
 			Long result = playerResult.get(name) != null ? playerResult.get(name) : new Long(0);
-			results.add(new BetClassementLine(name, winabet, score, result));
+			results.add(new BetClassementLine(name, totalGamesPlayed, winabet, score, result));
 		}
 
 		Collections.sort(results, new BetClassementLineComparator());

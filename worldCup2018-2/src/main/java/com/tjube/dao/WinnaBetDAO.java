@@ -30,7 +30,7 @@ public interface WinnaBetDAO
 
 	public void verifyBets(Game game);
 
-	public List<BetClassementLine> getBetClassement();
+	public List<BetClassementLine> getBetClassement(int totalGamesPlayed);
 
 	public void resetWinnaBet(WinnaBet winnaBet);
 }

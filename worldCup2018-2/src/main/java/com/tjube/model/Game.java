@@ -37,6 +37,7 @@ import com.tjube.controller.LocalDateTimeAttributeConverter;
 				query = "select g from Game g where g.team1=:team OR g.team2=:team order by g.dateTime,g.name"),
 		@NamedQuery(name = Game.QN.GET_ALL_GAMES_BY_POULE,
 				query = "select g from Game g where g.poule=:poule order by g.dateTime,g.name"),
+		@NamedQuery(name = Game.QN.GET_ALL_GAMES_BEFORE_DATE, query = "select g from Game g where g.dateTime <:date"),
 		@NamedQuery(name = Game.QN.GET_ALL_GAMES, query = "select g from Game g order by g.dateTime,g.name"),
 		@NamedQuery(name = Game.QN.GET_GAME_BY_ID, query = "select g from Game g where g.id=:id"),
 		@NamedQuery(name = Game.QN.findNextGameByDateAndPoule,
@@ -60,6 +61,7 @@ public class Game
 		public static final String findLastGameByDate = "Game.findLastGameByDate";
 		public static final String GET_ALL_GAMES_BY_TEAM = "Game.getAllGamesByTeam";
 		public static final String GET_ALL_GAMES_BY_POULE = "Game.getAllGamesByPoule";
+		public static final String GET_ALL_GAMES_BEFORE_DATE = "Game.getAllGamesBeforeDate";
 		public static final String GET_GAME_BY_ID = "Game.getGameById";
 		public static final String GET_ALL_GAMES = "Game.getAllGames";
 	}
