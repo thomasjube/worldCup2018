@@ -3022,7 +3022,7 @@ public class GameController
 	{
 		if (game.getId() == 0)
 		{ // if employee id is 0 then creating the
-			// employee other updating the employee
+				// employee other updating the employee
 			gameService.addGame(game);
 		}
 		else
@@ -3068,6 +3068,15 @@ public class GameController
 				indexMax = game.getScore2();
 		}
 		model.addObject("indexMax", indexMax);
+
+		int indexMaxProlong = 0;
+		if (game.getScore1_prolong() != null && game.getScore2_prolong() != null)
+		{
+			indexMaxProlong = game.getScore1_prolong();
+			if (indexMaxProlong < game.getScore2_prolong())
+				indexMaxProlong = game.getScore2_prolong();
+		}
+		model.addObject("indexMaxProlong", indexMaxProlong);
 		return model;
 	}
 
@@ -3097,8 +3106,7 @@ public class GameController
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinute1().get(i);
 			Player scorerPlayer = gameEditForm.getScorerPlayers1().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayers1().get(i))
-					: null;
+					? playerService.getPlayer(gameEditForm.getScorerPlayers1().get(i)) : null;
 			PlayerStats playerStat = playerStatsService
 					.addPlayerStats(new PlayerStats(game, scorerPlayer, game.getTeam1(), minute, Action.GOAL));
 
@@ -3131,8 +3139,7 @@ public class GameController
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinute2().get(i);
 			Player scorerPlayer = gameEditForm.getScorerPlayers2().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayers2().get(i))
-					: null;
+					? playerService.getPlayer(gameEditForm.getScorerPlayers2().get(i)) : null;
 			PlayerStats playerStat = playerStatsService
 					.addPlayerStats(new PlayerStats(game, scorerPlayer, game.getTeam2(), minute, Action.GOAL));
 
@@ -3144,6 +3151,75 @@ public class GameController
 			if (gameEditForm.getPasserPlayers2().get(i) != null)
 			{
 				Player passer = playerService.getPlayer(gameEditForm.getPasserPlayers2().get(i));
+				if (passer != null)
+				{
+					playerStat = playerStatsService
+							.addPlayerStats(new PlayerStats(game, passer, game.getTeam2(), minute, Action.PASS));
+
+					game.addPlayerStat(playerStat);
+					passer.addPlayerStat(playerStat);
+				}
+			}
+			else
+			{
+				playerStat = playerStatsService
+						.addPlayerStats(new PlayerStats(game, null, game.getTeam2(), minute, Action.PASS));
+				game.addPlayerStat(playerStat);
+			}
+
+		}
+
+		//prolong
+
+		for (int i = 0; i < gameEditForm.getScorerPlayersProlong1().size(); i++)
+		{
+			Integer minute = gameEditForm.getScorerPlayersMinuteProlong1().get(i);
+			Player scorerPlayer = gameEditForm.getScorerPlayersProlong1().get(i) != null
+					? playerService.getPlayer(gameEditForm.getScorerPlayersProlong1().get(i)) : null;
+			PlayerStats playerStat = playerStatsService
+					.addPlayerStats(new PlayerStats(game, scorerPlayer, game.getTeam1(), minute, Action.GOAL));
+
+			game.addPlayerStat(playerStat);
+			if (scorerPlayer != null)
+				scorerPlayer.addPlayerStat(playerStat);
+
+			if (gameEditForm.getPasserPlayersProlong1().get(i) != null)
+			{
+				Player passer = playerService.getPlayer(gameEditForm.getPasserPlayersProlong1().get(i));
+				if (passer != null)
+				{
+					playerStat = playerStatsService
+							.addPlayerStats(new PlayerStats(game, passer, game.getTeam1(), minute, Action.PASS));
+
+					game.addPlayerStat(playerStat);
+					passer.addPlayerStat(playerStat);
+				}
+			}
+			else
+			{
+				playerStat = playerStatsService
+						.addPlayerStats(new PlayerStats(game, null, game.getTeam1(), minute, Action.PASS));
+				game.addPlayerStat(playerStat);
+			}
+
+		}
+
+		for (int i = 0; i < gameEditForm.getScorerPlayersProlong2().size(); i++)
+		{
+			Integer minute = gameEditForm.getScorerPlayersMinuteProlong2().get(i);
+			Player scorerPlayer = gameEditForm.getScorerPlayersProlong2().get(i) != null
+					? playerService.getPlayer(gameEditForm.getScorerPlayersProlong2().get(i)) : null;
+			PlayerStats playerStat = playerStatsService
+					.addPlayerStats(new PlayerStats(game, scorerPlayer, game.getTeam2(), minute, Action.GOAL));
+
+			game.addPlayerStat(playerStat);
+
+			if (scorerPlayer != null)
+				scorerPlayer.addPlayerStat(playerStat);
+
+			if (gameEditForm.getPasserPlayersProlong2().get(i) != null)
+			{
+				Player passer = playerService.getPlayer(gameEditForm.getPasserPlayersProlong2().get(i));
 				if (passer != null)
 				{
 					playerStat = playerStatsService

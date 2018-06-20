@@ -114,6 +114,7 @@ public class GameServiceImpl
 		newGame.setScore1(score1);
 		newGame.setScore2(score2);
 		newGame.setProlong(isProlong);
+		newGame.setPenalti(isPeno);
 		if (score1 < score2)
 		{
 			winner = newGame.getTeam2();
