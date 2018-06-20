@@ -139,7 +139,12 @@
                         <h2><a href="#"><c:out value="${lastGame.team1.name}"/></a> <span><c:choose><c:when test="${empty lastGame.score1 && empty lastGame.score2 }"> </c:when><c:when test="${lastGame.score1 > lastGame.score2}">VIC</c:when><c:when test="${lastGame.score1 < lastGame.score2}">DEF</c:when><c:otherwise>NUL</c:otherwise></c:choose></span></h2>
                         <ul>
                           <c:forEach var="goal" items="${lastGame.getGoalsTeam1()}">
-	                          <li>${goal.player.name}<span>(${goal.minute}')</span></li>
+	                          <li>
+	                          	<c:choose>
+	                          		<c:when test="${not empty goal.player }">${goal.player.name}</c:when>
+	                          		<c:otherwise>CSC</c:otherwise>
+	                          	</c:choose>
+	                         		<span>(${goal.minute}')</span></li>
                           </c:forEach>
                         </ul>
                       </div>
@@ -155,7 +160,12 @@
                         <h2><a href="#"><c:out value="${lastGame.team2.name}"/></a> <span><c:choose><c:when test="${empty lastGame.score1 && empty lastGame.score2 }"></c:when> <c:when test="${lastGame.score1 < lastGame.score2}">VIC</c:when><c:when test="${lastGame.score1 > lastGame.score2}">DEF</c:when><c:otherwise>NUL</c:otherwise></c:choose></span></h2>
                         <ul>
                           <c:forEach var="goal" items="${lastGame.getGoalsTeam2()}">
-	                          <li>${goal.player.name}<span>(${goal.minute}')</span></li>
+	                          <li>
+	                          	<c:choose>
+	                          		<c:when test="${not empty goal.player }">${goal.player.name}</c:when>
+	                          		<c:otherwise>CSC</c:otherwise>
+	                          	</c:choose>
+	                         		<span>(${goal.minute}')</span></li>
                           </c:forEach>
                         </ul>
                       </div>

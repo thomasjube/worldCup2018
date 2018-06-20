@@ -1,6 +1,7 @@
 package com.tjube.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -51,8 +52,8 @@ public class Poule
 	@Column
 	private String name;
 
-	@OneToMany(fetch = FetchType.EAGER)
-	private Collection<Team> teams;
+	@OneToMany(fetch = FetchType.LAZY)
+	private Collection<Team> teams = new ArrayList<>();
 
 	public Poule()
 	{

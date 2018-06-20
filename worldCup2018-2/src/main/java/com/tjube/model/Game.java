@@ -12,6 +12,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -126,10 +127,10 @@ public class Game
 	@Column
 	private Integer score2_penalti;
 
-	@OneToMany(mappedBy = "game", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Collection<PlayerStats> playerStats = new ArrayList<>();
 
-	@OneToMany(mappedBy = "game", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Collection<WinnaBet> winnaBets = new ArrayList<>();
 
 	public Game()
@@ -326,7 +327,7 @@ public class Game
 		Collection<PlayerStats> results = new ArrayList<>();
 		for (PlayerStats playerStat : playerStats)
 		{
-			if (playerStat.getTeam() == team1 && playerStat.getAction() == Action.GOAL)
+			if (Objects.equals(playerStat.getTeam().getId(), team1.getId()) && playerStat.getAction() == Action.GOAL)
 				results.add(playerStat);
 
 		}
@@ -341,7 +342,7 @@ public class Game
 		for (PlayerStats playerStat : playerStats)
 		{
 			if (playerStat.getAction() == Action.GOAL && playerStat.getPlayer() != null
-					&& playerStat.getTeam().equals(team1))
+					&& Objects.equals(playerStat.getTeam().getId(), team1.getId()))
 			{
 				Integer value = result.get(playerStat.getPlayer().getId());
 				if (value == null)
@@ -361,7 +362,7 @@ public class Game
 		Collection<PlayerStats> results = new ArrayList<>();
 		for (PlayerStats playerStat : playerStats)
 		{
-			if (playerStat.getTeam() == team2 && playerStat.getAction() == Action.GOAL)
+			if (Objects.equals(playerStat.getTeam().getId(), team2.getId()) && playerStat.getAction() == Action.GOAL)
 				results.add(playerStat);
 		}
 		List<PlayerStats> goalList = new ArrayList<>(results);
@@ -375,7 +376,7 @@ public class Game
 		for (PlayerStats playerStat : playerStats)
 		{
 			if (playerStat.getAction() == Action.GOAL && playerStat.getPlayer() != null
-					&& playerStat.getTeam().equals(team2))
+					&& Objects.equals(playerStat.getTeam().getId(), team2.getId()))
 			{
 				Integer value = result.get(playerStat.getPlayer().getId());
 				if (value == null)
@@ -395,7 +396,7 @@ public class Game
 		Collection<PlayerStats> results = new ArrayList<>();
 		for (PlayerStats playerStat : playerStats)
 		{
-			if (playerStat.getTeam() == team1 && playerStat.getAction() == Action.PASS)
+			if (Objects.equals(playerStat.getTeam().getId(), team1.getId()) && playerStat.getAction() == Action.PASS)
 				results.add(playerStat);
 		}
 		List<PlayerStats> goalList = new ArrayList<>(results);
@@ -408,7 +409,7 @@ public class Game
 		Collection<PlayerStats> results = new ArrayList<>();
 		for (PlayerStats playerStat : playerStats)
 		{
-			if (playerStat.getTeam() == team2 && playerStat.getAction() == Action.PASS)
+			if (Objects.equals(playerStat.getTeam().getId(), team2.getId()) && playerStat.getAction() == Action.PASS)
 				results.add(playerStat);
 		}
 		List<PlayerStats> goalList = new ArrayList<>(results);
@@ -435,7 +436,7 @@ public class Game
 
 		for (PlayerStats playerStat : playerStats)
 		{
-			if (playerStat.getTeam().equals(team1)
+			if (Objects.equals(playerStat.getTeam().getId(), team1.getId())
 					&& (playerStat.getAction() == Action.YELLOW_CARD || playerStat.getAction() == Action.RED_CARD))
 			{
 				switch (playerStat.getAction())
@@ -463,7 +464,7 @@ public class Game
 
 		for (PlayerStats playerStat : playerStats)
 		{
-			if (playerStat.getTeam().equals(team2)
+			if (Objects.equals(playerStat.getTeam().getId(), team2.getId())
 					&& (playerStat.getAction() == Action.YELLOW_CARD || playerStat.getAction() == Action.RED_CARD))
 			{
 				switch (playerStat.getAction())

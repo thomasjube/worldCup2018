@@ -68,7 +68,7 @@ public class TeamController
 	}
 
 	@RequestMapping(value = "/showTeam", method = RequestMethod.GET)
-	public ModelAndView showPoule(HttpServletRequest request, ModelAndView model)
+	public ModelAndView showTeam(HttpServletRequest request, ModelAndView model)
 	{
 		int teamId = Integer.parseInt(request.getParameter("id"));
 		Team team = teamService.getTeam(teamId);
@@ -97,14 +97,10 @@ public class TeamController
 	public ModelAndView saveTeam(@ModelAttribute Team team)
 	{
 		if (team.getId() == 0)
-		{ // if employee id is 0 then creating the
-				// employee other updating the employee
 			teamService.addTeam(team);
-		}
 		else
-		{
 			teamService.updateTeam(team);
-		}
+
 		return new ModelAndView("redirect:/team/");
 	}
 

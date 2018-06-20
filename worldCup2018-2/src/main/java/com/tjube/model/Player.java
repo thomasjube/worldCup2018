@@ -71,7 +71,7 @@ public class Player
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Team team;
 
-	@OneToMany(mappedBy = "player", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "player", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Collection<PlayerStats> playerStats = new ArrayList<>();
 
 	public Player()

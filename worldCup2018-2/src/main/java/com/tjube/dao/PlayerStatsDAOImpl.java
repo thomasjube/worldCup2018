@@ -277,12 +277,11 @@ public class PlayerStatsDAOImpl
 				}
 			}
 			if (minuteGame > 0)
-				minutes = (long) minuteGame;
+				minutes += (long) minuteGame;
 
 			mapGameMinute.put(game, minuteGame);
 		}
 
-		//		minutes = new Long(90) * (Long) query.getSingleResult();
 		result.setPlayingMinutes(minutes);
 
 		Query query = m_entityManager.createNamedQuery(PlayerStats.QN.RETRIEVE_STATS_BY_PLAYER);

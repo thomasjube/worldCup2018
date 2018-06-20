@@ -8,6 +8,7 @@
 <!-- 			<property name="javax.persistence.jdbc.user" value="devpi"/> -->
 <!-- 			<property name="javax.persistence.jdbc.password" value="abcd"/> -->
 <!-- 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql:worldCup2018"/> -->
+			<property name="hibernate.enable_lazy_load_no_trans" value="true"/>
 			<property name="javax.persistence.jdbc.user" value="devpi"/>
 			<property name="javax.persistence.jdbc.password" value="abcd"/>
 			<property name="hibernate.jdbc.batch_size" value="200" />

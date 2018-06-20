@@ -77,7 +77,7 @@ public class Team
 	@ManyToOne
 	private Poule poule;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.LAZY)
 	private Collection<Player> players = new ArrayList<>();
 
 	@Column
