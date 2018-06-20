@@ -70,6 +70,7 @@
 						<c:when test="${not empty goalsStats }">
 							<c:set var="previousGoals" value ="0"/>
 							<c:set var="indexGoals" value ="1"/>
+							<ul class="table-body"><li><span>Position</span><span>Joueur</span><span>Buts</span><span>Match</span><span style="width:2em">Ratio</span></li></ul>
 							<c:forEach items="${goalsStats}" var="goalsStat" varStatus="status">
 			                    <c:if test="${not empty goalsStat.player}">
 				                    <ul class="table-body">
@@ -87,6 +88,8 @@
 				                        <img style="top:1em;" src="<%=request.getContextPath()%>/resources/images/flag/${goalsStat.player.team.name}.png" alt="" width="30" height="20">&nbsp;
 				                        <span><c:if test="${not empty goalsStat.player.firstName}">${goalsStat.player.firstName.charAt(0)}.&nbsp;</c:if>${goalsStat.player.name}</span>
 				                        <span>${goalsStat.goals}</span>
+				                        <span>${goalsStat.totalGames}</span>
+				                        <span style="width:2em">${goalsStat.ratio}</span>
 				                      </li>
 				                    </ul>
 			                    </c:if>
@@ -102,6 +105,7 @@
 						<c:when test="${not empty passesStats }">
 							<c:set var="previousPasses" value ="0"/>
 							<c:set var="indexPasses" value ="1"/>
+							<ul class="table-body"><li><span>Position</span><span>Joueur</span><span>Passes</span><span>Match</span><span style="width:2em">Ratio</span></li></ul>
 							<c:forEach items="${passesStats}" var="passesStat" varStatus="status">
 			                    <c:if test="${not empty passesStat.player}">
 				                    <ul class="table-body">
@@ -119,6 +123,8 @@
 				                        <img style="top:1em;" src="<%=request.getContextPath()%>/resources/images/flag/${passesStat.player.team.name}.png" alt="" width="30" height="20">&nbsp;
 				                        <span><c:if test="${not empty passesStat.player.firstName}">${passesStat.player.firstName.charAt(0)}.&nbsp;</c:if>${passesStat.player.name}</span>
 				                        <span>${passesStat.passes}</span>
+				                        <span>${passesStat.totalGames}</span>
+				                        <span style="width:2em">${passesStat.ratio}</span>
 				                      </li>
 				                    </ul>
 			                    </c:if>

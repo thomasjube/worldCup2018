@@ -360,6 +360,19 @@
 	<script>
 	
 	$(document).ready(function(){
+		var value = $( "input.team1-titular:checked" ).length;
+		if(value == 11){
+			$( "input.team1-titular:not(:checked)" ).each(function( index ) {
+				$(this).attr('disabled', 'disabled');
+			});
+		}
+		
+		var value = $( "input.team2-titular:checked" ).length;
+		if(value == 11){
+			$( "input.team2-titular:not(:checked)" ).each(function( index ) {
+				$(this).attr('disabled', 'disabled');
+			});
+		}
 	});
 	
 	$("#show-composition").click(function(e){
