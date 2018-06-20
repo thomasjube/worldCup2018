@@ -69,7 +69,8 @@ public class WinnaBetController
 	@RequestMapping(value = "/")
 	public ModelAndView winabetShow(ModelAndView model)
 	{
-		Collection<Game> games = gameService.getGames(LocalDateTime.now());
+		Collection<Game> games = gameService.getGames(winnaBetService.getMode().equalsIgnoreCase("demo")
+				? LocalDateTime.now() : LocalDateTime.now().plusHours(2));
 
 		List<BetClassementLine> lines = winnaBetService.getBetClassement(games.size());
 

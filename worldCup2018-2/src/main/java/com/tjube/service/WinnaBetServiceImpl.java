@@ -96,6 +96,7 @@ public class WinnaBetServiceImpl
 		winnaBetDAO.resetWinnaBet(winnaBet);
 	}
 
+	@Override
 	public String getMode()
 	{
 		return mode;

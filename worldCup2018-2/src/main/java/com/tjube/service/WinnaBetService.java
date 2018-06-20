@@ -33,4 +33,6 @@ public interface WinnaBetService
 	public List<BetClassementLine> getBetClassement(int totalGamesPlayed);
 
 	public void resetWinnaBet(WinnaBet winnaBet);
+
+	public String getMode();
 }
