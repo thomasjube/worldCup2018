@@ -85,7 +85,6 @@ public class GameController
 		Map<LocalDate, Collection<Game>> mapGames = new LinkedHashMap<>();
 		Game previous = null;
 		Collection<Game> games = new ArrayList<>();
-		int i = 0;
 		for (Game g : listGame)
 		{
 			if (previous == null)
@@ -104,10 +103,10 @@ public class GameController
 				games.add(g);
 			}
 
-			if (++i == listGame.size() - 1)
+			if (g.getId() == 64)
 			{
 				ArrayList<Game> gameForDate = new ArrayList<>(games);
-				mapGames.put(previous.getDate(), gameForDate);
+				mapGames.put(g.getDate(), gameForDate);
 			}
 
 			previous = g;
@@ -3022,7 +3021,7 @@ public class GameController
 	{
 		if (game.getId() == 0)
 		{ // if employee id is 0 then creating the
-				// employee other updating the employee
+			// employee other updating the employee
 			gameService.addGame(game);
 		}
 		else
@@ -3099,7 +3098,8 @@ public class GameController
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinute1().get(i);
 			Player scorerPlayer = gameEditForm.getScorerPlayers1().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayers1().get(i)) : null;
+					? playerService.getPlayer(gameEditForm.getScorerPlayers1().get(i))
+					: null;
 			PlayerStats playerStat = playerStatsService
 					.addPlayerStats(new PlayerStats(game, scorerPlayer, game.getTeam1(), minute, Action.GOAL));
 
@@ -3132,7 +3132,8 @@ public class GameController
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinute2().get(i);
 			Player scorerPlayer = gameEditForm.getScorerPlayers2().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayers2().get(i)) : null;
+					? playerService.getPlayer(gameEditForm.getScorerPlayers2().get(i))
+					: null;
 			PlayerStats playerStat = playerStatsService
 					.addPlayerStats(new PlayerStats(game, scorerPlayer, game.getTeam2(), minute, Action.GOAL));
 
@@ -3168,7 +3169,8 @@ public class GameController
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinuteProlong1().get(i);
 			Player scorerPlayer = gameEditForm.getScorerPlayersProlong1().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayersProlong1().get(i)) : null;
+					? playerService.getPlayer(gameEditForm.getScorerPlayersProlong1().get(i))
+					: null;
 			PlayerStats playerStat = playerStatsService
 					.addPlayerStats(new PlayerStats(game, scorerPlayer, game.getTeam1(), minute, Action.GOAL));
 
@@ -3201,7 +3203,8 @@ public class GameController
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinuteProlong2().get(i);
 			Player scorerPlayer = gameEditForm.getScorerPlayersProlong2().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayersProlong2().get(i)) : null;
+					? playerService.getPlayer(gameEditForm.getScorerPlayersProlong2().get(i))
+					: null;
 			PlayerStats playerStat = playerStatsService
 					.addPlayerStats(new PlayerStats(game, scorerPlayer, game.getTeam2(), minute, Action.GOAL));
 
