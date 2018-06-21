@@ -45,11 +45,6 @@ public class GameController
 {
 	private static final Logger logger = Logger.getLogger(GameController.class);
 
-	public GameController()
-	{
-		System.out.println("GameController()");
-	}
-
 	@Autowired
 	private GameService gameService;
 
@@ -67,6 +62,34 @@ public class GameController
 
 	@Autowired
 	private PlayerStatsService playerStatsService;
+
+	private static Collection<Integer> tf1Games = new ArrayList<>();
+
+	public GameController()
+	{
+		System.out.println("GameController()");
+		tf1Games.clear();
+		tf1Games.add(1);
+		tf1Games.add(4);
+		tf1Games.add(5);
+		tf1Games.add(8);
+		tf1Games.add(10);
+		tf1Games.add(11);
+		tf1Games.add(14);
+		tf1Games.add(22);
+		tf1Games.add(23);
+		tf1Games.add(28);
+		tf1Games.add(32);
+		tf1Games.add(36);
+		tf1Games.add(37);
+		tf1Games.add(39);
+		tf1Games.add(43);
+		tf1Games.add(47);
+		tf1Games.add(61);
+		tf1Games.add(62);
+		tf1Games.add(63);
+		tf1Games.add(64);
+	}
 
 	@RequestMapping(value = "")
 	public ModelAndView homeGame(ModelAndView model)
@@ -113,6 +136,7 @@ public class GameController
 
 		}
 		model.addObject("mapGames", mapGames);
+		model.addObject("tf1Games", tf1Games);
 		model.setViewName("gameHome");
 		return model;
 	}
@@ -3021,7 +3045,7 @@ public class GameController
 	{
 		if (game.getId() == 0)
 		{ // if employee id is 0 then creating the
-			// employee other updating the employee
+				// employee other updating the employee
 			gameService.addGame(game);
 		}
 		else
@@ -3098,8 +3122,7 @@ public class GameController
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinute1().get(i);
 			Player scorerPlayer = gameEditForm.getScorerPlayers1().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayers1().get(i))
-					: null;
+					? playerService.getPlayer(gameEditForm.getScorerPlayers1().get(i)) : null;
 			PlayerStats playerStat = playerStatsService
 					.addPlayerStats(new PlayerStats(game, scorerPlayer, game.getTeam1(), minute, Action.GOAL));
 
@@ -3132,8 +3155,7 @@ public class GameController
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinute2().get(i);
 			Player scorerPlayer = gameEditForm.getScorerPlayers2().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayers2().get(i))
-					: null;
+					? playerService.getPlayer(gameEditForm.getScorerPlayers2().get(i)) : null;
 			PlayerStats playerStat = playerStatsService
 					.addPlayerStats(new PlayerStats(game, scorerPlayer, game.getTeam2(), minute, Action.GOAL));
 
@@ -3169,8 +3191,7 @@ public class GameController
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinuteProlong1().get(i);
 			Player scorerPlayer = gameEditForm.getScorerPlayersProlong1().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayersProlong1().get(i))
-					: null;
+					? playerService.getPlayer(gameEditForm.getScorerPlayersProlong1().get(i)) : null;
 			PlayerStats playerStat = playerStatsService
 					.addPlayerStats(new PlayerStats(game, scorerPlayer, game.getTeam1(), minute, Action.GOAL));
 
@@ -3203,8 +3224,7 @@ public class GameController
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinuteProlong2().get(i);
 			Player scorerPlayer = gameEditForm.getScorerPlayersProlong2().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayersProlong2().get(i))
-					: null;
+					? playerService.getPlayer(gameEditForm.getScorerPlayersProlong2().get(i)) : null;
 			PlayerStats playerStat = playerStatsService
 					.addPlayerStats(new PlayerStats(game, scorerPlayer, game.getTeam2(), minute, Action.GOAL));
 

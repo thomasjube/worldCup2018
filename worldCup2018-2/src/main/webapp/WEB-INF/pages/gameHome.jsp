@@ -95,7 +95,7 @@
 	                        <td style="width:10%">
 	                        	<img style="top:0.6em;" src="<%=request.getContextPath()%>/resources/images/flag/${game.team2.name}.png" alt="" width="30" height="20">
 	                        </td>
-	                        <td>${game.time}</td>
+	                        <td>${game.time}<br/><c:if test="${tf1Games.contains(game.id)}"><img style="top:0.6em;" src="<%=request.getContextPath()%>/resources/images/tf1.png" alt="" width="30" height="20"></c:if>&nbsp;<img style="top:0.6em;" src="<%=request.getContextPath()%>/resources/images/bein.png" alt="" width="30" height="20"></td>
 <%-- 	                     	<td>${game.stade}</td> --%>
 	                      </tr>
 	                    </c:forEach>
