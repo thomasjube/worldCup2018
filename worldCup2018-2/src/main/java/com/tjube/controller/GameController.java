@@ -104,7 +104,7 @@ public class GameController
 				games.add(g);
 			}
 
-			if (i++ == listGame.size() - 1)
+			if (++i == listGame.size() - 1)
 			{
 				ArrayList<Game> gameForDate = new ArrayList<>(games);
 				mapGames.put(previous.getDate(), gameForDate);

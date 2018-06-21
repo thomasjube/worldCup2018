@@ -96,10 +96,10 @@
 							<table class="kode-table">
 		                    <thead>
 		                      <tr>
-		                        <th>Parieur</th>
-		                        <th><img src="<%=request.getContextPath()%>/resources/images/flag/${game.team1.name}.png" alt="" width="10%"> ${game.team1.name}</th>
-		                        <th><img src="<%=request.getContextPath()%>/resources/images/flag/${game.team2.name}.png" alt="" width="10%"> ${game.team2.name}</th>
-								<th style='text-align:right'>
+		                        <th style="width:30%;">Parieur</th>
+		                        <th style="width:30%;"><img src="<%=request.getContextPath()%>/resources/images/flag/${game.team1.name}.png" alt="" width="60px" height="40px"> ${game.team1.name}</th>
+		                        <th style="width:30%;"><img src="<%=request.getContextPath()%>/resources/images/flag/${game.team2.name}.png" alt="" width="60px" height="40px"> ${game.team2.name}</th>
+								<th style='text-align:right;width:10%;'>
 									<input id="add_winabet" value="Ajout" type="button" class="table-button">
 								</th>
 		                      </tr>
