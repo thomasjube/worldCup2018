@@ -95,6 +95,12 @@ public class Game
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Poule poule;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Player captainTeam1;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Player captainTeam2;
+
 	@Column
 	private Integer score1;
 
@@ -588,5 +594,25 @@ public class Game
 			return false;
 
 		return getId() == ((Game) obj).getId();
+	}
+
+	public Player getCaptainTeam1()
+	{
+		return captainTeam1;
+	}
+
+	public void setCaptainTeam1(Player captainTeam1)
+	{
+		this.captainTeam1 = captainTeam1;
+	}
+
+	public Player getCaptainTeam2()
+	{
+		return captainTeam2;
+	}
+
+	public void setCaptainTeam2(Player captainTeam2)
+	{
+		this.captainTeam2 = captainTeam2;
 	}
 }

@@ -96,6 +96,7 @@
 		                    				<c:when test="${not empty mapTeam1 and mapTeam1.size() > index}">
 		                    					<c:set var="player" value="${mapTeam1.get(index)}"/>
 		                    					 <td width="50%">
+													<c:if test="${player.id == game.captainTeam1.id }"><img style="color:white" width="4%" src="<%=request.getContextPath()%>/resources/images/icones/captain.png" alt=""></c:if>
 		                    					 	  <c:choose>
 		                    							<c:when test="${player.poste == 'G'}">Gardien - ${player.number} - </c:when>
 		                    							<c:when test="${player.poste == 'D'}">Défenseur - ${player.number} - </c:when>
@@ -160,6 +161,7 @@
 	                    					<c:when test="${not empty mapTeam2 and mapTeam2.size() > index}">
               								<c:set var="player" value="${mapTeam2.get(index)}"/>
 		                    					 <td width="50%">
+		                    					 	<c:if test="${player.id == game.captainTeam2.id }"><img style="color:white" width="4%" src="<%=request.getContextPath()%>/resources/images/icones/captain.png" alt=""></c:if>
 		                    					 	  <c:choose>
 		                    							<c:when test="${player.poste == 'G'}">Gardien - ${player.number} - </c:when>
 		                    							<c:when test="${player.poste == 'D'}">Défenseur - ${player.number} - </c:when>

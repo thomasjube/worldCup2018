@@ -14,11 +14,13 @@ public class GameEditCompoForm
 	private Integer teamId2;
 
 	private boolean[] titular1 = new boolean[23];
+	private boolean[] captain1 = new boolean[23];
 	private List<Integer> titularId1 = new ArrayList<>();
 	private List<Integer> substituteId1 = new ArrayList<>();
 	private List<Integer> minute1 = new ArrayList<>();
 
 	private boolean[] titular2 = new boolean[23];
+	private boolean[] captain2 = new boolean[23];
 	private List<Integer> titularId2 = new ArrayList<>();
 	private List<Integer> substituteId2 = new ArrayList<>();
 	private List<Integer> minute2 = new ArrayList<>();
@@ -149,4 +151,23 @@ public class GameEditCompoForm
 		this.minute2 = minute2;
 	}
 
+	public boolean[] getCaptain1()
+	{
+		return captain1;
+	}
+
+	public void setCaptain1(boolean[] captain1)
+	{
+		this.captain1 = captain1;
+	}
+
+	public boolean[] getCaptain2()
+	{
+		return captain2;
+	}
+
+	public void setCaptain2(boolean[] captain2)
+	{
+		this.captain2 = captain2;
+	}
 }

@@ -23,6 +23,8 @@ public interface GameService
 
 	public Game updateGame(Game game);
 
+	public void updateGame(Game game, Player captainTeam1, Player captainTeam2);
+
 	public Game getNextGame();
 
 	public Game getLastGame();

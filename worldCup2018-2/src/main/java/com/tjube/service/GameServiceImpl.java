@@ -108,6 +108,12 @@ public class GameServiceImpl
 		return gameDAO.updateGame(game);
 	}
 
+	@Override
+	public void updateGame(Game game, Player captainTeam1, Player captainTeam2)
+	{
+		gameDAO.updateGame(game, captainTeam1, captainTeam2);
+	}
+
 	public void setGameDAO(GameDAO gameDAO)
 	{
 		this.gameDAO = gameDAO;

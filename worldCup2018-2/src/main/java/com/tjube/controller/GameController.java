@@ -3348,10 +3348,18 @@ public class GameController
 		playerStatsService.deletePlayerStats(game,
 				Arrays.asList(Action.TITULAR, Action.CHANGEMENT_OUT, Action.CHANGEMENT_IN));
 
+		Player captain1 = null;
+		Player captain2 = null;
+
 		for (int i = 0; i < gameEditCompoForm.getTitular1().length; i++)
 		{
 			boolean isTitular = gameEditCompoForm.getTitular1()[i];
+			boolean isCaptain1 = gameEditCompoForm.getCaptain1()[i];
+
 			Player player = playerService.getPlayer(gameEditCompoForm.getTitularId1().get(i));
+
+			if (isCaptain1)
+				captain1 = player;
 
 			if (isTitular)
 			{
@@ -3384,7 +3392,12 @@ public class GameController
 		for (int i = 0; i < gameEditCompoForm.getTitular2().length; i++)
 		{
 			boolean isTitular = gameEditCompoForm.getTitular2()[i];
+			boolean isCaptain2 = gameEditCompoForm.getCaptain2()[i];
+
 			Player player = playerService.getPlayer(gameEditCompoForm.getTitularId2().get(i));
+
+			if (isCaptain2)
+				captain2 = player;
 
 			if (isTitular)
 			{
@@ -3410,6 +3423,8 @@ public class GameController
 				game.addPlayerStat(substituteInStat);
 			}
 		}
+
+		gameService.updateGame(game, captain1, captain2);
 
 		return new ModelAndView("redirect:/game/editGame?id=" + game.getId());
 	}

@@ -80,7 +80,7 @@
 							<table class="kode-table">
 			                    <thead>
 			                    	<tr>
-			                        	<th colspan="4">
+			                        	<th colspan="5">
 			                        		<img class="flag" style="position:relative;float:left" src="<%=request.getContextPath()%>/resources/images/flag/${game.team1.name}.png" alt="" width="5%">&nbsp;
 		              						${game.team1.name}
 		              					</th>
@@ -92,6 +92,7 @@
 			                    <tbody>
 			                    	<tr class="table-head goal-color">
 			                    		<td colspan="4" style="width:100%;color:white"><h4 style="color:white">Gardiens</h4></td>
+			                    		<td style="width:100%;color:white"><h4 style="color:white">Capitaine</h4></td>
 			                    	</tr>
 			                    	<c:forEach items="${goals1}" var="player">
 			                    		<c:set var="substitutePlayer" value="${substitutes[player.id]}"/>
@@ -113,11 +114,13 @@
 													</c:forEach>
 												</select>
 			                    			</td>
+			                    			<td style='width:7em;'><input class="team1-captain" type="checkbox" name="captain1[${indexTeam1}]" ${ not empty game.captainTeam1 and game.captainTeam1.id == player.id ? 'checked="checked"' : ''}/></td>
 			                    		<tr>
 			                    		<c:set var="indexTeam1" value="${indexTeam1 + 1}"/>
 			                    	</c:forEach>
 			                    	<tr class="table-head goal-color">
 			                    		<td colspan="4" style="width:100%;color:white"><h4 style="color:white">Défenseurs</h4></td>
+			                    		<td style="width:100%;color:white"><h4 style="color:white">Capitaine</h4></td>
 			                    	</tr>
 			                    	<c:forEach items="${defensers1}" var="player">
 			                    		<c:set var="substitutePlayer" value="${substitutes[player.id]}"/>
@@ -139,11 +142,13 @@
 													</c:forEach>
 												</select>
 			                    			</td>
+			                    			<td style='width:7em;'><input class="team1-captain" type="checkbox" name="captain1[${indexTeam1}]" ${ not empty game.captainTeam1 and game.captainTeam1.id == player.id ? 'checked="checked"' : ''}/></td>
 			                    		<tr>
 			                    		<c:set var="indexTeam1" value="${indexTeam1 + 1}"/>
 			                    	</c:forEach>
 			                    	<tr class="table-head goal-color">
 			                    		<td colspan="4" style="width:100%;color:white"><h4 style="color:white">Milieux</h4></td>
+			                    		<td style="width:100%;color:white"><h4 style="color:white">Capitaine</h4></td>
 			                    	</tr>
 			                    	<c:forEach items="${middles1}" var="player">
 			                    		<c:set var="substitutePlayer" value="${substitutes[player.id]}"/>
@@ -165,11 +170,12 @@
 													</c:forEach>
 												</select>
 			                    			</td>
+			                    			<td style='width:7em;'><input class="team1-captain" type="checkbox" name="captain1[${indexTeam1}]" ${ not empty game.captainTeam1 and game.captainTeam1.id == player.id ? 'checked="checked"' : ''}/></td>
 			                    		<tr>
 			                    		<c:set var="indexTeam1" value="${indexTeam1 + 1}"/>
 			                    	</c:forEach>
 			                    	<tr class="table-head goal-color">
-			                    		<td colspan="4" style="width:100%;color:white"><h4 style="color:white">Attaquants</h4></td>
+			                    		<td colspan="5" style="width:100%;color:white"><h4 style="color:white">Attaquants</h4></td>
 			                    	</tr>
 			                    	<c:forEach items="${strikers1}" var="player">
 			                    		<c:set var="substitutePlayer" value="${substitutes[player.id]}"/>
@@ -191,6 +197,7 @@
 													</c:forEach>
 												</select>
 			                    			</td>
+			                    			<td style='width:7em;'><input class="team1-captain" type="checkbox" name="captain1[${indexTeam1}]" ${ not empty game.captainTeam1 and game.captainTeam1.id == player.id ? 'checked="checked"' : ''}/></td>
 			                    		<tr>
 			                    		<c:set var="indexTeam1" value="${indexTeam1 + 1}"/>
 			                    	</c:forEach>
@@ -200,7 +207,7 @@
 		                 	<table class="kode-table">
 			                    <thead>
 			                    	<tr>
-			                        	<th colspan="4">
+			                        	<th colspan="5">
 			                        		<img class="flag" style="position:relative;float:left" src="<%=request.getContextPath()%>/resources/images/flag/${game.team2.name}.png" alt="" width="5%">&nbsp;
 		              						${game.team2.name}
 		              					</th>
@@ -211,6 +218,7 @@
 			                    <tbody>
 			                    	<tr class="table-head goal-color">
 			                    		<td colspan="4" style="width:100%;color:white"><h4 style="color:white">Gardiens</h4></td>
+			                    		<td style="width:100%;color:white"><h4 style="color:white">Capitaine</h4></td>
 			                    	</tr>
 			                    	<c:forEach items="${goals2}" var="player">
 			                    		<c:set var="substitutePlayer" value="${substitutes[player.id]}"/>
@@ -232,11 +240,13 @@
 													</c:forEach>
 												</select>
 			                    			</td>
+			                    			<td style='width:7em;'><input class="team2-captain" type="checkbox" name="captain2[${indexTeam2}]" ${ not empty game.captainTeam2 and game.captainTeam2.id == player.id ? 'checked="checked"' : ''}/></td>
 			                    		<tr>
 			                    		<c:set var="indexTeam2" value="${indexTeam2 + 1}"/>
 			                    	</c:forEach>
 			                    	<tr class="table-head goal-color">
 			                    		<td colspan="4" style="width:100%;color:white"><h4 style="color:white">Défenseurs</h4></td>
+			                    		<td style="width:100%;color:white"><h4 style="color:white">Capitaine</h4></td>
 			                    	</tr>
 			                    	<c:forEach items="${defensers2}" var="player">
 			                    		<c:set var="substitutePlayer" value="${substitutes[player.id]}"/>
@@ -258,11 +268,13 @@
 													</c:forEach>
 												</select>
 			                    			</td>
+			                    			<td style='width:7em;'><input class="team2-captain" type="checkbox" name="captain2[${indexTeam2}]" ${ not empty game.captainTeam2 and game.captainTeam2.id == player.id ? 'checked="checked"' : ''}/></td>
 			                    		<tr>
 			                    		<c:set var="indexTeam2" value="${indexTeam2 + 1}"/>
 			                    	</c:forEach>
 			                    	<tr class="table-head goal-color">
 			                    		<td colspan="4" style="width:100%;color:white"><h4 style="color:white">Milieux</h4></td>
+			                    		<td style="width:100%;color:white"><h4 style="color:white">Capitaine</h4></td>
 			                    	</tr>
 			                    	<c:forEach items="${middles2}" var="player">
 			                    		<c:set var="substitutePlayer" value="${substitutes[player.id]}"/>
@@ -284,11 +296,13 @@
 													</c:forEach>
 												</select>
 			                    			</td>
+			                    			<td style='width:7em;'><input class="team2-captain" type="checkbox" name="captain2[${indexTeam2}]" ${ not empty game.captainTeam2 and game.captainTeam2.id == player.id ? 'checked="checked"' : ''}/></td>
 			                    		<tr>
 			                    		<c:set var="indexTeam2" value="${indexTeam2 + 1}"/>
 			                    	</c:forEach>
 			                    	<tr class="table-head goal-color">
 			                    		<td colspan="4" style="width:100%;color:white"><h4 style="color:white">Attaquants</h4></td>
+			                    		<td style="width:100%;color:white"><h4 style="color:white">Capitaine</h4></td>
 			                    	</tr>
 			                    	<c:forEach items="${strikers2}" var="player">
 			                    		<c:set var="substitutePlayer" value="${substitutes[player.id]}"/>
@@ -310,6 +324,7 @@
 													</c:forEach>
 												</select>
 			                    			</td>
+			                    			<td style='width:7em;'><input class="team2-captain" type="checkbox" name="captain2[${indexTeam2}]" ${ not empty game.captainTeam2 and game.captainTeam2.id == player.id ? 'checked="checked"' : ''}/></td>
 			                    		<tr>
 			                    		<c:set var="indexTeam2" value="${indexTeam2 + 1}"/>
 			                    	</c:forEach>
@@ -373,6 +388,20 @@
 				$(this).attr('disabled', 'disabled');
 			});
 		}
+		
+		var value = $( "input.team1-captain:checked" ).length;
+		if(value == 1){
+			$( "input.team1-captain:not(:checked)" ).each(function( index ) {
+				$(this).attr('disabled', 'disabled');
+			});
+		}
+		
+		var value = $( "input.team2-captain:checked" ).length;
+		if(value == 1){
+			$( "input.team2-captain:not(:checked)" ).each(function( index ) {
+				$(this).attr('disabled', 'disabled');
+			});
+		}
 	});
 	
 	$("#show-composition").click(function(e){
@@ -407,6 +436,32 @@
 			});
 		} else {
 			$( "input.team2-titular:not(:checked)" ).each(function( index ) {
+				$(this).removeAttr('disabled');
+			});
+		}
+	});
+	
+	$("input.team1-captain").click(function(e){
+		var value = $( "input.team1-captain:checked" ).length;
+		if(value == 1){
+			$( "input.team1-captain:not(:checked)" ).each(function( index ) {
+				$(this).attr('disabled', 'disabled');
+			});
+		} else {
+			$( "input.team1-captain:not(:checked)" ).each(function( index ) {
+				$(this).removeAttr('disabled');
+			});
+		}
+	});
+	
+	$("input.team2-captain").click(function(e){
+		var value = $( "input.team2-captain:checked" ).length;
+		if(value == 1){
+			$( "input.team2-captain:not(:checked)" ).each(function( index ) {
+				$(this).attr('disabled', 'disabled');
+			});
+		} else {
+			$( "input.team2-captain:not(:checked)" ).each(function( index ) {
 				$(this).removeAttr('disabled');
 			});
 		}

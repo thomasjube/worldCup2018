@@ -11,6 +11,7 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
 import com.tjube.model.Game;
+import com.tjube.model.Player;
 import com.tjube.model.Poule;
 import com.tjube.model.Team;
 
@@ -144,6 +145,14 @@ public class GameDAOImpl
 		//		gameToUpdate.setTeam2(game.getTeam2());
 
 		return gameToUpdate;
+	}
+
+	@Override
+	public void updateGame(Game game, Player captainTeam1, Player captainTeam2)
+	{
+		Game gameToUpdate = getGame(game.getId());
+		gameToUpdate.setCaptainTeam1(captainTeam1);
+		gameToUpdate.setCaptainTeam2(captainTeam2);
 	}
 
 }
