@@ -10,6 +10,8 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
+import com.tjube.model.Action;
+import com.tjube.model.PlayerStats;
 import com.tjube.model.Poule;
 import com.tjube.model.StatsWorldCup;
 import com.tjube.model.Team;
@@ -166,6 +168,27 @@ public class TeamDAOImpl
 		}
 
 		return results;
+	}
+
+	@Override
+	public Collection<PlayerStats> retrieveCountCSC()
+	{
+		TypedQuery<PlayerStats> query = m_entityManager.createNamedQuery(PlayerStats.QN.RETRIEVE_CSC,
+				PlayerStats.class);
+		query.setParameter("action", Action.GOAL);
+
+		return query.getResultList();
+	}
+
+	@Override
+	public Collection<PlayerStats> retrieveCountPenalties()
+	{
+		TypedQuery<PlayerStats> query = m_entityManager.createNamedQuery(PlayerStats.QN.RETRIEVE_PENALTIES,
+				PlayerStats.class);
+		query.setParameter("action", Action.GOAL);
+		query.setParameter("isPenalty", true);
+
+		return query.getResultList();
 	}
 
 }

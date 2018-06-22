@@ -33,6 +33,10 @@ import javax.persistence.Table;
 				query = "select count(st), SUM(st.minute) from PlayerStats st where st.action =:action and st.player =:player "),
 		@NamedQuery(name = PlayerStats.QN.GET_STATS_BY_GAME,
 				query = "select s from PlayerStats s where s.game =:game "),
+		@NamedQuery(name = PlayerStats.QN.RETRIEVE_PENALTIES,
+				query = "select s from PlayerStats s where s.action =:action AND s.penalty=:isPenalty"),
+		@NamedQuery(name = PlayerStats.QN.RETRIEVE_CSC,
+				query = "select s from PlayerStats s where s.action =:action AND s.player is NULL"),
 		@NamedQuery(name = PlayerStats.QN.GET_STATS_BY_GAME_AND_ACTIONS,
 				query = "select s from PlayerStats s where s.game =:game and s.action in(:actions)"),
 		@NamedQuery(name = PlayerStats.QN.GET_ALL_STATS, query = "select s from PlayerStats s"), @NamedQuery(
@@ -63,6 +67,9 @@ public class PlayerStats
 		public static final String RETRIEVE_STATS_WORLD_CUP_FOR_ACTION_AND_GAME_AND_TEAM = "PlayerStats.retrieveStatsWorldCupForActionAndGameAndTeam";
 		public static final String RETRIEVE_STATS_WORLD_CUP_FOR_ACTION_AND_GAME = "PlayerStats.retrieveStatsWorldCupForActionAndGame";
 		public static final String RETRIEVE_SUBSTITUTES_BY_GAME = "PlayerStats.retrieveSubstitutesByGame";
+
+		public static final String RETRIEVE_CSC = "PlayerStats.retrieveCSC";
+		public static final String RETRIEVE_PENALTIES = "PlayerStats.retrievePenalties";
 	}
 
 	private static final long serialVersionUID = -1740184637168312573L;

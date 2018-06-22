@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.tjube.model.Game;
+import com.tjube.model.PlayerStats;
 import com.tjube.model.PlayerStatsSituation;
 import com.tjube.model.Poule;
 import com.tjube.model.StatsWorldCup;
@@ -53,4 +54,8 @@ public interface TeamService
 	public List<StatsWorldCup> retrieveWorldCupStatsBestAttack(int maxResults);
 
 	public List<StatsWorldCup> retrieveWorldCupStatsWorstDefense(int maxResults);
+
+	public Collection<PlayerStats> retrieveCountPenalties();
+
+	public Collection<PlayerStats> retrieveCountCSC();
 }

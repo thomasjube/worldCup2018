@@ -233,6 +233,15 @@
 						</c:otherwise>            		
             		</c:choose>   
             	</div>
+            	<br/><br/><br/>
+				<div class="kode-section-title"><h2 style="color:white !important">Stats général</h2></div>
+			    	<ul class="table-body">
+			        	<li><span>Nombre de pénalty : </span><span>${countPenalties}</span></li>
+			        </ul>
+			    	<ul class="table-body">
+			        	<li><span>Nombre de CSC : </span><span>${countCSC}</span></li>
+			        </ul>
+            	</div>
 			</div>
         </section>
         <!--// Page Content //-->

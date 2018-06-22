@@ -14,6 +14,7 @@ import com.tjube.dao.PlayerStatsDAO;
 import com.tjube.dao.TeamDAO;
 import com.tjube.model.Game;
 import com.tjube.model.Player;
+import com.tjube.model.PlayerStats;
 import com.tjube.model.PlayerStatsSituation;
 import com.tjube.model.Poule;
 import com.tjube.model.StatsWorldCup;
@@ -401,5 +402,17 @@ public class TeamServiceImpl
 	public List<StatsWorldCup> retrieveWorldCupStatsWorstDefense(int maxResults)
 	{
 		return teamDAO.retrieveWorldCupStatsWorstDefense(maxResults);
+	}
+
+	@Override
+	public Collection<PlayerStats> retrieveCountPenalties()
+	{
+		return teamDAO.retrieveCountPenalties();
+	}
+
+	@Override
+	public Collection<PlayerStats> retrieveCountCSC()
+	{
+		return teamDAO.retrieveCountCSC();
 	}
 }
