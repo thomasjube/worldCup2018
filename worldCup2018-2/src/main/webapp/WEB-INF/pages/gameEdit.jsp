@@ -279,10 +279,10 @@
 		                 
 		                 <table class="kode-table">
 		                 	<thead>
-		                 	<th>Buteur</th>
+		                 	<th colspan="2">Buteur</th>
 		                 	<th>Passeur</th>
 		                 	<th style='width:4em;'>Minute</th>
-		                 	<th>Buteur</th>
+		                 	<th colspan="2">Buteur</th>
 		                 	<th>Passeur</th>
 		                 	<th style='width:4em;'>Minute</th>
 		                 	</thead>
@@ -292,24 +292,28 @@
 				                 		<tr id="tr-player-${index}">
 				                 			<c:choose>
 					                 			<c:when test="${not empty game.getGoalsTeam1() && index < game.score1 && not empty game.getGoalsTeam1().get(index)}">
-					                 				<td class="player-team1"><tags:players isCarton="${false}" index="${index}" items="${game.team1.players }" path="scorerPlayers1[${index}]"></tags:players> </td>
+					                 				<td class="player-team1"><tags:players isGoal="true" isCarton="${false}" index="${index}" items="${game.team1.players }" path="scorerPlayers1[${index}]"></tags:players></td>
+					                 				<td class="penalty-team1"><input type="checkbox" name="scorerPenalty1[${index}]" ${editForm.scorerPenalty1[index] ? 'checked="checked"' : ''}/></td>
 					                 				<td class="passer-team1"><tags:players isCarton="${false}" index="${index}" items="${game.team1.players }" path="passerPlayers1[${index}]"></tags:players></td>
 					                 				<td class="minute-team1"><tags:minutes path="scorerPlayersMinute1[${index}]"/></td>
 					                 			</c:when>
 					                 			<c:otherwise>
 								                 	<td class="player-team1"></td>
+								                 	<td class="penalty-team1"></td>
 					                 				<td class="passer-team1"></td>
 					                 				<td class="minute-team1"></td>		
 					                 			</c:otherwise>
 				                 			</c:choose>
 				                 			<c:choose>
 					                 			<c:when test="${not empty game.getGoalsTeam2() && index < game.score2  && not empty game.getGoalsTeam2().get(index)}">
-					                 				<td class="player-team2"><tags:players isCarton="${false}" index="${index}" items="${game.team2.players }" path="scorerPlayers2[${index}]"></tags:players> </td>
+					                 				<td class="player-team2"><tags:players isGoal="true" isCarton="${false}" index="${index}" items="${game.team2.players }" path="scorerPlayers2[${index}]"></tags:players></td>
+					                 				<td class="penalty-team2"><input type="checkbox" name="scorerPenalty2[${index}]" ${editForm.scorerPenalty2[index] ? 'checked="checked"' : ''}/></td>
 					                 				<td class="passer-team2"><tags:players isCarton="${false}" index="${index}" items="${game.team2.players }" path="passerPlayers2[${index}]"></tags:players></td>
 					                 				<td class="minute-team2"><tags:minutes path="scorerPlayersMinute2[${index}]"/> </td>
 					                 			</c:when>
 					                 			<c:otherwise>
 								                 	<td class="player-team2"></td>
+								                 	<td class="penalty-team2"></td>
 					                 				<td class="passer-team2"></td>
 					                 				<td class="minute-team2"></td>		
 					                 			</c:otherwise>
@@ -322,24 +326,28 @@
 				                 		<tr id="tr-player-prolong-${index}">
 				                 			<c:choose>
 					                 			<c:when test="${not empty game.getGoalsTeam1() && index < game.score1_prolong && not empty game.getGoalsTeam1().get(index)}">
-					                 				<td class="player-team1"><tags:players isCarton="${false}" index="${index}" items="${game.team1.players }" path="scorerPlayersProlong1[${index}]"></tags:players> </td>
+					                 				<td class="player-team1"><tags:players isGoal="true" isCarton="${false}" index="${index}" items="${game.team1.players }" path="scorerPlayersProlong1[${index}]"></tags:players></td>
+					                 				<td class="penalty-team1"><input type="checkbox" name="scorerProlongPenalty1[${index}]" ${editForm.scorerProlongPenalty1[index] ? 'checked="checked"' : ''}/></td>
 					                 				<td class="passer-team1"><tags:players isCarton="${false}" index="${index}" items="${game.team1.players }" path="passerPlayersProlong1[${index}]"></tags:players></td>
 					                 				<td class="minute-team1"><tags:minutes path="scorerPlayersMinuteProlong1[${index}]"/></td>
 					                 			</c:when>
 					                 			<c:otherwise>
 								                 	<td class="player-team1"></td>
+								                 	<td class="penalty-team1"></td>
 					                 				<td class="passer-team1"></td>
 					                 				<td class="minute-team1"></td>		
 					                 			</c:otherwise>
 				                 			</c:choose>
 				                 			<c:choose>
 					                 			<c:when test="${not empty game.getGoalsTeam2() && index < game.score2_prolong  && not empty game.getGoalsTeam2().get(index)}">
-					                 				<td class="player-team2"><tags:players isCarton="${false}" index="${index}" items="${game.team2.players }" path="scorerPlayersProlong2[${index}]"></tags:players> </td>
+					                 				<td class="player-team2"><tags:players isGoal="true" isCarton="${false}" index="${index}" items="${game.team2.players }" path="scorerPlayersProlong2[${index}]"></tags:players></td>
+					                 				<td class="penalty-team2"><input type="checkbox" name="scorerProlongPenalty2[${index}]" ${editForm.scorerProlongPenalty2[index] ? 'checked="checked"' : ''}/></td>
 					                 				<td class="passer-team2"><tags:players isCarton="${false}" index="${index}" items="${game.team2.players }" path="passerPlayersProlong2[${index}]"></tags:players></td>
 					                 				<td class="minute-team2"><tags:minutes path="scorerPlayersMinuteProlong2[${index}]"/> </td>
 					                 			</c:when>
 					                 			<c:otherwise>
 								                 	<td class="player-team2"></td>
+								                 	<td class="penalty-team2"></td> 
 					                 				<td class="passer-team2"></td>
 					                 				<td class="minute-team2"></td>		
 					                 			</c:otherwise>
@@ -480,12 +488,13 @@
 				if($("#tr-player-"+i).length && $("select[name='scorerPlayers1["+i+"]']").length == 0)
 				{
 					$("#tr-player-"+i).find(".player-team1").html("<select  id='select-player"+i+"' name='scorerPlayers1["+i+"]'><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach><option value='' label='CSC' /></select>");
+					$("#tr-player-"+i).find(".penalty-team1").html("<input type='checkbox' name='scorerPenalty1["+i+"]'/>");
 					$("#tr-player-"+i).find(".passer-team1").html("<select  id='select-passer"+i+"' name='passerPlayers1["+i+"]'><option value='' label='Aucun' /><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select>");
 					$("#tr-player-"+i).find(".minute-team1").html("<select id='select-minute"+i+"' name='scorerPlayersMinute1["+i+"]'><c:forEach begin='1' end='90' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select>");
 				}
 				else if(!$("#tr-player-"+i).length)
 				{
-					$("#playerBody").append("<tr id='tr-player-"+i+"'><td class='player-team1'><select id='select-player"+i+"' name='scorerPlayers1["+i+"]'><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach><option value='' label='CSC' /></select></td><td class='player-team1'><select id='select-passer"+i+"' name='passerPlayers1["+i+"]'><option value='' label='Aucun' /><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select></td><td class='minute-team1'><select id='select-minute"+i+"' name='scorerPlayersMinute1["+i+"]'><c:forEach begin='1' end='90' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select></td><td class='player-team2'></td><td class='passer-team2'></td><td class='minute-team2'></td></tr>");
+					$("#playerBody").append("<tr id='tr-player-"+i+"'><td class='player-team1'><select id='select-player"+i+"' name='scorerPlayers1["+i+"]'><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach><option value='' label='CSC' /></select></td><td><input type='checkbox' name='scorerPenalty1["+i+"]'/></td><td class='player-team1'><select id='select-passer"+i+"' name='passerPlayers1["+i+"]'><option value='' label='Aucun' /><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select></td><td class='minute-team1'><select id='select-minute"+i+"' name='scorerPlayersMinute1["+i+"]'><c:forEach begin='1' end='90' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select></td><td class='player-team2'></td><td class='passer-team2'></td><td class='minute-team2'></td></tr>");
 				}
 			}
 			if($('tr[id^="tr-player-"]').length >= parseInt($(this).val()))
@@ -497,6 +506,7 @@
 					{
 						console.log("test2 : "+$('tr[id^="tr-player-"]').length);
 						$("#tr-player-"+i).find(".player-team1").html("");
+						$("#tr-player-"+i).find(".penalty-team1").html("");
 						$("#tr-player-"+i).find(".passer-team1").html("");
 						$("#tr-player-"+i).find(".minute-team1").html("");
 					}
@@ -531,12 +541,13 @@
 				if($("#tr-player-"+i).length && $("select[name='scorerPlayers2["+i+"]']").length == 0)
 				{
 					$("#tr-player-"+i).find(".player-team2").html("<select id='select-player"+i+"' name='scorerPlayers2["+i+"]'><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach><option value='' label='CSC' /></select>");
+					$("#tr-player-"+i).find(".penalty-team2").html("<input type='checkbox' name='scorerPenalty2["+i+"]'/>");
 					$("#tr-player-"+i).find(".passer-team2").html("<select  id='select-passer"+i+"' name='passerPlayers2["+i+"]'><option value='' label='Aucun' /><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select>");
 					$("#tr-player-"+i).find(".minute-team2").html("<select id='select-minute"+i+"' name='scorerPlayersMinute2["+i+"]'><c:forEach begin='1' end='90' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select>");
 				}
 				else if(!$("#tr-player-"+i).length)
 				{
-					$("#playerBody").append("<tr id='tr-player-"+i+"'><td class='player-team1'></td><td class='passer-team1'></td><td class='minute-team1'></td><td class='player-team2'><select id='select-player"+i+"' name='scorerPlayers2["+i+"]'><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach><option value='' label='CSC' /></select></td><td class='player-team2'><select id='select-passer"+i+"' name='passerPlayers2["+i+"]'><option value='' label='Aucun' /><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select></td><td class='minute-team2'><select id='select-minute"+i+"' name='scorerPlayersMinute2["+i+"]'><c:forEach begin='1' end='90' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select></td></tr>");
+					$("#playerBody").append("<tr id='tr-player-"+i+"'><td class='player-team1'></td><td class='passer-team1'></td><td class='minute-team1'></td><td class='player-team2'><select id='select-player"+i+"' name='scorerPlayers2["+i+"]'><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach><option value='' label='CSC' /></select></td><td><input type='checkbox' name='scorerPenalty2["+i+"]'/></td><td class='player-team2'><select id='select-passer"+i+"' name='passerPlayers2["+i+"]'><option value='' label='Aucun' /><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select></td><td class='minute-team2'><select id='select-minute"+i+"' name='scorerPlayersMinute2["+i+"]'><c:forEach begin='1' end='90' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select></td></tr>");
 				}
 			}
 			if($('tr[id^="tr-player-"]').length > parseInt($(this).val()))
@@ -547,6 +558,7 @@
 					if(!$("#tr-player-"+i).find(".player-team1").is(':empty'))
 					{
 						$("#tr-player-"+i).find(".player-team2").html("");
+						$("#tr-player-"+i).find(".penalty-team2").html("");
 						$("#tr-player-"+i).find(".passer-team2").html("");
 						$("#tr-player-"+i).find(".minute-team2").html("");
 					}
@@ -581,12 +593,13 @@
 				if($("#tr-player-prolong-"+i).length && $("select[name='scorerPlayersProlong1["+i+"]']").length == 0)
 				{
 					$("#tr-player-prolong-"+i).find(".player-team1").html("<select  id='select-player"+i+"' name='scorerPlayersProlong1["+i+"]'><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach><option value='' label='CSC' /></select>");
+					$("#tr-player-prolong-"+i).find(".penalty-team1").html("<input type='checkbox' name='scorerProlongPenalty1["+i+"]'/>");
 					$("#tr-player-prolong-"+i).find(".passer-team1").html("<select  id='select-passer"+i+"' name='passerPlayersProlong1["+i+"]'><option value='' label='Aucun' /><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select>");
 					$("#tr-player-prolong-"+i).find(".minute-team1").html("<select id='select-minute"+i+"' name='scorerPlayersMinuteProlong1["+i+"]'><c:forEach begin='91' end='120' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select>");
 				}
 				else if(!$("#tr-player-prolong-"+i).length)
 				{
-					$("#playerBody").append("<tr id='tr-player-prolong-"+i+"'><td class='player-team1'><select id='select-player"+i+"' name='scorerPlayersProlong1["+i+"]'><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach><option value='' label='CSC' /></select></td><td class='player-team1'><select id='select-passer"+i+"' name='passerPlayersProlong1["+i+"]'><option value='' label='Aucun' /><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select></td><td class='minute-team1'><select id='select-minute"+i+"' name='scorerPlayersMinuteProlong1["+i+"]'><c:forEach begin='91' end='120' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select></td><td class='player-team2'></td><td class='passer-team2'></td><td class='minute-team2'></td></tr>");
+					$("#playerBody").append("<tr id='tr-player-prolong-"+i+"'><td class='player-team1'><select id='select-player"+i+"' name='scorerPlayersProlong1["+i+"]'><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach><option value='' label='CSC' /><input type='checkbox' name='scorerProlongPenalty1["+i+"]'/></select></td><td class='player-team1'></td><td><select id='select-passer"+i+"' name='passerPlayersProlong1["+i+"]'><option value='' label='Aucun' /><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select></td><td class='minute-team1'><select id='select-minute"+i+"' name='scorerPlayersMinuteProlong1["+i+"]'><c:forEach begin='91' end='120' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select></td><td class='player-team2'></td><td class='passer-team2'></td><td class='minute-team2'></td></tr>");
 				}
 			}
 			if($('tr[id^="tr-player-prolong-"]').length >= parseInt($(this).val()))
@@ -597,6 +610,7 @@
 					if(!$("#tr-player-prolong-"+i).find(".player-team2").is(':empty'))
 					{
 						$("#tr-player-prolong-"+i).find(".player-team1").html("");
+						$("#tr-player-prolong-"+i).find(".penalty-team1").html("");
 						$("#tr-player-prolong-"+i).find(".passer-team1").html("");
 						$("#tr-player-prolong-"+i).find(".minute-team1").html("");
 					}
@@ -630,12 +644,13 @@
 				if($("#tr-player-prolong-"+i).length && $("select[name='scorerPlayersProlong2["+i+"]']").length == 0)
 				{
 					$("#tr-player-prolong-"+i).find(".player-team2").html("<select id='select-player"+i+"' name='scorerPlayersProlong2["+i+"]'><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach><option value='' label='CSC' /></select>");
+					$("#tr-player-prolong-"+i).find(".penalty-team2").html("<input type='checkbox' name='scorerProlongPenalty2["+i+"]'/>");
 					$("#tr-player-prolong-"+i).find(".passer-team2").html("<select  id='select-passer"+i+"' name='passerPlayersProlong2["+i+"]'><option value='' label='Aucun' /><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select>");
 					$("#tr-player-prolong-"+i).find(".minute-team2").html("<select id='select-minute"+i+"' name='scorerPlayersMinuteProlong2["+i+"]'><c:forEach begin='91' end='120' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select>");
 				}
 				else if(!$("#tr-player-prolong-"+i).length)
 				{
-					$("#playerBody").append("<tr id='tr-player-"+i+"'><td class='player-team1'></td><td class='passer-team1'></td><td class='minute-team1'></td><td class='player-team2'><select id='select-player"+i+"' name='scorerPlayersProlong2["+i+"]'><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach><option value='' label='CSC' /></select></td><td class='player-team2'><select id='select-passer"+i+"' name='passerPlayersProlong2["+i+"]'><option value='' label='Aucun' /><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select></td><td class='minute-team2'><select id='select-minute"+i+"' name='scorerPlayersMinuteProlong2["+i+"]'><c:forEach begin='91' end='120' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select></td></tr>");
+					$("#playerBody").append("<tr id='tr-player-"+i+"'><td class='player-team1'></td><td class='passer-team1'></td><td class='minute-team1'></td><td class='player-team2'><select id='select-player"+i+"' name='scorerPlayersProlong2["+i+"]'><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach><option value='' label='CSC' /></select></td><td><input type='checkbox' name='scorerProlongPenalty2["+i+"]'/></td><td class='player-team2'><select id='select-passer"+i+"' name='passerPlayersProlong2["+i+"]'><option value='' label='Aucun' /><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select></td><td class='minute-team2'><select id='select-minute"+i+"' name='scorerPlayersMinuteProlong2["+i+"]'><c:forEach begin='91' end='120' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select></td></tr>");
 				}
 			}
 			if($('tr[id^="tr-player-prolong-"]').length > parseInt($(this).val()))
@@ -646,6 +661,7 @@
 					if(!$("#tr-player-prolong-"+i).find(".player-team1").is(':empty'))
 					{
 						$("#tr-player-prolong-"+i).find(".player-team2").html("");
+						$("#tr-player-prolong-"+i).find(".penalty-team2").html("");
 						$("#tr-player-prolong-"+i).find(".passer-team2").html("");
 						$("#tr-player-prolong-"+i).find(".minute-team2").html("");
 					}

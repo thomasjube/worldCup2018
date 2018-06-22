@@ -3045,7 +3045,7 @@ public class GameController
 	{
 		if (game.getId() == 0)
 		{ // if employee id is 0 then creating the
-				// employee other updating the employee
+			// employee other updating the employee
 			gameService.addGame(game);
 		}
 		else
@@ -3122,9 +3122,13 @@ public class GameController
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinute1().get(i);
 			Player scorerPlayer = gameEditForm.getScorerPlayers1().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayers1().get(i)) : null;
-			PlayerStats playerStat = playerStatsService
-					.addPlayerStats(new PlayerStats(game, scorerPlayer, game.getTeam1(), minute, Action.GOAL));
+					? playerService.getPlayer(gameEditForm.getScorerPlayers1().get(i))
+					: null;
+
+			boolean isPenalty = gameEditForm.getScorerPenalty1()[i];
+
+			PlayerStats playerStat = playerStatsService.addPlayerStats(
+					new PlayerStats(game, scorerPlayer, game.getTeam1(), minute, Action.GOAL, isPenalty));
 
 			game.addPlayerStat(playerStat);
 			if (scorerPlayer != null)
@@ -3136,7 +3140,7 @@ public class GameController
 				if (passer != null)
 				{
 					playerStat = playerStatsService
-							.addPlayerStats(new PlayerStats(game, passer, game.getTeam1(), minute, Action.PASS));
+							.addPlayerStats(new PlayerStats(game, passer, game.getTeam1(), minute, Action.PASS, false));
 
 					game.addPlayerStat(playerStat);
 					passer.addPlayerStat(playerStat);
@@ -3145,7 +3149,7 @@ public class GameController
 			else
 			{
 				playerStat = playerStatsService
-						.addPlayerStats(new PlayerStats(game, null, game.getTeam1(), minute, Action.PASS));
+						.addPlayerStats(new PlayerStats(game, null, game.getTeam1(), minute, Action.PASS, false));
 				game.addPlayerStat(playerStat);
 			}
 
@@ -3155,9 +3159,13 @@ public class GameController
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinute2().get(i);
 			Player scorerPlayer = gameEditForm.getScorerPlayers2().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayers2().get(i)) : null;
-			PlayerStats playerStat = playerStatsService
-					.addPlayerStats(new PlayerStats(game, scorerPlayer, game.getTeam2(), minute, Action.GOAL));
+					? playerService.getPlayer(gameEditForm.getScorerPlayers2().get(i))
+					: null;
+
+			boolean isPenalty = gameEditForm.getScorerPenalty2()[i];
+
+			PlayerStats playerStat = playerStatsService.addPlayerStats(
+					new PlayerStats(game, scorerPlayer, game.getTeam2(), minute, Action.GOAL, isPenalty));
 
 			game.addPlayerStat(playerStat);
 
@@ -3170,7 +3178,7 @@ public class GameController
 				if (passer != null)
 				{
 					playerStat = playerStatsService
-							.addPlayerStats(new PlayerStats(game, passer, game.getTeam2(), minute, Action.PASS));
+							.addPlayerStats(new PlayerStats(game, passer, game.getTeam2(), minute, Action.PASS, false));
 
 					game.addPlayerStat(playerStat);
 					passer.addPlayerStat(playerStat);
@@ -3179,7 +3187,7 @@ public class GameController
 			else
 			{
 				playerStat = playerStatsService
-						.addPlayerStats(new PlayerStats(game, null, game.getTeam2(), minute, Action.PASS));
+						.addPlayerStats(new PlayerStats(game, null, game.getTeam2(), minute, Action.PASS, false));
 				game.addPlayerStat(playerStat);
 			}
 
@@ -3191,9 +3199,13 @@ public class GameController
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinuteProlong1().get(i);
 			Player scorerPlayer = gameEditForm.getScorerPlayersProlong1().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayersProlong1().get(i)) : null;
-			PlayerStats playerStat = playerStatsService
-					.addPlayerStats(new PlayerStats(game, scorerPlayer, game.getTeam1(), minute, Action.GOAL));
+					? playerService.getPlayer(gameEditForm.getScorerPlayersProlong1().get(i))
+					: null;
+
+			boolean isPenalty = gameEditForm.getScorerProlongPenalty1()[i];
+
+			PlayerStats playerStat = playerStatsService.addPlayerStats(
+					new PlayerStats(game, scorerPlayer, game.getTeam1(), minute, Action.GOAL, isPenalty));
 
 			game.addPlayerStat(playerStat);
 			if (scorerPlayer != null)
@@ -3205,7 +3217,7 @@ public class GameController
 				if (passer != null)
 				{
 					playerStat = playerStatsService
-							.addPlayerStats(new PlayerStats(game, passer, game.getTeam1(), minute, Action.PASS));
+							.addPlayerStats(new PlayerStats(game, passer, game.getTeam1(), minute, Action.PASS, false));
 
 					game.addPlayerStat(playerStat);
 					passer.addPlayerStat(playerStat);
@@ -3214,7 +3226,7 @@ public class GameController
 			else
 			{
 				playerStat = playerStatsService
-						.addPlayerStats(new PlayerStats(game, null, game.getTeam1(), minute, Action.PASS));
+						.addPlayerStats(new PlayerStats(game, null, game.getTeam1(), minute, Action.PASS, false));
 				game.addPlayerStat(playerStat);
 			}
 
@@ -3224,9 +3236,13 @@ public class GameController
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinuteProlong2().get(i);
 			Player scorerPlayer = gameEditForm.getScorerPlayersProlong2().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayersProlong2().get(i)) : null;
-			PlayerStats playerStat = playerStatsService
-					.addPlayerStats(new PlayerStats(game, scorerPlayer, game.getTeam2(), minute, Action.GOAL));
+					? playerService.getPlayer(gameEditForm.getScorerPlayersProlong2().get(i))
+					: null;
+
+			boolean isPenalty = gameEditForm.getScorerProlongPenalty2()[i];
+
+			PlayerStats playerStat = playerStatsService.addPlayerStats(
+					new PlayerStats(game, scorerPlayer, game.getTeam2(), minute, Action.GOAL, isPenalty));
 
 			game.addPlayerStat(playerStat);
 
@@ -3239,7 +3255,7 @@ public class GameController
 				if (passer != null)
 				{
 					playerStat = playerStatsService
-							.addPlayerStats(new PlayerStats(game, passer, game.getTeam2(), minute, Action.PASS));
+							.addPlayerStats(new PlayerStats(game, passer, game.getTeam2(), minute, Action.PASS, false));
 
 					game.addPlayerStat(playerStat);
 					passer.addPlayerStat(playerStat);
@@ -3248,7 +3264,7 @@ public class GameController
 			else
 			{
 				playerStat = playerStatsService
-						.addPlayerStats(new PlayerStats(game, null, game.getTeam2(), minute, Action.PASS));
+						.addPlayerStats(new PlayerStats(game, null, game.getTeam2(), minute, Action.PASS, false));
 				game.addPlayerStat(playerStat);
 			}
 
@@ -3266,7 +3282,7 @@ public class GameController
 			if (typeCarton == Action.YELLOW_CARD)
 			{
 				PlayerStats playerStat = playerStatsService.addPlayerStats(
-						new PlayerStats(game, playerCarton, playerCarton.getTeam(), minuteCarton, typeCarton));
+						new PlayerStats(game, playerCarton, playerCarton.getTeam(), minuteCarton, typeCarton, false));
 
 				game.addPlayerStat(playerStat);
 				playerCarton.addPlayerStat(playerStat);
@@ -3274,8 +3290,8 @@ public class GameController
 				if (mapCartonPlayer.get(playerCarton.getId()) != null
 						&& mapCartonRougePlayer.get(playerCarton.getId()) == null)
 				{
-					playerStat = playerStatsService.addPlayerStats(
-							new PlayerStats(game, playerCarton, playerCarton.getTeam(), minuteCarton, Action.RED_CARD));
+					playerStat = playerStatsService.addPlayerStats(new PlayerStats(game, playerCarton,
+							playerCarton.getTeam(), minuteCarton, Action.RED_CARD, false));
 
 					game.addPlayerStat(playerStat);
 					playerCarton.addPlayerStat(playerStat);
@@ -3291,8 +3307,8 @@ public class GameController
 			{
 				if (mapCartonRougePlayer.get(playerCarton.getId()) == null)
 				{
-					PlayerStats playerStat = playerStatsService.addPlayerStats(
-							new PlayerStats(game, playerCarton, playerCarton.getTeam(), minuteCarton, typeCarton));
+					PlayerStats playerStat = playerStatsService.addPlayerStats(new PlayerStats(game, playerCarton,
+							playerCarton.getTeam(), minuteCarton, typeCarton, false));
 
 					game.addPlayerStat(playerStat);
 					playerCarton.addPlayerStat(playerStat);
@@ -3384,7 +3400,7 @@ public class GameController
 			if (isTitular)
 			{
 				PlayerStats titularStat = playerStatsService
-						.addPlayerStats(new PlayerStats(game, player, game.getTeam1(), 0, Action.TITULAR));
+						.addPlayerStats(new PlayerStats(game, player, game.getTeam1(), 0, Action.TITULAR, false));
 				game.addPlayerStat(titularStat);
 				player.addPlayerStat(titularStat);
 			}
@@ -3396,13 +3412,13 @@ public class GameController
 				Player playerSubstitute = playerService.getPlayer(gameEditCompoForm.getSubstituteId1().get(i));
 
 				PlayerStats substituteOutStat = playerStatsService.addPlayerStats(
-						new PlayerStats(game, player, game.getTeam1(), minuteSubstitute, Action.CHANGEMENT_OUT));
+						new PlayerStats(game, player, game.getTeam1(), minuteSubstitute, Action.CHANGEMENT_OUT, false));
 
 				player.addPlayerStat(substituteOutStat);
 				game.addPlayerStat(substituteOutStat);
 
 				PlayerStats substituteInStat = playerStatsService.addPlayerStats(new PlayerStats(game, playerSubstitute,
-						game.getTeam1(), minuteSubstitute, Action.CHANGEMENT_IN));
+						game.getTeam1(), minuteSubstitute, Action.CHANGEMENT_IN, false));
 
 				game.addPlayerStat(substituteInStat);
 				playerSubstitute.addPlayerStat(substituteInStat);
@@ -3422,7 +3438,7 @@ public class GameController
 			if (isTitular)
 			{
 				PlayerStats titularStat = playerStatsService
-						.addPlayerStats(new PlayerStats(game, player, game.getTeam2(), 0, Action.TITULAR));
+						.addPlayerStats(new PlayerStats(game, player, game.getTeam2(), 0, Action.TITULAR, false));
 				game.addPlayerStat(titularStat);
 			}
 
@@ -3433,12 +3449,12 @@ public class GameController
 				Player playerSubstitute = playerService.getPlayer(gameEditCompoForm.getSubstituteId2().get(i));
 
 				PlayerStats substituteOutStat = playerStatsService.addPlayerStats(
-						new PlayerStats(game, player, game.getTeam2(), minuteSubstitute, Action.CHANGEMENT_OUT));
+						new PlayerStats(game, player, game.getTeam2(), minuteSubstitute, Action.CHANGEMENT_OUT, false));
 
 				game.addPlayerStat(substituteOutStat);
 
 				PlayerStats substituteInStat = playerStatsService.addPlayerStats(new PlayerStats(game, playerSubstitute,
-						game.getTeam2(), minuteSubstitute, Action.CHANGEMENT_IN));
+						game.getTeam2(), minuteSubstitute, Action.CHANGEMENT_IN, false));
 
 				game.addPlayerStat(substituteInStat);
 			}

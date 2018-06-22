@@ -87,17 +87,21 @@ public class PlayerStats
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Team team;
 
+	@Column
+	private boolean penalty = false;
+
 	public PlayerStats()
 	{
 	}
 
-	public PlayerStats(Game game2, Player scorerPlayer, Team team, Integer minute2, Action action)
+	public PlayerStats(Game game2, Player scorerPlayer, Team team, Integer minute2, Action action, boolean penalty)
 	{
 		this.game = game2;
 		this.player = scorerPlayer;
 		this.minute = minute2;
 		this.action = action;
 		this.team = team;
+		this.penalty = penalty;
 	}
 
 	public int getId()
@@ -176,5 +180,15 @@ public class PlayerStats
 			return false;
 
 		return getId() == ((PlayerStats) obj).getId();
+	}
+
+	public boolean isPenalty()
+	{
+		return penalty;
+	}
+
+	public void setPenalty(boolean penalty)
+	{
+		this.penalty = penalty;
 	}
 }

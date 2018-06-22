@@ -162,7 +162,7 @@
                           <c:forEach var="goal" items="${lastGame.getGoalsTeam2()}">
 	                          <li>
 	                          	<c:choose>
-	                          		<c:when test="${not empty goal.player }">${goal.player.name}</c:when>
+	                          		<c:when test="${not empty goal.player }">${goal.player.name}<c:if test="${goal.penalty }"> (sp)</c:if></c:when>
 	                          		<c:otherwise>CSC</c:otherwise>
 	                          	</c:choose>
 	                         		<span>(${goal.minute}')</span></li>
