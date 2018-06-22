@@ -47,7 +47,7 @@
 						<li><a href="../poule">Poules</a></li>
 						<li><a href="../game">Matchs</a></li>
 						<li><a href="../stats">Statistiques</a></li>
-						<li><a href="../winabet/edit">Saisie pari</a></li>
+						<li><a href="../winabet/edit?id=${game.id}">Saisie pari</a></li>
 						<li><a href="../winabet/game">Résultat par match</a></li>
 						<li><a href="../winabet">Classement général</a></li>
 					</ul>
