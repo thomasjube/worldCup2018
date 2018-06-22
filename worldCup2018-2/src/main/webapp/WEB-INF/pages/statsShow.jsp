@@ -198,10 +198,21 @@
             		<div class="kode-section-title"> <h2 ${not empty bestAttackTeams ? 'style="color:white !important"' : ''} >Meilleure Attaque</h2></div>
             		<c:choose>
 						<c:when test="${not empty bestAttackTeams }">
+							<c:set var="previousAttack" value ="0"/>
+							<c:set var="indexAttack" value ="1"/>
 							<c:forEach items="${bestAttackTeams}" var="bestAttackTeam" varStatus="status">
 			                    <ul class="table-body">
 			                      <li>
-			                      	<span>${status.index + 1 }</span>
+	                      			<span>
+		                      		<c:choose>
+		                      			<c:when test="${previousAttack == bestAttackTeam.goals }"> - </c:when>
+		                      			<c:otherwise>
+		                      				${indexAttack }
+		                      				<c:set var="previousAttack" value ="${bestAttackTeam.goals }"/>
+		                      				<c:set var="indexAttack" value ="${indexAttack + 1 }"/>
+		                      			</c:otherwise>
+		                      		</c:choose>
+			                      	</span>
 			                        <img style="top:1em;" src="<%=request.getContextPath()%>/resources/images/flag/${bestAttackTeam.team.name}.png" alt="" width="30" height="20">&nbsp;
 			                        <span>${bestAttackTeam.team.name}</span>
 			                        <span>${bestAttackTeam.goals}</span>
@@ -217,10 +228,21 @@
             		<div class="kode-section-title"> <h2 ${not empty worstDefenseTeams ? 'style="color:white !important"' : ''} >Pire défense</h2></div>
             		<c:choose>
 						<c:when test="${not empty worstDefenseTeams }">
+							<c:set var="previousDefense" value ="0"/>
+							<c:set var="indexDefense" value ="1"/>
 							<c:forEach items="${worstDefenseTeams}" var="worstDefenseTeam" varStatus="status">
 			                    <ul class="table-body">
 			                      <li>
-			                      	<span>${status.index + 1 }</span>
+	                      			<span>
+		                      		<c:choose>
+		                      			<c:when test="${previousDefense == worstDefenseTeam.goals }"> - </c:when>
+		                      			<c:otherwise>
+		                      				${indexDefense }
+		                      				<c:set var="previousDefense" value ="${worstDefenseTeam.goals }"/>
+		                      				<c:set var="indexDefense" value ="${indexDefense + 1 }"/>
+		                      			</c:otherwise>
+		                      		</c:choose>
+			                      	</span>
 			                        <img style="top:1em;" src="<%=request.getContextPath()%>/resources/images/flag/${worstDefenseTeam.team.name}.png" alt="" width="30" height="20">&nbsp;
 			                        <span>${worstDefenseTeam.team.name}</span>
 			                        <span>${worstDefenseTeam.goals}</span>
