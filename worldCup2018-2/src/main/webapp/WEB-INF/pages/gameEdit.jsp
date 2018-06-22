@@ -69,13 +69,15 @@
 	            <div class="row">
 					<div class="col-md-12">
 						<div class="heading heading-12 margin-top30-bottom10">
-							<img style="position:relative;float:left;top:-3em;margin-right:0.8em" src="<%=request.getContextPath()%>/resources/images/flag/${game.team1.name}.png" alt="" width="200" height="150">&nbsp;
-		                    <span style="color:#000;font-family:'Open Sans', sans-serif;font-weight:bold;text-transform:uppercase;font-size:33px;position:relative;float:left;">${game.team1.name}</span>
 							<h2><span class="left"></span>${game.name}<span class="right"></span></h2>
-							<img style="position:relative;float:right;top:-3em;margin-left:0.8em" src="<%=request.getContextPath()%>/resources/images/flag/${game.team2.name}.png" alt="" width="200" height="150">&nbsp;
-		                    <span style="color:#000;font-family:'Open Sans', sans-serif;font-weight:bold;text-transform:uppercase;font-size:33px;position:relative;float:right;">${game.team2.name}</span>
-		                        
+							<br/>
+							<img style="border:1px black solid;position:relative;float:left;top:-3em;margin-right:0.8em" src="<%=request.getContextPath()%>/resources/images/flag/${game.team1.name}.png" alt="" width="200" height="150">&nbsp;
+							<img style="border:1px black solid;position:relative;float:right;top:-3em;margin-left:0.8em" src="<%=request.getContextPath()%>/resources/images/flag/${game.team2.name}.png" alt="" width="200" height="150">&nbsp;
+							<br/>
 						</div>
+						<span style="top:-1.5em;color:#000;font-family:'Open Sans', sans-serif;font-weight:bold;text-transform:uppercase;font-size:25px;position:relative;float:left;">${game.team1.name}</span>
+		                <span style="top:-1.5em;color:#000;font-family:'Open Sans', sans-serif;font-weight:bold;text-transform:uppercase;font-size:25px;position:relative;float:right;">${game.team2.name}</span>
+		                     
 					</div>	
 	                <div class="col-md-8">
 		             	<c:set var="mapTeam1" value="${titulars[game.team1.id]}"/>
