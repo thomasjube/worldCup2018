@@ -80,6 +80,7 @@ public class GameController
 		tf1Games.add(23);
 		tf1Games.add(28);
 		tf1Games.add(32);
+		tf1Games.add(35);
 		tf1Games.add(36);
 		tf1Games.add(37);
 		tf1Games.add(39);
@@ -3045,7 +3046,7 @@ public class GameController
 	{
 		if (game.getId() == 0)
 		{ // if employee id is 0 then creating the
-			// employee other updating the employee
+				// employee other updating the employee
 			gameService.addGame(game);
 		}
 		else
@@ -3122,8 +3123,7 @@ public class GameController
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinute1().get(i);
 			Player scorerPlayer = gameEditForm.getScorerPlayers1().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayers1().get(i))
-					: null;
+					? playerService.getPlayer(gameEditForm.getScorerPlayers1().get(i)) : null;
 
 			boolean isPenalty = gameEditForm.getScorerPenalty1()[i];
 
@@ -3159,8 +3159,7 @@ public class GameController
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinute2().get(i);
 			Player scorerPlayer = gameEditForm.getScorerPlayers2().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayers2().get(i))
-					: null;
+					? playerService.getPlayer(gameEditForm.getScorerPlayers2().get(i)) : null;
 
 			boolean isPenalty = gameEditForm.getScorerPenalty2()[i];
 
@@ -3199,8 +3198,7 @@ public class GameController
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinuteProlong1().get(i);
 			Player scorerPlayer = gameEditForm.getScorerPlayersProlong1().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayersProlong1().get(i))
-					: null;
+					? playerService.getPlayer(gameEditForm.getScorerPlayersProlong1().get(i)) : null;
 
 			boolean isPenalty = gameEditForm.getScorerProlongPenalty1()[i];
 
@@ -3236,8 +3234,7 @@ public class GameController
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinuteProlong2().get(i);
 			Player scorerPlayer = gameEditForm.getScorerPlayersProlong2().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayersProlong2().get(i))
-					: null;
+					? playerService.getPlayer(gameEditForm.getScorerPlayersProlong2().get(i)) : null;
 
 			boolean isPenalty = gameEditForm.getScorerProlongPenalty2()[i];
 
