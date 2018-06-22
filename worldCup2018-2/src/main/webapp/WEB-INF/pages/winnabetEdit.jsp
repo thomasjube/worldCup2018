@@ -46,7 +46,7 @@
 					<ul>
 						<li><a href="../team">Equipes</a></li>
 						<li><a href="../poule">Poules</a></li>
-						<li><a href="../game">Matchs</a></li>
+						<li><a href="../game?id=${game.id}">Matchs</a></li>
 						<li><a href="../stats">Statistiques</a></li>
 						<li><a href="../winabet/edit">Saisie pari</a></li>
 						<li><a href="../winabet/game?id=${game.id}">Résultat par match</a></li>
