@@ -87,7 +87,7 @@
 				                      	</span>
 				                        <img style="top:1em;" src="<%=request.getContextPath()%>/resources/images/flag/${goalsStat.player.team.name}.png" alt="" width="30" height="20">&nbsp;
 				                        <span><c:if test="${not empty goalsStat.player.firstName}">${goalsStat.player.firstName.charAt(0)}.&nbsp;</c:if>${goalsStat.player.name}</span>
-				                        <span>${goalsStat.goals}</span>
+				                        <span>${goalsStat.goals}<c:if test="${goalsStat.penalties > 0 }">&nbsp;(${goalsStat.penalties} sp)</c:if></span>
 				                        <span>${goalsStat.totalGames}</span>
 				                        <span style="width:2em">${goalsStat.ratio}</span>
 				                      </li>

@@ -326,6 +326,18 @@ public class PlayerStatsDAOImpl
 			Player player = values[0] != null ? (Player) values[0] : null;
 			Long goals = values[1] != null ? (Long) values[1] : null;
 
+			if (player != null)
+			{
+				TypedQuery<PlayerStats> query2 = m_entityManager
+						.createNamedQuery(PlayerStats.QN.RETRIEVE_PENALTIES_FOR_PLAYER, PlayerStats.class);
+
+				query2.setParameter("action", Action.GOAL);
+				query2.setParameter("player", player);
+				query2.setParameter("isPenalty", true);
+				result.setPenalties((long) query2.getResultList().size());
+
+			}
+
 			result.setAction(Action.GOAL);
 			result.setPlayer(player);
 			result.setGoals(goals);

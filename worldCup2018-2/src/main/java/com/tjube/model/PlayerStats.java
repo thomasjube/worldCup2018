@@ -35,6 +35,8 @@ import javax.persistence.Table;
 				query = "select s from PlayerStats s where s.game =:game "),
 		@NamedQuery(name = PlayerStats.QN.RETRIEVE_PENALTIES,
 				query = "select s from PlayerStats s where s.action =:action AND s.penalty=:isPenalty"),
+		@NamedQuery(name = PlayerStats.QN.RETRIEVE_PENALTIES_FOR_PLAYER,
+				query = "select s from PlayerStats s where s.action =:action AND s.penalty=:isPenalty and s.player =:player"),
 		@NamedQuery(name = PlayerStats.QN.RETRIEVE_CSC,
 				query = "select s from PlayerStats s where s.action =:action AND s.player is NULL"),
 		@NamedQuery(name = PlayerStats.QN.GET_STATS_BY_GAME_AND_ACTIONS,
@@ -64,6 +66,7 @@ public class PlayerStats
 		public static final String RETRIEVE_STATS_BY_PLAYER_BY_GAME = "PlayerStats.retrieveStatByPlayerByGame";
 		public static final String RETRIEVE_STATS_BY_PLAYER_WITH_MINUTES = "PlayerStats.retrieveStatByPlayerWithMinutes";
 		public static final String RETRIEVE_STATS_WORLD_CUP_FOR_ACTION = "PlayerStats.retrieveStatsWorldCupForAction";
+		public static final String RETRIEVE_PENALTIES_FOR_PLAYER = "PlayerStats.retrievePenaltiesForPlayer";
 		public static final String RETRIEVE_STATS_WORLD_CUP_FOR_ACTION_AND_GAME_AND_TEAM = "PlayerStats.retrieveStatsWorldCupForActionAndGameAndTeam";
 		public static final String RETRIEVE_STATS_WORLD_CUP_FOR_ACTION_AND_GAME = "PlayerStats.retrieveStatsWorldCupForActionAndGame";
 		public static final String RETRIEVE_SUBSTITUTES_BY_GAME = "PlayerStats.retrieveSubstitutesByGame";
