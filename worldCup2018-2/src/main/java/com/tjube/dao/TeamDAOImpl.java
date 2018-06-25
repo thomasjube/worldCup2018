@@ -83,6 +83,8 @@ public class TeamDAOImpl
 		Team teamToUpdate = getTeam(team.getId());
 		teamToUpdate.setBut_mis(team.getBut_mis());
 		teamToUpdate.setBut_pris(team.getBut_pris());
+		teamToUpdate.setAllButMis(team.getAllButMis());
+		teamToUpdate.setAllButPris(team.getAllButPris());
 		teamToUpdate.setDiff(team.getDiff());
 		teamToUpdate.setGameDraw(team.getGameDraw());
 		teamToUpdate.setGameLost(team.getGameLost());
@@ -101,6 +103,8 @@ public class TeamDAOImpl
 		Team teamToUpdate = getTeam(team.getId());
 		teamToUpdate.setBut_mis(team.getBut_mis());
 		teamToUpdate.setBut_pris(team.getBut_pris());
+		teamToUpdate.setAllButMis(team.getAllButMis());
+		teamToUpdate.setAllButPris(team.getAllButPris());
 		teamToUpdate.setDiff(team.getDiff());
 		teamToUpdate.setGameDraw(team.getGameDraw());
 		teamToUpdate.setGameLost(team.getGameLost());
@@ -139,7 +143,7 @@ public class TeamDAOImpl
 			StatsWorldCup result = new StatsWorldCup();
 
 			result.setTeam(value);
-			result.setGoals(new Long(value.getBut_mis()));
+			result.setGoals(new Long(value.getAllButMis()));
 
 			results.add(result);
 		}
@@ -162,7 +166,7 @@ public class TeamDAOImpl
 			StatsWorldCup result = new StatsWorldCup();
 
 			result.setTeam(value);
-			result.setGoals(new Long(value.getBut_pris()));
+			result.setGoals(new Long(value.getAllButPris()));
 
 			results.add(result);
 		}

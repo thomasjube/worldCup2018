@@ -3046,7 +3046,7 @@ public class GameController
 	{
 		if (game.getId() == 0)
 		{ // if employee id is 0 then creating the
-				// employee other updating the employee
+			// employee other updating the employee
 			gameService.addGame(game);
 		}
 		else
@@ -3123,7 +3123,8 @@ public class GameController
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinute1().get(i);
 			Player scorerPlayer = gameEditForm.getScorerPlayers1().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayers1().get(i)) : null;
+					? playerService.getPlayer(gameEditForm.getScorerPlayers1().get(i))
+					: null;
 
 			boolean isPenalty = gameEditForm.getScorerPenalty1()[i];
 
@@ -3159,7 +3160,8 @@ public class GameController
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinute2().get(i);
 			Player scorerPlayer = gameEditForm.getScorerPlayers2().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayers2().get(i)) : null;
+					? playerService.getPlayer(gameEditForm.getScorerPlayers2().get(i))
+					: null;
 
 			boolean isPenalty = gameEditForm.getScorerPenalty2()[i];
 
@@ -3198,7 +3200,8 @@ public class GameController
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinuteProlong1().get(i);
 			Player scorerPlayer = gameEditForm.getScorerPlayersProlong1().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayersProlong1().get(i)) : null;
+					? playerService.getPlayer(gameEditForm.getScorerPlayersProlong1().get(i))
+					: null;
 
 			boolean isPenalty = gameEditForm.getScorerProlongPenalty1()[i];
 
@@ -3234,7 +3237,8 @@ public class GameController
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinuteProlong2().get(i);
 			Player scorerPlayer = gameEditForm.getScorerPlayersProlong2().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayersProlong2().get(i)) : null;
+					? playerService.getPlayer(gameEditForm.getScorerPlayersProlong2().get(i))
+					: null;
 
 			boolean isPenalty = gameEditForm.getScorerProlongPenalty2()[i];
 
@@ -3313,11 +3317,10 @@ public class GameController
 			}
 		}
 
+		teamService.updateTeams(game);
+
 		if (game.getGameInPoule())
-		{
-			teamService.updateTeams(game);
 			teamService.updateTeamsPositions(game.getPoule());
-		}
 		else if (game.getId() >= 49 && game.getId() <= 56)
 			gameService.updateQuarts(game);
 		else if (game.getId() >= 57 && game.getId() <= 60)
@@ -3467,8 +3470,7 @@ public class GameController
 	{
 		Game game = gameService.getGame(Integer.parseInt(request.getParameter("id")));
 
-		if (game.getGameInPoule())
-			teamService.updateTeamsForReset(game);
+		teamService.updateTeamsForReset(game);
 
 		game = gameService.resetGame(game);
 		playerStatsService.deletePlayerStats(game);
