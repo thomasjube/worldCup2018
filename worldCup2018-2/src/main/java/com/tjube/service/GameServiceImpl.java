@@ -177,98 +177,163 @@ public class GameServiceImpl
 		Game newGame = game;
 		newGame.setScore1(null);
 		newGame.setScore2(null);
+
 		newGame.setProlong(false);
+		newGame.setPenalti(false);
+
+		newGame.setScore1_prolong(null);
+		newGame.setScore2_prolong(null);
+
+		newGame.setScore1_penalti(null);
+		newGame.setScore2_penalti(null);
+
 		newGame.setPlayerStats(new ArrayList<PlayerStats>());
 
 		return updateGame(newGame);
 	}
 
 	@Override
-	public void updateQuarts(Game game)
+	public void updateQuarts(Game game, boolean reset)
 	{
 		if (game.getId() == 49)
 		{
 			Game quart = getGame(57);
-			quart.setTeam1(game.getWinner());
+			if (reset)
+				quart.setTeam1(null);
+			else
+				quart.setTeam1(game.getWinner());
 		}
 		else if (game.getId() == 50)
 		{
 			Game quart = getGame(57);
-			quart.setTeam2(game.getWinner());
+			if (reset)
+				quart.setTeam2(null);
+			else
+				quart.setTeam2(game.getWinner());
 		}
 		else if (game.getId() == 51)
 		{
 			Game quart = getGame(58);
-			quart.setTeam1(game.getWinner());
+			if (reset)
+				quart.setTeam1(null);
+			else
+				quart.setTeam1(game.getWinner());
 		}
 		else if (game.getId() == 52)
 		{
 			Game quart = getGame(58);
-			quart.setTeam2(game.getWinner());
+			if (reset)
+				quart.setTeam2(null);
+			else
+				quart.setTeam2(game.getWinner());
 		}
 		else if (game.getId() == 53)
 		{
 			Game quart = getGame(59);
-			quart.setTeam1(game.getWinner());
+			if (reset)
+				quart.setTeam1(null);
+			else
+				quart.setTeam1(game.getWinner());
 		}
 		else if (game.getId() == 54)
 		{
 			Game quart = getGame(59);
-			quart.setTeam2(game.getWinner());
+			if (reset)
+				quart.setTeam2(null);
+			else
+				quart.setTeam2(game.getWinner());
 		}
 		else if (game.getId() == 55)
 		{
 			Game quart = getGame(60);
-			quart.setTeam1(game.getWinner());
+			if (reset)
+				quart.setTeam1(null);
+			else
+				quart.setTeam1(game.getWinner());
 		}
 		else if (game.getId() == 56)
 		{
 			Game quart = getGame(60);
-			quart.setTeam2(game.getWinner());
+			if (reset)
+				quart.setTeam2(null);
+			else
+				quart.setTeam2(game.getWinner());
 		}
 	}
 
 	@Override
-	public void updateDemis(Game game)
+	public void updateDemis(Game game, boolean reset)
 	{
 		if (game.getId() == 57)
 		{
 			Game demi = getGame(61);
-			demi.setTeam1(game.getWinner());
+			if (reset)
+				demi.setTeam1(null);
+			else
+				demi.setTeam1(game.getWinner());
+
 		}
 		else if (game.getId() == 58)
 		{
 			Game demi = getGame(61);
-			demi.setTeam2(game.getWinner());
+			if (reset)
+				demi.setTeam2(null);
+			else
+				demi.setTeam2(game.getWinner());
+
 		}
 		else if (game.getId() == 59)
 		{
 			Game demi = getGame(62);
-			demi.setTeam1(game.getWinner());
+			if (reset)
+				demi.setTeam1(null);
+			else
+				demi.setTeam1(game.getWinner());
+
 		}
 		else if (game.getId() == 60)
 		{
 			Game demi = getGame(62);
-			demi.setTeam2(game.getWinner());
+			if (reset)
+				demi.setTeam2(null);
+			else
+				demi.setTeam2(game.getWinner());
 		}
 	}
 
 	@Override
-	public void updateFinale(Game game)
+	public void updateFinale(Game game, boolean reset)
 	{
 		if (game.getId() == 57)
 		{
 			Game petiteFinale = getGame(63);
 			Game finale = getGame(64);
-			petiteFinale.setTeam1(game.getLooser());
-			finale.setTeam1(game.getWinner());
+
+			if (reset)
+			{
+				petiteFinale.setTeam1(null);
+				finale.setTeam1(null);
+			}
+			else
+			{
+				petiteFinale.setTeam1(game.getLooser());
+				finale.setTeam1(game.getWinner());
+			}
 		}
 		else if (game.getId() == 58)
 		{
 			Game petiteFinale = getGame(63);
 			Game finale = getGame(64);
-			petiteFinale.setTeam2(game.getLooser());
-			finale.setTeam2(game.getWinner());
+			if (reset)
+			{
+				petiteFinale.setTeam2(null);
+				finale.setTeam2(null);
+			}
+			else
+			{
+				petiteFinale.setTeam2(game.getLooser());
+				finale.setTeam2(game.getWinner());
+			}
 		}
 	}
 

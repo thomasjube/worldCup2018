@@ -44,11 +44,11 @@ public interface GameService
 
 	public Game resetGame(Game game);
 
-	public void updateQuarts(Game game);
+	public void updateQuarts(Game game, boolean reset);
 
-	public void updateDemis(Game game);
+	public void updateDemis(Game game, boolean reset);
 
-	public void updateFinale(Game game);
+	public void updateFinale(Game game, boolean reset);
 
 	public Map<Integer, Collection<Player>> getTitulars(Game game);
 

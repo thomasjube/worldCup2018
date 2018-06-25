@@ -101,7 +101,6 @@ public class GameController
 
 	@RequestMapping(value = "/")
 	public ModelAndView listGame(ModelAndView model)
-		throws IOException
 	{
 		List<Game> listGame = gameService.getAllGames();
 		model.addObject("listGame", listGame);
@@ -3322,11 +3321,11 @@ public class GameController
 		if (game.getGameInPoule())
 			teamService.updateTeamsPositions(game.getPoule());
 		else if (game.getId() >= 49 && game.getId() <= 56)
-			gameService.updateQuarts(game);
+			gameService.updateQuarts(game, false);
 		else if (game.getId() >= 57 && game.getId() <= 60)
-			gameService.updateDemis(game);
+			gameService.updateDemis(game, false);
 		else if (game.getId() == 61 || game.getId() == 62)
-			gameService.updateFinale(game);
+			gameService.updateFinale(game, false);
 
 		winnaBetService.verifyBets(game);
 
@@ -3479,9 +3478,13 @@ public class GameController
 			winnaBetService.resetWinnaBet(winnaBet);
 
 		if (game.getGameInPoule())
-		{
 			teamService.updateTeamsPositions(game.getPoule());
-		}
+		else if (game.getId() >= 49 && game.getId() <= 56)
+			gameService.updateQuarts(game, true);
+		else if (game.getId() >= 57 && game.getId() <= 60)
+			gameService.updateDemis(game, true);
+		else if (game.getId() == 61 || game.getId() == 62)
+			gameService.updateFinale(game, true);
 
 		return new ModelAndView("redirect:/game/");
 	}
