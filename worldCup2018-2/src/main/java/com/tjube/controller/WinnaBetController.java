@@ -69,8 +69,9 @@ public class WinnaBetController
 	@RequestMapping(value = "/")
 	public ModelAndView winabetShow(ModelAndView model)
 	{
-		Collection<Game> games = gameService.getGames(winnaBetService.getMode().equalsIgnoreCase("demo")
-				? LocalDateTime.now() : LocalDateTime.now().plusHours(2));
+		Collection<Game> games = gameService
+				.getGames(winnaBetService.getMode().equalsIgnoreCase("demo") ? LocalDateTime.now()
+						: LocalDateTime.now().plusHours(2));
 
 		List<BetClassementLine> lines = winnaBetService.getBetClassement(games.size());
 
@@ -78,6 +79,21 @@ public class WinnaBetController
 
 		model.setViewName("winnabetShow");
 		return model;
+	}
+
+	@RequestMapping(value = "/refresh")
+	public ModelAndView winabetRefresh(ModelAndView model)
+	{
+		Collection<Game> games = gameService
+				.getGames(winnaBetService.getMode().equalsIgnoreCase("demo") ? LocalDateTime.now()
+						: LocalDateTime.now().plusHours(2));
+
+		for (Game game : games)
+		{
+			winnaBetService.verifyBets(game);
+		}
+
+		return new ModelAndView("redirect:/winabet/");
 	}
 
 	@RequestMapping(value = "/game")
