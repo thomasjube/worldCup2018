@@ -160,6 +160,9 @@ public class WinnaBetDAOImpl
 		Collection<WinnaBet> winnaBets = getWinnaBets(game);
 		for (WinnaBet winnaBet : winnaBets)
 		{
+			winnaBet.setGoodResult(false);
+			winnaBet.setGoodScore(false);
+
 			if (winnaBet.getScore1() == game.getScore1() && winnaBet.getScore2() == game.getScore2())
 			{
 				winnaBet.setGoodScore(true);
