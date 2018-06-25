@@ -78,7 +78,7 @@ public class GameController
 		tf1Games.add(14);
 		tf1Games.add(22);
 		tf1Games.add(23);
-		tf1Games.add(28);
+		tf1Games.add(29);
 		tf1Games.add(32);
 		tf1Games.add(35);
 		tf1Games.add(36);
