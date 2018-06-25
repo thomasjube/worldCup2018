@@ -87,11 +87,25 @@
 	                        <td style="text-align: center;width:10%;">
 	                        	<img style="top:0.6em;" src="<%=request.getContextPath()%>/resources/images/flag/${game.team1.name}.png" alt="" width="30" height="20">&nbsp;
 	                        </td>
-	                        <td style="width:27%;"><div style="width:100%;">${game.team1.name}</div></td>
-	                        <td style="width:5%;">${game.score1}</td>
-	                        <td style="width:5%;">VS</td>
-	                      	<td style="width:5%;">${game.score2}</td>
-	                      	<td style="width:27%;"><div style="width:100%;">${game.team2.name}</div></td>
+	                        <td style="width:22%;"><div style="width:100%;">${game.team1.name}</div></td>
+	                        <td style="width:5%;">
+	                        	<c:if test="${not empty game.score1}">
+	                        		${game.score1 + game.score1_prolong}
+	                        	</c:if>
+	                        </td>
+	                        <td style="width:15%;text-align:center">
+	                        VS
+	                        <c:choose>
+	                        	<c:when test="${game.penalti }"><br/>${game.score1_penalti } tab ${game.score2_penalti }</c:when>
+	                        	<c:when test="${!game.penalti and game.prolong}"><br/>prol.</c:when>
+	                        	<c:otherwise></c:otherwise>
+	                        </c:choose>
+	                        </td>
+	                      	<td style="width:5%;">
+	                      		<c:if test="${not empty game.score2}">
+	                        		${game.score2 + game.score2_prolong}
+	                        	</c:if>
+	                      	<td style="width:22%;"><div style="width:100%;">${game.team2.name}</div></td>
 	                        <td style="width:10%">
 	                        	<img style="top:0.6em;" src="<%=request.getContextPath()%>/resources/images/flag/${game.team2.name}.png" alt="" width="30" height="20">
 	                        </td>
