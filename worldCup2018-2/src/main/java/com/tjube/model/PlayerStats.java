@@ -110,7 +110,7 @@ public class PlayerStats
 	public PlayerStats(Game game2, Player scorerPlayer, Team team, Integer minute2, Action action, boolean penalty)
 	{
 		this.game = game2;
-		if (scorerPlayer.getTeam().equals(team))
+		if (scorerPlayer == null || scorerPlayer.getTeam().equals(team))
 			this.player = scorerPlayer;
 		else
 			this.playerCsc = scorerPlayer;
