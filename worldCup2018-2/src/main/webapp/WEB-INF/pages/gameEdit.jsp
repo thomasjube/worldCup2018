@@ -495,6 +495,22 @@
 		$(this).parent().parent().remove();
 	});
 	
+	$(document).on('change','.player-team2 select',function(e){
+		
+		if($(this).val() == null || $(this).val() == "")
+		{
+			$(this).parent().find('.passer-team2').html("<select  id='select-passer"+i+"' name='passerPlayers2["+i+"]'><option value='' label='Aucun' /><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select>");
+		}
+	});
+	
+	$(document).on('change','.player-team1 select',function(e){
+		
+		if($(this).val() == null || $(this).val() == "")
+		{
+			$(this).parent().find('.passer-team1').html("<select  id='select-passer"+i+"' name='passerPlayers1["+i+"]'><option value='' label='Aucun' /><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select>");
+		}
+	});
+	
 	$("#add-carton").click(function(e){
 
 		var indexMax = $(".carton-team").length;
