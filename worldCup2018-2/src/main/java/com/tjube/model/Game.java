@@ -365,6 +365,27 @@ public class Game
 		return result;
 	}
 
+	public Map<Integer, Integer> getGoalsPlayerCSCTeam1()
+	{
+		Map<Integer, Integer> result = new HashMap<>();
+		for (PlayerStats playerStat : playerStats)
+		{
+			if (playerStat.getAction() == Action.GOAL && playerStat.getPlayerCsc() != null
+					&& playerStat.getTeam().equals(team1))
+			{
+				Integer value = result.get(playerStat.getPlayerCsc().getId());
+				if (value == null)
+					value = 1;
+				else
+					value = value + 1;
+
+				result.put(playerStat.getPlayerCsc().getId(), value);
+			}
+		}
+
+		return result;
+	}
+
 	public List<PlayerStats> getGoalsTeam2()
 	{
 		Collection<PlayerStats> results = new ArrayList<>();
@@ -393,6 +414,27 @@ public class Game
 					value = value + 1;
 
 				result.put(playerStat.getPlayer().getId(), value);
+			}
+		}
+
+		return result;
+	}
+
+	public Map<Integer, Integer> getGoalsPlayerCSCTeam2()
+	{
+		Map<Integer, Integer> result = new HashMap<>();
+		for (PlayerStats playerStat : playerStats)
+		{
+			if (playerStat.getAction() == Action.GOAL && playerStat.getPlayerCsc() != null
+					&& playerStat.getTeam().equals(team2))
+			{
+				Integer value = result.get(playerStat.getPlayerCsc().getId());
+				if (value == null)
+					value = 1;
+				else
+					value = value + 1;
+
+				result.put(playerStat.getPlayerCsc().getId(), value);
 			}
 		}
 
