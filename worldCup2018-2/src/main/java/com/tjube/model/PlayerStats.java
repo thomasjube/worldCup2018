@@ -95,6 +95,9 @@ public class PlayerStats
 	private Player player;
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	private Player playerCsc;
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Team team;
 
 	@Column
@@ -107,7 +110,10 @@ public class PlayerStats
 	public PlayerStats(Game game2, Player scorerPlayer, Team team, Integer minute2, Action action, boolean penalty)
 	{
 		this.game = game2;
-		this.player = scorerPlayer;
+		if (scorerPlayer.getTeam().equals(team))
+			this.player = scorerPlayer;
+		else
+			this.playerCsc = scorerPlayer;
 		this.minute = minute2;
 		this.action = action;
 		this.team = team;
@@ -200,5 +206,15 @@ public class PlayerStats
 	public void setPenalty(boolean penalty)
 	{
 		this.penalty = penalty;
+	}
+
+	public Player getPlayerCsc()
+	{
+		return playerCsc;
+	}
+
+	public void setPlayerCsc(Player playerCsc)
+	{
+		this.playerCsc = playerCsc;
 	}
 }

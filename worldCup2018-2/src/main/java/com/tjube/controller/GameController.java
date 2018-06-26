@@ -3045,7 +3045,7 @@ public class GameController
 	{
 		if (game.getId() == 0)
 		{ // if employee id is 0 then creating the
-			// employee other updating the employee
+				// employee other updating the employee
 			gameService.addGame(game);
 		}
 		else
@@ -3121,9 +3121,11 @@ public class GameController
 		for (int i = 0; i < gameEditForm.getScorerPlayers1().size(); i++)
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinute1().get(i);
-			Player scorerPlayer = gameEditForm.getScorerPlayers1().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayers1().get(i))
-					: null;
+			Player scorerPlayer = null;
+			if (gameEditForm.getScorerPlayers1().get(i) != null)
+				scorerPlayer = playerService.getPlayer(gameEditForm.getScorerPlayers1().get(i));
+			else
+				scorerPlayer = playerService.getPlayer(gameEditForm.getPasserPlayers1().get(i));
 
 			boolean isPenalty = gameEditForm.getScorerPenalty1()[i];
 
@@ -3134,33 +3136,38 @@ public class GameController
 			if (scorerPlayer != null)
 				scorerPlayer.addPlayerStat(playerStat);
 
-			if (gameEditForm.getPasserPlayers1().get(i) != null)
+			if (gameEditForm.getScorerPlayers1().get(i) != null)
 			{
-				Player passer = playerService.getPlayer(gameEditForm.getPasserPlayers1().get(i));
-				if (passer != null)
+				if (gameEditForm.getPasserPlayers1().get(i) != null)
+				{
+					Player passer = playerService.getPlayer(gameEditForm.getPasserPlayers1().get(i));
+					if (passer != null)
+					{
+						playerStat = playerStatsService.addPlayerStats(
+								new PlayerStats(game, passer, game.getTeam1(), minute, Action.PASS, false));
+
+						game.addPlayerStat(playerStat);
+						passer.addPlayerStat(playerStat);
+					}
+				}
+				else
 				{
 					playerStat = playerStatsService
-							.addPlayerStats(new PlayerStats(game, passer, game.getTeam1(), minute, Action.PASS, false));
-
+							.addPlayerStats(new PlayerStats(game, null, game.getTeam1(), minute, Action.PASS, false));
 					game.addPlayerStat(playerStat);
-					passer.addPlayerStat(playerStat);
 				}
 			}
-			else
-			{
-				playerStat = playerStatsService
-						.addPlayerStats(new PlayerStats(game, null, game.getTeam1(), minute, Action.PASS, false));
-				game.addPlayerStat(playerStat);
-			}
-
 		}
 
 		for (int i = 0; i < gameEditForm.getScorerPlayers2().size(); i++)
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinute2().get(i);
-			Player scorerPlayer = gameEditForm.getScorerPlayers2().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayers2().get(i))
-					: null;
+			Player scorerPlayer = null;
+
+			if (gameEditForm.getScorerPlayers2().get(i) != null)
+				scorerPlayer = playerService.getPlayer(gameEditForm.getScorerPlayers2().get(i));
+			else
+				scorerPlayer = playerService.getPlayer(gameEditForm.getPasserPlayers2().get(i));
 
 			boolean isPenalty = gameEditForm.getScorerPenalty2()[i];
 
@@ -3172,25 +3179,27 @@ public class GameController
 			if (scorerPlayer != null)
 				scorerPlayer.addPlayerStat(playerStat);
 
-			if (gameEditForm.getPasserPlayers2().get(i) != null)
+			if (gameEditForm.getScorerPlayers2().get(i) != null)
 			{
-				Player passer = playerService.getPlayer(gameEditForm.getPasserPlayers2().get(i));
-				if (passer != null)
+				if (gameEditForm.getPasserPlayers2().get(i) != null)
+				{
+					Player passer = playerService.getPlayer(gameEditForm.getPasserPlayers2().get(i));
+					if (passer != null)
+					{
+						playerStat = playerStatsService.addPlayerStats(
+								new PlayerStats(game, passer, game.getTeam2(), minute, Action.PASS, false));
+
+						game.addPlayerStat(playerStat);
+						passer.addPlayerStat(playerStat);
+					}
+				}
+				else
 				{
 					playerStat = playerStatsService
-							.addPlayerStats(new PlayerStats(game, passer, game.getTeam2(), minute, Action.PASS, false));
-
+							.addPlayerStats(new PlayerStats(game, null, game.getTeam2(), minute, Action.PASS, false));
 					game.addPlayerStat(playerStat);
-					passer.addPlayerStat(playerStat);
 				}
 			}
-			else
-			{
-				playerStat = playerStatsService
-						.addPlayerStats(new PlayerStats(game, null, game.getTeam2(), minute, Action.PASS, false));
-				game.addPlayerStat(playerStat);
-			}
-
 		}
 
 		//prolong
@@ -3198,9 +3207,11 @@ public class GameController
 		for (int i = 0; i < gameEditForm.getScorerPlayersProlong1().size(); i++)
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinuteProlong1().get(i);
-			Player scorerPlayer = gameEditForm.getScorerPlayersProlong1().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayersProlong1().get(i))
-					: null;
+			Player scorerPlayer = null;
+			if (gameEditForm.getScorerPlayersProlong1().get(i) != null)
+				scorerPlayer = playerService.getPlayer(gameEditForm.getScorerPlayersProlong1().get(i));
+			else
+				scorerPlayer = playerService.getPlayer(gameEditForm.getPasserPlayersProlong1().get(i));
 
 			boolean isPenalty = gameEditForm.getScorerProlongPenalty1()[i];
 
@@ -3211,33 +3222,37 @@ public class GameController
 			if (scorerPlayer != null)
 				scorerPlayer.addPlayerStat(playerStat);
 
-			if (gameEditForm.getPasserPlayersProlong1().get(i) != null)
+			if (gameEditForm.getScorerPlayersProlong1().get(i) != null)
 			{
-				Player passer = playerService.getPlayer(gameEditForm.getPasserPlayersProlong1().get(i));
-				if (passer != null)
+				if (gameEditForm.getPasserPlayersProlong1().get(i) != null)
+				{
+					Player passer = playerService.getPlayer(gameEditForm.getPasserPlayersProlong1().get(i));
+					if (passer != null)
+					{
+						playerStat = playerStatsService.addPlayerStats(
+								new PlayerStats(game, passer, game.getTeam1(), minute, Action.PASS, false));
+
+						game.addPlayerStat(playerStat);
+						passer.addPlayerStat(playerStat);
+					}
+				}
+				else
 				{
 					playerStat = playerStatsService
-							.addPlayerStats(new PlayerStats(game, passer, game.getTeam1(), minute, Action.PASS, false));
-
+							.addPlayerStats(new PlayerStats(game, null, game.getTeam1(), minute, Action.PASS, false));
 					game.addPlayerStat(playerStat);
-					passer.addPlayerStat(playerStat);
 				}
 			}
-			else
-			{
-				playerStat = playerStatsService
-						.addPlayerStats(new PlayerStats(game, null, game.getTeam1(), minute, Action.PASS, false));
-				game.addPlayerStat(playerStat);
-			}
-
 		}
 
 		for (int i = 0; i < gameEditForm.getScorerPlayersProlong2().size(); i++)
 		{
 			Integer minute = gameEditForm.getScorerPlayersMinuteProlong2().get(i);
-			Player scorerPlayer = gameEditForm.getScorerPlayersProlong2().get(i) != null
-					? playerService.getPlayer(gameEditForm.getScorerPlayersProlong2().get(i))
-					: null;
+			Player scorerPlayer = null;
+			if (gameEditForm.getScorerPlayersProlong2().get(i) != null)
+				scorerPlayer = playerService.getPlayer(gameEditForm.getScorerPlayersProlong2().get(i));
+			else
+				scorerPlayer = playerService.getPlayer(gameEditForm.getPasserPlayersProlong2().get(i));
 
 			boolean isPenalty = gameEditForm.getScorerProlongPenalty2()[i];
 
@@ -3249,25 +3264,27 @@ public class GameController
 			if (scorerPlayer != null)
 				scorerPlayer.addPlayerStat(playerStat);
 
-			if (gameEditForm.getPasserPlayersProlong2().get(i) != null)
+			if (gameEditForm.getScorerPlayersProlong2().get(i) != null)
 			{
-				Player passer = playerService.getPlayer(gameEditForm.getPasserPlayersProlong2().get(i));
-				if (passer != null)
+				if (gameEditForm.getPasserPlayersProlong2().get(i) != null)
+				{
+					Player passer = playerService.getPlayer(gameEditForm.getPasserPlayersProlong2().get(i));
+					if (passer != null)
+					{
+						playerStat = playerStatsService.addPlayerStats(
+								new PlayerStats(game, passer, game.getTeam2(), minute, Action.PASS, false));
+
+						game.addPlayerStat(playerStat);
+						passer.addPlayerStat(playerStat);
+					}
+				}
+				else
 				{
 					playerStat = playerStatsService
-							.addPlayerStats(new PlayerStats(game, passer, game.getTeam2(), minute, Action.PASS, false));
-
+							.addPlayerStats(new PlayerStats(game, null, game.getTeam2(), minute, Action.PASS, false));
 					game.addPlayerStat(playerStat);
-					passer.addPlayerStat(playerStat);
 				}
 			}
-			else
-			{
-				playerStat = playerStatsService
-						.addPlayerStats(new PlayerStats(game, null, game.getTeam2(), minute, Action.PASS, false));
-				game.addPlayerStat(playerStat);
-			}
-
 		}
 
 		Map<Integer, PlayerStats> mapCartonPlayer = new HashMap<>();

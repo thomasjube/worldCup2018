@@ -301,7 +301,7 @@
 					                 			<c:when test="${not empty game.getGoalsTeam1() && index < game.score1 && not empty game.getGoalsTeam1().get(index)}">
 					                 				<td class="player-team1"><tags:players isGoal="true" isCarton="${false}" index="${index}" items="${game.team1.players }" path="scorerPlayers1[${index}]"></tags:players></td>
 					                 				<td class="penalty-team1"><input type="checkbox" name="scorerPenalty1[${index}]" ${editForm.scorerPenalty1[index] ? 'checked="checked"' : ''}/></td>
-					                 				<td class="passer-team1"><tags:players isCarton="${false}" index="${index}" items="${game.team1.players }" path="passerPlayers1[${index}]"></tags:players></td>
+					                 				<td class="passer-team1"><tags:players isCarton="${false}" index="${index}" items="${empty editForm.scorerPlayers1[index] ? game.team2.players : game.team1.players }" path="passerPlayers1[${index}]"></tags:players></td>
 					                 				<td class="minute-team1"><tags:minutes path="scorerPlayersMinute1[${index}]"/></td>
 					                 			</c:when>
 					                 			<c:otherwise>
@@ -315,7 +315,7 @@
 					                 			<c:when test="${not empty game.getGoalsTeam2() && index < game.score2  && not empty game.getGoalsTeam2().get(index)}">
 					                 				<td class="player-team2"><tags:players isGoal="true" isCarton="${false}" index="${index}" items="${game.team2.players }" path="scorerPlayers2[${index}]"></tags:players></td>
 					                 				<td class="penalty-team2"><input type="checkbox" name="scorerPenalty2[${index}]" ${editForm.scorerPenalty2[index] ? 'checked="checked"' : ''}/></td>
-					                 				<td class="passer-team2"><tags:players isCarton="${false}" index="${index}" items="${game.team2.players }" path="passerPlayers2[${index}]"></tags:players></td>
+					                 				<td class="passer-team2"><tags:players isCarton="${false}" index="${index}" items="${empty editForm.scorerPlayers2[index] ? game.team1.players : game.team2.players }" path="passerPlayers2[${index}]"></tags:players></td>
 					                 				<td class="minute-team2"><tags:minutes path="scorerPlayersMinute2[${index}]"/> </td>
 					                 			</c:when>
 					                 			<c:otherwise>
@@ -335,7 +335,7 @@
 					                 			<c:when test="${not empty game.getGoalsTeam1() && index < game.score1_prolong && not empty game.getGoalsTeam1().get(index)}">
 					                 				<td class="player-team1"><tags:players isGoal="true" isCarton="${false}" index="${index}" items="${game.team1.players }" path="scorerPlayersProlong1[${index}]"></tags:players></td>
 					                 				<td class="penalty-team1"><input type="checkbox" name="scorerProlongPenalty1[${index}]" ${editForm.scorerProlongPenalty1[index] ? 'checked="checked"' : ''}/></td>
-					                 				<td class="passer-team1"><tags:players isCarton="${false}" index="${index}" items="${game.team1.players }" path="passerPlayersProlong1[${index}]"></tags:players></td>
+					                 				<td class="passer-team1"><tags:players isCarton="${false}" index="${index}" items="${empty editForm.scorerPlayersProlong1[index] ? game.team2.players : game.team1.players }" path="passerPlayersProlong1[${index}]"></tags:players></td>
 					                 				<td class="minute-team1"><tags:minutes path="scorerPlayersMinuteProlong1[${index}]"/></td>
 					                 			</c:when>
 					                 			<c:otherwise>
@@ -349,7 +349,7 @@
 					                 			<c:when test="${not empty game.getGoalsTeam2() && index < game.score2_prolong  && not empty game.getGoalsTeam2().get(index)}">
 					                 				<td class="player-team2"><tags:players isGoal="true" isCarton="${false}" index="${index}" items="${game.team2.players }" path="scorerPlayersProlong2[${index}]"></tags:players></td>
 					                 				<td class="penalty-team2"><input type="checkbox" name="scorerProlongPenalty2[${index}]" ${editForm.scorerProlongPenalty2[index] ? 'checked="checked"' : ''}/></td>
-					                 				<td class="passer-team2"><tags:players isCarton="${false}" index="${index}" items="${game.team2.players }" path="passerPlayersProlong2[${index}]"></tags:players></td>
+					                 				<td class="passer-team2"><tags:players isCarton="${false}" index="${index}" items="${empty editForm.scorerPlayersProlong2[index] ? game.team1.players : game.team2.players }" path="passerPlayersProlong2[${index}]"></tags:players></td>
 					                 				<td class="minute-team2"><tags:minutes path="scorerPlayersMinuteProlong2[${index}]"/> </td>
 					                 			</c:when>
 					                 			<c:otherwise>

@@ -80,6 +80,7 @@ public class GameEditForm
 			if (scorer.getMinute() <= 90)
 			{
 				scorerPlayers1.add(scorer.getPlayer() != null ? scorer.getPlayer().getId() : null);
+				passerPlayers1.add(scorer.getPlayerCsc() != null ? scorer.getPlayerCsc().getId() : null);
 				scorerPlayersMinute1.add(scorer.getMinute());
 				if (scorer.isPenalty())
 					scorerPenalty1[i] = true;
@@ -88,6 +89,7 @@ public class GameEditForm
 			{
 				prolong = true;
 				scorerPlayersProlong1.add(scorer.getPlayer() != null ? scorer.getPlayer().getId() : null);
+				passerPlayersProlong1.add(scorer.getPlayerCsc() != null ? scorer.getPlayerCsc().getId() : null);
 				scorerPlayersMinuteProlong1.add(scorer.getMinute());
 				if (scorer.isPenalty())
 					scorerProlongPenalty1[i] = true;
@@ -123,6 +125,7 @@ public class GameEditForm
 			if (scorer.getMinute() <= 90)
 			{
 				scorerPlayers2.add(scorer.getPlayer() != null ? scorer.getPlayer().getId() : null);
+				passerPlayers2.add(scorer.getPlayerCsc() != null ? scorer.getPlayerCsc().getId() : null);
 				scorerPlayersMinute2.add(scorer.getMinute());
 				if (scorer.isPenalty())
 					scorerPenalty2[j] = true;
@@ -131,6 +134,7 @@ public class GameEditForm
 			{
 				prolong = true;
 				scorerPlayersProlong2.add(scorer.getPlayer() != null ? scorer.getPlayer().getId() : null);
+				passerPlayersProlong2.add(scorer.getPlayerCsc() != null ? scorer.getPlayerCsc().getId() : null);
 				scorerPlayersMinuteProlong2.add(scorer.getMinute());
 				if (scorer.isPenalty())
 					scorerProlongPenalty2[j] = true;
