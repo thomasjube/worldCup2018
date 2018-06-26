@@ -82,9 +82,8 @@
         <section class="kode-pagesection margin-bottom-40">
           <div class="container">
             <div class="row">
-            
+            	<c:if test="${not empty nextGame}">
                 <div class="kode-pagecontent col-md-8">
-                  
                   <div class="kode-inner-fixer margin-none padding-none">
                     <div class="kode-fixer-counter">
                       <h2 class="thbg-color">Prochain match de la poule</h2>
@@ -100,8 +99,8 @@
                       <span class="kode-subtitle"><tags:localDate date="${nextGame.date}"/>&nbsp;${nextGame.time} ${nextGame.stade }</span>
                     </div>
                   </div>
-
                 </div>
+                </c:if>
                 <div class="col-md-12">
                   <table class="kode-table kode-table-v2">
                     <thead>
