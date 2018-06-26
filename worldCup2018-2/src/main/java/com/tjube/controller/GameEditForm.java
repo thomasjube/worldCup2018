@@ -77,10 +77,20 @@ public class GameEditForm
 		int i = 0;
 		for (PlayerStats scorer : game.getGoalsTeam1())
 		{
+			boolean foundPasser1 = false;
+
 			if (scorer.getMinute() <= 90)
 			{
 				scorerPlayers1.add(scorer.getPlayer() != null ? scorer.getPlayer().getId() : null);
-				passerPlayers1.add(scorer.getPlayerCsc() != null ? scorer.getPlayerCsc().getId() : null);
+				if (scorer.getPlayerCsc() != null)
+				{
+					if (scorer.getMinute() <= 90)
+						passerPlayers1.add(scorer.getPlayerCsc().getId());
+					else
+						passerPlayersProlong1.add(scorer.getPlayerCsc().getId());
+
+					foundPasser1 = true;
+				}
 				scorerPlayersMinute1.add(scorer.getMinute());
 				if (scorer.isPenalty())
 					scorerPenalty1[i] = true;
@@ -89,23 +99,23 @@ public class GameEditForm
 			{
 				prolong = true;
 				scorerPlayersProlong1.add(scorer.getPlayer() != null ? scorer.getPlayer().getId() : null);
-				passerPlayersProlong1.add(scorer.getPlayerCsc() != null ? scorer.getPlayerCsc().getId() : null);
 				scorerPlayersMinuteProlong1.add(scorer.getMinute());
 				if (scorer.isPenalty())
 					scorerProlongPenalty1[i] = true;
 			}
-
-			boolean foundPasser1 = false;
-			for (PlayerStats passer : game.getPassTeam1())
+			if (!foundPasser1)
 			{
-				if (passer.getMinute() == scorer.getMinute())
+				for (PlayerStats passer : game.getPassTeam1())
 				{
-					if (passer.getMinute() <= 90)
-						passerPlayers1.add(passer.getPlayer() != null ? passer.getPlayer().getId() : null);
-					else
-						passerPlayersProlong1.add(passer.getPlayer() != null ? passer.getPlayer().getId() : null);
+					if (passer.getMinute() == scorer.getMinute())
+					{
+						if (passer.getMinute() <= 90)
+							passerPlayers1.add(passer.getPlayer() != null ? passer.getPlayer().getId() : null);
+						else
+							passerPlayersProlong1.add(passer.getPlayer() != null ? passer.getPlayer().getId() : null);
 
-					foundPasser1 = true;
+						foundPasser1 = true;
+					}
 				}
 			}
 
@@ -122,10 +132,21 @@ public class GameEditForm
 		int j = 0;
 		for (PlayerStats scorer : game.getGoalsTeam2())
 		{
+
+			boolean foundPasser2 = false;
+
 			if (scorer.getMinute() <= 90)
 			{
 				scorerPlayers2.add(scorer.getPlayer() != null ? scorer.getPlayer().getId() : null);
-				passerPlayers2.add(scorer.getPlayerCsc() != null ? scorer.getPlayerCsc().getId() : null);
+				if (scorer.getPlayerCsc() != null)
+				{
+					if (scorer.getMinute() <= 90)
+						passerPlayers2.add(scorer.getPlayerCsc().getId());
+					else
+						passerPlayersProlong2.add(scorer.getPlayerCsc().getId());
+
+					foundPasser2 = true;
+				}
 				scorerPlayersMinute2.add(scorer.getMinute());
 				if (scorer.isPenalty())
 					scorerPenalty2[j] = true;
@@ -134,23 +155,23 @@ public class GameEditForm
 			{
 				prolong = true;
 				scorerPlayersProlong2.add(scorer.getPlayer() != null ? scorer.getPlayer().getId() : null);
-				passerPlayersProlong2.add(scorer.getPlayerCsc() != null ? scorer.getPlayerCsc().getId() : null);
 				scorerPlayersMinuteProlong2.add(scorer.getMinute());
 				if (scorer.isPenalty())
 					scorerProlongPenalty2[j] = true;
 			}
 
-			boolean foundPasser2 = false;
-			for (PlayerStats passer : game.getPassTeam2())
+			if (!foundPasser2)
 			{
-				if (passer.getMinute() == scorer.getMinute())
+				for (PlayerStats passer : game.getPassTeam2())
 				{
-					if (passer.getMinute() <= 90)
-						passerPlayers2.add(passer.getPlayer() != null ? passer.getPlayer().getId() : null);
-					else
-						passerPlayersProlong2.add(passer.getPlayer() != null ? passer.getPlayer().getId() : null);
-
-					foundPasser2 = true;
+					if (passer.getMinute() == scorer.getMinute())
+					{
+						if (passer.getMinute() <= 90)
+							passerPlayers2.add(passer.getPlayer() != null ? passer.getPlayer().getId() : null);
+						else
+							passerPlayersProlong2.add(passer.getPlayer() != null ? passer.getPlayer().getId() : null);
+						foundPasser2 = true;
+					}
 				}
 			}
 

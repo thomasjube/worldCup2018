@@ -114,8 +114,8 @@
 			                    					<c:if test="${not empty game.goalsPlayerTeam1[player.id] }">
 			                    						 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_2.png" alt=""><c:if test="${game.goalsPlayerTeam1[player.id] > 1 }"> x ${game.goalsPlayerTeam1[player.id]}</c:if>
 			                    					</c:if>
-			                    					<c:if test="${not empty game.goalsPlayerCSCTeam1[player.id] }">
-			                    						 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_csc.png" alt=""><c:if test="${game.goalsPlayerCSCTeam1[player.id] > 1 }"> x ${game.goalsPlayerCSCTeam1[player.id]}</c:if>
+			                    					<c:if test="${not empty game.goalsPlayerCSCTeam2[player.id] }">
+			                    						 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_csc.png" alt=""><c:if test="${game.goalsPlayerCSCTeam2[player.id] > 1 }"> x ${game.goalsPlayerCSCTeam2[player.id]}</c:if>
 			                    					</c:if>
 			                    					<c:if test="${not empty game.cartonsTeam1[player.id] }">
 			                    						<c:choose>
@@ -130,8 +130,8 @@
 			                    						<c:if test="${not empty game.goalsPlayerTeam1[playerSubstitute.player.id] }">
 			                    							- <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_2.png" alt=""><c:if test="${game.goalsPlayerTeam1[playerSubstitute.player.id] > 1 }"> x ${game.goalsPlayerTeam1[playerSubstitute.player.id]}</c:if>
 			                    						</c:if>
-			                    						<c:if test="${not empty game.goalsPlayerCSCTeam1[playerSubstitute.player.id] }">
-			                    						 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_csc.png" alt=""><c:if test="${game.goalsPlayerCSCTeam1[playerSubstitute.player.id] > 1 }"> x ${game.goalsPlayerCSCTeam1[playerSubstitute.player.id]}</c:if>
+			                    						<c:if test="${not empty game.goalsPlayerCSCTeam2[playerSubstitute.player.id] }">
+			                    						 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_csc.png" alt=""><c:if test="${game.goalsPlayerCSCTeam2[playerSubstitute.player.id] > 1 }"> x ${game.goalsPlayerCSCTeam2[playerSubstitute.player.id]}</c:if>
 				                    					</c:if>
 			                    						<c:if test="${not empty game.cartonsTeam1[playerSubstitute.player.id] }">
 				                    						<c:choose>
@@ -145,8 +145,8 @@
 			                    							<c:if test="${not empty game.goalsPlayerTeam1[playerSubstitute2.player.id] }">
 			                    								- <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_2.png" alt=""><c:if test="${game.goalsPlayerTeam1[playerSubstitute2.player.id] > 1 }"> x ${game.goalsPlayerTeam1[playerSubstitute2.player.id]}</c:if>
 			                    							</c:if>
-			                    							<c:if test="${not empty game.goalsPlayerCSCTeam1[playerSubstitute2.player.id] }">
-			                    							 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_csc.png" alt=""><c:if test="${game.goalsPlayerCSCTeam1[playerSubstitute2.player.id] > 1 }"> x ${game.goalsPlayerCSCTeam1[playerSubstitute2.player.id]}</c:if>
+			                    							<c:if test="${not empty game.goalsPlayerCSCTeam2[playerSubstitute2.player.id] }">
+			                    							 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_csc.png" alt=""><c:if test="${game.goalsPlayerCSCTeam2[playerSubstitute2.player.id] > 1 }"> x ${game.goalsPlayerCSCTeam2[playerSubstitute2.player.id]}</c:if>
 				                    						</c:if>
 			                    							<c:if test="${not empty game.cartonsTeam1[playerSubstitute2.player.id] }">
 					                    						<c:choose>
@@ -160,8 +160,8 @@
 				                    							<c:if test="${not empty game.goalsPlayerTeam1[playerSubstitute3.player.id] }">
 				                    								- <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_2.png" alt=""><c:if test="${game.goalsPlayerTeam1[playerSubstitute3.player.id] > 1 }"> x ${game.goalsPlayerTeam1[playerSubstitute3.player.id]}</c:if>
 				                    							</c:if>
-			                    								<c:if test="${not empty game.goalsPlayerCSCTeam1[playerSubstitute3.player.id] }">
-				                    							 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_csc.png" alt=""><c:if test="${game.goalsPlayerCSCTeam1[playerSubstitute3.player.id] > 1 }"> x ${game.goalsPlayerCSCTeam1[playerSubstitute3.player.id]}</c:if>
+			                    								<c:if test="${not empty game.goalsPlayerCSCTeam2[playerSubstitute3.player.id] }">
+				                    							 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_csc.png" alt=""><c:if test="${game.goalsPlayerCSCTeam2[playerSubstitute3.player.id] > 1 }"> x ${game.goalsPlayerCSCTeam2[playerSubstitute3.player.id]}</c:if>
 				                    							</c:if>
 				                    							<c:if test="${not empty game.cartonsTeam1[playerSubstitute3.player.id] }">
 						                    						<c:choose>
@@ -191,8 +191,8 @@
 	                    							<c:if test="${not empty game.goalsPlayerTeam2[player.id] }">
 			                    						 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_2.png" alt=""><c:if test="${game.goalsPlayerTeam2[player.id] > 1 }"> x ${game.goalsPlayerTeam2[player.id]}</c:if>
 			                    					</c:if>
-                    								<c:if test="${not empty game.goalsPlayerCSCTeam2[player.id] }">
-	                    							 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_csc.png" alt=""><c:if test="${game.goalsPlayerCSCTeam2[player.id] > 1 }"> x ${game.goalsPlayerCSCTeam2[player.id]}</c:if>
+                    								<c:if test="${not empty game.goalsPlayerCSCTeam1[player.id] }">
+	                    							 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_csc.png" alt=""><c:if test="${game.goalsPlayerCSCTeam1[player.id] > 1 }"> x ${game.goalsPlayerCSCTeam1[player.id]}</c:if>
 	                    							</c:if>
 													<c:if test="${not empty game.cartonsTeam2[player.id] }">
 			                    						<c:choose>
@@ -206,8 +206,8 @@
 		                    							<c:if test="${not empty game.goalsPlayerTeam2[playerSubstitute.player.id] }">
 				                    						 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_2.png" alt=""><c:if test="${game.goalsPlayerTeam2[playerSubstitute.player.id] > 1 }"> x ${game.goalsPlayerTeam2[playerSubstitute.player.id]}</c:if>
 				                    					</c:if>
-                    									<c:if test="${not empty game.goalsPlayerCSCTeam2[playerSubstitute.player.id] }">
-	                    								 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_csc.png" alt=""><c:if test="${game.goalsPlayerCSCTeam2[playerSubstitute.player.id] > 1 }"> x ${game.goalsPlayerCSCTeam2[playerSubstitute.player.id]}</c:if>
+                    									<c:if test="${not empty game.goalsPlayerCSCTeam1[playerSubstitute.player.id] }">
+	                    								 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_csc.png" alt=""><c:if test="${game.goalsPlayerCSCTeam1[playerSubstitute.player.id] > 1 }"> x ${game.goalsPlayerCSCTeam1[playerSubstitute.player.id]}</c:if>
 	                    								</c:if>
 			                    						<c:if test="${not empty game.cartonsTeam2[playerSubstitute.id] }">
 			                    						<c:choose>
@@ -221,8 +221,8 @@
 			                    							<c:if test="${not empty game.goalsPlayerTeam2[playerSubstitute2.player.id] }">
 					                    						 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_2.png" alt=""><c:if test="${game.goalsPlayerTeam2[playerSubstitute2.player.id] > 1 }"> x ${game.goalsPlayerTeam2[playerSubstitute2.player.id]}</c:if>
 					                    					</c:if>
-	                    									<c:if test="${not empty game.goalsPlayerCSCTeam2[playerSubstitute2.player.id] }">
-		                    								 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_csc.png" alt=""><c:if test="${game.goalsPlayerCSCTeam2[playerSubstitute2.player.id] > 1 }"> x ${game.goalsPlayerCSCTeam2[playerSubstitute2.player.id]}</c:if>
+	                    									<c:if test="${not empty game.goalsPlayerCSCTeam1[playerSubstitute2.player.id] }">
+		                    								 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_csc.png" alt=""><c:if test="${game.goalsPlayerCSCTeam1[playerSubstitute2.player.id] > 1 }"> x ${game.goalsPlayerCSCTeam1[playerSubstitute2.player.id]}</c:if>
 		                    								</c:if>
 			                    							<c:if test="${not empty game.cartonsTeam2[playerSubstitute2.player.id] }">
 					                    						<c:choose>
@@ -236,8 +236,8 @@
 				                    							<c:if test="${not empty game.goalsPlayerTeam2[playerSubstitute3.player.id] }">
 						                    						 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_2.png" alt=""><c:if test="${game.goalsPlayerTeam2[playerSubstitute3.player.id] > 1 }"> x ${game.goalsPlayerTeam2[playerSubstitute3.player.id]}</c:if>
 						                    					</c:if>
-		                    									<c:if test="${not empty game.goalsPlayerCSCTeam2[playerSubstitute3.player.id] }">
-			                    								 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_csc.png" alt=""><c:if test="${game.goalsPlayerCSCTeam2[playerSubstitute3.player.id] > 1 }"> x ${game.goalsPlayerCSCTeam2[playerSubstitute3.player.id]}</c:if>
+		                    									<c:if test="${not empty game.goalsPlayerCSCTeam1[playerSubstitute3.player.id] }">
+			                    								 - <img style="color:white" width="3%" src="<%=request.getContextPath()%>/resources/images/icones/goal_csc.png" alt=""><c:if test="${game.goalsPlayerCSCTeam1[playerSubstitute3.player.id] > 1 }"> x ${game.goalsPlayerCSCTeam1[playerSubstitute3.player.id]}</c:if>
 			                    								</c:if>
 				                    							<c:if test="${not empty game.cartonsTeam2[playerSubstitute3.player.id] }">
 						                    						<c:choose>
@@ -498,16 +498,18 @@
 	$(document).on('change','.player-team2 select',function(e){
 		
 		if($(this).val() == null || $(this).val() == "")
-		{
-			$(this).parent().find('.passer-team2').html("<select  id='select-passer"+i+"' name='passerPlayers2["+i+"]'><option value='' label='Aucun' /><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select>");
+		{	
+			var index = $(this).attr('id').split("player")[1];
+			$(this).parent().parent().find('.passer-team2').html("<select  id='select-passer"+index+"' name='passerPlayers2["+index+"]'><option value='' label='Aucun' /><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select>");
 		}
 	});
 	
 	$(document).on('change','.player-team1 select',function(e){
 		
 		if($(this).val() == null || $(this).val() == "")
-		{
-			$(this).parent().find('.passer-team1').html("<select  id='select-passer"+i+"' name='passerPlayers1["+i+"]'><option value='' label='Aucun' /><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select>");
+		{	
+			var index = $(this).attr('id').split("player")[1];
+			$(this).parent().parent().find('.passer-team1').html("<select  id='select-passer"+index+"' name='passerPlayers1["+index+"]'><option value='' label='Aucun' /><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select>");
 		}
 	});
 	
@@ -541,7 +543,7 @@
 				}
 				else if(!$("#tr-player-"+i).length)
 				{
-					$("#playerBody").append("<tr id='tr-player-"+i+"'><td class='player-team1'><select id='select-player"+i+"' name='scorerPlayers1["+i+"]'><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach><option value='' label='CSC' /></select></td><td class='penalty-team1'><input type='checkbox' name='scorerPenalty1["+i+"]'/></td><td class='player-team1'><select id='select-passer"+i+"' name='passerPlayers1["+i+"]'><option value='' label='Aucun' /><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select></td><td class='minute-team1'><select id='select-minute"+i+"' name='scorerPlayersMinute1["+i+"]'><c:forEach begin='1' end='90' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select></td><td class='player-team2'></td><td class='penalty-team2'></td><td class='passer-team2'></td><td class='minute-team2'></td></tr>");
+					$("#playerBody").append("<tr id='tr-player-"+i+"'><td class='player-team1'><select id='select-player"+i+"' name='scorerPlayers1["+i+"]'><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach><option value='' label='CSC' /></select></td><td class='penalty-team1'><input type='checkbox' name='scorerPenalty1["+i+"]'/></td><td class='passer-team1'><select id='select-passer"+i+"' name='passerPlayers1["+i+"]'><option value='' label='Aucun' /><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select></td><td class='minute-team1'><select id='select-minute"+i+"' name='scorerPlayersMinute1["+i+"]'><c:forEach begin='1' end='90' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select></td><td class='player-team2'></td><td class='penalty-team2'></td><td class='passer-team2'></td><td class='minute-team2'></td></tr>");
 				}
 			}
 			if($('tr[id^="tr-player-"]').length >= parseInt($(this).val()))
@@ -594,7 +596,7 @@
 				}
 				else if(!$("#tr-player-"+i).length)
 				{
-					$("#playerBody").append("<tr id='tr-player-"+i+"'><td class='player-team1'></td><td class='penalty-team1'></td><td class='passer-team1'></td><td class='minute-team1'></td><td class='player-team2'><select id='select-player"+i+"' name='scorerPlayers2["+i+"]'><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach><option value='' label='CSC' /></select></td><td class='penalty-team2'><input type='checkbox' name='scorerPenalty2["+i+"]'/></td><td class='player-team2'><select id='select-passer"+i+"' name='passerPlayers2["+i+"]'><option value='' label='Aucun' /><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select></td><td class='minute-team2'><select id='select-minute"+i+"' name='scorerPlayersMinute2["+i+"]'><c:forEach begin='1' end='90' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select></td></tr>");
+					$("#playerBody").append("<tr id='tr-player-"+i+"'><td class='player-team1'></td><td class='penalty-team1'></td><td class='passer-team1'></td><td class='minute-team1'></td><td class='player-team2'><select id='select-player"+i+"' name='scorerPlayers2["+i+"]'><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach><option value='' label='CSC' /></select></td><td class='penalty-team2'><input type='checkbox' name='scorerPenalty2["+i+"]'/></td><td class='passer-team2'><select id='select-passer"+i+"' name='passerPlayers2["+i+"]'><option value='' label='Aucun' /><c:forEach var='player' items='${game.team2.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select></td><td class='minute-team2'><select id='select-minute"+i+"' name='scorerPlayersMinute2["+i+"]'><c:forEach begin='1' end='90' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select></td></tr>");
 				}
 			}
 			if($('tr[id^="tr-player-"]').length > parseInt($(this).val()))
