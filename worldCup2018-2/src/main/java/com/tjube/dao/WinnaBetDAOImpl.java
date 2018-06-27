@@ -158,36 +158,43 @@ public class WinnaBetDAOImpl
 	public void verifyBets(Game game)
 	{
 		Collection<WinnaBet> winnaBets = getWinnaBets(game);
+
+		Integer gameScore1 = game.getScore1();
+		Integer gameScore2 = game.getScore2();
+
 		for (WinnaBet winnaBet : winnaBets)
 		{
 			winnaBet.setGoodResult(false);
 			winnaBet.setGoodScore(false);
 
-			if (game.getGameInPoule())
+			if (!game.getGameInPoule() && game.getProlong())
 			{
-				if (winnaBet.getScore1() == game.getScore1() && winnaBet.getScore2() == game.getScore2())
-				{
-					winnaBet.setGoodScore(true);
-					winnaBet.setGoodResult(false);
-				}
-				else if ((winnaBet.getScore1() > winnaBet.getScore2() && game.getScore1() > game.getScore2())
-						|| (winnaBet.getScore1() < winnaBet.getScore2() && game.getScore1() < game.getScore2())
-						|| (winnaBet.getScore1() == winnaBet.getScore2() && game.getScore1() == game.getScore2()))
+				gameScore1 += game.getScore1_prolong();
+				gameScore2 += game.getScore2_prolong();
+			}
+
+			if (winnaBet.getScore1() == gameScore1 && winnaBet.getScore2() == gameScore2)
+			{
+				winnaBet.setGoodScore(true);
+				winnaBet.setGoodResult(false);
+			}
+			else if (game.getPenalti())
+			{
+				if (((winnaBet.getScore1() > winnaBet.getScore2()
+						&& game.getScore1_penalti() > game.getScore2_penalti())
+						|| (winnaBet.getScore1() < winnaBet.getScore2()
+								&& game.getScore1_penalti() < game.getScore2_penalti())))
 				{
 					winnaBet.setGoodResult(true);
 					winnaBet.setGoodScore(false);
 				}
 			}
-			else
+			else if ((winnaBet.getScore1() > winnaBet.getScore2() && gameScore1 > gameScore2)
+					|| (winnaBet.getScore1() < winnaBet.getScore2() && gameScore1 < gameScore2)
+					|| (winnaBet.getScore1() == winnaBet.getScore2() && gameScore1 == gameScore2))
 			{
-				if (game.getProlong())
-				{
-
-				}
-				else
-				{
-
-				}
+				winnaBet.setGoodResult(true);
+				winnaBet.setGoodScore(false);
 			}
 		}
 	}
