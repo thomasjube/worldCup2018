@@ -163,17 +163,31 @@ public class WinnaBetDAOImpl
 			winnaBet.setGoodResult(false);
 			winnaBet.setGoodScore(false);
 
-			if (winnaBet.getScore1() == game.getScore1() && winnaBet.getScore2() == game.getScore2())
+			if (game.getGameInPoule())
 			{
-				winnaBet.setGoodScore(true);
-				winnaBet.setGoodResult(false);
+				if (winnaBet.getScore1() == game.getScore1() && winnaBet.getScore2() == game.getScore2())
+				{
+					winnaBet.setGoodScore(true);
+					winnaBet.setGoodResult(false);
+				}
+				else if ((winnaBet.getScore1() > winnaBet.getScore2() && game.getScore1() > game.getScore2())
+						|| (winnaBet.getScore1() < winnaBet.getScore2() && game.getScore1() < game.getScore2())
+						|| (winnaBet.getScore1() == winnaBet.getScore2() && game.getScore1() == game.getScore2()))
+				{
+					winnaBet.setGoodResult(true);
+					winnaBet.setGoodScore(false);
+				}
 			}
-			else if ((winnaBet.getScore1() > winnaBet.getScore2() && game.getScore1() > game.getScore2())
-					|| (winnaBet.getScore1() < winnaBet.getScore2() && game.getScore1() < game.getScore2())
-					|| (winnaBet.getScore1() == winnaBet.getScore2() && game.getScore1() == game.getScore2()))
+			else
 			{
-				winnaBet.setGoodResult(true);
-				winnaBet.setGoodScore(false);
+				if (game.getProlong())
+				{
+
+				}
+				else
+				{
+
+				}
 			}
 		}
 	}
