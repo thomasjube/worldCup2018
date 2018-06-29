@@ -86,6 +86,11 @@ public class GameController
 		tf1Games.add(39);
 		tf1Games.add(43);
 		tf1Games.add(47);
+		tf1Games.add(49);
+		tf1Games.add(50);
+		tf1Games.add(52);
+		tf1Games.add(54);
+		tf1Games.add(56);
 		tf1Games.add(61);
 		tf1Games.add(62);
 		tf1Games.add(63);
@@ -3045,7 +3050,7 @@ public class GameController
 	{
 		if (game.getId() == 0)
 		{ // if employee id is 0 then creating the
-				// employee other updating the employee
+			// employee other updating the employee
 			gameService.addGame(game);
 		}
 		else
