@@ -142,7 +142,7 @@
 	                          <li>
 	                          	<c:choose>
 	                          		<c:when test="${not empty goal.player }">${goal.player.name}</c:when>
-	                          		<c:otherwise>CSC <c:if test="${not empty goal.playerCSC }">&nbsp;${goal.playerCsc.name }</c:if></c:otherwise>
+	                          		<c:otherwise>CSC <c:if test="${not empty goal.playerCsc }">&nbsp;${goal.playerCsc.name }</c:if></c:otherwise>
 	                          	</c:choose>
 	                         		<span>(${goal.minute}')</span></li>
                           </c:forEach>
