@@ -10,6 +10,8 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
+import com.tjube.model.Action;
+import com.tjube.model.PlayerStats;
 import com.tjube.model.Poule;
 import com.tjube.model.StatsWorldCup;
 import com.tjube.model.Team;
@@ -81,6 +83,8 @@ public class TeamDAOImpl
 		Team teamToUpdate = getTeam(team.getId());
 		teamToUpdate.setBut_mis(team.getBut_mis());
 		teamToUpdate.setBut_pris(team.getBut_pris());
+		teamToUpdate.setAllButMis(team.getAllButMis());
+		teamToUpdate.setAllButPris(team.getAllButPris());
 		teamToUpdate.setDiff(team.getDiff());
 		teamToUpdate.setGameDraw(team.getGameDraw());
 		teamToUpdate.setGameLost(team.getGameLost());
@@ -99,6 +103,8 @@ public class TeamDAOImpl
 		Team teamToUpdate = getTeam(team.getId());
 		teamToUpdate.setBut_mis(team.getBut_mis());
 		teamToUpdate.setBut_pris(team.getBut_pris());
+		teamToUpdate.setAllButMis(team.getAllButMis());
+		teamToUpdate.setAllButPris(team.getAllButPris());
 		teamToUpdate.setDiff(team.getDiff());
 		teamToUpdate.setGameDraw(team.getGameDraw());
 		teamToUpdate.setGameLost(team.getGameLost());
@@ -137,7 +143,7 @@ public class TeamDAOImpl
 			StatsWorldCup result = new StatsWorldCup();
 
 			result.setTeam(value);
-			result.setGoals(new Long(value.getBut_mis()));
+			result.setGoals(new Long(value.getAllButMis()));
 
 			results.add(result);
 		}
@@ -160,12 +166,33 @@ public class TeamDAOImpl
 			StatsWorldCup result = new StatsWorldCup();
 
 			result.setTeam(value);
-			result.setGoals(new Long(value.getBut_pris()));
+			result.setGoals(new Long(value.getAllButPris()));
 
 			results.add(result);
 		}
 
 		return results;
+	}
+
+	@Override
+	public Collection<PlayerStats> retrieveCountCSC()
+	{
+		TypedQuery<PlayerStats> query = m_entityManager.createNamedQuery(PlayerStats.QN.RETRIEVE_CSC,
+				PlayerStats.class);
+		query.setParameter("action", Action.GOAL);
+
+		return query.getResultList();
+	}
+
+	@Override
+	public Collection<PlayerStats> retrieveCountPenalties()
+	{
+		TypedQuery<PlayerStats> query = m_entityManager.createNamedQuery(PlayerStats.QN.RETRIEVE_PENALTIES,
+				PlayerStats.class);
+		query.setParameter("action", Action.GOAL);
+		query.setParameter("isPenalty", true);
+
+		return query.getResultList();
 	}
 
 }

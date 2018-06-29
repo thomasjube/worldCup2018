@@ -120,6 +120,12 @@ public class StatsController
 		List<StatsWorldCup> worstDefenseTeams = teamService.retrieveWorldCupStatsWorstDefense(10);
 		model.addObject("worstDefenseTeams", worstDefenseTeams);
 
+		int countPenalties = teamService.retrieveCountPenalties().size();
+		int countCSC = teamService.retrieveCountCSC().size();
+
+		model.addObject("countPenalties", countPenalties);
+		model.addObject("countCSC", countCSC);
+
 		model.setViewName("statsShow");
 
 		return model;

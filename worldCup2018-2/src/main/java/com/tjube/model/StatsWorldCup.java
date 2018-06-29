@@ -13,6 +13,8 @@ public class StatsWorldCup
 
 	private Long goals = new Long(0);
 
+	private Long penalties = new Long(0);
+
 	private Long passes = new Long(0);
 
 	private Long yellowCards = new Long(0);
@@ -129,5 +131,15 @@ public class StatsWorldCup
 	public void setTotalGames(Long totalGames)
 	{
 		this.totalGames = totalGames;
+	}
+
+	public Long getPenalties()
+	{
+		return penalties;
+	}
+
+	public void setPenalties(Long penalties)
+	{
+		this.penalties = penalties;
 	}
 }

@@ -3,6 +3,7 @@ package com.tjube.dao;
 import java.util.Collection;
 import java.util.List;
 
+import com.tjube.model.PlayerStats;
 import com.tjube.model.Poule;
 import com.tjube.model.StatsWorldCup;
 import com.tjube.model.Team;
@@ -30,4 +31,8 @@ public interface TeamDAO
 	public List<StatsWorldCup> retrieveWorldCupStatsBestAttack(int maxResults);
 
 	public List<StatsWorldCup> retrieveWorldCupStatsWorstDefense(int maxResults);
+
+	public Collection<PlayerStats> retrieveCountPenalties();
+
+	public Collection<PlayerStats> retrieveCountCSC();
 }

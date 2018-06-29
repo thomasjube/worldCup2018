@@ -82,9 +82,8 @@
         <section class="kode-pagesection margin-bottom-40">
           <div class="container">
             <div class="row">
-            
+            	<c:if test="${not empty nextGame}">
                 <div class="kode-pagecontent col-md-8">
-                  
                   <div class="kode-inner-fixer margin-none padding-none">
                     <div class="kode-fixer-counter">
                       <h2 class="thbg-color">Prochain match de la poule</h2>
@@ -100,8 +99,8 @@
                       <span class="kode-subtitle"><tags:localDate date="${nextGame.date}"/>&nbsp;${nextGame.time} ${nextGame.stade }</span>
                     </div>
                   </div>
-
                 </div>
+                </c:if>
                 <div class="col-md-12">
                   <table class="kode-table kode-table-v2">
                     <thead>
@@ -160,7 +159,7 @@
 	                        <h2><a href="#">${game.team1.name}</a> <span><c:choose><c:when test="${empty game.score1 && empty game.score2 }"> </c:when><c:when test="${game.score1 > game.score2}">VIC</c:when><c:when test="${game.score1 < game.score2}">DEF</c:when><c:otherwise>NUL</c:otherwise></c:choose></span></h2>
 	                        <ul>
 	                          <c:forEach var="goal" items="${game.getGoalsTeam1()}">
-		                          <li>${not empty goal.player.name ? goal.player.name : 'CSC'}<span>(${goal.minute}')</span></li>
+		                          <li>${not empty goal.player.name ? goal.player.name : 'CSC'}<c:if test="${not empty goal.playerCsc }">&nbsp;${goal.playerCsc.name }</c:if><c:if test="${goal.penalty }"> (sp)</c:if><span>(${goal.minute}')</span></li>
 	                          </c:forEach>
                         	</ul>
 	                      </div>
@@ -176,7 +175,7 @@
 	                      <h2><a href="#">${game.team2.name}</a> <span><c:choose><c:when test="${empty game.score1 && empty game.score2 }"></c:when> <c:when test="${game.score1 < game.score2}">VIC</c:when><c:when test="${game.score1 > game.score2}">DEF</c:when><c:otherwise>NUL</c:otherwise></c:choose></span></h2>
 	                      <ul>
 	                          <c:forEach var="goal" items="${game.getGoalsTeam2()}">
-		                           <li>${not empty goal.player.name ? goal.player.name : 'CSC'}<span>(${goal.minute}')</span></li>
+		                           <li>${not empty goal.player.name ? goal.player.name : 'CSC'}<c:if test="${not empty goal.playerCsc }">&nbsp;${goal.playerCsc.name }</c:if><c:if test="${goal.penalty }"> (sp)</c:if><span>(${goal.minute}')</span></li>
 	                          </c:forEach>
                        	</ul>
 	                    </div>

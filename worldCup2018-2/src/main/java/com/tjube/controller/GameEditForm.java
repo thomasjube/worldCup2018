@@ -29,7 +29,10 @@ public class GameEditForm
 	private Integer scorePeno2 = 0;
 
 	private List<Integer> scorerPlayers1 = new ArrayList<>();
+	private boolean[] scorerPenalty1 = new boolean[100];
+
 	private List<Integer> scorerPlayers2 = new ArrayList<>();
+	private boolean[] scorerPenalty2 = new boolean[100];
 
 	private List<Integer> passerPlayers1 = new ArrayList<>();
 	private List<Integer> passerPlayers2 = new ArrayList<>();
@@ -38,7 +41,9 @@ public class GameEditForm
 	private List<Integer> scorerPlayersMinute2 = new ArrayList<>();
 
 	private List<Integer> scorerPlayersProlong1 = new ArrayList<>();
+	private boolean[] scorerProlongPenalty1 = new boolean[100];
 	private List<Integer> scorerPlayersProlong2 = new ArrayList<>();
+	private boolean[] scorerProlongPenalty2 = new boolean[100];
 
 	private List<Integer> passerPlayersProlong1 = new ArrayList<>();
 	private List<Integer> passerPlayersProlong2 = new ArrayList<>();
@@ -69,31 +74,48 @@ public class GameEditForm
 		if (scorePeno1 != null && scorePeno2 != null && (scorePeno1 != 0 || scorePeno2 != 0))
 			peno = true;
 
+		int i = 0;
 		for (PlayerStats scorer : game.getGoalsTeam1())
 		{
+			boolean foundPasser1 = false;
+
 			if (scorer.getMinute() <= 90)
 			{
 				scorerPlayers1.add(scorer.getPlayer() != null ? scorer.getPlayer().getId() : null);
+				if (scorer.getPlayerCsc() != null)
+				{
+					if (scorer.getMinute() <= 90)
+						passerPlayers1.add(scorer.getPlayerCsc().getId());
+					else
+						passerPlayersProlong1.add(scorer.getPlayerCsc().getId());
+
+					foundPasser1 = true;
+				}
 				scorerPlayersMinute1.add(scorer.getMinute());
+				if (scorer.isPenalty())
+					scorerPenalty1[i] = true;
 			}
 			else
 			{
 				prolong = true;
 				scorerPlayersProlong1.add(scorer.getPlayer() != null ? scorer.getPlayer().getId() : null);
 				scorerPlayersMinuteProlong1.add(scorer.getMinute());
+				if (scorer.isPenalty())
+					scorerProlongPenalty1[i] = true;
 			}
-
-			boolean foundPasser1 = false;
-			for (PlayerStats passer : game.getPassTeam1())
+			if (!foundPasser1)
 			{
-				if (passer.getMinute() == scorer.getMinute())
+				for (PlayerStats passer : game.getPassTeam1())
 				{
-					if (passer.getMinute() <= 90)
-						passerPlayers1.add(passer.getPlayer() != null ? passer.getPlayer().getId() : null);
-					else
-						passerPlayersProlong1.add(passer.getPlayer() != null ? passer.getPlayer().getId() : null);
+					if (passer.getMinute() == scorer.getMinute())
+					{
+						if (passer.getMinute() <= 90)
+							passerPlayers1.add(passer.getPlayer() != null ? passer.getPlayer().getId() : null);
+						else
+							passerPlayersProlong1.add(passer.getPlayer() != null ? passer.getPlayer().getId() : null);
 
-					foundPasser1 = true;
+						foundPasser1 = true;
+					}
 				}
 			}
 
@@ -104,34 +126,52 @@ public class GameEditForm
 				else
 					passerPlayersProlong1.add(null);
 			}
-
+			i++;
 		}
 
+		int j = 0;
 		for (PlayerStats scorer : game.getGoalsTeam2())
 		{
+
+			boolean foundPasser2 = false;
+
 			if (scorer.getMinute() <= 90)
 			{
 				scorerPlayers2.add(scorer.getPlayer() != null ? scorer.getPlayer().getId() : null);
+				if (scorer.getPlayerCsc() != null)
+				{
+					if (scorer.getMinute() <= 90)
+						passerPlayers2.add(scorer.getPlayerCsc().getId());
+					else
+						passerPlayersProlong2.add(scorer.getPlayerCsc().getId());
+
+					foundPasser2 = true;
+				}
 				scorerPlayersMinute2.add(scorer.getMinute());
+				if (scorer.isPenalty())
+					scorerPenalty2[j] = true;
 			}
 			else
 			{
 				prolong = true;
 				scorerPlayersProlong2.add(scorer.getPlayer() != null ? scorer.getPlayer().getId() : null);
 				scorerPlayersMinuteProlong2.add(scorer.getMinute());
+				if (scorer.isPenalty())
+					scorerProlongPenalty2[j] = true;
 			}
 
-			boolean foundPasser2 = false;
-			for (PlayerStats passer : game.getPassTeam2())
+			if (!foundPasser2)
 			{
-				if (passer.getMinute() == scorer.getMinute())
+				for (PlayerStats passer : game.getPassTeam2())
 				{
-					if (passer.getMinute() <= 90)
-						passerPlayers2.add(passer.getPlayer() != null ? passer.getPlayer().getId() : null);
-					else
-						passerPlayersProlong2.add(passer.getPlayer() != null ? passer.getPlayer().getId() : null);
-
-					foundPasser2 = true;
+					if (passer.getMinute() == scorer.getMinute())
+					{
+						if (passer.getMinute() <= 90)
+							passerPlayers2.add(passer.getPlayer() != null ? passer.getPlayer().getId() : null);
+						else
+							passerPlayersProlong2.add(passer.getPlayer() != null ? passer.getPlayer().getId() : null);
+						foundPasser2 = true;
+					}
 				}
 			}
 
@@ -142,6 +182,8 @@ public class GameEditForm
 				else
 					passerPlayersProlong2.add(null);
 			}
+
+			j++;
 		}
 
 		for (PlayerStats carton : game.getCartons())
@@ -402,6 +444,46 @@ public class GameEditForm
 	public void setScorerPlayersMinuteProlong2(List<Integer> scorerPlayersMinuteProlong2)
 	{
 		this.scorerPlayersMinuteProlong2 = scorerPlayersMinuteProlong2;
+	}
+
+	public boolean[] getScorerPenalty1()
+	{
+		return scorerPenalty1;
+	}
+
+	public void setScorerPenalty1(boolean[] scorerPenalty1)
+	{
+		this.scorerPenalty1 = scorerPenalty1;
+	}
+
+	public boolean[] getScorerPenalty2()
+	{
+		return scorerPenalty2;
+	}
+
+	public void setScorerPenalty2(boolean[] scorerPenalty2)
+	{
+		this.scorerPenalty2 = scorerPenalty2;
+	}
+
+	public boolean[] getScorerProlongPenalty1()
+	{
+		return scorerProlongPenalty1;
+	}
+
+	public void setScorerProlongPenalty1(boolean[] scorerProlongPenalty1)
+	{
+		this.scorerProlongPenalty1 = scorerProlongPenalty1;
+	}
+
+	public boolean[] getScorerProlongPenalty2()
+	{
+		return scorerProlongPenalty2;
+	}
+
+	public void setScorerProlongPenalty2(boolean[] scorerProlongPenalty2)
+	{
+		this.scorerProlongPenalty2 = scorerProlongPenalty2;
 	}
 
 }

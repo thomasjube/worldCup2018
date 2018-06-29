@@ -33,6 +33,12 @@ import javax.persistence.Table;
 				query = "select count(st), SUM(st.minute) from PlayerStats st where st.action =:action and st.player =:player "),
 		@NamedQuery(name = PlayerStats.QN.GET_STATS_BY_GAME,
 				query = "select s from PlayerStats s where s.game =:game "),
+		@NamedQuery(name = PlayerStats.QN.RETRIEVE_PENALTIES,
+				query = "select s from PlayerStats s where s.action =:action AND s.penalty=:isPenalty"),
+		@NamedQuery(name = PlayerStats.QN.RETRIEVE_PENALTIES_FOR_PLAYER,
+				query = "select s from PlayerStats s where s.action =:action AND s.penalty=:isPenalty and s.player =:player"),
+		@NamedQuery(name = PlayerStats.QN.RETRIEVE_CSC,
+				query = "select s from PlayerStats s where s.action =:action AND s.player is NULL"),
 		@NamedQuery(name = PlayerStats.QN.GET_STATS_BY_GAME_AND_ACTIONS,
 				query = "select s from PlayerStats s where s.game =:game and s.action in(:actions)"),
 		@NamedQuery(name = PlayerStats.QN.GET_ALL_STATS, query = "select s from PlayerStats s"), @NamedQuery(
@@ -60,9 +66,13 @@ public class PlayerStats
 		public static final String RETRIEVE_STATS_BY_PLAYER_BY_GAME = "PlayerStats.retrieveStatByPlayerByGame";
 		public static final String RETRIEVE_STATS_BY_PLAYER_WITH_MINUTES = "PlayerStats.retrieveStatByPlayerWithMinutes";
 		public static final String RETRIEVE_STATS_WORLD_CUP_FOR_ACTION = "PlayerStats.retrieveStatsWorldCupForAction";
+		public static final String RETRIEVE_PENALTIES_FOR_PLAYER = "PlayerStats.retrievePenaltiesForPlayer";
 		public static final String RETRIEVE_STATS_WORLD_CUP_FOR_ACTION_AND_GAME_AND_TEAM = "PlayerStats.retrieveStatsWorldCupForActionAndGameAndTeam";
 		public static final String RETRIEVE_STATS_WORLD_CUP_FOR_ACTION_AND_GAME = "PlayerStats.retrieveStatsWorldCupForActionAndGame";
 		public static final String RETRIEVE_SUBSTITUTES_BY_GAME = "PlayerStats.retrieveSubstitutesByGame";
+
+		public static final String RETRIEVE_CSC = "PlayerStats.retrieveCSC";
+		public static final String RETRIEVE_PENALTIES = "PlayerStats.retrievePenalties";
 	}
 
 	private static final long serialVersionUID = -1740184637168312573L;
@@ -85,19 +95,29 @@ public class PlayerStats
 	private Player player;
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	private Player playerCsc;
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Team team;
+
+	@Column
+	private boolean penalty = false;
 
 	public PlayerStats()
 	{
 	}
 
-	public PlayerStats(Game game2, Player scorerPlayer, Team team, Integer minute2, Action action)
+	public PlayerStats(Game game2, Player scorerPlayer, Team team, Integer minute2, Action action, boolean penalty)
 	{
 		this.game = game2;
-		this.player = scorerPlayer;
+		if (scorerPlayer == null || scorerPlayer.getTeam().equals(team))
+			this.player = scorerPlayer;
+		else
+			this.playerCsc = scorerPlayer;
 		this.minute = minute2;
 		this.action = action;
 		this.team = team;
+		this.penalty = penalty;
 	}
 
 	public int getId()
@@ -176,5 +196,25 @@ public class PlayerStats
 			return false;
 
 		return getId() == ((PlayerStats) obj).getId();
+	}
+
+	public boolean isPenalty()
+	{
+		return penalty;
+	}
+
+	public void setPenalty(boolean penalty)
+	{
+		this.penalty = penalty;
+	}
+
+	public Player getPlayerCsc()
+	{
+		return playerCsc;
+	}
+
+	public void setPlayerCsc(Player playerCsc)
+	{
+		this.playerCsc = playerCsc;
 	}
 }

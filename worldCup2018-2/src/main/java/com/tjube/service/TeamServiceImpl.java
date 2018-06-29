@@ -14,6 +14,7 @@ import com.tjube.dao.PlayerStatsDAO;
 import com.tjube.dao.TeamDAO;
 import com.tjube.model.Game;
 import com.tjube.model.Player;
+import com.tjube.model.PlayerStats;
 import com.tjube.model.PlayerStatsSituation;
 import com.tjube.model.Poule;
 import com.tjube.model.StatsWorldCup;
@@ -144,10 +145,31 @@ public class TeamServiceImpl
 			team2.setBut_mis(team2.getBut_mis() + game.getScore2());
 			team2.setBut_pris(team2.getBut_pris() + game.getScore1());
 		}
-		team1.setGamePlayed(team1.getGamePlayed() + 1);
-		team2.setGamePlayed(team2.getGamePlayed() + 1);
-		team1.setDiff(team1.getBut_mis() - team1.getBut_pris());
-		team2.setDiff(team2.getBut_mis() - team2.getBut_pris());
+
+		team1.setAllButMis(game.getScore1(), false);
+		if (game.getScore1_prolong() != null)
+			team1.setAllButMis(game.getScore1_prolong(), false);
+
+		team1.setAllButPris(game.getScore2(), false);
+		if (game.getScore2_prolong() != null)
+			team1.setAllButPris(game.getScore2_prolong(), false);
+
+		team2.setAllButMis(game.getScore2(), false);
+		if (game.getScore2_prolong() != null)
+			team2.setAllButMis(game.getScore2_prolong(), false);
+
+		team2.setAllButPris(game.getScore1(), false);
+		if (game.getScore1_prolong() != null)
+			team2.setAllButPris(game.getScore1_prolong(), false);
+
+		if (game.getGameInPoule())
+		{
+			team1.setGamePlayed(team1.getGamePlayed() + 1);
+			team2.setGamePlayed(team2.getGamePlayed() + 1);
+			team1.setDiff(team1.getBut_mis() - team1.getBut_pris());
+			team2.setDiff(team2.getBut_mis() - team2.getBut_pris());
+		}
+
 		updateTeam(team1);
 		updateTeam(team2);
 	}
@@ -202,10 +224,29 @@ public class TeamServiceImpl
 			}
 		}
 
-		team1.setGamePlayed(team1.getGamePlayed() - 1);
-		team2.setGamePlayed(team2.getGamePlayed() - 1);
-		team1.setDiff(team1.getBut_mis() + team1.getBut_pris());
-		team2.setDiff(team2.getBut_mis() + team2.getBut_pris());
+		team1.setAllButMis(game.getScore1(), true);
+		if (game.getScore1_prolong() != null)
+			team1.setAllButMis(game.getScore1_prolong(), true);
+
+		team1.setAllButPris(game.getScore2(), true);
+		if (game.getScore2_prolong() != null)
+			team1.setAllButPris(game.getScore2_prolong(), true);
+
+		team2.setAllButMis(game.getScore2(), true);
+		if (game.getScore2_prolong() != null)
+			team2.setAllButMis(game.getScore2_prolong(), true);
+
+		team2.setAllButPris(game.getScore1(), true);
+		if (game.getScore1_prolong() != null)
+			team2.setAllButPris(game.getScore1_prolong(), true);
+
+		if (game.getGameInPoule())
+		{
+			team1.setGamePlayed(team1.getGamePlayed() - 1);
+			team2.setGamePlayed(team2.getGamePlayed() - 1);
+			team1.setDiff(team1.getBut_mis() + team1.getBut_pris());
+			team2.setDiff(team2.getBut_mis() + team2.getBut_pris());
+		}
 		updateTeam(team1);
 		updateTeam(team2);
 	}
@@ -401,5 +442,17 @@ public class TeamServiceImpl
 	public List<StatsWorldCup> retrieveWorldCupStatsWorstDefense(int maxResults)
 	{
 		return teamDAO.retrieveWorldCupStatsWorstDefense(maxResults);
+	}
+
+	@Override
+	public Collection<PlayerStats> retrieveCountPenalties()
+	{
+		return teamDAO.retrieveCountPenalties();
+	}
+
+	@Override
+	public Collection<PlayerStats> retrieveCountCSC()
+	{
+		return teamDAO.retrieveCountCSC();
 	}
 }

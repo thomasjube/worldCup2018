@@ -45,9 +45,9 @@
 					<ul>
 						<li><a href="../team">Equipes</a></li>
 						<li><a href="../poule">Poules</a></li>
-						<li><a href="../game">Matchs</a></li>
+						<li><a href="../game?id=${game.id}">Matchs</a></li>
 						<li><a href="../stats">Statistiques</a></li>
-						<li><a href="../winabet/edit">Saisie pari</a></li>
+						<li><a href="../winabet/edit?id=${game.id}">Saisie pari</a></li>
 						<li><a href="../winabet/game">Résultat par match</a></li>
 						<li><a href="../winabet">Classement général</a></li>
 					</ul>
@@ -104,7 +104,7 @@
 	                        <h2><a href="#">${game.team1.name}</a> <span><c:choose><c:when test="${empty game.score1 && empty game.score2 }"> </c:when><c:when test="${game.score1 > game.score2}">VIC</c:when><c:when test="${game.score1 < game.score2}">DEF</c:when><c:otherwise>NUL</c:otherwise></c:choose></span></h2>
 	                        <ul>
 	                          <c:forEach var="goal" items="${game.getGoalsTeam1()}">
-		                           <li>${not empty goal.player.name ? goal.player.name : 'CSC'}<span>(${goal.minute}')</span></li>
+		                           <li>${not empty goal.player.name ? goal.player.name : 'CSC'}<c:if test="${not empty goal.playerCsc }">&nbsp;${goal.playerCsc.name }</c:if><c:if test="${goal.penalty }"> (sp)</c:if><span>(${goal.minute}')</span></li>
 	                          </c:forEach>
                         	</ul>
 	                      </div>
@@ -120,7 +120,7 @@
 	                      <h2><a href="#">${game.team2.name}</a> <span><c:choose><c:when test="${empty game.score1 && empty game.score2 }"></c:when> <c:when test="${game.score1 < game.score2}">VIC</c:when><c:when test="${game.score1 > game.score2}">DEF</c:when><c:otherwise>NUL</c:otherwise></c:choose></span></h2>
 	                      <ul>
 	                          <c:forEach var="goal" items="${game.getGoalsTeam2()}">
-		                           <li>${not empty goal.player.name ? goal.player.name : 'CSC'}<span>(${goal.minute}')</span></li>
+		                           <li>${not empty goal.player.name ? goal.player.name : 'CSC'}<c:if test="${not empty goal.playerCsc }">&nbsp;${goal.playerCsc.name }</c:if><c:if test="${goal.penalty }"> (sp)</c:if><span>(${goal.minute}')</span></li>
 	                          </c:forEach>
                        	</ul>
 	                    </div>
