@@ -402,7 +402,7 @@
 					                 		<td class="teamCarton"><tags:teams path="cartonTeam[${status.index}]" game="${game}"/></td>
 					                 		<td class="playerCarton"><tags:players isCarton="${true}" index="${status.index}" items="${carton.player.team.players }" path="cartonPlayers[${status.index}]"></tags:players></td>
 					                 		<td class="typeCarton"><tags:carton path="cartonType[${status.index}]"></tags:carton> </td>
-					                 		<td style='width:7em;' class="minuteCarton"><tags:minutes path="cartonMinute[${status.index}]"/></td>
+					                 		<td style='width:7em;' class="minuteCarton"><tags:minutes isProlong="true" path="cartonMinute[${status.index}]"/></td>
 					                 		<td><input type="button" class="removeCarton table-button" value="Effacer"></td>
 				                 		</tr>
 				                 	</c:forEach>
@@ -522,7 +522,7 @@
 		tr += "<td class='teamCarton'><select id='cartonTeam"+indexMax+"' name='cartonTeam["+indexMax+"]' class='carton-team' ><option data-index='1' value='${game.team1.id}'>${game.team1.name}</option><option data-index='2' value='${game.team2.id}'>${game.team2.name}</option></select></td>";
 		tr += "<td class='playerCarton'><select id='select-carton-player"+indexMax+"' name='cartonPlayers["+indexMax+"]'><c:forEach var='player' items='${game.team1.players}'><option value='${player.id}' label='${player.number} - ${player.firstName} ${player.name}' /></c:forEach></select></td>";
 		tr += "<td class='typeCarton'><select name='cartonType["+indexMax+"]'><option value='YELLOW_CARD' selected='selected'>Carton jaune</option><option value='RED_CARD'>Carton rouge</option></select></td>";
-		tr += "<td style='width:7em;' class='minuteCarton'><select name='cartonMinute["+indexMax+"]'><c:forEach begin='1' end='90' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select></td>";
+		tr += "<td style='width:7em;' class='minuteCarton'><select name='cartonMinute["+indexMax+"]'><c:forEach begin='1' end='120' var='minute'><option value='${minute}' label='${minute}'/></c:forEach></select></td>";
 		tr += "<td><input type='button' class='removeCarton table-button' value='Effacer'></td>";
 		
 		if(indexMax == 0)

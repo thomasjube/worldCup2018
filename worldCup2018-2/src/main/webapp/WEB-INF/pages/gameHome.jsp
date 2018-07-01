@@ -54,10 +54,26 @@
 				<!--NAVIGATION END-->
 			</div>
 		</div>
+		 <div class="header-8">
+			<div class="container">
+				<!--NAVIGATION START-->
+				<div class="kode-navigation pull-left">
+					<ul>
+						<li><a href="#">Poules</a></li>
+						<li><a href="#48">Huitièmes</a></li>
+						<li><a href="#56">Quarts</a></li>
+						<li><a href="#60">Demis</a></li>
+						<li><a href="#62">Finales</a></li>
+					</ul>
+				</div>
+				<!--NAVIGATION END-->
+			</div>
+		</div>
       </header>
 
 		<br /><br /><br /><br />
       <!--// Main Content //-->
+     
       <div class="kode-content">
 		<br /><br /><br /><br />
         <!--// Page Content //-->

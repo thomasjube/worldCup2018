@@ -2605,6 +2605,13 @@ blockquote {
 .logo img{
 	float:left;
 }
+
+.sub-menu-li{
+	position: relative;
+	float: left;
+	list-style: none;
+}
+
 .kode-navigation{
 	float:right;
 	
