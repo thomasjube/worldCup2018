@@ -1,6 +1,8 @@
 package com.tjube.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -16,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tjube.model.Game;
 import com.tjube.model.Player;
 import com.tjube.model.PlayerStatsSituation;
 import com.tjube.model.Team;
+import com.tjube.service.GameService;
 import com.tjube.service.PlayerService;
 import com.tjube.service.TeamService;
 
@@ -40,6 +44,9 @@ public class TeamController
 
 	@Autowired
 	private PlayerService playerService;
+	
+	@Autowired
+	private GameService gameService;
 
 	@RequestMapping(value = "")
 	public ModelAndView homeTeam(ModelAndView model)
@@ -54,6 +61,22 @@ public class TeamController
 	{
 		List<Team> listTeam = teamService.getAllTeams();
 		model.addObject("listTeam", listTeam);
+		
+		List<Integer> elimatedTeams = new ArrayList<>();
+		for (Team team : listTeam) 
+		{
+			if(team.getPosition_poule() > 2)
+			{
+				elimatedTeams.add(team.getId());
+			}
+		}
+		
+		Collection<Game> finalPhaseGames = gameService.getFinalPhaseGames();
+		for (Game game : finalPhaseGames) {
+			if(game.getScore1() != null && game.getScore2() != null)
+				elimatedTeams.add(game.getLooser().getId());
+		}
+		model.addObject("elimatedTeams", elimatedTeams);
 		model.setViewName("teamHome");
 		return model;
 	}

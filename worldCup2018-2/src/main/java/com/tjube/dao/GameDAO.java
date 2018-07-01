@@ -1,6 +1,7 @@
 package com.tjube.dao;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 import com.tjube.model.Game;
@@ -33,4 +34,6 @@ public interface GameDAO
 	public List<Game> getGames(Poule poule);
 
 	public List<Game> getGames(LocalDateTime date);
+
+	public List<Game> getFinalPhaseGames();
 }

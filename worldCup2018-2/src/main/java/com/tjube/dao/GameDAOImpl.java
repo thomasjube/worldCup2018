@@ -155,4 +155,11 @@ public class GameDAOImpl
 		gameToUpdate.setCaptainTeam2(captainTeam2);
 	}
 
+	@Override
+	public List<Game> getFinalPhaseGames() {
+		TypedQuery<Game> query = m_entityManager.createNamedQuery(Game.QN.GET_ALL_FINAL_PHASE_GAMES, Game.class);
+
+		return query.getResultList();
+	}
+
 }

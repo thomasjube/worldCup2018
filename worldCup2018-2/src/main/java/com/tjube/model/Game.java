@@ -39,6 +39,7 @@ import com.tjube.controller.LocalDateTimeAttributeConverter;
 				query = "select g from Game g where g.poule=:poule order by g.dateTime,g.name"),
 		@NamedQuery(name = Game.QN.GET_ALL_GAMES_BEFORE_DATE, query = "select g from Game g where g.dateTime <:date"),
 		@NamedQuery(name = Game.QN.GET_ALL_GAMES, query = "select g from Game g order by g.dateTime,g.name"),
+		@NamedQuery(name = Game.QN.GET_ALL_FINAL_PHASE_GAMES, query = "select g from Game g where g.gameInPoule = false order by g.dateTime,g.name"),
 		@NamedQuery(name = Game.QN.GET_GAME_BY_ID, query = "select g from Game g where g.id=:id"),
 		@NamedQuery(name = Game.QN.findNextGameByDateAndPoule,
 				query = "select g from Game g where g.dateTime > :date AND g.score1 is null AND g.poule=:poule order by g.dateTime,g.name") })
@@ -64,6 +65,7 @@ public class Game
 		public static final String GET_ALL_GAMES_BEFORE_DATE = "Game.getAllGamesBeforeDate";
 		public static final String GET_GAME_BY_ID = "Game.getGameById";
 		public static final String GET_ALL_GAMES = "Game.getAllGames";
+		public static final String GET_ALL_FINAL_PHASE_GAMES = "Game.getAllFinalPhaseGames";
 	}
 
 	private static final long serialVersionUID = 1123828229175369276L;
@@ -575,19 +577,19 @@ public class Game
 			if (this.score1_prolong == this.score2_prolong)
 			{
 				if (this.score1_penalti < this.score2_penalti)
-					return this.team2;
-				else
 					return this.team1;
+				else
+					return this.team2;
 			}
 			else if (this.score1_prolong < this.score2_prolong)
 				return this.team2;
 			else
-				return this.team1;
+				return this.team2;
 		}
 		else if (this.score1 < this.score2)
-			return this.team2;
-		else
 			return this.team1;
+		else
+			return this.team2;
 	}
 
 	public void addPlayerStat(PlayerStats stat)

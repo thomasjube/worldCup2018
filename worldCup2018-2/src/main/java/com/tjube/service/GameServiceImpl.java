@@ -354,4 +354,9 @@ public class GameServiceImpl
 	{
 		return playerStatsDAO.getSubstitutes(game);
 	}
+
+	@Override
+	public List<Game> getFinalPhaseGames() {
+		return gameDAO.getFinalPhaseGames();
+	}
 }

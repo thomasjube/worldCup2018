@@ -56,4 +56,6 @@ public interface GameService
 
 	public Map<Integer, PlayerStats> getSubstitutes(Game game);
 
+	public List<Game> getFinalPhaseGames();
+
 }

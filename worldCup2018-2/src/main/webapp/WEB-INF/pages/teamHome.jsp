@@ -71,7 +71,8 @@
                     </ul>
                     <c:forEach var="team" items="${listTeam}">
 	                    <ul class="table-body">
-	                      <li id="${team.id}" style="cursor:pointer;">
+	                      <li id="${team.id}" class="${elimatedTeams.contains(team.id) ? 'eliminated' : ''}" style="cursor:pointer;">
+	                        <c:if test=""></c:if>
 	                        <img style="top:1em;" src="<%=request.getContextPath()%>/resources/images/flag/${team.name}.png" alt="" width="30" height="20">&nbsp;
 	                        <span>${team.name}</span>
 	                      </li>
