@@ -137,7 +137,7 @@
 			                    			</td>
 			                    			<td>
 				                    			<select name="minute1[${indexTeam1}]">
-													<c:forEach begin="1" end="93" var="minute">
+													<c:forEach begin="1" end="120" var="minute">
 														<option value="${minute}" label="${minute}" ${not empty substitutePlayer and substitutePlayer.minute == minute ? 'selected="selected"' : ''}/>
 													</c:forEach>
 												</select>
@@ -263,7 +263,7 @@
 			                    			</td>
 			                    			<td>
 				                    			<select name="minute2[${indexTeam2}]">
-													<c:forEach begin="1" end="93" var="minute">
+													<c:forEach begin="1" end="120" var="minute">
 														<option value="${minute}" label="${minute}" ${not empty substitutePlayer and substitutePlayer.minute == minute ? 'selected="selected"' : ''}/>
 													</c:forEach>
 												</select>
@@ -319,7 +319,7 @@
 			                    			</td>
 			                    			<td>
 				                    			<select name="minute2[${indexTeam2}]">
-													<c:forEach begin="1" end="93" var="minute">
+													<c:forEach begin="1" end="120" var="minute">
 														<option value="${minute}" label="${minute}" ${not empty substitutePlayer and substitutePlayer.minute == minute ? 'selected="selected"' : ''}/>
 													</c:forEach>
 												</select>
