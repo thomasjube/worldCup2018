@@ -91,6 +91,9 @@ public class GameController
 		tf1Games.add(52);
 		tf1Games.add(54);
 		tf1Games.add(56);
+		tf1Games.add(57);
+		tf1Games.add(58);
+		tf1Games.add(60);
 		tf1Games.add(61);
 		tf1Games.add(62);
 		tf1Games.add(63);
