@@ -186,10 +186,12 @@ public class WinnaBetDAOImpl
 								&& game.getScore1_penalti() < game.getScore2_penalti())))
 				{
 					winnaBet.setGoodResult(true);
-					if (winnaBet.getScore1() == winnaBet.getScore2() && gameScore1 == gameScore2)
-						winnaBet.setGoodScore(true);
-					else
-						winnaBet.setGoodScore(false);
+					winnaBet.setGoodScore(false);
+				}
+				else if (winnaBet.getScore1() == winnaBet.getScore2() && gameScore1 == gameScore2)
+				{
+					winnaBet.setGoodResult(true);
+					winnaBet.setGoodScore(false);
 				}
 			}
 			else if ((winnaBet.getScore1() > winnaBet.getScore2() && gameScore1 > gameScore2)
